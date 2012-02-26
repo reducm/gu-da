@@ -1,0 +1,16 @@
+@import 'bootstrap';
+$bc: #4c5a76;
+
+@mixin cw(){
+  color: white;
+}
+
+body {
+  background: $bc;
+}
+
+h1,h2{
+  @include cw();
+}
+
+
