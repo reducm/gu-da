@@ -1,8 +1,10 @@
 GuDa::Application.routes.draw do
+
   root :to => 'index#index'
+  match "blog" => 'blog#index'
   
-  namespace :blog do
-      
+  scope 'blog' do
+    resources :users
   end
   match ':controller(/:action(/:id(.:format)))'
 end
