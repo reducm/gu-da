@@ -1,0 +1,26 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: guda 
+  host: localhost
+  username: scott
+  password: tiger
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: guda 
+  host: localhost
+  username: scott
+  password: tiger
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: guda 
+  host: localhost
+  username: scott
+  password: tiger
+
+
+
