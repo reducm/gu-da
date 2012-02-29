@@ -27,3 +27,5 @@ solr/data/
 solr/pids/
 bin/
 tag
+package/
+*.vim
