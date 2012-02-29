@@ -80,4 +80,13 @@ class UsersController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def login
+    @user = User.check(params[:user])
+    if @user.blank?
+      redirect_to :controller => 'blog', :action => 'index'   
+    else
+      redirect_to :action => 'index'
+    end
+  end
 end
