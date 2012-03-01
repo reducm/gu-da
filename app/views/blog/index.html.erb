@@ -1,9 +1,7 @@
 <h1>just type sth</h1>
-
-<%= link_to "test user",users_path %>
-
-<%= form_for @user, :url=>{ :controller => 'users', :action => 'login' }  do|f|%>
+<%= form_for @user, :url => login_path  do|f|%>
   <%= f.text_field :name%> 
   <%= f.password_field :password %> 
-  <%= f.submit "login" %>
+  <%= f.submit "登录" %>
 <%end%>
+<%= button_to "注册", {:controller => 'users', :action => 'new'}, :method => :get %>
