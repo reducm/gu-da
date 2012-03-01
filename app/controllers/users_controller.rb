@@ -82,11 +82,14 @@ class UsersController < ApplicationController
   end
 
   def login
-    @user = User.check(params[:user])
-    if @user.blank?
+    user = User.check(params[:user])
+    if user.blank?
+      flash[:notice] = 'login error' 
       redirect_to :controller => 'blog', :action => 'index'   
     else
-      redirect_to :action => 'index'
+      session[:logined] = true
+      session[:user_id] = user.id
+      redirect_to articles_url, :method => :get 
     end
   end
 end

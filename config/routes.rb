@@ -5,6 +5,7 @@ GuDa::Application.routes.draw do
   
   scope 'blog' do
     resources :users
+    resources :articles
   end
   match ':controller(/:action(/:id(.:format)))'
 end

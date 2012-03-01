@@ -1,9 +1,9 @@
 <h1>just type sth</h1>
 
-<%= link_to "test user",users_path %>
-
+<%= flash[:notice] %> 
 <%= form_for @user, :url=>{ :controller => 'users', :action => 'login' }  do|f|%>
   <%= f.text_field :name%> 
   <%= f.password_field :password %> 
   <%= f.submit "login" %>
 <%end%>
+<%= button_to 'sign up', {:controller => 'users', :action => 'new' }, :method => 'get' %>
