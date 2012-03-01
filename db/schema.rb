@@ -11,24 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120301112830) do
 
   create_table "articles", :force => true do |t|
-=======
-ActiveRecord::Schema.define(:version => 20120229113820) do
-
-  create_table "atricles", :force => true do |t|
->>>>>>> 8d7f068c135b4bce102796ecfa97fffc441cebfb
     t.string   "title"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-<<<<<<< HEAD
     t.integer  "user_id"
     t.integer  "catagory_id"
-=======
->>>>>>> 8d7f068c135b4bce102796ecfa97fffc441cebfb
   end
 
   create_table "catagories", :force => true do |t|
