@@ -1,0 +1,9 @@
+<h1><%= @article.title %></h1>
+
+<p><%= @article.content %></p>
+
+<p>
+<% @article.tags.each do|t|%> 
+  <%= link_to t.name, tag_path(t) %>
+<% end %> 
+</p>

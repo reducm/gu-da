@@ -1,0 +1,6 @@
+<%= form_for @article, :url => articles_path, :method => 'post'  do|f| %> 
+  <%= f.text_field :title %>
+  <%= f.text_area :content %>
+  <%= text_field_tag :for_tags %>
+  <%= f.submit %>
+<%end%>

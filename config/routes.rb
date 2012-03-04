@@ -6,7 +6,8 @@ GuDa::Application.routes.draw do
   scope 'blog' do
     resources :users
     resources :articles
+    resources :tags
     post "users/login" => 'users#login', :as => :login 
   end
-  #match ':controller(/:action(/:id(.:format)))'
+  match ':controller(/:action(/:id(.:format)))'  
 end

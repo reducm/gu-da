@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120301112830) do
+ActiveRecord::Schema.define(:version => 20120304080653) do
+
+  create_table "article_tagships", :force => true do |t|
+    t.integer  "article_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "articles", :force => true do |t|
     t.string   "title"

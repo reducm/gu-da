@@ -1,0 +1,6 @@
+<h1 id="heading">Tagname <%= @tag.name %> </h1>
+
+<% @tag.articles.each do|a| %> 
+  <h2 id="heading"><%= a.title %></h2>
+  <p><%= a.content %></p>
+<%end%>
