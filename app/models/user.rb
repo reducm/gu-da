@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :articles
-  has_many :tags
+  has_many :user_tagships
+  has_many :tags, :through => :user_tagships
   has_many :catagories
 
   attr_accessible :name, :email, :password, :head, :birthday, :description, :habbit
