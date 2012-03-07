@@ -35,7 +35,6 @@ describe User do
         @user.articles << a
         @user.save.should be_true
       end
-      
       @user.articles.size.should == 10
     end
   end
