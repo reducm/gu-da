@@ -20,4 +20,11 @@ gem 'jquery-rails'
 group :development, :test do
     gem 'rspec-rails'
     gem 'rspec'
+    gem 'spork'
+    gem 'guard'
+    gem 'guard-spork'
+    gem 'guard-rspec'
+    gem 'libnotify'
+    gem 'rb-inotify'
+    gem 'rb-fsevent'
 end

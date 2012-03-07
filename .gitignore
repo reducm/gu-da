@@ -2,7 +2,6 @@
 tmp/
 coverage/
 db/*.sqlite3
-tmp/
 log/*.log
 log/*.log*
 tmp/**/*
@@ -29,3 +28,5 @@ bin/
 tag
 package/
 *.vim
+*.jas
+*.bak

@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe "users/new.html.erb" do
+=begin
   before(:each) do
     assign(:user, stub_model(User,
       :name => "MyString",
@@ -25,4 +26,5 @@ describe "users/new.html.erb" do
       assert_select "input#user_habit", :name => "user[habit]"
     end
   end
+=end
 end
