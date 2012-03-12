@@ -10,7 +10,7 @@ describe User do
 #    @user = User.find_by_name('test')
 #    @tag = Tag.find_by_name('fuck')
   end
-  
+
   context "when initialize" do 
     it "test the 'before' db insert" do
       @user.name.should == "test"
