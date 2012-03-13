@@ -20,6 +20,7 @@ gem 'jquery-rails'
 group :development, :test do
     gem 'rspec-rails'
     gem 'rspec'
+    gem 'factory_girl_rails'
     gem 'spork', '~>1.0rc'
     gem 'spork-rails'
     gem 'guard'

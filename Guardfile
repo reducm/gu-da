@@ -2,6 +2,7 @@
 # More info at https://github.com/guard/guard#readme
 
 #guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, :cucumber => false, :test_unit => false, :bundler => false, :cli => "-d"  do
+notification :libnotify, :timeout => 5, :transient => true, :append => false
 group :jas do
   guard :spork, :wait => 120 do
     watch('config/application.rb')
