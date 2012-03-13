@@ -2,8 +2,9 @@
 
 <%= flash[:notice] %> 
 <%= form_for @user, :url => login_path  do|f|%>
-  <%= f.text_field :name%> 
+  <%= f.text_field :name %> 
   <%= f.password_field :password %> 
   <%= f.submit "登录" %>
 <%end%>
-<%= button_to "注册", {:controller => 'users', :action => 'new'}, :method => :get %>
+<%= button_to "注册", {:controller => 'users', :action => 'new'}, :method => :get, :class => 'btn-primary span2' %>
+

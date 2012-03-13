@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :articles
+  has_many :replies
   has_many :user_tagships
   has_many :tags, :through => :user_tagships
   has_many :catagories
