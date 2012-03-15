@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(:version => 20120313160545) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "article_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "tags", :force => true do |t|

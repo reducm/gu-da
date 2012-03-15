@@ -4,7 +4,7 @@
 #guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, :cucumber => false, :test_unit => false, :bundler => false, :cli => "-d"  do
 notification :libnotify, :timeout => 2, :transient => true, :append => false
 group :jas do
-  guard :spork, :wait => 120 do
+  guard :spork, :wait =>60  do
     watch('config/application.rb')
     watch('config/environment.rb')
     watch(%r{^config/environments/.+\.rb$})
@@ -12,11 +12,10 @@ group :jas do
     watch('spec/spec_helper.rb') { :rspec }
   end
 
-  guard :rspec, :cli => "--format nested --drb" do
+  guard :rspec, :cli => "--drb" do
     watch(%r{^spec/.+_spec\.rb$})
     #  watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
     watch('spec/spec_helper.rb')  { "spec" }
-
     # Rails example
     watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
     watch(%r{^app/(.*)(\.erb|\.haml)$})                 { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }

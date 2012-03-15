@@ -4,4 +4,7 @@ class Article < ActiveRecord::Base
   has_many :article_tagships
   has_many :tags, :through => :article_tagships 
   has_many :replies
+
+  validates_presence_of :title, :content, :user_id
+  
 end

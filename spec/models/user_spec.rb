@@ -1,21 +1,22 @@
 require 'spec_helper'
 describe User do
   before(:all) do
-    @user = User.new(name:'test',password:1,email:'fuck')
-    @tag = Tag.new(name:"fuck")
+    @user = Factory.build(:user)
+    @user.save
+    @tag = Factory.build(:tag)
     @as = []
     10.times do |i|
-      @as << Article.new(title:"fuck #{i}times",content:"really? i think you fuck #{i*Random.rand(50)}times")
+#      @as << Article.new(title:"fuck #{i}times",content:"really? i think you fuck #{i*Random.rand(50)}times")
+      @as << Factory.build(:article, {title:"fuck #{i}times", content:"thank you", user:@user})
     end
-#    @user = User.find_by_name('test')
-#    @tag = Tag.find_by_name('fuck')
   end
 
   context "when initialize" do 
     it "test the 'before' db insert" do
-      @user.name.should == "test"
+      @user.name.should == "jas"
       (@user.tags << @tag).should be_true
-      @user.tags[0].name.should == "fuck"
+      @user.tags[0].name.should == "tag_test"
+
     end
     
     it "validates_presence_of name and email and password" do

@@ -11,7 +11,7 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'rspec/autorun'
-
+  require 'factory_girl'
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 
@@ -25,9 +25,10 @@ Spork.prefork do
 #      DatabaseCleaner.clean_with(:truncation)
     end
 
-#    config.before(:each) do
+    config.before(:each) do
 #      DatabaseCleaner.start
-#    end
+      DatabaseCleaner.clean
+    end
 
     config.after(:all) do
       DatabaseCleaner.clean
@@ -41,7 +42,3 @@ Spork.each_run do
   # This code will be run each time you run your specs.
 
 end
-
-
-
-

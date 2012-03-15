@@ -2,10 +2,11 @@ require 'spec_helper'
 
 describe Tag do
   before do
-    @tag = Tag.create(name:"test") 
-    @tag1 = Tag.create(name:"test1")
-    @a1 = Article.create(title:"a1")
-    @a2 = Article.create(title:"a2")
+    @tag = Factory.build(:tag, {name:"test"})
+    @tag1 = Factory.build(:tag, {name:"test1"})
+    @user = Factory.create(:user, {name:"test",password:2,email:"rec"})
+    @a1 = Factory.create(:article, {title:"a1",content:"a2", user:@user })
+    @a2 = Factory.create(:article, {title:"a2",content:"a2"})
   end
 
   context 'db' do
@@ -17,10 +18,14 @@ describe Tag do
     it "associate with articles" do
       @a1.title.should == "a1"
       @a2.title.should == "a2"
-      ArticleTagship.create(tag:@tag,article:@a1)
-      ArticleTagship.create(tag:@tag1,article:@a1)
-      ArticleTagship.create(tag:@tag,article:@a2)
-      ArticleTagship.create(tag:@tag1,article:@a2)
+#      ArticleTagship.create(tag:@tag,article:@a1)
+#      ArticleTagship.create(tag:@tag1,article:@a1)
+#      ArticleTagship.create(tag:@tag,article:@a2)
+#      ArticleTagship.create(tag:@tag1,article:@a2)
+      Factory.create(:ats, {tag:@tag, article:@a1})
+      Factory.create(:ats, {tag:@tag1, article:@a1})
+      Factory.create(:ats, {tag:@tag, article:@a2})
+      Factory.create(:ats, {tag:@tag1, article:@a2})
       @tag.reload
       @tag1.reload
       @tag.articles.size.should == 2
