@@ -2,7 +2,7 @@
 # More info at https://github.com/guard/guard#readme
 
 #guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, :cucumber => false, :test_unit => false, :bundler => false, :cli => "-d"  do
-notification :libnotify, :timeout => 5, :transient => true, :append => false
+notification :libnotify, :timeout => 2, :transient => true, :append => false
 group :jas do
   guard :spork, :wait => 120 do
     watch('config/application.rb')
@@ -12,7 +12,7 @@ group :jas do
     watch('spec/spec_helper.rb') { :rspec }
   end
 
-  guard :rspec, :cli => "--drb" do
+  guard :rspec, :cli => "--format nested --drb" do
     watch(%r{^spec/.+_spec\.rb$})
     #  watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
     watch('spec/spec_helper.rb')  { "spec" }

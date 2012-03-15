@@ -1,5 +1,5 @@
 FactoryGirl.define do
-    factory :user do
+    factory :user, :aliases => [:jas] do
         name 'jas'
         password '1'
         email 'gmail'
@@ -8,6 +8,12 @@ FactoryGirl.define do
     factory :article do
         title 'factory' 
         content 'factory content'
-        user Factory.build(:user)
+        association :user ,:factory => :user, :strategy => :build
+    end
+
+    factory :reply do
+      content 'reply content'
+      association :user, :factory => :user#, :strategy => :build
+      association :article, :factory => :article#, :strategy => :build 
     end
 end
