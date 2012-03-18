@@ -2,8 +2,6 @@ class ArticlesController < ApplicationController
   before_filter :check_session
 
   def index
-    p "logined:#{@logined}"
-    p "user_id:#{@user_id}"
     if @logined
       @articles = Article.where("user_id = ?",@user_id).order("created_at desc");
     else
@@ -34,11 +32,5 @@ class ArticlesController < ApplicationController
     else
         redirect_to controller:'error', action:'login' 
     end
-  end
-
-  private
-  def check_session
-    @logined = session[:logined].nil? ? false : true
-    @user_id = @logined ? session[:user_id] : nil
   end
 end

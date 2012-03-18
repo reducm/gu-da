@@ -1,5 +1,23 @@
 <h1>New user</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', users_path %>
+<%= notice %> 
+<%= form_for @user, :url => users_path do|f|%> 
+    <div class="span6">
+        <%=f.label :name%> 
+        <%=f.text_field :name%>
+    </div>
+    <div class="span6">
+        <%=f.label :password%>
+        <%=f.password_field :password %>
+    </div>
+    <div class="span6">
+        <%=f.label :password_confirm%>
+        <%=f.password_field :password_confirm %>
+    </div>
+    <div class="span6">
+        <%=f.label :email%>
+        <%=f.text_field :email%>
+    </div>
+    <div class="span6">
+        <%=f.submit "确定", :class => 'btn-primary' %>
+    </div>
+<%end%>

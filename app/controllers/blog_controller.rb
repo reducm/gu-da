@@ -1,5 +1,6 @@
 class BlogController < ApplicationController
   def index
-    @user = User.new 
+    redirect_to articles_path if session[:logined]
+    @user = User.new
   end
 end
