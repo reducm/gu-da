@@ -17,6 +17,7 @@ describe Catagory do
     end
 
     @c.user.name.should == 'jas'
+    @c.save
     @c.articles.size.should == 10
   end
 end
