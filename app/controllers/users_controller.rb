@@ -31,28 +31,21 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
   end
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(params[:user])
-    respond_to do |format|
-      if @user.password != @user.password_confirm
-        format.html { render action:'new', notice:'两次密码不相同' }
-      elsif @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-      else
-        format.html { render action:'new', notice:'some error' }
-      end
+    if @user.password != @user.password_confirm
+      flash[:notice] = '密码确认与密码不相符'
+      render :new
+    elsif @user.save
+      set_session(@user)  
+      redirect_to articles_url, :method => 'get' 
     end
   end
 
-  # PUT /users/1
-  # PUT /users/1.json
   def update
     @user = User.find(params[:id])
 

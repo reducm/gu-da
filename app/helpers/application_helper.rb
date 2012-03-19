@@ -1,7 +1,5 @@
 module ApplicationHelper
   def logout_path
-    session[:logined] = false
-    session[:user_id] = nil
     "/blog"
   end
 
