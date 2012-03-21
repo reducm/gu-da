@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :user, :aliases => [:jas] do
     name 'jas'
     password '1'
-    email 'gmail'
+    email 'jas@gmail.com'
   end
 
   factory :article do
@@ -10,7 +10,7 @@ FactoryGirl.define do
     sequence(:content) {|n|"factory content:#{n}"}
     association :user, :factory => :user
     factory :article_with_fakeuser do
-      association :user, :factory => :user, :name => 'fakeuser', :password => 'fakepass', :email => 'fakermail' 
+      association :user, :factory => :user, :name => 'fakeuser', :password => 'fakepass', :email => 'faker@rails.com'
     end
   end
 
