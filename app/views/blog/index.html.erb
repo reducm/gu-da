@@ -1,7 +1,7 @@
 <h1>just type sth</h1>
 
 <%= flash[:notice] %> 
-<%= form_for @user, :url => login_path  do|f|%>
+<%= form_for @user, :url => login_path do|f|%>
   <%= f.text_field :name %> 
   <%= f.password_field :password %> 
   <%= f.submit "登录", :class => 'btn-primary span2' %>
