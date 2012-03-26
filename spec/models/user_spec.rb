@@ -13,7 +13,7 @@ describe User do
 
   context "test CRUD" do 
     it "create" do
-      u = Factory.create :user, {name:'stupid', password:'password', email:'stupid@haha.com'}
+      u = Factory.create :user, {name:'stupid', password_confirm:'password', password:'password', email:'stupid@haha.com'}
       u.new_record?.should be_false
       u.save.should be_true
       u.id.blank?.should be_false
@@ -47,6 +47,7 @@ describe User do
       u.save.should be_false
       u.name = "fuck"
       u.password = "shit"
+      u.password_confirm = 'shit'
       u.email = "shit@shit.com"
       u.save.should be_true
     end

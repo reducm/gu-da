@@ -5,6 +5,7 @@ gem 'railties'
 
 #数据
 gem 'mysql2'
+gem 'redis'
 
 #禁用asset日志
 gem 'quiet_assets', :git => 'git://github.com/AgilionApps/quiet_assets.git'

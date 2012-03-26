@@ -110,6 +110,7 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     redcarpet (2.1.1)
+    redis (2.2.2)
     rspec (2.8.0)
       rspec-core (~> 2.8.0)
       rspec-expectations (~> 2.8.0)
@@ -166,6 +167,7 @@ DEPENDENCIES
   rb-fsevent
   rb-inotify
   redcarpet
+  redis
   rspec
   rspec-rails
   sass-rails (>= 3.2)
