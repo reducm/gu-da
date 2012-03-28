@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# encodin: UTF-8
 class User < ActiveRecord::Base
     has_many :articles
     has_many :replies
