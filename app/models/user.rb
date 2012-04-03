@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   has_many :user_tagships
   has_many :tags, :through => :user_tagships
   has_many :catagories
-
+  
+  scope :check
   attr_accessible :name, :email, :password, :password_confirm, :head, :birthday, :description, :habbit
   validates_uniqueness_of :name, :email
 
@@ -18,12 +19,18 @@ class User < ActiveRecord::Base
 
   attr_accessor :password_confirm
 
-  private
   def self.check(user)
-    where("name=? and password=?", user[:name], user[:password])[0]
+    @u = User.find_by_name(user[:name])
+    if @u
+      hashpass = valid_pass(user[:password],@u.salt)
+      return @u if hashpass = @u.password
+      User.new.errors.add(:password, '密码错误')
+    else
+      return User.new.errors.add(:name, '没有这个用户') 
+    end
   end
 
-
+  private
   def getSalt
     Random.rand(10000..100000)
   end
@@ -31,6 +38,11 @@ class User < ActiveRecord::Base
   def encode_pass
     salt = getSalt.to_s
     self.password = Digest::SHA2.new.hexdigest(self.password+salt)
+    self.salt = salt
+  end
+
+  def self.valid_pass(pass, salt)
+    Digest::SHA2.new.hexdigest(pass+salt)
   end
   
   def self.validte_passlength

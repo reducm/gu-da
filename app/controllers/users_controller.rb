@@ -51,9 +51,7 @@ class UsersController < ApplicationController
       set_session(@user)  
       redirect_to articles_url, :method => 'get' 
     else
-      ms = []
-      @user.errors.messages.each {|k,v| ms << v[1]}
-      flash[:notice] = ms.join(',')
+      flash[:notice] = @user.jerrors
       render :new
     end
   end
