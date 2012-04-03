@@ -6,14 +6,14 @@ describe User do
     @tag = Factory.build(:tag)
     @as = []
     10.times do |i|
-      #      @as << Article.new(title:"fuck #{i}times",content:"really? i think you fuck #{i*Random.rand(50)}times")
       @as << Factory.build(:article, {title:"fuck #{i}times", content:"thank you", user:@user})
     end
   end
 
   context "test CRUD" do 
     it "create" do
-      u = Factory.create :user, {name:'stupid', password_confirm:'password', password:'password', email:'stupid@haha.com'}
+#      u = Factory.create :user, {name:'stupid', password_confirm:'password', password:'password', email:'stupid@haha.com'}
+      u = User.create(name:'stupid', password_confirm:'password', password:'password', email:'stupid@haha.com')
       u.new_record?.should be_false
       u.save.should be_true
       u.id.blank?.should be_false
@@ -27,11 +27,11 @@ describe User do
     end
 
     it "update" do
-      @user.update_attributes(name:'jas1',password:'11',email:'guda@gmail.com').should be_true
+      @user.update_attributes(name:'jas1',password:'123456',email:'guda@gmail.com').should be_true
       @user.reload
       @user.name.should == 'jas1'
       @user.email.should == 'guda@gmail.com'
-      @user.password.should == '11' 
+      @user.password.should_not == '11' 
     end
 
     it "delete" do

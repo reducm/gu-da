@@ -4,7 +4,7 @@ describe Tag do
   before do
     @tag = Factory.build(:tag, {name:"test"})
     @tag1 = Factory.build(:tag, {name:"test1"})
-    @user = Factory.create(:user, {name:"test",password:2,password_confirm:2,email:"rec@rails.com"})
+    @user = Factory.create(:user, {name:"test",password:'123456',password_confirm:'123456',email:"rec@rails.com"})
     @a1 = Factory.create(:article, {title:"a1",content:"a2", user:@user })
     @a2 = Factory.create(:article, {title:"a2",content:"a2"})
   end

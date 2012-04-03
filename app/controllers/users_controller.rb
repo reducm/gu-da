@@ -40,9 +40,21 @@ class UsersController < ApplicationController
     if @user.password != @user.password_confirm
       flash[:notice] = '密码确认与密码不相符'
       render :new
-    elsif @user.save
+      return
+    elsif @user.password.length < 6 or @user.password.length >20
+      flash[:notice] = '密码长度在6-20之间'
+      render :new
+      return
+    end
+
+    if @user.save
       set_session(@user)  
       redirect_to articles_url, :method => 'get' 
+    else
+      ms = []
+      @user.errors.messages.each {|k,v| ms << v[1]}
+      flash[:notice] = ms.join(',')
+      render :new
     end
   end
 
