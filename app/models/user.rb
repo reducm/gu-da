@@ -23,20 +23,24 @@ class User < ActiveRecord::Base
     @u = User.find_by_name(user[:name])
     if @u
       hashpass = valid_pass(user[:password],@u.salt)
-      return @u if hashpass = @u.password
-      User.new.errors.add(:password, '密码错误')
+      return @u if hashpass == @u.password
+      @u = User.new
+      @u.errors.add(:password, '密码错误')
+      @u
     else
-      return User.new.errors.add(:name, '没有这个用户') 
+      @u = User.new
+      @u.errors.add(:name, '没有这个用户') 
+      @u
     end
   end
 
   private
   def getSalt
-    Random.rand(10000..100000)
+    Random.rand(10000..100000).to_s
   end
 
   def encode_pass
-    salt = getSalt.to_s
+    salt = getSalt
     self.password = Digest::SHA2.new.hexdigest(self.password+salt)
     self.salt = salt
   end

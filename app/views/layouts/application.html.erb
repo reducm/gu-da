@@ -13,12 +13,16 @@
         <div class="container">
           <%= link_to "logout", { controller:'blog', action:'logout' } %>
           <%= link_to '首页', { controller:'blog', action:'index' } %> 
+          <%= session[:user_name] || "未登录" %> 
+          <%= %>
         </div>
       </div>
     </div> 
 
     <div class="container" style="background:black">
-      <%= yield %>
+      <div id="jas" nc="nc">
+        <%= yield %>
+      </div>
     </div>
 
   </body>
