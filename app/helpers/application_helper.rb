@@ -9,6 +9,6 @@ module ApplicationHelper
 
   def markdown(str)
     m = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
-    m.render(str)
+    sanitize m.render(str)
   end
 end

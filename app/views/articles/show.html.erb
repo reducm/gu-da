@@ -1,6 +1,6 @@
 <h1><%= @article.title %></h1>
 
-<p><%= sanitize markdown(@article.content) %></p>
+<p><%= markdown(@article.content) %></p>
 
 <p>
 <% @article.tags.each do|t|%> 

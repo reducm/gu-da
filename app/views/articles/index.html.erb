@@ -3,7 +3,7 @@
 <%= link_to "新建", new_article_path %>
 <% @articles.each do|a| %>
   <h2>题目:<%= link_to a.title, article_path(a.id) %></h2>
-  <p><%= a.content %></p>
+  <p><%= markdown(a.content) %></p>
   <%= link_to 'delete', article_path(a), :method => 'delete' %> 
   <%= link_to 'edit', edit_article_path(a) %> 
 <% end %>
