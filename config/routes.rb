@@ -4,7 +4,9 @@ GuDa::Application.routes.draw do
   match "blog" => 'blog#index'
 
   scope 'blog' do
-    resources :users
+    resources :users do
+      resources :articles
+    end
     resources :articles
     resources :tags
     post "users/login" => 'users#login', :as => :login 

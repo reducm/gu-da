@@ -8,7 +8,8 @@ module ApplicationHelper
   end
 
   def markdown(str)
-    m = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+    options = { autolink:true, hard_wrap:true }
+    m = Redcarpet::Markdown.new(Redcarpet::Render::HTML,options)
     sanitize m.render(str)
   end
 end

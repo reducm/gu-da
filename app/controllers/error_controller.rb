@@ -5,4 +5,8 @@ class ErrorController < ApplicationController
 
   def nonelogin
   end
+
+  def error
+    
+  end
 end

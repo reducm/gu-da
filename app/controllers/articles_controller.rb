@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 
   def index
     if @logined
-      @articles = Article.where("user_id = ?",@user_id).order("created_at desc");
+      @articles = Article.where("user_id = ?", params[:user_id] || @user_id).order("created_at desc");
     else
       flash[:notice] = 'fuck off'
     end
