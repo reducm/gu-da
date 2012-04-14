@@ -1,5 +1,6 @@
 # encoding: UTF-8
 class ArticlesController < ApplicationController
+  layout "article"
   before_filter :check_session
 
   def index

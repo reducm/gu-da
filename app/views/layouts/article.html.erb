@@ -8,12 +8,14 @@
   </head>
   <body>
 
-    <%= render :partial => 'layouts/nav' %>
+    <%= render :partial => 'layouts/nav' %> 
+
     <div class="container" style="padding:10px;background:black">
-      <div id="jas" nc="nc">
+      <div id="article" >
         <%= yield %>
       </div>
     </div>
 
+    <%= render :partial => 'layouts/foot' %>
   </body>
 </html>

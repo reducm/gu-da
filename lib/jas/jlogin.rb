@@ -4,7 +4,7 @@ module JLogin
   def check_session
     @logined = session[:logined].nil? ? false : true
     @user_id = @logined ? session[:user_id] : nil
-    @user_name = session[:user_name]
+    @user_name = @logined ? session[:user_name] : nil
   end
 
   def set_session(user)
