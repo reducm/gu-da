@@ -1,20 +1,24 @@
 <div class="navbar">
-    <div class="navbar-inner">
-        <div class="container">
-            <%= link_to '咕哒', root_url, :class => 'brand' %> 
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to '咕哒', root_url, :class => 'brand' %> 
 
-            <ul class="nav pull-right">
-                <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <%= @user_name || "未登录" %> 
-                    <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><%= link_to '设置', edit_user_path(@user_id) if @user_id%> </li>
-                    <li><%= link_to "logout", { controller:'blog', action:'logout' } %></li>
-                </ul>
-                </li>
-                <%= %>
-            </div>
-        </div>
-    </div> 
+      <ul class="nav">
+        <li><%= link_to '首页', blog_path %> </li>
+      </ul>
+
+      <ul class="nav pull-right">
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <%= @user_name || "未登录" %> 
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><%= link_to '设置', edit_user_path(@user_id) if @user_id%> </li>
+          <li><%= link_to "logout", { controller:'blog', action:'logout' } %></li>
+        </ul>
+        </li>
+        <%= %>
+      </div>
+    </div>
+  </div> 
