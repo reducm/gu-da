@@ -1,3 +1,4 @@
+#encoding: UTF-8
 class Catagory < ActiveRecord::Base
   has_many :articles
   belongs_to :user
