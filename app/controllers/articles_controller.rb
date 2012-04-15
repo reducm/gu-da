@@ -42,11 +42,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    if !@user_id.blank?
-      @article = Article.includes(:tags).find(params[:id])
-    else
-      redirect_to controller:'error', action:'login' 
-    end
+    @article = Article.find(params[:id])
   end
 
   def destroy

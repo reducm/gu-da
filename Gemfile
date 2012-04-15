@@ -12,6 +12,7 @@ gem 'quiet_assets', :git => 'git://github.com/AgilionApps/quiet_assets.git'
 
 #markdown
 gem 'redcarpet'
+gem 'pygments.rb'
 
 group :assets do
   gem 'sass-rails',   '>= 3.2'

@@ -1,18 +1,1 @@
-$bc: #4c5a76;
 
-@mixin cw(){
-  color: darken(#ffffff, 10%)
-}
-
-body {
-  background: $bc;
-  @include cw();
-}
-
-h1,h2{
-  @include cw();
-}
-
-a {
-  color: orange;
-}

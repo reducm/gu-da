@@ -1,7 +1,7 @@
 #encoding: utf-8
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
+  before_filter :check_session
+
   def index
     @users = User.all
 

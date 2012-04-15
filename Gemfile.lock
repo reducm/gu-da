@@ -35,6 +35,7 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
+    blankslate (2.1.2.4)
     bootstrap-sass-rails (2.0.2.0)
       rails (~> 3.1)
       sass-rails (~> 3.1)
@@ -81,6 +82,8 @@ GEM
     multi_json (1.1.0)
     mysql2 (0.3.11)
     polyglot (0.3.3)
+    pygments.rb (0.2.11)
+      rubypython (~> 0.5.3)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -124,6 +127,9 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.8.0)
+    rubypython (0.5.3)
+      blankslate (>= 2.1.2.3)
+      ffi (~> 1.0.7)
     sass (3.1.15)
     sass-rails (3.2.4)
       railties (~> 3.2.0)
@@ -161,6 +167,7 @@ DEPENDENCIES
   jquery-rails
   libnotify
   mysql2
+  pygments.rb
   quiet_assets!
   rails (= 3.2.2)
   railties

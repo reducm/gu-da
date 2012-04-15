@@ -9,11 +9,12 @@
   <body>
 
     <%= render :partial => 'layouts/nav' %>
-    <div class="container" style="padding:10px;background:black">
+    <div class="container" id="container">
       <div id="jas" nc="nc">
         <%= yield %>
       </div>
     </div>
 
   </body>
+  <style>body{padding:40px;}</style>
 </html>
