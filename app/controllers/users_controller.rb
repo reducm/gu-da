@@ -33,6 +33,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @title = "#{@user.name}的用户设置页面"
   end
 
   def create
