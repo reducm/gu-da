@@ -14,6 +14,10 @@ gem 'quiet_assets', :git => 'git://github.com/AgilionApps/quiet_assets.git'
 gem 'redcarpet'
 gem 'pygments.rb'
 
+#表单
+gem 'simple_form', :git => "git://github.com/plataformatec/simple_form.git"
+
+
 group :assets do
   gem 'sass-rails',   '>= 3.2'
   gem 'coffee-rails', '>= 3.2'

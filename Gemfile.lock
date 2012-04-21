@@ -4,6 +4,14 @@ GIT
   specs:
     quiet_assets (0.0.1)
 
+GIT
+  remote: git://github.com/plataformatec/simple_form.git
+  revision: 63d3f84175ae2ced774a90126532bef4eed7615c
+  specs:
+    simple_form (2.0.2.dev)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
+
 GEM
   remote: http://ruby.taobao.org/
   specs:
@@ -178,6 +186,7 @@ DEPENDENCIES
   rspec
   rspec-rails
   sass-rails (>= 3.2)
+  simple_form!
   spork (~> 1.0rc)
   spork-rails
   uglifier (>= 1.0.3)
