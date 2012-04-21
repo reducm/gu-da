@@ -33,11 +33,12 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @title = "#{@user.name}的用户设置页面"
+    @title = "(#{@user.name})用户设置"
   end
 
   def create
     @user = User.new(params[:user])
+    @title = "用户注册"
     if @user.password != @user.password_confirm
       flash[:notice] = '密码确认与密码不相符'
       render :new
@@ -52,14 +53,30 @@ class UsersController < ApplicationController
       set_session(@user)  
       redirect_to articles_url, :method => 'get' 
     else
-      flash[:notice] = @user.jerrors
+      #flash[:notice] = @user.jerrors
       render :new
     end
   end
 
   def update
-    @user = User.find(params[:id])
-    respond_to do |format|
+    if params[:user][:password_new] != params[:user][:password_confirm]
+      flash[:notice] = '两次输入密码不相同'
+      render :edit
+      return
+    end
+  
+    @user = User.updates(params[:user])
+    if @user.errors.any?
+      #flash[:notice] = @user.jerrors
+      render :edit
+      return
+    else
+#      flash[:notice] = '用户更新成功'
+      render :edit
+      return
+    end
+=begin
+  respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :ok }
@@ -68,6 +85,7 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+=end
   end
 
   # DELETE /users/1
