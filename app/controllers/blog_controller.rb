@@ -5,9 +5,7 @@ class BlogController < ApplicationController
   end
 
   def logout
-    session[:logined] = false
-    session[:user_id] = nil
-    session[:user_name] = nil
+    clear_session
     flash[:notice] = 'successful logout'
     redirect_to :action => 'index'
   end

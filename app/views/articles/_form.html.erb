@@ -1,0 +1,6 @@
+<%= simple_form_for @article  do|f| %> 
+  <%= f.input :title, :label => '标题', :input_html => {:class => 'span8' }  %>
+  <%= f.input :content, :label => '正文', :input_html => {:class => 'span10' }%>
+  <%= link_to '预览', 'javascript:void(0)', :class => 'btn btn-primary span2' %> 
+  <%= f.button :submit, '保存', :class => 'btn btn-primary span2' %>
+<%end%>

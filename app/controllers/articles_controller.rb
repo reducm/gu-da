@@ -7,7 +7,8 @@ class ArticlesController < ApplicationController
     if @logined
       @articles = Article.where("user_id = ?", params[:user_id] || @user_id).order("created_at desc");
     else
-      flash[:notice] = 'fuck off'
+      flash[:notice] = '当前用户未登录，请先登录'
+      redirect_to blog_path
     end
   end
 

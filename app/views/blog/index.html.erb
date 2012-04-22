@@ -1,5 +1,3 @@
-<h1>just type sth</h1>
-
 <%= flash[:notice] %> 
 <%= form_for @user, :url => login_path do|f|%>
   <%= f.text_field :name %> 
@@ -7,4 +5,4 @@
   <%= f.submit "登录", :class => 'btn-primary span2' %>
 <%end%>
 
-  <%= button_to "注册", {:controller => 'users', :action => 'new'}, :method => :get, :class => 'btn-primary span2' %>
+<%= button_to "注册", {:controller => 'users', :action => 'new'}, :method => :get, :class => 'btn-primary span2' %>

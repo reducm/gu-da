@@ -2,9 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $bc: #4c5a76;
-#article {
-  pre {
-  //  .prettyprint;
-//    .linenums;
-  }
+$fs: 18px;
+
+@mixin fstyle {
+  font-size: $fs; 
 }
+
+#article {
+}
+
+#article_title {
+  @include fstyle;
+}
+
+#article_content{
+  @include fstyle;
+}
+
+

@@ -1,6 +1,2 @@
-<%= notice %> 
-<%= form_for @article, :url => article_path, :method => 'put'  do|f| %> 
-  <%= f.text_field :title %>
-  <%= f.text_area :content %>
-  <%= f.submit :class => 'btn-primary'  %>
-<%end%>
+<h1>修改文章</h1>
+<%= render :partial => 'form', :locals => {:edit => true } %> 

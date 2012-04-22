@@ -24,3 +24,7 @@ a {
   background: #f2f2f2;//darken(#f2f2f2, 20%);
   padding: 10px;
 }
+
+.desc_textarea {
+  height: $baseLineHeight*3; 
+}

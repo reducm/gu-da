@@ -7,15 +7,15 @@ class User < ActiveRecord::Base
   has_many :catagories
 
   scope :check
-  attr_accessible :name, :email, :password, :password_confirm, :head, :birthday, :description, :habbit
+  attr_accessible :name, :email, :password, :password_confirm, :head, :birthday, :description, :habbit, :blog_name
 
-  validates :name, :presence => { :message => '用户名不能为空' }, :uniqueness => {:message => '用户名已存在' },
-    :uniqueness => {:case_sensitive=>false, :message => '用户名已存在'} 
+  validates :name, :presence => { :message => '用户名不能为空' }, :uniqueness => {:message => '用户名已存在' }, :uniqueness => {:case_sensitive=>false, :message => '用户名已存在'}
 
-  validates :email, :presence => {:message => 'Email不能为空'}, :uniqueness => {:message => 'Email已存在' },
-    :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create, :message => 'Email格式不正确' }, :uniqueness => {:case_sensitive=>false, :message => 'Email已存在' } 
+  validates :email, :presence => {:message => 'Email不能为空'}, :uniqueness => {:message => 'Email已存在' }, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message => 'Email格式不正确'}, :uniqueness => {:case_sensitive=>false, :message => 'Email已存在' } 
 
   validates :password, :presence => {:message => '密码不能为空'}#, :length=>{:minimum=>6, :maximum=>20, :message => '密码长度在6-20之间'  } 
+
+  validates :description, :length => {:maximum => 200} 
 
   before_create :encode_pass
 
@@ -41,9 +41,14 @@ class User < ActiveRecord::Base
     if @u
       hashpass = valid_pass(user[:password], @u.salt)
       if hashpass == @u.password
-        user[:password] = user[:password_new]
-        @u.updates_attributes(user)
-        @u
+        if user[:password].length >= 6 && user[:password].length <= 20
+          user[:password] = Digest::SHA2.new.hexdigest(user[:password_new]+@u.salt)
+          @u.update_attributes(user)
+          @u
+        else
+          @u.errors.add(:password_new, '新密码长度要在6-20之间')
+          @u
+        end
       else
         @u.errors.add(:password, '旧密码错误')
         @u
@@ -53,6 +58,13 @@ class User < ActiveRecord::Base
       @u.errors.add(:name, '没有这个用户')
       @u
     end
+  end
+  
+  def self.updates_nopass(user)
+    user.reject! {|k,v| !(k.to_s.index("password").nil?)} 
+    @user = User.find_by_name(user[:name])
+    @user.update_attributes(user)
+    @user
   end
 
   private

@@ -1,5 +1,2 @@
-<%= form_for @article, :url => articles_path, :method => 'post'  do|f| %> 
-  <%= f.text_field :title %>
-  <%= f.text_area :content %>
-  <%= f.submit %>
-<%end%>
+<h1>新文章</h1>
+<%= render :partial => 'form', :locals => {:new => true } %> 

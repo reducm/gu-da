@@ -59,34 +59,24 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find_by_name(@user_name)
     if params[:user][:password_new] != params[:user][:password_confirm]
       flash[:notice] = '两次输入密码不相同'
       render :edit
       return
     end
   
-    @user = User.updates(params[:user])
+    @user = (params[:user][:password].blank?)? User.updates_nopass(params[:user]) : User.updates(params[:user])
     if @user.errors.any?
       #flash[:notice] = @user.jerrors
       render :edit
       return
     else
-#      flash[:notice] = '用户更新成功'
+      flash[:notice] = '用户更新成功'
+      set_session(@user)
       render :edit
-      return
     end
-=begin
-  respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-=end
-  end
+ end
 
   # DELETE /users/1
   # DELETE /users/1.json

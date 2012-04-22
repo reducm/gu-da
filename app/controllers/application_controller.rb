@@ -4,5 +4,5 @@ class ApplicationController < ActionController::Base
 
   include JLogin
 
-  before_filter :check_login, :only => [:update, :destroy, :edit]  
+  before_filter :check_login, :only => [:update, :destroy, :edit, :new, :create]  
 end

@@ -7,9 +7,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require real-editor
-//= require_tree .
-
-$(document).ready(function(){
-  $('textarea').editor();
-});
+//= require_tree ./application
