@@ -1,5 +1,6 @@
 #encoding: utf-8
 class UsersController < ApplicationController
+  before_filter :check_login, :only => [:edit, :update, :destroy] 
   before_filter :check_session
 
   def index
@@ -66,7 +67,7 @@ class UsersController < ApplicationController
       return
     end
   
-    @user = (params[:user][:password].blank?)? User.updates_nopass(params[:user]) : User.updates(params[:user])
+    @user = (params[:user][:password].blank?)? User.updates_nopass(params[:user], params[:id]) : User.updates(params[:user], params[:id])
     if @user.errors.any?
       #flash[:notice] = @user.jerrors
       render :edit

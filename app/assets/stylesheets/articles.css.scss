@@ -9,6 +9,8 @@ $fs: 18px;
 }
 
 #article {
+  background: #f2f2f2;//darken(#f2f2f2, 20%);
+  padding: 10px;
 }
 
 #article_title {
@@ -17,6 +19,7 @@ $fs: 18px;
 
 #article_content{
   @include fstyle;
+    height: 530px;
 }
 
 

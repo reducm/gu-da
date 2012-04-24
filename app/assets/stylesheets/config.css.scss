@@ -7,9 +7,11 @@ $bb: #202e4b;
   color: darken(#000000, 10%);
 }
 
-body {
+html,body {
   background: $bb;
   @include cw();
+  height:100%;
+  padding:20px;
 }
 
 h1,h2{
@@ -21,7 +23,6 @@ a {
 }
 
 #container {
-  background: #f2f2f2;//darken(#f2f2f2, 20%);
   padding: 10px;
 }
 

@@ -1,7 +1,7 @@
 <%= flash[:notice] %>
 <%= simple_form_for @user, :defaults=>{:input_html=>{:class => 'span3'}} do |f|%> 
-  <%= f.input :name, :label => '用户名', :input_html => {:maxlength => 20 } %>
-  <%= f.input :email, :placeholder => 'example@email.com' %>
+  <%= f.input :name, :label => '用户名', :input_html => {:maxlength => 20 }, :disabled => true  %>
+  <%= f.input :email, :placeholder => 'example@email.com', :disabled => true %>
 
   <% if action == 'edit' %> 
     <%= f.input :password, :label => '旧密码(不需要修改密码请留空)', :required => false %>
@@ -11,9 +11,9 @@
     <%= f.input :birthday, :label=>'生日', :as => :date, :start_year => 1957, :end_year => Date.today.year, :input_html => {:class => 'span1'}    %>
     <%= f.input :description, :label => '个人描述', :as => :text, :input_html => {:class => 'desc_textarea span3' }  %>
   <% else%>
-    <% f.input :password, :hint => false, :error_html => { :id => 'password_error' }, :label=>'密码' %>
-    <%= f.input :password_confirm, :label=>'确认密码' %>
+    <%= f.input :password, :label=>'密码' %>
+    <%= f.input :password_confirm, :label=>'确认密码', :required => true  %>
   <% end %>
   
-  <%= f.button :submit %>
+  <%= f.button :submit, '确定'%>
 <% end %>

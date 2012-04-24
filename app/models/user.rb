@@ -36,8 +36,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.updates(user)
-    @u = User.find_by_name(user[:name])
+  def self.updates(user, id)
+    @u = User.find(id)
     if @u
       hashpass = valid_pass(user[:password], @u.salt)
       if hashpass == @u.password
@@ -60,9 +60,9 @@ class User < ActiveRecord::Base
     end
   end
   
-  def self.updates_nopass(user)
+  def self.updates_nopass(user, id)
     user.reject! {|k,v| !(k.to_s.index("password").nil?)} 
-    @user = User.find_by_name(user[:name])
+    @user = User.find(id)
     @user.update_attributes(user)
     @user
   end

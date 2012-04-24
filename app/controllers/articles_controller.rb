@@ -1,6 +1,7 @@
 # encoding: UTF-8
 class ArticlesController < ApplicationController
   layout "article"
+  before_filter :check_login, :only => [:edit, :create, :new, :update, :destroy]   
   before_filter :check_session
 
   def index

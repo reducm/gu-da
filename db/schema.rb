@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(:version => 20120422072727) do
   create_table "articles", :force => true do |t|
     t.string   "title"
     t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "user_id"
     t.integer  "catagory_id"
   end
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(:version => 20120422072727) do
     t.string   "head"
     t.string   "description"
     t.string   "habit"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "blog_name"
   end
 
