@@ -1,8 +1,11 @@
 $gridColumnWidth: 67px;
+$baseFontSize: 18px;
+$baseLineHeight: 22px;
 @import "twitter/bootstrap";
 
 $bc: #4c5a76;
 $bb: #202e4b;
+
 @mixin cw(){
   color: darken(#000000, 10%);
 }

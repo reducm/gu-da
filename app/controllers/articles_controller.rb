@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
 
   def index
     if @logined
-      @articles = Article.where("user_id = ?", params[:user_id] || @user_id).order("created_at desc");
+      @articles = Article.get_index(params[:user_id] || @user_id)
     else
       flash[:notice] = '当前用户未登录，请先登录'
       redirect_to blog_path
@@ -20,13 +20,6 @@ class ArticlesController < ApplicationController
   def create
     @a = Article.new(params[:article])
     @a.user_id = @user_id
-    unless params[:for_tags].blank?
-      t = Tag.find_by_name(params[:for_tags].strip)
-      if t.blank?
-        t = Tag.create(name:params[:for_tags].strip)
-      end
-      ArticleTagship.create(article:@a, tag:t)
-    end
     redirect_to articles_path, method:'get' if @a.save
   end
 

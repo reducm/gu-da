@@ -9,8 +9,9 @@ $fs: 18px;
 }
 
 #article {
-  background: #f2f2f2;//darken(#f2f2f2, 20%);
-  padding: 10px;
+  @include fstyle;
+  background: #f2f2f2;
+  padding: 0 30px;
 }
 
 #article_title {
@@ -19,7 +20,10 @@ $fs: 18px;
 
 #article_content{
   @include fstyle;
-    height: 530px;
+  height: 530px;
 }
 
-
+.article_each {
+  border-top: 1px dashed gray;
+  margin-bottom: 15px;
+}

@@ -17,6 +17,8 @@ gem 'pygments.rb'
 #表单
 gem 'simple_form', :git => "git://github.com/plataformatec/simple_form.git"
 
+#分页
+gem 'kaminari'
 
 group :assets do
   gem 'sass-rails',   '>= 3.2'
