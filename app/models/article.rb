@@ -15,7 +15,7 @@ class Article < ActiveRecord::Base
   before_save :set_preview
 
   def self.get_index(user_id)
-    select("id, preview, created_at, title").where("user_id=?", user_id).order("created_at desc")
+    as = select("id, preview, created_at, title").where("user_id=?", user_id).order("created_at desc")
   end
 
   private

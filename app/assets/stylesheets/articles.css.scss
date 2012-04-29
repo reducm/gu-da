@@ -20,10 +20,11 @@ $fs: 18px;
 
 #article_content{
   @include fstyle;
-  height: 530px;
+  height: 100%;
 }
 
 .article_each {
   border-top: 1px dashed gray;
   margin-bottom: 15px;
 }
+
