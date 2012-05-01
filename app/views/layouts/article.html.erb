@@ -12,8 +12,9 @@
     <%= render :partial => 'layouts/nav' %> 
 
     <div class="container" id="container">
-      <% unless params[:action] == 'new' || 'edit' %>
+      <% unless params[:action] == 'new' || params[:action] == 'edit' %>
     <h1 style="color:white; margin-bottom: 20px;"><%= @blog_name %></h1>
+  <% end %> 
       <div id="article" >
         <%= yield %>
       </div>

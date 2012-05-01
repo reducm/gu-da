@@ -1,27 +1,8 @@
 <%= simple_form_for @article  do|f| %> 
-  <%= f.input :title, :label => '标题', :input_html => {:class => 'span8' }  %>
-  <%= f.input :content, :label => '正文', :input_html => {:class => 'span10' }%>
+  <%= f.input :title, :label => false, :input_html => {:class => 'span8' }  %>
+  <%= f.input :content, :label => false, :input_html => {:class => 'span10' }%>
   <%= f.button :submit, '保存', :class => 'btn btn-primary span2' %>
 <%end%>
-
-<%= link_to '预览', "javascript:void(0)", :class => 'btn' %> 
-
-<div class="modal" id="myModal" style="display:none">
-  <div class="modal-header">
-    <button class="close" data-dismiss="modal">×</button>
-    <h3>Modal header</h3>
-  </div>
-  <div class="modal-body">
-    <p>One fine body…</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn">Close</a>
-    <a href="#" class="btn btn-primary">Save changes</a>
-  </div>
-</div>
-
-<a href="#myModal" data-toggle="modal" class="btn btn-primary">试试啦！</a>
-
 <script type="text/javascript" charset="utf-8">
 </script>
 

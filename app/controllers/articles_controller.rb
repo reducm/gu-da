@@ -5,12 +5,7 @@ class ArticlesController < ApplicationController
   before_filter :check_session
 
   def index
-    if @logined
-      @articles = Article.get_index(params[:user_id] || @user_id)
-    else
-      flash[:notice] = '当前用户未登录，请先登录'
-      redirect_to blog_path
-    end
+    @articles = Article.get_index(params[:user_id] || @user_id)
   end
 
   def new

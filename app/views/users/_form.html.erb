@@ -1,5 +1,5 @@
 <%= flash[:notice] %>
-<%= simple_form_for @user, :defaults=>{:input_html=>{:class => 'span3'}} do |f|%> 
+<%= simple_form_for @user, :defaults=>{:input_html=>{:class => 'span3'}, :label_html => {:class => 'jlabel' } } do |f|%> 
   
   <% if action == 'edit' %> 
     <%= f.input :name, :label => '用户名', :input_html => {:maxlength => 20 }, :disabled => true  %>

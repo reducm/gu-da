@@ -10,7 +10,7 @@ $bb: #202e4b;
   color: darken(#000000, 10%);
 }
 
-html,body {
+html, body {
   background: $bb;
   @include cw();
   height:100%;
@@ -27,6 +27,7 @@ a {
 
 #container {
   padding: 10px;
+  height: 100%;
 }
 
 .desc_textarea {

@@ -1,7 +1,6 @@
 # encoding: UTF-8
 module JLogin
   private
-  
   #把session的值设成对应的@变量，方便v层使用
   def check_session
     @logined = session[:logined].nil? ? false : true
@@ -28,7 +27,7 @@ module JLogin
 
   #检查用户是否登录，未登录则去错误页面
   def check_login
-    unless session[:user_id]
+    if session[:user_id].blank?
       flash[:notice] = '用户未登录'
       redirect_to(controller:'Error', action:'nonelogin')
     end
