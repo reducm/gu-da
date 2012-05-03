@@ -4,9 +4,9 @@ class CatagoriesController < ApplicationController
   def create
     @catagory = Catagory.create(params[:catagory])
     if @catagory.errors.any?
-      render :json => Catagory.find_by_user(@user_id).to_json
-    else
       render :json => {errors:"#{@catagory.jerrors}"}
+    else
+      render :json => Catagory.find_all_by_user_id(@user_id).to_json
     end
   end
   

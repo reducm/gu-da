@@ -6,8 +6,12 @@ GuDa::Application.routes.draw do
   scope 'blog' do
     resources :users do
       resources :articles
+      collection do 
+        post :login
+      end
     end
     resources :articles
+    resources :catagories
     resources :tags
     post "users/login" => 'users#login', :as => :login 
   end

@@ -1,5 +1,23 @@
 <div id="catagory">
-  <% catagories.each do |c|%>
-    <h3><%= c.name %></h3>
-  <% end %>
+  <div class="btn-group">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+      + 
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+      <%= simple_form_for Catagory.new(), :remote => true, :html => {:id => 'catagory_form', "data-type" => 'json' }   do |f| %>
+        <%= f.input :user_id, :as => :hidden, :input_html => {:value => user_id }  %>
+        <%= f.input :name %>
+        <%= f.submit '确定' %>
+      <% end %>
+      </li>
+    </ul>
+  </div>
+
+  <div id="catagories">
+    <% catagories.each do |c|%>
+      <h3><%= c.name %></h3>
+    <% end %>
+  </div>
 </div>
