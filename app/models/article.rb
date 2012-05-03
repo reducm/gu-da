@@ -20,7 +20,7 @@ class Article < ActiveRecord::Base
 
   private
   def set_preview
-    self.preview = "#{self.content.first(140)}..." #为文章内容加入preview，头140字
+    self.preview = "#{self.content.first(140)}\n..." #为文章内容加入preview，头140字
   end
   
 end

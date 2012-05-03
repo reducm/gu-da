@@ -6,6 +6,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.get_index(params[:user_id] || @user_id)
+    set_catagories(params[:user_id] || @user_id)
   end
 
   def new
@@ -33,6 +34,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    set_catagories(@article.user_id)
   end
 
   def destroy
@@ -43,5 +45,10 @@ class ArticlesController < ApplicationController
       format.html { redirect_to articles_url }
       format.json { head :ok }
     end
+  end
+
+  protected
+  def set_catagories(user_id)
+    @catagories = Catagory.find_all_by_user_id(user_id)
   end
 end

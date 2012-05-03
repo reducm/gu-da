@@ -9,10 +9,12 @@ $fs: 18px;
 }
 
 #article {
-  @include fstyle;
-  background: #f2f2f2;
-  padding: 0 30px;
-  height: 100%;
+   @include fstyle;
+     width: 80%;
+    background: #f2f2f2;
+    padding: 0 30px;
+    height: 100%;
+    float: left;
 }
 
 #article_title {
@@ -21,7 +23,7 @@ $fs: 18px;
 
 #article_content{
   @include fstyle;
-  height: 100%;
+    height: 100%;
 }
 
 .article_each {
