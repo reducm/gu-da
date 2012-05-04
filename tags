@@ -119,6 +119,7 @@ markdown	app/helpers/application_helper.rb	/^  def markdown(str)$/;"	f	class:App
 new	app/controllers/articles_controller.rb	/^  def new$/;"	f	class:ArticlesController
 new	app/controllers/users_controller.rb	/^  def new$/;"	f	class:UsersController
 nonelogin	app/controllers/error_controller.rb	/^  def nonelogin$/;"	f	class:ErrorController
+set_catagories	app/controllers/articles_controller.rb	/^  def set_catagories(user_id)$/;"	f	class:ArticlesController
 set_preview	app/models/article.rb	/^  def set_preview$/;"	f	class:Article
 set_session	lib/jas/jlogin.rb	/^  def set_session(user)$/;"	f	class:JLogin
 show	app/controllers/articles_controller.rb	/^  def show$/;"	f	class:ArticlesController

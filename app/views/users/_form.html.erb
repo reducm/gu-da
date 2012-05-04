@@ -1,5 +1,5 @@
 <%= flash[:notice] %>
-<%= simple_form_for @user, :defaults=>{:input_html=>{:class => 'span3'}, :label_html => {:class => 'jlabel' } } do |f|%> 
+<%= simple_form_for @user, :defaults=>{:input_html=>{:class => 'span3'}, :label_html => {:class => 'jlabel' } }, :html => { :class => 'form-horizontal' }  do |f|%> 
   
   <% if action == 'edit' %> 
     <%= f.input :name, :label => '用户名', :input_html => {:maxlength => 20 }, :disabled => true  %>
@@ -8,7 +8,7 @@
     <%= f.input :password_new, :hint => false, :error_html => { :id => 'password_error' }, :label=>'新密码' %>
     <%= f.input :password_confirm, :label=>'新密码确认' %>
     <%= f.input :blog_name, :label=>'博客名称' %>
-    <%= f.input :birthday, :label=>'生日', :as => :date, :start_year => 1957, :end_year => Date.today.year, :input_html => {:class => 'span1'}    %>
+    <%= f.input :birthday, :label=>'生日', :as => :date, :start_year => 1957, :end_year => Date.today.year, :input_html => {:class => 'span2'}    %>
     <%= f.input :description, :label => '个人描述', :as => :text, :input_html => {:class => 'desc_textarea span3' }  %>
   <% else%>
     <%= f.input :name, :label => '用户名', :input_html => {:maxlength => 20 } %>
@@ -17,5 +17,5 @@
     <%= f.input :password_confirm, :label=>'确认密码', :required => true  %>
   <% end %>
   
-  <%= f.button :submit, '确定'%>
+  <%= f.button :submit, '确定', :class => 'btn btn-primary' %>
 <% end %>

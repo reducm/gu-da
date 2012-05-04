@@ -49,6 +49,6 @@ class ArticlesController < ApplicationController
 
   protected
   def set_catagories(user_id)
-    @catagories = Catagory.select("id, name, user_id").where("user_id=?", user_id).order("created_at asc")
+    @catagories = Catagory.get_all(user_id)
   end
 end

@@ -10,12 +10,13 @@ $fs: 18px;
 
 #article {
    @include fstyle;
-     width: 80%;
+     width: 74%;
     background: #f2f2f2;
     padding: 0 30px;
     height: 100%;
     float: left;
-    margin-right: 15px;
+    border-right: 1px solid gray;
+//    margin-right: 15px;
 }
 
 #article_title {

@@ -9,13 +9,13 @@ class CatagoriesController < ApplicationController
     if @catagory.errors.any?
       render :json => {errors:"#{@catagory.jerrors}"}
     else
-      render :json => Catagory.find_all_by_user_id(@user_id).to_json
+      render :json => Catagory.get_all(@user_id).to_json
     end
   end
   
   def destroy
     if Catagory.destroy(params[:id])
-      redirect_to request.url
+      redirect_to :controller => 'article', :action => 'index'  
     else
       flash[:notic] = '删除错误'
       redirect_to :controller => 'error', :action => 'error'   
