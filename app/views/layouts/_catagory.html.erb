@@ -8,7 +8,7 @@
       <li>
       <%= simple_form_for Catagory.new(), :remote => true, :html => {:id => 'catagory_form', "data-type" => 'json' }   do |f| %>
         <%= f.input :user_id, :as => :hidden, :input_html => {:value => user_id }  %>
-        <%= f.input :name %>
+        <%= f.input :name, :label => false %>
         <%= f.submit '确定' %>
       <% end %>
       </li>
@@ -17,7 +17,8 @@
 
   <div id="catagories">
     <% catagories.each do |c|%>
-      <h3><%= c.name %></h3>
+      <h3><%= c.name %> <%= link_to 'x', catagory_path(c), :method => :delete, :remote => true, "data-type" => "json"  %> </h3>
     <% end %>
   </div>
 </div>
+

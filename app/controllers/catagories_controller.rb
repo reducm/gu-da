@@ -1,5 +1,8 @@
+# encoding: utf-8
 class CatagoriesController < ApplicationController
   before_filter :check_login, :only => [:create, :destroy, :update] 
+  before_filter :check_session
+
 
   def create
     @catagory = Catagory.create(params[:catagory])
@@ -11,6 +14,12 @@ class CatagoriesController < ApplicationController
   end
   
   def destroy
+    if Catagory.destroy(params[:id])
+      redirect_to request.url
+    else
+      flash[:notic] = '删除错误'
+      redirect_to :controller => 'error', :action => 'error'   
+    end
   end
 
   def update

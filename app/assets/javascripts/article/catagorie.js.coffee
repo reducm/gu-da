@@ -1,4 +1,4 @@
-$("#catagory_form").bind("ajax:success", 
+$("#catagory_form").live("ajax:success",
   (event, data)->
     console.log(data)
 )
