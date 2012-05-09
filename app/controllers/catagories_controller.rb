@@ -15,10 +15,9 @@ class CatagoriesController < ApplicationController
   
   def destroy
     if Catagory.destroy(params[:id])
-      redirect_to :controller => 'article', :action => 'index'  
+      render :json => Catagory.get_all(@user_id).to_json
     else
-      flash[:notic] = '删除错误'
-      redirect_to :controller => 'error', :action => 'error'   
+      render :json => {errors:"删除失败"}
     end
   end
 

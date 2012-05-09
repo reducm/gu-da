@@ -1,5 +1,5 @@
 <%= flash[:notice] %> 
-<%= simple_form_for @user, :url => login_path, :defaults => {:input_html => {:style => 'margin-left:20px' }, :label_html => {:class => 'jlabel'}, :required => false  }  do|f|%>
+<%= simple_form_for @user, :url => login_path, :defaults => {:input_html => {:style => 'margin-left:20px' }, :label_html => {:class => 'jlabel'}, :required => false }, :html => { :class => 'form-horizontal' }   do|f|%>
     <%= f.input :name, :label => '用户名: ' %> 
     <%= f.input :password, :label => '密　码: ' %> 
     <%= f.button :submit, "登录", :class => 'btn-primary', :style => 'margin-left:78px;width:58px' %>
