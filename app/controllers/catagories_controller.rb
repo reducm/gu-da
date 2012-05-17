@@ -3,6 +3,11 @@ class CatagoriesController < ApplicationController
   before_filter :check_login, :only => [:create, :destroy, :update] 
   before_filter :check_session
 
+  def show
+    if params[:id] == 0 || params[:id] == nil
+      @catagory.new(name:'未分类', :user_id:0)
+    end
+  end
 
   def create
     @catagory = Catagory.create(params[:catagory])

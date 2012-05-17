@@ -7,7 +7,11 @@
 
   <div id="catagories">
     <% catagories.each do |c|%>
-      <h3><%= c.name %> <%= link_to 'x', catagory_path(c), :method => :delete, :remote => true, "data-type" => "json"  %> </h3>
+      <% if c.id == 0 || c.id == nil %>
+        <h3><%= c.name %></h3>
+      <%else%>
+        <h3><%= c.name %> <%= link_to 'x', catagory_path(c), :method => :delete, :remote => true, "data-type" => "json"  %> </h3>
+      <% end %>
     <% end %>
   </div>
 
