@@ -11,6 +11,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new(user_id:session[:user_id])
+    @catagories = Catagory.find_all_by_user_id(@user_id)
   end
 
   def create
