@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GuDa</title>
+    <title><%= page_title %></title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "article" %>
@@ -11,12 +11,12 @@
 
     <%= render :partial => 'layouts/nav' %> 
 
-    <div class="container" id="container">
+    <div class="container row" id="container">
       <% unless params[:action] == 'new' || params[:action] == 'edit' %>
         <h1 style="color:white; margin-bottom: 20px;"><%= @blog_name %></h1>
       <% end %> 
 
-      <div id="article">
+      <div id="article" <%= article_width_height %>>
         <%= yield %> 
       </div>
       <%= catagory_sidebar %>

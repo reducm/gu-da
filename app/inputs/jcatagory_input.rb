@@ -4,6 +4,14 @@ class JcatagoryInput < SimpleForm::Inputs::CollectionSelectInput
   def input
     collection[0].id=0
     super
+=begin
+    str="<select id=\"catagory_select\" class=\"span2\" name=\"article[catagory_id]\">"
+    collection.each do |c|
+      str+="<option value=\"#{c.id}\">#{c.name}</option>"
+    end
+      str+="<option style=\"color:blue\" id=\"create_catagory\" onclick='Jajax.prototype.fuck()'>新增分类</option>"
+    str+="</select>"
+=end
   end
 end
 

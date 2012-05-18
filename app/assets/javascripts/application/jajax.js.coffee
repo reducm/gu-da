@@ -9,3 +9,6 @@ Jajax::callback = (data, operator)->
 
 Jajax::error_dealer = (data)->
     alert(data.errors)
+
+Jajax::fuck = ()->
+    alert("fuck")

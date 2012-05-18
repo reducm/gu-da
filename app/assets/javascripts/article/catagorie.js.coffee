@@ -29,7 +29,7 @@ wrap_option_catagory = (obj)->
   "<option value=\"#{obj.id}\">#{obj.name}</option>"
 
 wrap_catagory = (obj) ->
-  $("<h3>#{obj.name} #{catagory_delete_link(obj)}</h3>")
+  $("<h3>#{catagory_name_link(obj)} #{catagory_delete_link(obj)}</h3>")
 
 bind_ajax = ()->
   $("#catagories a").each((i)->
@@ -38,6 +38,8 @@ bind_ajax = ()->
     )
   )
 
+catagory_name_link = (obj)->
+    "<a href=\"/blog/catagories/#{obj.id}\">#{obj.name}</a>"
 
 catagory_delete_link = (obj) ->
   "<a href=\"/blog/catagories/#{obj.id}\" data-method=\"delete\" data-remote=\"true\" data-type=\"json\" rel=\"nofollow\" >x</a>"

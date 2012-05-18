@@ -32,4 +32,9 @@ module JLogin
       redirect_to(controller:'Error', action:'nonelogin')
     end
   end
+
+  #设置action的@page_title
+  def set_page_title
+  
+  end
 end

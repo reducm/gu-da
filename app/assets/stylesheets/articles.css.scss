@@ -10,13 +10,11 @@ $fs: 18px;
 
 #article {
    @include fstyle;
-     width: 74%;
+    width: 74%;
     background: #f2f2f2;
     padding: 0 30px;
-    height: 100%;
     float: left;
     border-right: 1px solid gray;
-//    margin-right: 15px;
 }
 
 #article_title {
@@ -25,7 +23,7 @@ $fs: 18px;
 
 #article_content{
   @include fstyle;
-    height: 100%;
+  height: 100%;
 }
 
 .article_each {
@@ -33,5 +31,12 @@ $fs: 18px;
   margin-bottom: 15px;
 }
 
+#article_form {
+  margin-left: 57px;
+  margin-top: 12px;
+  height: 100%;
+}
 
-
+#new_article {
+  height:100%;
+}

@@ -1,14 +1,6 @@
 <div id="catagory">
-  
   <%= link_to "+", "#myModal", "data-toggle"=>'modal' %> 
   <div id="catagories">
-    <% catagories.each do |c|%>
-      <% if c.id == 0 || c.id == nil %>
-        <h3><%= c.name %></h3>
-      <%else%>
-        <h3><%= c.name %> <%= link_to 'x', catagory_path(c), :method => :delete, :remote => true, "data-type" => "json"  %> </h3>
-      <% end %>
-    <% end %>
+        <%= catagory_sidebar_list(@catagories) %>
   </div>
-
 </div>
