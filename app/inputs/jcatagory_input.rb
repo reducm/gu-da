@@ -3,10 +3,7 @@ class JcatagoryInput < SimpleForm::Inputs::CollectionSelectInput
   #增加和修改文章时候的catagory select栏
   def input
     collection[0].id=0
-    result = super
-    p "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy  \n #{result}"
-    result
-#    result<<"<option style=\"color:red\" id=\"create_catagory\">增加分类</option>"
+    super
   end
 end
 

@@ -1,6 +1,6 @@
-<%= simple_form_for @article  do|f| %> 
-  <%= f.input :catagory_id, :collection => @catagories, :prompt => '选择分类', :label => false, :as => :jcatagory %>
+<%= simple_form_for @article, :html => {:class => 'form-inline' }   do|f| %> 
   <%= f.input :title, :label => false, :input_html => {:class => 'span8' }  %>
+  <%= f.input :catagory_id, :collection => @catagories, :label => false, :as => :jcatagory, :input_html => {:id => "catagories_select", :class => 'span2' }  %> <%= link_to "+", "#myModal", "data-toggle" => 'modal'  %> 
   <%= f.input :content, :label => false, :input_html => {:class => 'span10' }%>
   <%= f.button :submit, '保存', :class => 'btn btn-primary span2' %>
 <%end%>

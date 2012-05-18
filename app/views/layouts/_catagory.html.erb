@@ -1,10 +1,6 @@
 <div id="catagory">
-  <%= simple_form_for Catagory.new(), :remote => true, :html => {:id => 'catagory_form', "data-type" => 'json', :class => 'form-inline' }   do |f| %>
-    <%= f.input :user_id, :as => :hidden, :input_html => {:value => user_id, :autocomplete => 'off'  }  %>
-    <%= f.input :name, :label => false %>
-    <%= f.submit '确定' %>
-  <% end %>
-
+  
+  <%= link_to "+", "#myModal", "data-toggle"=>'modal' %> 
   <div id="catagories">
     <% catagories.each do |c|%>
       <% if c.id == 0 || c.id == nil %>

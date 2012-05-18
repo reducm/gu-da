@@ -1,12 +1,33 @@
 
 catagory_operate = (obj) ->
-  Jajax::callback obj
-  #  cs = $("#catagories")
-  #  cs.html("")
-  #  for c in obj
-  #    cs.append(wrap_catagory c)
-  #  bind_ajax()
-    
+  if window.action == 'new' || window.action == 'edit'
+    Jajax::callback obj,catagory_select
+  else
+    Jajax::callback obj,catagory_sidebar
+
+catagory_select = (obj)->
+  cs = $("#catagories_select")
+  cs.html("")
+  str=""
+  for c in obj
+    str+=wrap_option_catagory(c)
+  cs.html(str)
+  $("#myModal").modal('hide')
+  return
+
+
+catagory_sidebar = (obj)->
+  cs = $("#catagories")
+  cs.html("")
+  for c in obj
+    cs.append(wrap_catagory c)
+  bind_ajax()
+  $("#myModal").modal('hide')
+  return
+
+wrap_option_catagory = (obj)->
+  "<option value=\"#{obj.id}\">#{obj.name}</option>"
+
 wrap_catagory = (obj) ->
   $("<h3>#{obj.name} #{catagory_delete_link(obj)}</h3>")
 
