@@ -1,9 +1,15 @@
-<ul class="breadcrumb">
-  <li>
-    <a href="#">Home</a> <span class="divider">/</span>
-  </li>
-  <li>
-    <a href="#">Library</a> <span class="divider">/</span>
-  </li>
-  <li class="active">Data</li>
-</ul>
+<% unless @breadcrumbs.blank? %>
+  <ul class="breadcrumb">
+    <% @breadcrumbs.each_with_index do |b, i|%>
+      <% unless i == (@breadcrumbs.size-1) %> 
+        <li>
+          <%= b %>  <span class="divider">/</span>
+        </li>
+      <%else%>
+        <li class='active'>
+          <%= b %>
+        </li>
+      <%end%>
+    <%end%>
+  </ul>
+<%end%>

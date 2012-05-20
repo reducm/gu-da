@@ -86,13 +86,8 @@ $.fn.setSel	app/assets/javascripts/article/real-editor.js	/^    };$/;"	f
 0137l	Session.vim	/^normal! 0137l$/;"	m
 0204l	Session.vim	/^normal! 0204l$/;"	m
 027l	Session.vim	/^normal! 027l$/;"	m
-027l	jas.vim	/^normal! 027l$/;"	m
 02l	Session.vim	/^normal! 02l$/;"	m
-02l	jas.vim	/^normal! 02l$/;"	m
-035l	jas.vim	/^normal! 035l$/;"	m
 042l	Session.vim	/^normal! 042l$/;"	m
-042l	jas.vim	/^normal! 042l$/;"	m
-04l	jas.vim	/^normal! 04l$/;"	m
 097l	Session.vim	/^normal! 097l$/;"	m
 <BS>	Session.vim	/^inoremap <buffer> <silent> <expr> <BS> AutoPairsDelete()$/;"	m
 <BS>	jas.vim	/^inoremap <buffer> <silent> <expr> <BS> AutoPairsDelete()$/;"	m
@@ -164,8 +159,8 @@ $.fn.setSel	app/assets/javascripts/article/real-editor.js	/^    };$/;"	f
 <S-Tab>	jas.vim	/^inoremap <silent> <S-Tab> =BackwardsSnippet()$/;"	m
 <SNR>19_AutoPairsReturn	Session.vim	/^inoremap <silent> <SNR>19_AutoPairsReturn =AutoPairsReturn()$/;"	m
 <SNR>19_AutoPairsReturn	jas.vim	/^inoremap <silent> <SNR>19_AutoPairsReturn =AutoPairsReturn()$/;"	m
-AddBlogNameToUsers	db/migrate/20120422072727_add_blog_name_to_users.rb	/^class AddBlogNameToUsers < ActiveRecord::Migration$/;"	c
 AddPreviewToArticles	db/migrate/20120426052830_add_preview_to_articles.rb	/^class AddPreviewToArticles < ActiveRecord::Migration$/;"	c
+AddUserIdToSetting	db/migrate/20120520034049_add_user_id_to_setting.rb	/^class AddUserIdToSetting < ActiveRecord::Migration$/;"	c
 AddUseridAndCatagoryidToArticles	db/migrate/20120301112830_add_userid_and_catagoryid_to_articles.rb	/^class AddUseridAndCatagoryidToArticles < ActiveRecord::Migration$/;"	c
 AddUseridPidToCatagories	db/migrate/20120305101256_add_userid_pid_to_catagories.rb	/^class AddUseridPidToCatagories < ActiveRecord::Migration$/;"	c
 Application	config/application.rb	/^  class Application < Rails::Application$/;"	c	class:GuDa
@@ -182,10 +177,12 @@ CatagoriesHelper	app/helpers/catagories_helper.rb	/^module CatagoriesHelper$/;"	
 Catagory	app/models/catagory.rb	/^class Catagory < ActiveRecord::Base$/;"	c
 ChangeCatagoiesPidDefaultValue	db/migrate/20120318061811_change_catagoies_pid_default_value.rb	/^class ChangeCatagoiesPidDefaultValue < ActiveRecord::Migration$/;"	c
 CollectionSelectInput	app/inputs/jcatagory_input.rb	/^class CollectionSelectInput < CollectionInput$/;"	c
+Comment	app/models/comment.rb	/^class Comment < ActiveRecord::Base$/;"	c
 CreateArticleTagships	db/migrate/20120304080653_create_article_tagships.rb	/^class CreateArticleTagships < ActiveRecord::Migration$/;"	c
 CreateArticles	db/migrate/20120229113328_create_articles.rb	/^class CreateArticles < ActiveRecord::Migration$/;"	c
 CreateCatagories	db/migrate/20120229113528_create_catagories.rb	/^class CreateCatagories < ActiveRecord::Migration$/;"	c
-CreateReplies	db/migrate/20120313160545_create_replies.rb	/^class CreateReplies < ActiveRecord::Migration$/;"	c
+CreateComments	db/migrate/20120520032958_create_comments.rb	/^class CreateComments < ActiveRecord::Migration$/;"	c
+CreateSettings	db/migrate/20120520032603_create_settings.rb	/^class CreateSettings < ActiveRecord::Migration$/;"	c
 CreateTags	db/migrate/20120229113820_create_tags.rb	/^class CreateTags < ActiveRecord::Migration$/;"	c
 CreateUserTagships	db/migrate/20120305103236_create_user_tagships.rb	/^class CreateUserTagships < ActiveRecord::Migration$/;"	c
 CreateUsers	db/migrate/20120226093849_create_users.rb	/^class CreateUsers < ActiveRecord::Migration$/;"	c
@@ -195,6 +192,7 @@ GuDa	config/application.rb	/^module GuDa$/;"	m
 IndexController	app/controllers/index_controller.rb	/^class IndexController < ApplicationController$/;"	c
 IndexHelper	app/helpers/index_helper.rb	/^module IndexHelper$/;"	m
 JASRender	app/helpers/application_helper.rb	/^  class JASRender < Redcarpet::Render::HTML$/;"	c	class:ApplicationHelper
+JBreadcrumbs	lib/jas/jbreadcrumbs.rb	/^module JBreadcrumbs$/;"	m
 JError	lib/jas/jerror_message.rb	/^module JError$/;"	m
 JLogin	lib/jas/jlogin.rb	/^module JLogin$/;"	m
 JcatagoryInput	app/inputs/jcatagory_input.rb	/^class JcatagoryInput < SimpleForm::Inputs::CollectionSelectInput$/;"	c
@@ -202,6 +200,7 @@ NodivInput	app/inputs/nodiv_input.rb	/^class NodivInput< SimpleForm::Inputs::Bas
 Reply	app/models/reply.rb	/^class Reply < ActiveRecord::Base$/;"	c
 SessionLoad	Session.vim	/^let SessionLoad = 1$/;"	v
 SessionLoad	jas.vim	/^let SessionLoad = 1$/;"	v
+Setting	app/models/setting.rb	/^class Setting < ActiveRecord::Base$/;"	c
 String	app/assets/javascripts/article/real-editor.js	/^    };$/;"	c
 String.count	app/assets/javascripts/article/real-editor.js	/^    String.prototype.count = function(subject) {$/;"	m
 String.return	app/assets/javascripts/article/real-editor.js	/^    String.prototype.times = function(n) {$/;"	c
@@ -262,9 +261,10 @@ change	db/migrate/20120301112830_add_userid_and_catagoryid_to_articles.rb	/^  de
 change	db/migrate/20120304080653_create_article_tagships.rb	/^  def change$/;"	f	class:CreateArticleTagships
 change	db/migrate/20120305101256_add_userid_pid_to_catagories.rb	/^  def change$/;"	f	class:AddUseridPidToCatagories
 change	db/migrate/20120305103236_create_user_tagships.rb	/^  def change$/;"	f	class:CreateUserTagships
-change	db/migrate/20120313160545_create_replies.rb	/^  def change$/;"	f	class:CreateReplies
-change	db/migrate/20120422072727_add_blog_name_to_users.rb	/^  def change$/;"	f	class:AddBlogNameToUsers
 change	db/migrate/20120426052830_add_preview_to_articles.rb	/^  def change$/;"	f	class:AddPreviewToArticles
+change	db/migrate/20120520032603_create_settings.rb	/^  def change$/;"	f	class:CreateSettings
+change	db/migrate/20120520032958_create_comments.rb	/^  def change$/;"	f	class:CreateComments
+change	db/migrate/20120520034049_add_user_id_to_setting.rb	/^  def change$/;"	f	class:AddUserIdToSetting
 check	app/models/user.rb	/^  def self.check(user)$/;"	F	class:User
 check_login	lib/jas/jlogin.rb	/^  def check_login$/;"	f	class:JLogin
 check_session	lib/jas/jlogin.rb	/^  def check_session$/;"	f	class:JLogin
@@ -312,7 +312,7 @@ markdown	app/helpers/application_helper.rb	/^  def markdown(str)$/;"	f	class:App
 new	app/controllers/articles_controller.rb	/^  def new$/;"	f	class:ArticlesController
 new	app/controllers/users_controller.rb	/^  def new$/;"	f	class:UsersController
 nonelogin	app/controllers/error_controller.rb	/^  def nonelogin$/;"	f	class:ErrorController
-page_title	app/helpers/articles_helper.rb	/^  def page_title$/;"	f	class:ArticlesHelper
+page_title_helper	app/helpers/articles_helper.rb	/^  def page_title_helper$/;"	f	class:ArticlesHelper
 pidof_daemon	rails-nginx-passenger-ubuntu/nginx/nginx	/^pidof_daemon() {$/;"	f
 reload	rails-nginx-passenger-ubuntu/nginx/nginx	/^reload() {$/;"	f
 removePIDFile	rails-nginx-passenger-ubuntu/nginx/nginx	/^removePIDFile(){$/;"	f
@@ -330,13 +330,10 @@ s:l	Session.vim	/^let s:l = 6 - ((5 * winheight(0) + 12) \/ 24)$/;"	v
 s:l	Session.vim	/^let s:l = 7 - ((6 * winheight(0) + 11) \/ 23)$/;"	v
 s:l	Session.vim	/^let s:l = 8 - ((7 * winheight(0) + 11) \/ 23)$/;"	v
 s:l	jas.vim	/^let s:l = 1 - ((0 * winheight(0) + 11) \/ 23)$/;"	v
-s:l	jas.vim	/^let s:l = 12 - ((10 * winheight(0) + 11) \/ 23)$/;"	v
-s:l	jas.vim	/^let s:l = 17 - ((12 * winheight(0) + 11) \/ 23)$/;"	v
-s:l	jas.vim	/^let s:l = 17 - ((8 * winheight(0) + 11) \/ 23)$/;"	v
-s:l	jas.vim	/^let s:l = 18 - ((16 * winheight(0) + 11) \/ 23)$/;"	v
-s:l	jas.vim	/^let s:l = 52 - ((19 * winheight(0) + 11) \/ 23)$/;"	v
-s:l	jas.vim	/^let s:l = 7 - ((6 * winheight(0) + 11) \/ 23)$/;"	v
-s:l	jas.vim	/^let s:l = 9 - ((8 * winheight(0) + 12) \/ 24)$/;"	v
+s:l	jas.vim	/^let s:l = 1 - ((0 * winheight(0) + 12) \/ 24)$/;"	v
+s:l	jas.vim	/^let s:l = 1 - ((0 * winheight(0) + 12) \/ 25)$/;"	v
+s:l	jas.vim	/^let s:l = 24 - ((20 * winheight(0) + 11) \/ 23)$/;"	v
+s:l	jas.vim	/^let s:l = 32 - ((0 * winheight(0) + 12) \/ 24)$/;"	v
 s:so_save	Session.vim	/^let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0$/;"	v
 s:so_save	jas.vim	/^let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0$/;"	v
 s:sx	Session.vim	/^let s:sx = expand("<sfile>:p:r")."x.vim"$/;"	v
@@ -344,8 +341,10 @@ s:sx	jas.vim	/^let s:sx = expand("<sfile>:p:r")."x.vim"$/;"	v
 s:wipebuf	Session.vim	/^  let s:wipebuf = bufnr('%')$/;"	v
 s:wipebuf	jas.vim	/^  let s:wipebuf = bufnr('%')$/;"	v
 setFilePerms	rails-nginx-passenger-ubuntu/nginx/nginx	/^setFilePerms(){$/;"	f
+set_action_breadcrumbs	lib/jas/jbreadcrumbs.rb	/^  def set_action_breadcrumbs$/;"	f	class:JBreadcrumbs
+set_breadcrumbs	lib/jas/jbreadcrumbs.rb	/^  def set_breadcrumbs(controller_title=nil)$/;"	f	class:JBreadcrumbs
 set_catagories	app/controllers/articles_controller.rb	/^  def set_catagories(user_id)$/;"	f	class:ArticlesController
-set_page_title	lib/jas/jlogin.rb	/^  def set_page_title$/;"	f	class:JLogin
+set_page_title	lib/jas/jbreadcrumbs.rb	/^  def set_page_title$/;"	f	class:JBreadcrumbs
 set_preview	app/models/article.rb	/^  def set_preview$/;"	f	class:Article
 set_session	lib/jas/jlogin.rb	/^  def set_session(user)$/;"	f	class:JLogin
 show	app/controllers/articles_controller.rb	/^  def show$/;"	f	class:ArticlesController
@@ -376,7 +375,7 @@ zt	jas.vim	/^normal! zt$/;"	m
 ¯	jas.vim	/^imap ¯ 0i#$/;"	m
 ¯	jas.vim	/^map ¯ 0i#$/;"	m
 ±	Session.vim	/^imap ± ()i$/;"	m
-±	jas.vim	/^imap ± ()i$/;"	m
+±	jas.vim	/^imap ± ->a$/;"	m
 ²	Session.vim	/^imap ² []i$/;"	m
 ²	jas.vim	/^imap ² []i$/;"	m
 ³	Session.vim	/^imap ³ {}i$/;"	m
@@ -395,7 +394,6 @@ zt	jas.vim	/^normal! zt$/;"	m
 ä	jas.vim	/^imap ä ldwi$/;"	m
 å	Session.vim	/^imap å oendk$a$/;"	m
 å	Session.vim	/^inoremap <buffer> <silent> å =AutoPairsFastWrap()$/;"	m
-å	jas.vim	/^imap å oendk$a$/;"	m
 å	jas.vim	/^inoremap <buffer> <silent> å =AutoPairsFastWrap()$/;"	m
 æ	Session.vim	/^imap æ lwi$/;"	m
 æ	jas.vim	/^imap æ lwi$/;"	m

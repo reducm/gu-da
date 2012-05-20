@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
   layout "article"
   before_filter :check_login, :only => [:edit, :create, :new, :update, :destroy]   
   before_filter :check_session
+  before_filter {|c| c.set_breadcrumbs '博客'}
 
   def index
     @articles = Article.get_index(params[:user_id] || @user_id)
@@ -12,6 +13,7 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new(user_id:session[:user_id])
     @catagories = Catagory.get_all(@user_id)
+    set_page_title '新建文章'
   end
 
   def create
@@ -23,6 +25,7 @@ class ArticlesController < ApplicationController
   def edit
     @article = Article.find_by_id(params[:id])
     @catagories = Catagory.get_all(@user_id)
+    set_page_title "修改文章|#{@article.title}"
   end
 
   def update
@@ -37,6 +40,7 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
     set_catagories(@article.user_id)
+    set_page_title @article.title
   end
 
   def destroy
