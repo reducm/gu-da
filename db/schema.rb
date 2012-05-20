@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120426052830) do
+ActiveRecord::Schema.define(:version => 20120520034049) do
 
   create_table "article_tagships", :force => true do |t|
     t.integer  "article_id"
@@ -38,12 +38,17 @@ ActiveRecord::Schema.define(:version => 20120426052830) do
     t.integer  "pid",        :default => 0
   end
 
-  create_table "replies", :force => true do |t|
+  create_table "comments", :force => true do |t|
     t.text     "content"
-    t.integer  "user_id"
-    t.integer  "article_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "settings", :force => true do |t|
+    t.string   "blog_name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "user_id"
   end
 
   create_table "tags", :force => true do |t|
@@ -70,7 +75,6 @@ ActiveRecord::Schema.define(:version => 20120426052830) do
     t.string   "habit"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.string   "blog_name"
   end
 
 end

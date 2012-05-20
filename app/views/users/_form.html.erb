@@ -7,7 +7,9 @@
     <%= f.input :password, :label => '旧密码(不需要修改密码请留空)', :required => false %>
     <%= f.input :password_new, :hint => false, :error_html => { :id => 'password_error' }, :label=>'新密码' %>
     <%= f.input :password_confirm, :label=>'新密码确认' %>
-    <%= f.input :blog_name, :label=>'博客名称' %>
+    <%= f.simple_fields_for @user.setting do |setting|%>
+      <%= setting.input :blog_name, :label => '博客名称'  %>
+    <%end%>
     <%= f.input :birthday, :label=>'生日', :as => :date, :start_year => 1957, :end_year => Date.today.year, :input_html => {:class => 'span2'}    %>
     <%= f.input :description, :label => '个人描述', :as => :text, :input_html => {:class => 'desc_textarea span3' }  %>
   <% else%>
@@ -19,3 +21,4 @@
   
   <%= f.button :submit, '确定', :class => 'btn btn-primary' %>
 <% end %>
+

@@ -33,7 +33,7 @@ module ArticlesHelper
     end
   end
 
-  def page_title
+  def page_title_helper
     if @page_title.blank?
       "咕哒网"
     else

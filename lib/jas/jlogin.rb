@@ -14,7 +14,7 @@ module JLogin
     session[:logined] = true
     session[:user_id] = user.id
     session[:user_name] = user.name
-    session[:blog_name] = (user.blog_name.blank?)? "#{session[:user_name]}的博客" : user.blog_name
+    session[:blog_name] = (user.setting.blog_name.blank?)? "#{session[:user_name]}的博客" : user.setting.blog_name
   end
 
   def update_session
@@ -31,10 +31,5 @@ module JLogin
       flash[:notice] = '用户未登录'
       redirect_to(controller:'Error', action:'nonelogin')
     end
-  end
-
-  #设置action的@page_title
-  def set_page_title
-  
   end
 end

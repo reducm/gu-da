@@ -1,10 +1,11 @@
 # encoding: UTF-8
 class User < ActiveRecord::Base
   has_many :articles#, :dependent => :destroy 
-  has_many :replies
+  has_many :comments
   has_many :user_tagships
   has_many :tags, :through => :user_tagships
   has_many :catagories
+  has_one :setting
 
   scope :check
   attr_accessible :name, :email, :password, :password_confirm, :head, :birthday, :description, :habbit, :blog_name
@@ -44,6 +45,7 @@ class User < ActiveRecord::Base
         if user[:password].length >= 6 && user[:password].length <= 20
           user[:password] = Digest::SHA2.new.hexdigest(user[:password_new]+@u.salt)
           @u.update_attributes(user)
+          @u.setting.update_attributes(user[:setting])
           @u
         else
           @u.errors.add(:password_new, '新密码长度要在6-20之间')
@@ -62,8 +64,9 @@ class User < ActiveRecord::Base
   
   def self.updates_nopass(user, id)
     user.reject! {|k,v| !(k.to_s.index("password").nil?)} 
-    @user = User.find(id)
+    @user = User.where('id=?',id).includes(:setting)[0]
     @user.update_attributes(user)
+    @user.setting.update_attributes(user[:setting])
     @user
   end
 

@@ -75,6 +75,7 @@ class UsersController < ApplicationController
     else
       flash[:notice] = '用户更新成功'
       set_session(@user)
+      @setting = @user.setting
       render :edit
     end
  end
@@ -97,6 +98,7 @@ class UsersController < ApplicationController
       flash[:notice] = @user.jerrors
       redirect_to :controller => 'blog', :action => 'index'   
     else
+      @setting = @user.setting
       set_session(@user)
       redirect_to articles_url, :method => :get 
     end

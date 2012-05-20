@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= page_title %></title>
+    <title><%= page_title_helper %></title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "article" %>
@@ -15,6 +15,8 @@
       <% unless params[:action] == 'new' || params[:action] == 'edit' %>
         <h1 style="color:white; margin-bottom: 20px;"><%= @blog_name %></h1>
       <% end %> 
+      
+      <%= render :partial => 'layouts/breadcrumbs' %>
 
       <div id="article" <%= article_width_height %>>
         <%= yield %> 
@@ -30,7 +32,7 @@
       <div class="modal-body">
         <%= simple_form_for Catagory.new(), :remote => true, :html => {:id => 'catagory_form', "data-type" => 'json', :class => 'form-horizontal' }   do |f| %>
           <%= f.input :user_id, :as => :hidden, :input_html => {:value => @user_id, :autocomplete => 'off'}  %>
-          <%= f.input :name, :label => '分类名称', :wrapper_html => {:style=>"float:left;margin-right:10px"} %>
+          <%= f.input :name, :label => '分类名称', :wrapper_html => {:style=>"float:left;margin-right:10px"}, :input_html => {:id => 'catagory_name_input' } %>
         <%= f.submit '确定', :class => 'btn btn-primary'  %>
         <% end %>
       </div>
