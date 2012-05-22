@@ -1,6 +1,8 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "twitter/bootstrap/mixins";
+
 $bc: #4c5a76;
 $fs: 18px;
 
@@ -10,6 +12,7 @@ $fs: 18px;
 
 #article {
    @include fstyle;
+   @include border-radius(4px);
     width: 74%;
     background: #f2f2f2;
     padding: 0 30px;

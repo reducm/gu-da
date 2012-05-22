@@ -51,7 +51,8 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-      set_session(@user)  
+      @setting = Setting.create(:user => @user )
+      set_session(@user)
       redirect_to articles_url, :method => 'get' 
     else
       #flash[:notice] = @user.jerrors
@@ -69,13 +70,12 @@ class UsersController < ApplicationController
   
     @user = (params[:user][:password].blank?)? User.updates_nopass(params[:user], params[:id]) : User.updates(params[:user], params[:id])
     if @user.errors.any?
-      #flash[:notice] = @user.jerrors
+      flash[:notice] = @user.jerrors
       render :edit
       return
     else
       flash[:notice] = '用户更新成功'
       set_session(@user)
-      @setting = @user.setting
       render :edit
     end
  end

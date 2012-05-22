@@ -20,7 +20,12 @@ class Article < ActiveRecord::Base
 
   private
   def set_preview
-    self.preview = "#{self.content.first(140)}\n..." #为文章内容加入preview，头140字
+    max_word_count = 200 
+    if self.content.length > max_word_count
+      self.preview = "#{self.content.first(max_word_count)}..." #为文章内容加入preview，头140字
+    else
+      self.preview = self.content
+    end
   end
-  
+
 end
