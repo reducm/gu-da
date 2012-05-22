@@ -1,6 +1,6 @@
 GuDa::Application.routes.draw do
 
-  root :to => 'index#index'
+  root :to => 'blog#index'
   match "blog" => 'blog#index'
 
   scope 'blog' do
@@ -13,6 +13,7 @@ GuDa::Application.routes.draw do
     resources :articles
     resources :catagories
     resources :tags
+    resources :comments
     post "users/login" => 'users#login', :as => :login 
   end
   match ':controller(/:action(/:id(.:format)))'  

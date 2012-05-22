@@ -4,7 +4,7 @@ class Article < ActiveRecord::Base
   belongs_to :catagory
   has_many :article_tagships
   has_many :tags, :through => :article_tagships 
-  has_many :comments
+  has_many :comments, :dependent => :destroy 
 
   attr_accessible :title, :content, :catagory_id
 

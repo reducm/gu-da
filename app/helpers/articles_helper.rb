@@ -1,5 +1,9 @@
 #encoding: utf-8
 module ArticlesHelper
+  def owner?
+    @owner
+  end
+
   def catagory_sidebar
     unless params[:action] == 'edit' || params[:action] == 'new'
       render 'layouts/catagory', :catagories => @catagories, :user_id => @user_id
@@ -20,14 +24,14 @@ module ArticlesHelper
         a = link_to c.name, catagory_path(c)
         d = link_to "x", catagory_path(c), :method => 'delete', :remote => true 
       end
-      str += "<h3>#{a} #{d}</h3>"
+      str += owner? ? "<h3>#{a} #{d}</h3>" : "<h3>#{a}</h3>"
     end
     str.html_safe
   end
 
   def article_width_height
     if params[:action] == 'edit' || params[:action] == 'new'
-      "style=width:94%;height:760px"
+      "style=width:94%;"
     else
       nil
     end
@@ -38,6 +42,22 @@ module ArticlesHelper
       "咕哒网"
     else
       "#{@page_title} | 咕哒网"
+    end
+  end
+
+  def logined?
+    @logined
+  end
+
+  def show_comments(comments)
+    if comments.size>0
+      str = ""
+      comments.each_with_index do |c,i|
+        str += content_tag :div, "#{c.user_name}: #{c.content}</br>#{c.created_at}", :class => 'comment_div' 
+      end
+      str.html_safe
+    else
+      nil
     end
   end
 end

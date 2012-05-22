@@ -1,5 +1,12 @@
 <h1><%= @article.title %></h1>
 
-<p><%= markdown(@article.content) %></p>
+<div id="content">
+  <p><%= markdown(@article.content) %></p>
+  <%= (link_to '编辑', edit_article_path(@article)) if owner? %> 
+</div>
 
-<%= link_to '编辑', edit_article_path(@article)%> 
+<div id="comments">
+  <%= render :partial => 'comments/form', :locals => {comment:@comment, article_id:@article.id} %>
+  <%= show_comments(@comments) %>
+</div>
+

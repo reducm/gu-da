@@ -26,7 +26,7 @@ $fs: 18px;
 
 #article_content{
   @include fstyle;
-  height: 100%;
+  height: 70%;
 }
 
 .article_each {
@@ -37,9 +37,13 @@ $fs: 18px;
 #article_form {
   margin-left: 57px;
   margin-top: 12px;
-  height: 100%;
+  //height: 100%;
 }
 
 #new_article {
-  height:100%;
+  //height:100%;
+}
+
+#comment_textarea {
+  height:85px;
 }

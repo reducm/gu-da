@@ -1,0 +1,14 @@
+<div id="catagory_form">
+  <%= simple_form_for comment, :html => {:class => 'form-horizontal' } do|f| %> 
+    <%= f.input :article_id, :as => :hidden, :input_html => { :value => article_id  }  %>
+    <% if logined? %>
+      <%= f.input :user_id, :as => :hidden, :input_html => { :value => @user_id  }   %>
+      <span><%= @user_name %></span>
+    <%else%>
+      <%= f.input :vistor_name, :required => true, :label => '昵称' %>
+      <%= f.input :vistor_email, :required => true, :label => 'email' %>
+    <%end%>
+    <%= f.input :content , :input_html => {:id => 'comment_textarea' } %>
+    <%= f.button :submit, '保存', :class => 'btn-primary span2' %>
+  <%end%>
+</div>

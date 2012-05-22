@@ -32,4 +32,9 @@ module JLogin
       redirect_to(controller:'Error', action:'nonelogin')
     end
   end
+
+  #用在index和show里头判断对比session和提交id是否owner, 增加@owner
+  def check_owner(id)
+    @owner = (id == @user_id) ? true : false
+  end
 end

@@ -1,11 +1,11 @@
 <%= flash[:notice] %>
-<%= link_to "新建", new_article_path, :class => 'btn btn-primary'  %>
+<%= (link_to "新建", new_article_path, :class => 'btn btn-primary') if owner?  %>
 <% @articles.each do|a| %>
   <div class='article_each'>
     <h2><%= link_to a.title, article_path(a.id) %></h2>
     <%= markdown(a.preview) %>
-    <%= link_to 'delete', article_path(a), :method => 'delete'%> 
-    <%= link_to 'edit', edit_article_path(a) %> 
+    <%= (link_to '删除', article_path(a), :method => 'delete') if owner?%> 
+    <%= (link_to '修改', edit_article_path(a)) if owner? %> 
   </div>
 <% end %>
 

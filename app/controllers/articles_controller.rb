@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
   def index
     @articles = Article.get_index(params[:user_id] || @user_id)
     set_catagories(params[:user_id] || @user_id)
+    check_owner(params[:user_id] || @user_id)
   end
 
   def new
@@ -39,8 +40,11 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @comment = Comment.new
+    @comments = Comment.get_by_article_id(params[:id])
     set_catagories(@article.user_id)
     set_page_title @article.title
+    check_owner @article.user_id
   end
 
   def destroy
