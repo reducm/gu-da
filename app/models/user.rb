@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :tags, :through => :user_tagships
   has_many :catagories
   has_one :setting, :dependent => :destroy 
+  has_one :picture, :as => :pictureable, :dependent => :destroy  
 
   scope :check
   attr_accessible :name, :email, :password, :password_confirm, :head, :birthday, :description, :habbit, :blog_name
