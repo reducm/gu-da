@@ -20,7 +20,12 @@ class ArticlesController < ApplicationController
   def create
     @a = Article.new(params[:article])
     @a.user_id = @user_id
-    redirect_to articles_path, method:'get' if @a.save
+    if @a.save
+      pic = Picture.create(:file => (params[:article][:picture]), :pictureable => @a )
+      redirect_to articles_path, method:'get'  
+    else
+
+    end
   end
 
   def edit

@@ -1,7 +1,5 @@
 # encoding: utf-8
-
 class PictureUploader < CarrierWave::Uploader::Base
-
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
   include CarrierWave::MimeTypes
@@ -22,13 +20,17 @@ class PictureUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  version :preview, if :image? do
-    process  :resize_to_fit => [50] 
+  version :preview, :if => :image? do
+    process  :resize_to_fit => [50,nil] 
   end
  
   protected
   def image?(new_file)
     new_file.content_type.include? 'image'
+  end
+
+  def extension_white_list
+    %w(jpg jpeg gif png)
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

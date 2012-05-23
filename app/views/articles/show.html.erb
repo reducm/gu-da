@@ -2,6 +2,7 @@
 
 <div id="content">
   <p><%= markdown(@article.content) %></p>
+  <%= (image_tag @article.pictures[0].file.preview.url) if @article.pictures.size > 0  %>
   <%= (link_to '编辑', edit_article_path(@article)) if owner? %> 
 </div>
 
