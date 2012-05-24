@@ -1,6 +1,7 @@
 .bundle
 tmp/
 coverage/
+omniauth.rb
 db/*.sqlite3
 log/*.log
 log/*.log*

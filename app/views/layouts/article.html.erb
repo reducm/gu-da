@@ -40,6 +40,7 @@
 
     <%= render :partial => 'layouts/foot' %>
 
+    <%= debug request.env['omniauth.auth'] %>
     <script>window.action="<%= params[:action]%>"</script>
   </body>
 </html>

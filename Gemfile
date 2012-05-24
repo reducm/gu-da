@@ -20,6 +20,12 @@ gem 'simple_form', :git => "git://github.com/plataformatec/simple_form.git"
 #分页
 gem 'kaminari'
 
+#社交平台
+gem 'omniauth'
+gem 'omniauth-weibo'
+gem 'omniauth-github'
+gem "social-share-button"
+
 #上传
 gem 'carrierwave'
 gem 'rmagick'
