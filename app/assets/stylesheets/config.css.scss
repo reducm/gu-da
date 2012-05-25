@@ -37,3 +37,54 @@ a {
   color: white;
   display: inline;
 }
+
+#login {
+  margin-top: 60px;
+  height: 328px;
+  background: yellow;
+}
+
+#login_left {
+  height: 100%;
+  width: 60%;
+  background: red;
+  float: left;
+}
+
+#login_right {
+  height: 100%;
+  width: 40%;
+  background: green;
+  float: left;
+}
+
+#login_form {
+  background: white;
+}
+
+$input_width: 90%;
+.input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+#user_name {
+  width: $input_width;
+  margin: 0 auto;
+  display: block;
+}
+
+#user_password {
+  width: 100%;
+}
+
+#input_password_div {
+  width: $input_width - 20%; 
+  margin-left: 15px;
+  margin-bottom: 0px;
+  float: left;
+}
+
+#input_rememberme_div {
+  clear: both;
+  margin-left: 15px;
+}

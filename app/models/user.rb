@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   before_create :encode_pass
 
-  attr_accessor :password_confirm
+  attr_accessor :password_confirm, :remember_me
 
   def self.check(user)
     @u = User.find_by_name(user[:name])

@@ -59,19 +59,11 @@ ActiveRecord::Schema.define(:version => 20120523062142) do
     t.datetime "updated_at",       :null => false
   end
 
-  create_table "replies", :force => true do |t|
-    t.text     "content"
-    t.integer  "user_id"
-    t.integer  "article_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "settings", :force => true do |t|
     t.string   "blog_name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "user_id"
+    t.integer  "user_id"
   end
 
   create_table "tags", :force => true do |t|
