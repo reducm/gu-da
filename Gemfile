@@ -25,6 +25,7 @@ gem 'omniauth'
 gem 'omniauth-weibo'
 gem 'omniauth-github'
 gem "social-share-button"
+gem 'weibo', :git => "https://github.com/ballantyne/weibo.git" 
 
 #上传
 gem 'carrierwave'
@@ -41,6 +42,7 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
+  gem 'ruby-debug19', :require => 'ruby-debug' 
   gem 'rspec-rails'
   gem 'rspec'
   gem 'factory_girl_rails'
