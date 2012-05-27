@@ -22,7 +22,8 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    @user = params[:user].blank? ? User.new : User.new(params[:user])
+    flash[:notice] = @user.jerrors unless @user.valid?
     respond_to do |format|
       format.html # new.html.erb
     end

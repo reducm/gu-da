@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   validates :email, :presence => {:message => 'Email不能为空'}, :uniqueness => {:message => 'Email已存在' }, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message => 'Email格式不正确'}, :uniqueness => {:case_sensitive=>false, :message => 'Email已存在' } 
 
-  validates :password, :presence => {:message => '密码不能为空'}#, :length=>{:minimum=>6, :maximum=>20, :message => '密码长度在6-20之间'  } 
+  validates :password, :presence => {:message => '密码不能为空'}, :length=>{:minimum=>6, :maximum=>20, :message => '密码长度在6-20之间'  } 
 
   validates :description, :length => {:maximum => 200} 
 

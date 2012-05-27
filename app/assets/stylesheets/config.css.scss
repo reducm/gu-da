@@ -41,7 +41,6 @@ a {
 #login {
   margin-top: 60px;
   height: 328px;
-  background: yellow;
 }
 
 #login_left {
@@ -54,12 +53,42 @@ a {
 #login_right {
   height: 100%;
   width: 40%;
-  background: green;
   float: left;
 }
 
 #login_form {
   background: white;
+  padding-top: 15px;
+  @include border-radius(4px);
+    margin-bottom: 10px;
+}
+
+#signup_form {
+  background: white;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  @include border-radius(4px);
+  
+  input {
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  #signup_submit {
+    display:inline-block;
+    width: 30%;
+    margin-left: 163px;
+  }
+}
+
+#new_user_h {
+  display:inline-block;
+  margin-left: 14px;
+}
+
+.grey_font {
+  color: grey;
 }
 
 $input_width: 90%;
@@ -67,13 +96,14 @@ $input_width: 90%;
   width: 100%;
   margin-bottom: 10px;
 }
-#user_name {
+
+#login_user_name {
   width: $input_width;
   margin: 0 auto;
   display: block;
 }
 
-#user_password {
+#login_user_password {
   width: 100%;
 }
 
@@ -88,3 +118,27 @@ $input_width: 90%;
   clear: both;
   margin-left: 15px;
 }
+
+/////user/////////////
+$new_user_margin_left: 67px;
+#new_user_title {
+  color: #333333;
+  margin: 4px 0 15px $new_user_margin_left;
+}
+
+#new_user_form {
+  margin-left:$new_user_margin_left;
+  input {
+    width: 40%;
+  }
+}
+
+$border_color_grey: rgba(0,0,0,0.1);
+#new_user_div {
+  width: 100%;
+  height: 100%;
+  border: 1px solid $border_color_grey;
+  @include border-radius(4px);
+  background: white;
+}
+/////end_user////////

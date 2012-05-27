@@ -5,12 +5,19 @@
 
   <div id="login_right">
     <%= simple_form_for @user, :url => login_path, :html => { :id => 'login_form' }, :wrapper => :default   do|f|%>
-      <%= f.input :name, :label => false, :placeholder => '输入用户名或者邮箱'  %> 
-      <%= f.input :password, :label => false, :wrapper_html => {id:'input_password_div'}, :placeholder => '输入密码'   %> 
+      <%= f.input :name, :label => false, :placeholder => '输入用户名或者邮箱', :input_html =>{ :id => 'login_user_name' }   %> 
+      <%= f.input :password, :label => false, :wrapper_html => {id:'input_password_div'}, :placeholder => '输入密码', :input_html =>{ :id => 'login_user_password' }%> 
       <%= f.button :submit, "登录", :class => 'btn-primary', :style => 'margin-left:17px;width:76px;' %>
-      <%= f.input :remember_me, :as => :boolean, :label => '记住我', :label_html => {style:'color:grey'}, :wrapper_html => {id:'input_rememberme_div'} %>
+      <%= f.input :remember_me, :as => :boolean, :label => '记住我', :label_html => {style:'color:grey;padding-bottom:7px;font-weight:bolder'}, :wrapper_html => {id:'input_rememberme_div'} %>
     <%end%>
 
+    <%= simple_form_for @user, :url =>{:controller => 'users', :action => 'new' }, :defaults => { :label => false, :input_html => {:autocomplete=>'off'}}, :html => {:id => 'signup_form'}, :wrapper => :default do |f| %>
+      <%= f.input :name, :placeholder => '用户名' %> 
+      <%= f.input :email, :placeholder => '邮箱' %>
+      <%= f.input :password, :placeholder => '密码' %>
+      <h3 id="new_user_h" class='grey_font' >新用户注册</h3>
+      <%= f.button :submit, "注册", :class => 'btn-warning', :id => 'signup_submit'  %>
+    <%end%>
   </div>
 </div>
 

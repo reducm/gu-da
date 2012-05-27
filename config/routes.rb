@@ -16,6 +16,7 @@ GuDa::Application.routes.draw do
     resources :tags
     resources :comments
     post "users/login" => 'users#login', :as => :login 
+    post "users/new" => 'users#new'
   end
   match ':controller(/:action(/:id(.:format)))'  
 end
