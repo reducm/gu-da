@@ -10,6 +10,12 @@ $fs: 18px;
   font-size: $fs; 
 }
 
+@mixin white_radius {
+  background: white;
+  @include border-radius(4px);
+}
+
+
 ////////article/////////////
 #article {
    @include fstyle;
@@ -68,8 +74,12 @@ $fs: 18px;
   height:30px;
   font-size:16px; 
 }
-////////////end_catagory/////////////
 
+#add_catagory_modal {
+  display: none;
+}
+////////////end_catagory/////////////
+/////////////sidebar/////////////
 .little_fontsize {
   font-size:14px;
 }
@@ -81,9 +91,21 @@ $fs: 18px;
 }
 
 .avatar_image{
+  display: inline-block;
   width:80px;
   height:80px;
   background-image: image-url("avatar/small.png");
 }
+
+///////end_sidebar//////////
+///////user_information/////////
+#user_information {
+  @include white_radius();
+}
+
+#upload_head {
+  display: none;
+}
+///////end_user_information//////
 
 

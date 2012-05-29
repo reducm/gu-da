@@ -9,13 +9,13 @@ class User < ActiveRecord::Base
   has_one :picture, :as => :pictureable, :dependent => :destroy  
 
   scope :check
-  attr_accessible :name, :email, :password, :password_confirm, :birthday, :description, :habbit, :blog_name
+  attr_accessible :name, :email, :password, :password_confirm, :description, :picture
 
   validates :name, :presence => { :message => '用户名不能为空' }, :uniqueness => {:message => '用户名已存在' }, :uniqueness => {:case_sensitive=>false, :message => '用户名已存在'}, :length=>{:minimum=>3, :maximum=>15, :message => '用户名长度在3-15之间' }
 
   validates :email, :presence => {:message => 'Email不能为空'}, :uniqueness => {:message => 'Email已存在' }, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message => 'Email格式不正确'}, :uniqueness => {:case_sensitive=>false, :message => 'Email已存在' } 
 
-  validates :password, :presence => {:message => '密码不能为空'}, :length=>{:minimum=>6, :maximum=>20, :message => '密码长度在6-20之间'  } 
+  validates :password, :presence => {:message => '密码不能为空'}
 
   validates :description, :length => {:maximum => 200} 
 
@@ -66,8 +66,12 @@ class User < ActiveRecord::Base
   def self.updates_nopass(user, id)
     user.reject! {|k,v| !(k.to_s.index("password").nil?)} 
     @user = User.where('id=?',id).includes(:setting)[0]
+    if user[:picture]
+      @user.errors.add(:picture, "保存图片失败") unless Picture.create(file:user[:picture], pictureable:@user)
+      user.delete [:picture]
+    end
     @user.update_attributes(user)
-    @user.setting.update_attributes(user[:setting])
+    @user.setting.update_attributes(user[:setting]) if user[:setting]
     @user
   end
 

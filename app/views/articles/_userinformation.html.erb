@@ -1,3 +1,16 @@
 <div id="user_information">
-  <a href="#" rel="popover" data-content="这里可以快速设置你的头像"><div class="avatar_image"></div></a>
+  <a href="#upload_head" data-toggle="modal" rel="popover" data-content="这里可以快速设置你的头像" class="avatar_image"></a>
+
+  <div class="modal" id="upload_head">
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal">×</button>
+      <h3>快速上传你的头像</h3>
+    </div>
+    <div class="modal-body">
+      <%= simple_form_for User.find(user_id), :html => {:id => 'upload_head_form', :class => 'form-inline', :multipart => true }, :wrapper => :default do |f| %>
+        <%= f.input :picture, :as => :file, :label => false, :wrapper_html => {style:"display:inline-block;margin-left:95px; width:50%;"} %>
+        <%= f.button :submit, '确定', :class => 'btn btn-primary' %>
+      <%end%>
+    </div>
+  </div>
 </div>

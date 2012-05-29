@@ -12,7 +12,7 @@ catagory_select = (obj)->
   for c in obj
     str+=wrap_option_catagory(c)
   cs.html(str)
-  $("#myModal").modal('hide')
+  $("#add_catagory_modal").modal('hide')
   return
 
 
@@ -22,7 +22,7 @@ catagory_sidebar = (obj)->
   for c in obj
     cs.append(wrap_catagory c)
   bind_ajax()
-  $("#myModal").modal('hide')
+  $("#add_catagory_modal").modal('hide')
   return
 
 wrap_option_catagory = (obj)->

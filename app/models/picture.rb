@@ -5,7 +5,7 @@ class Picture < ActiveRecord::Base
 
   validates :file, :presence => true 
   validates :pictureable, :presence => true 
-  validates_numericality_of :file_size, :less_than_or_equal_to => 3072000, :message => "图片容量不能大于3M" 
+#  validates_numericality_of :file_size, :less_than_or_equal_to => 3072000, :message => "图片容量不能大于3M" 
 
   before_save :set_file_name_type_size
 

@@ -22,7 +22,7 @@
       <%= render :partial => 'articles/sidebar'%>
     </div>
 
-    <div class="modal" id="myModal">
+    <div class="modal" id="add_catagory_modal">
       <div class="modal-header">
         <button class="close" data-dismiss="modal">×</button>
         <h3>增加分类</h3>
@@ -38,7 +38,6 @@
 
     <%= render :partial => 'layouts/foot' %>
 <br/ >
-    <%= debug session %>
     <script>window.action="<%= params[:action]%>"</script>
   </body>
 </html>

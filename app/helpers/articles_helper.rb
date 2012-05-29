@@ -9,7 +9,8 @@ module ArticlesHelper
   end
 
   def user_information_sidebar
-    render :partial => 'articles/userinformation' 
+    render :partial => 'articles/userinformation', :locals => {:user_id => @user_id}
+ 
   end
 
   def catagory_sidebar_list(catagories)

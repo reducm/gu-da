@@ -1,5 +1,5 @@
 <div id="catagory">
-  <%= (link_to "+", "#myModal", "data-toggle"=>'modal') if owner? %> 
+  <%= (link_to "+", "#add_catagory_modal", "data-toggle"=>'modal') if owner? %> 
   <div id="catagories">
         <%= catagory_sidebar_list(@catagories) unless @catagories.nil? %>
   </div>
