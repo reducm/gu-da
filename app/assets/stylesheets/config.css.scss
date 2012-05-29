@@ -10,6 +10,11 @@ $bb: #202e4b;
   color: darken(#000000, 10%);
 }
 
+@mixin white_radius {
+  background: white;
+  @include border-radius(4px);
+}
+
 html, body {
   background: $bb;
   @include cw();
@@ -22,7 +27,6 @@ h1,h2{
 }
 
 a {
-  color: orange;
 }
 
 #container {
@@ -36,6 +40,10 @@ a {
 .jlabel {
   color: white;
   display: inline;
+}
+
+.font_red {
+  color: #9d261d;
 }
 
 #login {
@@ -66,7 +74,7 @@ a {
 #signup_form {
   background: white;
   padding-top: 15px;
-  padding-bottom: 15px;
+  padding-bottom: 11px;
   @include border-radius(4px);
   
   input {
@@ -117,6 +125,8 @@ $input_width: 90%;
 #input_rememberme_div {
   clear: both;
   margin-left: 15px;
+  display: inline-block;
+  width:107px;
 }
 
 /////user/////////////
@@ -140,5 +150,24 @@ $border_color_grey: rgba(0,0,0,0.1);
   border: 1px solid $border_color_grey;
   @include border-radius(4px);
   background: white;
+}
+
+#edit_user_div {
+  width: 100%;
+  height: 100%;
+  @include border-radius(4px);
+}
+
+#edit_user_left {
+  @include white_radius();
+    width:30%;
+    float:left;
+    margin-right: 16px;
+}
+
+#edit_user_right {
+  @include white_radius();
+    width:68%;
+    float:left;
 }
 /////end_user////////

@@ -1,12 +1,15 @@
-<%= flash[:notice] %>
-<%= (link_to "新建", new_article_path, :class => 'btn btn-primary') if owner?  %>
-<% @articles.each do|a| %>
-  <div class='article_each'>
-    <h2><%= link_to a.title, article_path(a.id) %></h2>
-    <%= markdown(a.preview) %>
-    <%= (link_to '删除', article_path(a), :method => 'delete') if owner?%> 
-    <%= (link_to '修改', edit_article_path(a)) if owner? %> 
-  </div>
-<% end %>
+<div id='create_button_div'><%= (link_to "新建文章", new_article_path, :class => 'btn btn-primary') if owner?  %></div>
+<% if @signup_new && owner? %>
+  <div id="signup_new"><h2>恭喜你注册成功！<br/>你可以按照页面的提示再做进一步的设置，或者马上<br /><%= link_to "新建文章", new_article_path %></h2></div>
+<%else%>
+  <% @articles.each do|a| %>
+    <div class='article_each'>
+      <h1><%= link_to a.title, article_path(a.id) %></h1>
+      <%= markdown(a.preview) %>
+      <%= (link_to '删除', article_path(a), :method => 'delete') if owner?%> 
+      <%= (link_to '修改', edit_article_path(a)) if owner? %> 
+    </div>
+  <% end %>
+<%end%>
 
 

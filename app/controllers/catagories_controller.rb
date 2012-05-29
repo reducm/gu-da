@@ -6,13 +6,13 @@ class CatagoriesController < ApplicationController
   before_filter {|c|c.set_breadcrumbs '分类'}
 
   def show
-    if (params[:id] == 0 || params[:id] == nil) && !(params[:user_id].blank)
+    if (params[:id] == '0' || params[:id] == nil) && !(params[:user_id].blank?)
       @articles = Article.where("user_id=? and catagory_id=0", params[:user_id]).all
     else
       @articles = Article.where("catagory_id=?", params[:id])
     end
-    @catagories = Catagory.get_all(params[:user_id] || @articles[0].user_id)
-    set_page_title Catagory.find(params[:id]).name
+    @catagories = @articles.size > 0 ? Catagory.get_all(params[:user_id] || @articles[0].user_id) : nil
+    set_page_title ( params[:id]=='0' ? "默认分类" : Catagory.find(params[:id]).name)
   end
 
   def create

@@ -23,6 +23,10 @@ class PictureUploader < CarrierWave::Uploader::Base
   version :preview, :if => :image? do
     process  :resize_to_fit => [50,nil] 
   end
+
+  version :head, :if => :image? do
+    process :resize_to_fit => [80,80] 
+  end
  
   protected
   def image?(new_file)

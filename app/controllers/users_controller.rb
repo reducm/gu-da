@@ -22,8 +22,12 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = params[:user].blank? ? User.new : User.new(params[:user])
-    flash[:notice] = @user.jerrors unless @user.valid?
+    if params[:user].blank?
+      @user = User.new
+    else
+      @user = User.new(params[:user])
+      @user.valid?
+    end
     respond_to do |format|
       format.html # new.html.erb
     end
@@ -31,18 +35,19 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @title = "(#{@user.name})用户设置"
+    @title = "#{@user.name} 用户设置"
   end
 
   def create
     @user = User.new(params[:user])
     @title = "用户注册"
+    @user.valid?
     if @user.password != @user.password_confirm
-      flash[:notice] = '密码确认与密码不相符'
+      @user.errors[:password] << '密码确认与密码不相符'
       render :new
       return
     elsif @user.password.length < 6 or @user.password.length >20
-      flash[:notice] = '密码长度在6-20之间'
+      @user.errors[:password] << '密码长度在6-20之间'
       render :new
       return
     end
@@ -50,6 +55,7 @@ class UsersController < ApplicationController
     if @user.save
       @setting = Setting.create(:user => @user )
       set_session(@user)
+      session[:signup_new] = true
       redirect_to articles_url, :method => 'get' 
     else
       #flash[:notice] = @user.jerrors

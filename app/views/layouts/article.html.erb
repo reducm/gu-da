@@ -12,16 +12,14 @@
     <%= render :partial => 'layouts/nav' %> 
 
     <div class="container row" id="container">
-      <% unless params[:action] == 'new' || params[:action] == 'edit' %>
-        <h1 style="color:white; margin-bottom: 20px;"><%= @blog_name %></h1>
-      <% end %> 
       
       <%= render :partial => 'layouts/breadcrumbs' %>
 
       <div id="article" <%= article_width_height %>>
         <%= yield %> 
       </div>
-      <%= catagory_sidebar %>
+
+      <%= render :partial => 'articles/sidebar'%>
     </div>
 
     <div class="modal" id="myModal">
@@ -39,8 +37,8 @@
     </div>
 
     <%= render :partial => 'layouts/foot' %>
-
-    <%= debug request.env['omniauth.auth'] %>
+<br/ >
+    <%= debug session %>
     <script>window.action="<%= params[:action]%>"</script>
   </body>
 </html>

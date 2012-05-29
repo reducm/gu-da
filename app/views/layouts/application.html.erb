@@ -4,6 +4,7 @@
     <title><%= @title || '咕哒网' %></title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "user" if params[:controller] == 'users'%>
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -14,6 +15,5 @@
         <%= yield %>
       </div>
     </div>
-
   </body>
 </html>

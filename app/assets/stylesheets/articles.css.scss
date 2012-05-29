@@ -10,6 +10,7 @@ $fs: 18px;
   font-size: $fs; 
 }
 
+////////article/////////////
 #article {
    @include fstyle;
    @include border-radius(4px);
@@ -30,8 +31,9 @@ $fs: 18px;
 }
 
 .article_each {
-  border-top: 1px dashed gray;
+  border-bottom: 1px dashed gray;
   margin-bottom: 15px;
+  margin-top: 5px;
 }
 
 #article_form {
@@ -40,10 +42,48 @@ $fs: 18px;
   //height: 100%;
 }
 
-#new_article {
-  //height:100%;
+#create_button_div {
+  float:right;
+  margin-top: 10px;
 }
+
+#signup_new {
+  clear:both;
+  padding: 0 72px;
+}
+/////////////end_article///////////////
+
+/////////catagory////////////////////
 
 #comment_textarea {
   height:85px;
 }
+
+#catagory {
+  width: 100%;
+  background-color: #f2f2f2;
+}
+
+#catagories_select {
+  height:30px;
+  font-size:16px; 
+}
+////////////end_catagory/////////////
+
+.little_fontsize {
+  font-size:14px;
+}
+
+#sidebar {
+  width: 20%;
+  float: left;
+  background: red;
+}
+
+.avatar_image{
+  width:80px;
+  height:80px;
+  background-image: image-url("avatar/small.png");
+}
+
+

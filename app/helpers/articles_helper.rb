@@ -5,11 +5,11 @@ module ArticlesHelper
   end
 
   def catagory_sidebar
-    unless params[:action] == 'edit' || params[:action] == 'new'
-      render 'layouts/catagory', :catagories => @catagories, :user_id => @user_id
-    else
-      nil
-    end
+    render :partial => 'layouts/catagory', :locals => { :catagories => @catagories, :user_id => @user_id}
+  end
+
+  def user_information_sidebar
+    render :partial => 'articles/userinformation' 
   end
 
   def catagory_sidebar_list(catagories)

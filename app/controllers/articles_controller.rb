@@ -7,6 +7,12 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.get_index(params[:user_id] || @user_id)
+
+    if session[:signup_new] || @articles.size == 0 #新注册进来产生一些提示操作的变量
+      session[:signup_new] = nil
+      @signup_new = true
+    end
+
     set_catagories(params[:user_id] || @user_id)
     check_owner(params[:user_id] || @user_id)
   end
