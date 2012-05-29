@@ -3,7 +3,7 @@
   <%= simple_form_for @article, :wrapper => :default, :html => {:multipart => true }    do|f| %> 
     <%= f.input :catagory_id, :collection => @catagories, :label => false, :as => :jcatagory, :input_html => {:id => "catagories_select", :class => 'span2'}, :wrapper_html => {style:'display:inline' }   %> 
     <%= f.input :title, :label => false, :input_html => {:class => 'span8' }, :wrapper_html => {style:'display:inline' }%>
-    </br><%= link_to "增加分类", "#myModal", "data-toggle" => 'modal', "class"=>"little_fontsize"  %> 
+    </br><%= link_to "增加分类", "#add_catagory_modal", "data-toggle" => 'modal', "class"=>"little_fontsize"  %> 
     <%= f.input :content, :label => false, :input_html => {:class => 'span10' }%>
     <%= f.input :picture, :label => '文件', :as => :file %>
     <%= f.button :submit, '保存', :class => 'btn-primary span2', :style => "margin-top:25px"  %>
