@@ -28,7 +28,6 @@ class ArticlesController < ApplicationController
     @a.user_id = @user_id
     if @a.save
       @pic = Picture.create(:file => (params[:article][:picture]), :pictureable => @a )
-      debugger
       redirect_to articles_path, method:'get'  
     else
 

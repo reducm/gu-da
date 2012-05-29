@@ -68,9 +68,9 @@ class User < ActiveRecord::Base
     @user = User.where('id=?',id).includes(:setting)[0]
     if user[:picture]
       @user.errors.add(:picture, "保存图片失败") unless Picture.create(file:user[:picture], pictureable:@user)
-      user.delete [:picture]
+      user.delete :picture
     end
-    @user.update_attributes(user)
+    @user.update_attributes(user) if user.size > 0
     @user.setting.update_attributes(user[:setting]) if user[:setting]
     @user
   end
