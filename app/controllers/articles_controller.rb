@@ -15,6 +15,7 @@ class ArticlesController < ApplicationController
 
     set_catagories(params[:user_id] || @user_id)
     check_owner(params[:user_id] || @user_id)
+    binding.pry
   end
 
   def new

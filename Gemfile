@@ -42,7 +42,9 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
-  gem 'ruby-debug19', :require => 'ruby-debug' 
+#  gem 'ruby-debug19', :require => 'ruby-debug' 
+  gem 'pry-rails'
+  gem 'pry-nav'
   gem 'rspec-rails'
   gem 'rspec'
   gem 'factory_girl_rails'
