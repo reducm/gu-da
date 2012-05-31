@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120529101144) do
+ActiveRecord::Schema.define(:version => 20120531100559) do
 
   create_table "article_tagships", :force => true do |t|
     t.integer  "article_id"
@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(:version => 20120529101144) do
   create_table "articles", :force => true do |t|
     t.string   "title"
     t.text     "content"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "user_id"
-    t.integer  "catagory_id", :default => 0
-    t.string   "preview"
+    t.integer  "catagory_id",                :default => 0
+    t.string   "preview",     :limit => 410
   end
 
   create_table "catagories", :force => true do |t|
@@ -59,19 +59,11 @@ ActiveRecord::Schema.define(:version => 20120529101144) do
     t.datetime "updated_at",       :null => false
   end
 
-  create_table "replies", :force => true do |t|
-    t.text     "content"
-    t.integer  "user_id"
-    t.integer  "article_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "settings", :force => true do |t|
     t.string   "blog_name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "user_id"
+    t.integer  "user_id"
   end
 
   create_table "tags", :force => true do |t|

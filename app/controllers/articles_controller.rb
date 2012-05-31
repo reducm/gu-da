@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.get_index(params[:user_id] || @user_id)
-
+    @user = User.where("id=?", params[:user_id] || @user_id ).includes(:picture)[0]
     if session[:signup_new] || @articles.size == 0 #新注册进来产生一些提示操作的变量
       session[:signup_new] = nil
       @signup_new = true
@@ -15,7 +15,6 @@ class ArticlesController < ApplicationController
 
     set_catagories(params[:user_id] || @user_id)
     check_owner(params[:user_id] || @user_id)
-    binding.pry
   end
 
   def new
@@ -52,6 +51,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @user = User.find(@article.user_id)
     @comment = Comment.new
     @comments = Comment.get_by_article_id(params[:id])
     set_catagories(@article.user_id)

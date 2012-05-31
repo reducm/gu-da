@@ -1,6 +1,6 @@
 <% unless params[:action] == 'edit' || params[:action] == 'new' %>
   <div id="sidebar">
-    <%= user_information_sidebar %>
+    <%= user_information_sidebar(user) %>
 
     <%= catagory_sidebar %>
   </div>

@@ -19,7 +19,7 @@
         <%= yield %> 
       </div>
 
-      <%= render :partial => 'articles/sidebar'%>
+      <%= render :partial => 'articles/sidebar', :locals => {:user => @user } %>
     </div>
 
     <div class="modal" id="add_catagory_modal">

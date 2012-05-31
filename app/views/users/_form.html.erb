@@ -1,5 +1,8 @@
+<%= flash[:notice] %>
 <% if action == 'edit' %> 
   <%= simple_form_for @user, :defaults=>{:input_html=>{:class => 'span3' }, :label_html => {}, :required => false }, :html => { :class => 'form-horizontal' }  do |f|%> 
+    <%= show_user_head(@user) %>
+    <%= f.input :picture, :label => false, :as=> :file %>
     <%= f.input :name, :label => '用户名', :input_html => {:maxlength => 20 }, :disabled => true  %>
     <%= f.input :email, :placeholder => 'example@email.com', :disabled => true %>
     <%= f.input :password, :label => '旧密码(不需要修改密码请留空)', :required => false %>

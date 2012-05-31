@@ -1,7 +1,12 @@
-<div id='create_button_div'><%= (link_to "新建文章", new_article_path, :class => 'btn btn-primary') if owner?  %></div>
+<div id='create_button_div'>
+  <%= (link_to "新建文章", new_article_path, :class => 'btn btn-primary') if owner?  %>
+</div>
+
 <% if @signup_new && owner? %>
   <div id="signup_new">
-    <h2>恭喜你注册成功！<br/>你可以按照页面的提示再做进一步的设置，或者马上<br /><%= link_to "新建文章", new_article_path %></h2>
+    <h2>
+      恭喜你注册成功！<br/>你可以按照页面的提示再做进一步的设置，或者马上<br /><%= link_to "新建文章", new_article_path %>
+    </h2>
   </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -10,6 +15,7 @@
         $(".avatar_image").popover("show");
     });
 </script>
+
 <%else%>
   <% @articles.each do|a| %>
     <div class='article_each'>

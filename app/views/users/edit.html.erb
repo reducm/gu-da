@@ -8,7 +8,6 @@
   </div>
   <div id="edit_user_right" class="tab-content">
     <div id="eu_form_div" class="tab-pane active">
-      <%= image_tag @user.picture.file.url%>
       <%= render :partial => 'form', :locals => {:action=>'edit'} %> 
     </div>
 

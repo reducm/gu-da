@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
     session[:atoken] = request.env["omniauth.auth"]["credentials"].token
     session[:asecret] = request.env["omniauth.auth"]["credentials"].secret
     @oauth.authorize_from_access(session[:atoken], session[:asecret])
-    @weibo_client = Weibo::Base.new(oauth)
+    binding.pry
+#    @weibo_client = Weibo::Base.new(oauth)
   end
 end

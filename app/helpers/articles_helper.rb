@@ -8,9 +8,8 @@ module ArticlesHelper
     render :partial => 'layouts/catagory', :locals => { :catagories => @catagories, :user_id => @user_id}
   end
 
-  def user_information_sidebar
-    render :partial => 'articles/userinformation', :locals => {:user_id => @user_id}
- 
+  def user_information_sidebar(user)
+    render :partial => 'articles/userinformation', :locals => {:user => user}
   end
 
   def catagory_sidebar_list(catagories)
@@ -59,6 +58,14 @@ module ArticlesHelper
       str.html_safe
     else
       nil
+    end
+  end
+  
+  def show_user_head(user)
+    if user.picture.present?
+      image_tag user.picture.file.head.url 
+    else
+      link_to "", "#upload_head", "data-toggle" => 'modal', "rel" => "popover", "data-content" => '这里可以快速设置你的头像', "class" => "avatar_image"  
     end
   end
 end

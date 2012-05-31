@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     else
       flash[:notice] = '用户更新成功'
       set_session(@user)
-      render :edit
+      redirect_to edit_user_url(@user_id) 
     end
  end
 

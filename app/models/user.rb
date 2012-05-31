@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_one :picture, :as => :pictureable, :dependent => :destroy  
 
   scope :check
-  attr_accessible :name, :email, :password, :password_confirm, :description, :picture
+  attr_accessible :name, :email, :password, :password_confirm, :description, :picture, :setting
 
   validates :name, :presence => { :message => '用户名不能为空' }, :uniqueness => {:message => '用户名已存在' }, :uniqueness => {:case_sensitive=>false, :message => '用户名已存在'}, :length=>{:minimum=>3, :maximum=>15, :message => '用户名长度在3-15之间' }
 
@@ -39,40 +39,57 @@ class User < ActiveRecord::Base
   end
 
   def self.updates(user, id)
-    @u = User.find(id)
-    if @u
-      hashpass = valid_pass(user[:password], @u.salt)
-      if hashpass == @u.password
+    @user = User.find(id)
+    if @user
+      hashpass = valid_pass(user[:password], @user.salt)
+      if hashpass == @user.password
         if user[:password].length >= 6 && user[:password].length <= 20
-          user[:password] = Digest::SHA2.new.hexdigest(user[:password_new]+@u.salt)
-          @u.update_attributes(user)
-          @u.setting.update_attributes(user[:setting])
-          @u
+          user[:password] = Digest::SHA2.new.hexdigest(user[:password_new]+@user.salt)
+          User.transaction do
+            @user.update_picture(user)
+            @user.update_setting(user)
+            @user.update_attributes(user) if user.size > 0
+          end
+          @user
         else
-          @u.errors.add(:password_new, '新密码长度要在6-20之间')
-          @u
+          @user.errors.add(:password_new, '新密码长度要在6-20之间')
+          @user
         end
       else
-        @u.errors.add(:password, '旧密码错误')
-        @u
+        @user.errors.add(:password, '旧密码错误')
+        @user
       end
     else
-      @u = User.new
-      @u.errors.add(:name, '没有这个用户')
-      @u
+      @user = User.new
+      @user.errors.add(:name, '没有这个用户')
+      @user
     end
   end
-  
+
   def self.updates_nopass(user, id)
     user.reject! {|k,v| !(k.to_s.index("password").nil?)} 
     @user = User.where('id=?',id).includes(:setting)[0]
-    if user[:picture]
-      @user.errors.add(:picture, "保存图片失败") unless Picture.create(file:user[:picture], pictureable:@user)
-      user.delete :picture
+    User.transaction do
+      @user.update_picture(user)
+      @user.update_setting(user)
+      @user.update_attributes(user) if user.size > 0
     end
-    @user.update_attributes(user) if user.size > 0
-    @user.setting.update_attributes(user[:setting]) if user[:setting]
     @user
+  end
+
+  def update_picture(params)
+    if params[:picture]
+      picture = self.picture || Picture.new
+      picture.update_attributes(pictureable:self, file:params[:picture])
+      params.delete :picture
+    end
+  end
+
+  def update_setting(params)
+    if params[:setting]
+      self.setting.update_attributes(params[:setting]) 
+      params.delete :setting
+    end
   end
 
   private
