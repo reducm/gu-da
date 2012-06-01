@@ -1,0 +1,13 @@
+<div id="signup_new">
+    <h2>
+      恭喜你注册成功！<br/>你可以按照页面的提示再做进一步的设置，或者马上<br /><%= link_to "新建文章", new_article_path %>
+    </h2>
+  </div>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+        $(".avatar_image").popover({placement:"bottom"});
+        $(".avatar_image").popover("show");
+    });
+</script>
+

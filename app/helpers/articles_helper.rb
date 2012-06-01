@@ -31,9 +31,9 @@ module ArticlesHelper
 
   def article_width_height
     if params[:action] == 'edit' || params[:action] == 'new'
-      "style=width:94%;"
+      "class='article_edit_width'"
     else
-      nil
+      "class='article_normal_width'"
     end
   end
 
@@ -63,7 +63,11 @@ module ArticlesHelper
   
   def show_user_head(user)
     if user.picture.present?
-      image_tag user.picture.file.head.url 
+      if owner?
+        link_to (image_tag user.picture.file.head.url), "#upload_head", "data-toggle" => 'modal', "rel" => "popover", "data-content" => '这里可以快速设置你的头像'  
+      else
+        image_tag user.picture.file.head.url
+      end
     else
       link_to "", "#upload_head", "data-toggle" => 'modal', "rel" => "popover", "data-content" => '这里可以快速设置你的头像', "class" => "avatar_image"  
     end
