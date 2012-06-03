@@ -53,7 +53,7 @@ module ArticlesHelper
     if comments.size>0
       str = ""
       comments.each_with_index do |c,i|
-        str += content_tag :div, "#{c.user_name}: #{c.content}</br>#{c.created_at}", :class => 'comment_div' 
+        str += content_tag :div, "#{c.user_name}: #{c.content}</br>#{c.created_at}", :class => 'comment_each' 
       end
       str.html_safe
     else
@@ -71,5 +71,9 @@ module ArticlesHelper
     else
       link_to "", "#upload_head", "data-toggle" => 'modal', "rel" => "popover", "data-content" => '这里可以快速设置你的头像', "class" => "avatar_image"  
     end
+  end
+
+  def new_or_edit?
+    params[:action] == 'edit' || params[:action] == 'new'
   end
 end

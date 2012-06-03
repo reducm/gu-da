@@ -16,4 +16,6 @@ $(document).ready(->
     icon.toggleClass('icon-backward')
     sidebar.toggle()
   )
+
+#  sidebar.height(article.height()) if article.height() > sidebar.height()
 )

@@ -1,6 +1,9 @@
 class CommentsController < ApplicationController
   def create
-    Comment.create(params[:comment])
-    redirect_to :controller => 'articles', :action => 'show', :id => params[:comment][:article_id]   
+    c = Comment.create(params[:comment])
+    if c.user_id.present?
+      c.user_name = User.select('name').where('id=?', c.user_id)[0].name
+    end
+    render :json => c.to_json
   end
 end

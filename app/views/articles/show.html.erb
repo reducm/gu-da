@@ -1,12 +1,13 @@
 <h1><%= @article.title %></h1>
 
-<div id="content">
+<div id="article_show_content">
   <p><%= markdown(@article.content) %></p>
   <%= (image_tag @article.pictures[0].file.preview.url) if @article.pictures.size > 0  %>
   <%= (link_to '编辑', edit_article_path(@article)) if owner? %> 
 </div>
 
 <div id="comments">
+  <h1>评论</h1>
   <%= render :partial => 'comments/form', :locals => {comment:@comment, article_id:@article.id} %>
   <%= show_comments(@comments) %>
 </div>
