@@ -9,7 +9,7 @@ class Article < ActiveRecord::Base
   has_many :notifications, :as => :senderable
   
 
-  attr_accessible :title, :content, :catagory_id, :picture,:user_id
+  attr_accessible :user, :title, :content, :catagory_id, :picture,:user_id
   attr_accessor :picture
 
   validates :user_id, :presence => {:message => '当前用户已过期，请重新登录' }
