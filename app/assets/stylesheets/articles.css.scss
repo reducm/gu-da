@@ -1,23 +1,27 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
 
-@import "twitter/bootstrap/mixins";
+@import "twitter/bootstrap/";
 
 $bc: #4c5a76;
-$fs: 18px;
-
-@mixin fstyle {
-  font-size: $fs; 
-}
+$hc: #080;
 
 @mixin white_radius {
   @include border-radius(4px);
 }
 
+@mixin markdown_h_color {
+  h1 {color: $hc;}
+  h2 {color: $hc;}
+  h3 {color: $hc;}
+  h4 {color: $hc;}
+  h5 {color: $hc;}
+  h6 {color: $hc;}
+}
+
 
 ////////article/////////////
 #article {
-   @include fstyle;
    @include border-radius(4px);
     background: #f2f2f2;
     float: left;
@@ -35,10 +39,30 @@ $fs: 18px;
   width: 80%;
 }
 
+.title_h {
+  font-size:40px;
+  a {
+    color: $textColor;
+    &:hover {
+      color: $linkColor;
+      font-size:41px;
+    }
+  }
+  border-bottom: 1px solid $grayLighter;
+}
+
+.empty_height {
+  height: 15px;
+}
+
+.time {
+  color:$grayLight;
+}
+
 #articles {
-  width:92%;
+  width:95%;
   float: left;
-  margin-left: 30px;
+  margin-left: 20px;
   
 }
 
@@ -48,29 +72,29 @@ $fs: 18px;
 
 
 #article_title {
-  @include fstyle;
 }
 
 #article_content{
-  @include fstyle;
   height: 70%;
+  width: 100%;
 }
 
 #article_show_content{
+  @include markdown_h_color();
   border-bottom: 1px dashed gray;
 }
 
 .article_each {
-  border-bottom: 1px dashed gray;
+  @include markdown_h_color();
   margin-bottom: 15px;
   margin-top: 5px;
+  color: $textColor;
   word-wrap: break-word;
   word-break: brek-all;
 }
 
 #article_form {
-  margin-left: 57px;
-  margin-top: 12px;
+  margin: 0 auto;
   //height: 100%;
 }
 
@@ -93,7 +117,7 @@ $fs: 18px;
 }
 
 #catagories_select {
-  height:30px;
+  height:38px;
   font-size:16px; 
 }
 

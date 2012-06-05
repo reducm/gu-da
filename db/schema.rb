@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20120531100559) do
     t.datetime "updated_at",                                :null => false
     t.integer  "user_id"
     t.integer  "catagory_id",                :default => 0
-    t.string   "preview",     :limit => 410
+    t.string   "preview",     :limit => 810
   end
 
   create_table "catagories", :force => true do |t|
@@ -59,11 +59,19 @@ ActiveRecord::Schema.define(:version => 20120531100559) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "replies", :force => true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "article_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "settings", :force => true do |t|
     t.string   "blog_name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "user_id"
+    t.string   "user_id"
   end
 
   create_table "tags", :force => true do |t|

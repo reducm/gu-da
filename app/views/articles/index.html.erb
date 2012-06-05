@@ -6,13 +6,19 @@
   <% if @signup_new && owner? %>
     <%= render :partial => 'articles/signupnew' %> 
   <%else%>
-    <% @articles.each do|a| %>
+    <% @articles.each_with_index do|a,i| %>
       <div class='article_each'>
-        <h1><%= link_to a.title, article_path(a.id) %></h1>
+        <h1 class='title_h'><%= link_to a.title, article_path(a.id) %></h1>
+        <div class='time'><%= jtime a.created_at %></div>
+        <div class='empty_height'> </div>
         <%= markdown(a.preview) %>
         <%= (link_to '删除', article_path(a), :method => 'delete') if owner?%> 
         <%= (link_to '修改', edit_article_path(a)) if owner? %> 
       </div>
+      <%unless (i+1) == @articles.size %>
+        <div class="empty_height"></div>
+        <div class="empty_height"></div>
+      <%end%>
     <% end %>
   <%end%>
 </div>

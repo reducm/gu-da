@@ -11,6 +11,7 @@ class CatagoriesController < ApplicationController
     else
       @articles = Article.where("catagory_id=?", params[:id])
     end
+    @user = User.find(@articles[0].user_id) if @articles.size > 0
     @catagories = @articles.size > 0 ? Catagory.get_all(params[:user_id] || @articles[0].user_id) : nil
     set_page_title ( params[:id]=='0' ? "默认分类" : Catagory.find(params[:id]).name)
   end

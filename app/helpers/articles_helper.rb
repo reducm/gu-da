@@ -76,4 +76,8 @@ module ArticlesHelper
   def new_or_edit?
     params[:action] == 'edit' || params[:action] == 'new'
   end
+
+  def jtime(time)
+    time.strftime('%Y年%m月%d日')
+  end
 end

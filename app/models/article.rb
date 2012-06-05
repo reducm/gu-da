@@ -23,7 +23,7 @@ class Article < ActiveRecord::Base
 
   private
   def set_preview
-    max_word_count = 400
+    max_word_count = 800 
     if self.content.length > max_word_count
       self.preview = "#{self.content.first(max_word_count)}..." #为文章内容加入preview
     else

@@ -1,5 +1,9 @@
 class ChangeArticlePreviewLength < ActiveRecord::Migration
-  def change
-    change_column :articles, :preview, :string, :limit => 410 
+  def up 
+    change_column :articles, :preview, :string, :limit => 810 
+  end
+
+  def down
+    change_column :articles, :preview, :string
   end
 end

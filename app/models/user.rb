@@ -77,6 +77,14 @@ class User < ActiveRecord::Base
     @user
   end
 
+  def self.get_user(params)
+    if params[:user_name]
+      where("name=?",params[:user_name])[0]
+    elsif params[:user_id]
+      where("id=?",params[:user_id])[0]
+    end
+  end
+
   def update_picture(params)
     if params[:picture]
       picture = self.picture || Picture.new
