@@ -40,12 +40,12 @@ ActiveRecord::Schema.define(:version => 20120605084006) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-    t.integer  "user_id",      :default => 0
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "user_id",       :default => 0
     t.integer  "article_id"
-    t.string   "vistor_name"
-    t.string   "vistor_email"
+    t.string   "visitor_name"
+    t.string   "visitor_email"
   end
 
   create_table "notifications", :force => true do |t|
@@ -67,6 +67,14 @@ ActiveRecord::Schema.define(:version => 20120605084006) do
     t.string   "pictureable_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "replies", :force => true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "article_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "settings", :force => true do |t|

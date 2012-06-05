@@ -1,5 +1,5 @@
 class RemoveBirthdayFromUser < ActiveRecord::Migration
-  def change
+  def up
     remove_column :users, :birthday
   end
 end

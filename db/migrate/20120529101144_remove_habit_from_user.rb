@@ -1,5 +1,5 @@
 class RemoveHabitFromUser < ActiveRecord::Migration
-  def change
+  def up
     remove_column :users, :habit
   end
 end
