@@ -23,8 +23,8 @@ $hc: #080;
 ////////article/////////////
 #article {
    @include border-radius(4px);
-    background: #f2f2f2;
-    float: left;
+   float: left;
+  background: #f2f2f2;
 }
 
 .right_shadow {
@@ -48,7 +48,7 @@ $hc: #080;
       font-size:41px;
     }
   }
-  border-bottom: 1px solid $grayLighter;
+    border-bottom: 1px solid $grayLighter;
 }
 
 .empty_height {
@@ -63,7 +63,7 @@ $hc: #080;
   width:95%;
   float: left;
   margin-left: 20px;
-  
+  background: #f2f2f2;
 }
 
 #switch_sidebar_button {
@@ -81,12 +81,12 @@ $hc: #080;
 
 #article_show_content{
   @include markdown_h_color();
-  border-bottom: 1px dashed gray;
+    border-bottom: 1px dashed gray;
 }
 
 .article_each {
   @include markdown_h_color();
-  margin-bottom: 15px;
+    margin-bottom: 15px;
   margin-top: 5px;
   color: $textColor;
   word-wrap: break-word;
@@ -156,6 +156,15 @@ $hc: #080;
 ///////comment///////////////
 #comment_textarea {
   height:85px;
+}
+
+.comment_each {
+}
+
+#comments {
+  margin-top: 20px;
+  background: #f2f2f2;
+  clear: both;
 }
 
 ///////end_comment//////////

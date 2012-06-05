@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120531100559) do
+ActiveRecord::Schema.define(:version => 20120605084006) do
 
   create_table "article_tagships", :force => true do |t|
     t.integer  "article_id"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(:version => 20120531100559) do
     t.string   "vistor_email"
   end
 
+  create_table "notifications", :force => true do |t|
+    t.integer  "senderable_id"
+    t.string   "senderable_type"
+    t.integer  "receiver_id"
+    t.string   "content"
+    t.boolean  "readed",          :default => true
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
   create_table "pictures", :force => true do |t|
     t.string   "file"
     t.string   "file_name"
@@ -59,19 +69,11 @@ ActiveRecord::Schema.define(:version => 20120531100559) do
     t.datetime "updated_at",       :null => false
   end
 
-  create_table "replies", :force => true do |t|
-    t.text     "content"
-    t.integer  "user_id"
-    t.integer  "article_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "settings", :force => true do |t|
     t.string   "blog_name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "user_id"
+    t.integer  "user_id"
   end
 
   create_table "tags", :force => true do |t|

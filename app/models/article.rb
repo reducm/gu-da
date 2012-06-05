@@ -6,6 +6,7 @@ class Article < ActiveRecord::Base
   has_many :tags, :through => :article_tagships 
   has_many :comments, :dependent => :destroy 
   has_many :pictures, :as => :pictureable, :dependent => :destroy 
+  has_many :notifications, :as => :senderable
   
 
   attr_accessible :title, :content, :catagory_id, :picture,:user_id

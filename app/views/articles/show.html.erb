@@ -1,9 +1,17 @@
-<h1><%= @article.title %></h1>
+<div id="articles">
+  <% unless new_or_edit? %>
+    <div id="switch_sidebar_button">
+      <a href="javascript:void(0)"><i class="icon-forward"></i></a>
+    </div>
+  <%end%>
 
-<div id="article_show_content">
-  <p><%= markdown(@article.content) %></p>
-  <%= (image_tag @article.pictures[0].file.preview.url) if @article.pictures.size > 0  %>
-  <%= (link_to '编辑', edit_article_path(@article)) if owner? %> 
+  <h1><%= @article.title %></h1>
+
+  <div id="article_show_content">
+    <p><%= markdown(@article.content) %></p>
+    <%= (image_tag @article.pictures[0].file.preview.url) if @article.pictures.size > 0  %>
+    <%= (link_to '编辑', edit_article_path(@article)) if owner? %> 
+  </div>
 </div>
 
 <div id="comments">

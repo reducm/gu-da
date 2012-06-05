@@ -17,12 +17,6 @@
 
       <div id="article" <%= article_width_height %>>
         <%= yield %> 
-
-        <% unless new_or_edit? %>
-          <div id="switch_sidebar_button">
-            <a href="javascript:void(0)"><i class="icon-forward"></i></a>
-          </div>
-        <%end%>
       </div>
 
       <%= render :partial => 'articles/sidebar', :locals => {:user => @user } %>
