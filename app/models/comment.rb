@@ -14,10 +14,10 @@ class Comment < ActiveRecord::Base
   attr_accessor :user_name
 
   def self.get_by_article_id(id)
-    cs = Comment.select('id, content, created_at, user_id, visitor_name').where("article_id=?", id).order("created_at asc").all
+    cs = Comment.includes(user:[:picture]).select('id, content, created_at, user_id, visitor_name').where("article_id=?", id).order("created_at asc").all
     cs.each do |c|
-      if c.user_id !=0
-        c.user_name = User.find(c.user_id).name
+      if c.user != nil
+        c.user_name = c.user.name
       else
         c.user_name = c.visitor_name
       end

@@ -1,11 +1,18 @@
-
 <% if comments.size > 0 %>
-  <% comments.each do|c| %>
-    <div class="comment_each"> 
+  <% comments.each_with_index do|c,i| %>
+    <div class="comment_each" id="<%= "comment_#{c.id}"%>" floor="<%= i %>"> 
       <div class="head_div">
-        <span><%= c.user_name%> :<%= c.content%></span><br/>
-        <%= c.created_at %>
+        <%= show_user_head c.user %>
       </div>
+
+      <div class="comment_content">
+        <div><%= c.user.nil? ? "#{c.user_name}(访客)" : link_to(c.user_name, name_path(c.user_name))%></div><br/>
+        <%= c.content %><br />
+        <div class="time pull-right"><%= jtime(c.created_at) %></div>
+      </div>
+
+      <div class="empty_height"></div>
+      <div class="empty_height"></div>
       <div class="empty_height"></div>
     </div>
   <%end%>

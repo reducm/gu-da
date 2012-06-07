@@ -19,6 +19,11 @@ $hc: #080;
   h6 {color: $hc;}
 }
 
+@mixin word_break {
+  word-wrap: break-word;
+  word-break: brek-all;
+}
+
 
 ////////article/////////////
 #article {
@@ -58,6 +63,7 @@ $hc: #080;
 
 .time {
   color:$grayLight;
+  font-size:14px;
 }
 
 #articles {
@@ -181,8 +187,14 @@ $hc: #080;
   display:none;
 }
 
-
 .comment_each {
+}
+
+.comment_content {
+  width:88%;
+  margin-left: 13px;
+  float:left;
+  @include word_break();
 }
 
 #comment {

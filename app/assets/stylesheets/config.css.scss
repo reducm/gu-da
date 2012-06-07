@@ -1,6 +1,7 @@
 $gridColumnWidth: 67px;
 $baseFontSize: 18px;
 $baseLineHeight: 25px;
+$sansFontFamily: "Microsoft Yahei",微软雅黑,"Helvetica Neue", Helvetica, Arial, sans-serif;
 @import "twitter/bootstrap";
 
 $bc: #4c5a76;
@@ -141,7 +142,7 @@ $input_width: 90%;
   display: inline-block;
   float: left;
   text-align: center;
-  a {
+  a,i{
     display:inline-block;
     float: left;
   }
