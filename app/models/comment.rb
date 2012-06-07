@@ -11,7 +11,7 @@ class Comment < ActiveRecord::Base
   validates :content, :presence => {:message => '评论内容不能为空' } 
   has_many :notifications, :as => :senderable
   
-  attr_accessor :user_name
+  attr_accessor :user_name, :user_picture
 
   def self.get_by_article_id(id)
     cs = Comment.includes(user:[:picture]).select('id, content, created_at, user_id, visitor_name').where("article_id=?", id).order("created_at asc").all

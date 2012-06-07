@@ -4,7 +4,7 @@ $(document).ready(->
   button = $("#comment_commit_button")
   $("#new_comment").live('ajax:success',(event,data)->
     console.log(data)
-    comments.append("<div class='comment_each'>#{data.user_name || data.visitor_name}: #{data.content}, created_at: #{data.created_at}</div>")
+    comments.append(wrap_comment(data))
     textarea.val("")
   )
 
@@ -19,3 +19,22 @@ $(document).ready(->
     $("#new_comment").submit() if (e.ctrlKey && e.which == 13 || e.which == 10)
   )
 )
+
+wrap_comment = (comment)->
+ """ 
+    <div class=\"comment_each\" id="" floor=""> 
+      <div class=\"head_div\">
+        <a href=\"#\"><img src=\"#{comment.user_picture}\" /></a>
+      </div>
+
+      <div class=\"comment_content\">
+        <div>#{comment.user_name}</div><br/>
+        #{comment.content}<br />
+        <div class=\"time pull-right\">#{comment.created_at}</div>
+      </div>
+
+      <div class=\"empty_height\"></div>
+      <div class=\"empty_height\"></div>
+      <div class=\"empty_height\"></div>
+    </div>
+ """
