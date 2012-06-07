@@ -20,7 +20,7 @@
       </div>
 
 
-      <%= render :partial => 'articles/sidebar', :locals => {:user => @user } %>
+      <%= render :partial => 'articles/sidebar', :locals => {:user => @current_user } %>
 
       <%= yield :comment %>
     </div>

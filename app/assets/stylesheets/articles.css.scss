@@ -83,7 +83,6 @@ $hc: #080;
 
 #article_show_content{
   @include markdown_h_color();
-    border-bottom: 1px dashed gray;
 }
 
 .article_each {
@@ -156,9 +155,24 @@ $hc: #080;
 }
 ///////end_user_information//////
 ///////comment///////////////
-#comment_textarea {
-  height:85px;
+#comment_commit_div {
+  float:left;
+  width:88%;
+  margin-left: 13px;
 }
+#comment_textarea {
+  height:70px;
+  width: 100%;
+  display:block;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0 ;
+}
+
+#comment_commit_button {
+  float:right;
+  display:none;
+}
+
 
 .comment_each {
 }

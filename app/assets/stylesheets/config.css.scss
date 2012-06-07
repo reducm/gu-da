@@ -133,6 +133,23 @@ $input_width: 90%;
   width:107px;
 }
 
+.gray_light {
+  color: $grayLight;
+}
+
+.head_div {
+  display: inline-block;
+  float: left;
+  text-align: center;
+  a {
+    display:inline-block;
+    float: left;
+  }
+  
+  span {
+  }
+}
+
 /////user/////////////
 $new_user_margin_left: 67px;
 #new_user_title {

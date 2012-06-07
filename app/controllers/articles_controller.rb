@@ -7,14 +7,14 @@ class ArticlesController < ApplicationController
 
   def index
     params[:user_id] = @user_id if params[:user_name].blank? && params[:user_id].blank?
-    @user = User.get_user(params)
-    @articles = Article.get_index(@user.id)
+    @current_user = User.get_user(params)
+    @articles = Article.get_index(@current_user.id)
     if session[:signup_new] || @articles.size == 0 #新注册进来产生一些提示操作的变量
       session[:signup_new] = nil
       @signup_new = true
     end
-    set_catagories(@user.id || @user_id)
-    check_owner(@user.id || @user_id)
+    set_catagories(@current_user.id)
+    check_owner(@current_user.id)
   end
 
   def new
@@ -51,9 +51,10 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    @user = User.find(@article.user_id)
+    @current_user = @article.user
+    @user = User.find(@user_id) if @user_id
     @comment = Comment.new
-    @comments = Comment.get_by_article_id(params[:id])
+    @comments = Comment.get_by_article_id(@article.id)
     set_catagories(@article.user_id)
     set_page_title @article.title
     check_owner @article.user_id

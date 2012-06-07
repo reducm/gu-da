@@ -4,8 +4,8 @@ module ArticlesHelper
     @owner
   end
 
-  def catagory_sidebar
-    render :partial => 'layouts/catagory', :locals => { :catagories => @catagories, :user_id => @user_id}
+  def catagory_sidebar(user)
+    render :partial => 'layouts/catagory', :locals => { :catagories => @catagories, :user_id => user.id}
   end
 
   def user_information_sidebar(user)
@@ -60,7 +60,7 @@ module ArticlesHelper
       nil
     end
   end
-  
+
   def show_user_head(user)
     if user.picture.present?
       if owner?
@@ -69,10 +69,13 @@ module ArticlesHelper
         image_tag user.picture.file.head.url
       end
     else
-      link_to "", "#upload_head", "data-toggle" => 'modal', "rel" => "popover", "data-content" => '这里可以快速设置你的头像', "class" => "avatar_image"  
+      if owner?
+        link_to "", "#upload_head", "data-toggle" => 'modal', "rel" => "popover", "data-content" => '这里可以快速设置你的头像', "class" => "avatar_image"  
+      else
+        content_tag :i, "",:class => 'avatar_image' 
+      end
     end
   end
-
   def new_or_edit?
     params[:action] == 'edit' || params[:action] == 'new'
   end

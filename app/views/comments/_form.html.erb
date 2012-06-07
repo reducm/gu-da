@@ -1,14 +1,23 @@
+<span class="gray_light">发表你的评论</span>
 <div id="comment_form">
-  <%= simple_form_for comment, :html => {:class => 'form-horizontal', "data-type" => 'json'  }, :remote => true  do|f| %> 
+  <%= simple_form_for comment, :html => {"data-type" => 'json'}, :wrapper => :default,  :remote => true  do|f| %> 
     <%= f.input :article_id, :as => :hidden, :input_html => { :value => article_id  }  %>
     <% if logined? %>
       <%= f.input :user_id, :as => :hidden, :input_html => { :value => @user_id  }   %>
-      <span><%= @user_name %></span>
+      <div class="head_div">
+        <%= show_user_head user%>
+      </div>
     <%else%>
       <%= f.input :visitor_name, :required => true, :label => '昵称' %>
       <%= f.input :visitor_email, :required => true, :label => 'email' %>
     <%end%>
-    <%= f.input :content , :required => false, :label => false, :input_html => {:id => 'comment_textarea' } %>
-    <%= f.button :submit, '保存', :class => 'btn-primary span2' %>
+    <div id="comment_commit_div">
+      <%= f.input :content , :required => false, :wrapper => false, :label => false, :input_html => {:id => 'comment_textarea', :class => nil } %>
+      <%= f.button :submit, '保存', :class => 'btn-primary span2', :id => 'comment_commit_button'%>
+      <div class="empty_height"></div>
+    </div>
+      <div class="empty_height"></div>
   <%end%>
 </div>
+
+

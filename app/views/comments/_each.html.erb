@@ -1,0 +1,9 @@
+<% if comments.size > 0 %>
+  <% comments.each do|c| %>
+    <div class="comment_each"> 
+     <div class="head_div">
+       <%= show_user_head %> 
+     </div>
+    </div>
+  <%end%>
+<%end%>
