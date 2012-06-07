@@ -19,7 +19,10 @@
         <%= yield %> 
       </div>
 
+
       <%= render :partial => 'articles/sidebar', :locals => {:user => @user } %>
+
+      <%= yield :comment %>
     </div>
 
     <%= render :partial => 'layouts/foot' %>
