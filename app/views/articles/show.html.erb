@@ -1,9 +1,10 @@
+<% unless new_or_edit? %>
+  <div id="switch_sidebar_button">
+    <a href="javascript:void(0)"><i class="icon-forward"></i></a>
+  </div>
+<%end%>
+
 <div id="articles">
-  <% unless new_or_edit? %>
-    <div id="switch_sidebar_button">
-      <a href="javascript:void(0)"><i class="icon-forward"></i></a>
-    </div>
-  <%end%>
 
   <h1><%= @article.title %></h1>
 
@@ -14,9 +15,14 @@
   </div>
 </div>
 
-<div id="comments">
-  <h1>评论</h1>
-  <%= render :partial => 'comments/form', :locals => {comment:@comment, article_id:@article.id} %>
-  <%= show_comments(@comments) %>
-</div>
+<%= content_for :comment do%>
+  <div class="empty_height"></div>
+  <div id="comment" class="article_normal_width">
+    <div id="comments">
+      <h1>评论</h1>
+      <%= render :partial => 'comments/form', :locals => {comment:@comment, article_id:@article.id} %>
+      <%= show_comments(@comments) %>
+    </div>
+  </div>
+<% end %>
 

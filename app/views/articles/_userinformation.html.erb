@@ -8,7 +8,7 @@
     <div class="modal-body">
       <%= simple_form_for user, :html => {:id => 'upload_head_form', :class => 'form-inline', :multipart => true }, :wrapper => :default do |f| %>
         <%= f.input :picture, :as => :file, :label => false, :wrapper_html => {style:"display:inline-block;margin-left:95px; width:50%;"} %>
-        <%= f.button :submit, '确定', :class => 'btn btn-primary' %>
+        <%= f.button :submit, '确定', :class => 'btn-primary' %>
       <%end%>
     </div>
   </div>
