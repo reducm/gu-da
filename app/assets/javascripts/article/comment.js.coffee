@@ -24,7 +24,7 @@ wrap_comment = (comment)->
  """ 
     <div class=\"comment_each\" id="" floor=""> 
       <div class=\"head_div\">
-        <a href=\"#\"><img src=\"#{comment.user_picture}\" /></a>
+        #{wrap_head(comment)}
       </div>
 
       <div class=\"comment_content\">
@@ -38,3 +38,9 @@ wrap_comment = (comment)->
       <div class=\"empty_height\"></div>
     </div>
  """
+
+wrap_head = (comment)->
+  if comment.user_picture?
+    "<a href=\"javascript:void(0)\"><img src=\"#{comment.user_picture}\" /></a>"
+  else
+    "<i class=\"avatar_image\"></i>"
