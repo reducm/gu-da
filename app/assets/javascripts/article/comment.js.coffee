@@ -6,6 +6,7 @@ $(document).ready(->
     console.log(data)
     comments.append(wrap_comment(data))
     textarea.val("")
+    window.location = window.location+"#comment_#{data.id}"
   )
 
   textarea.bind('focus', ->
@@ -22,7 +23,7 @@ $(document).ready(->
 
 wrap_comment = (comment)->
  """ 
-    <div class=\"comment_each\" id="" floor=""> 
+    <div class=\"comment_each\" id="comment_#{comment.id}" floor=""> 
       <div class=\"head_div\">
         #{wrap_head(comment)}
       </div>
