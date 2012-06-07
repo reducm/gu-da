@@ -10,6 +10,8 @@ $(document).ready(->
 
   textarea.bind('focus', ->
     button.show('fast')
+    $("#visitor_name").show('fast')
+    $("#visitor_email").show('fast')
     $(this).animate({height: '80px'},'fast')
   )
 

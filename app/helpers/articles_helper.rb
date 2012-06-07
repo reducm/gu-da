@@ -61,7 +61,11 @@ module ArticlesHelper
     end
   end
 
-  def show_user_head(user)
+  def show_user_head(user = nil)
+    if user.nil?
+      return content_tag :i, "",:class => 'avatar_image' 
+    end
+
     if user.picture.present?
       if owner?
         link_to (image_tag user.picture.file.head.url), "#upload_head", "data-toggle" => 'modal', "rel" => "popover", "data-content" => '这里可以快速设置你的头像'  
@@ -76,6 +80,7 @@ module ArticlesHelper
       end
     end
   end
+
   def new_or_edit?
     params[:action] == 'edit' || params[:action] == 'new'
   end

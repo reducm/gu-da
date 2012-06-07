@@ -23,7 +23,7 @@ $hc: #080;
 ////////article/////////////
 #article {
    @include border-radius(4px);
-   float: left;
+     float: left;
   background: #f2f2f2;
 }
 
@@ -70,6 +70,10 @@ $hc: #080;
 
 #switch_sidebar_button {
   float: right;
+  a {
+    outline: none;
+  //  star:expression(this.onFocus=this.blur());
+  }
 }
 
 
@@ -168,6 +172,10 @@ $hc: #080;
   padding: 0 0 0 0 ;
 }
 
+#visitor_name, #visitor_email{
+  display:none;
+}
+
 #comment_commit_button {
   float:right;
   display:none;
@@ -184,7 +192,7 @@ $hc: #080;
 
 #comments {
   @include border-radius(4px);
-  margin:0 auto;
+    margin:0 auto;
   width: 95%;
 }
 

@@ -3,21 +3,30 @@
   <%= simple_form_for comment, :html => {"data-type" => 'json'}, :wrapper => :default,  :remote => true  do|f| %> 
     <%= f.input :article_id, :as => :hidden, :input_html => { :value => article_id  }  %>
     <% if logined? %>
+
       <%= f.input :user_id, :as => :hidden, :input_html => { :value => @user_id  }   %>
       <div class="head_div">
         <%= show_user_head user%>
       </div>
+      <div id="comment_commit_div">
+        <%= f.input :content , :required => false, :wrapper => false, :label => false, :input_html => {:id => 'comment_textarea', :class => nil } %>
+        <%= f.button :submit, '保存', :class => 'btn-primary span2', :id => 'comment_commit_button'%>
+        <div class="empty_height"></div>
+      </div>
+
     <%else%>
-      <%= f.input :visitor_name, :required => true, :label => '昵称' %>
-      <%= f.input :visitor_email, :required => true, :label => 'email' %>
+      <div class="head_div">
+        <%= show_user_head %>
+      </div>
+      <div id="comment_commit_div">
+        <%= f.input :content , :required => false, :wrapper => false, :label => false, :input_html => {:id => 'comment_textarea', :class => nil } %>
+        <%= f.input :visitor_name, :wrapper => false, :placeholder=> '昵称', :label=>false, :input_html => {:id => 'visitor_name'}  %>
+        <%= f.input :visitor_email, :wrapper => false, :label =>false, :placeholder=>'email', :input_html => {:id => 'visitor_email'} %>
+        <%= f.button :submit, '保存', :class => 'btn-primary span2', :id => 'comment_commit_button'%>
+       <div class="empty_height"></div>
+      </div>
+
     <%end%>
-    <div id="comment_commit_div">
-      <%= f.input :content , :required => false, :wrapper => false, :label => false, :input_html => {:id => 'comment_textarea', :class => nil } %>
-      <%= f.button :submit, '保存', :class => 'btn-primary span2', :id => 'comment_commit_button'%>
-      <div class="empty_height"></div>
-    </div>
-      <div class="empty_height"></div>
   <%end%>
 </div>
-
 
