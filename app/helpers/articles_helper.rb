@@ -86,6 +86,25 @@ module ArticlesHelper
   end
 
   def jtime(time)
-    time.strftime('%Y年%m月%d日')
+    normal = time.strftime('%Y年%m月%d日')
+    regtime = (Time.now-time)
+    if regtime < 60
+      "刚刚"
+    elsif regtime < 3600
+      "#{(regtime/60).to_i}分钟前"
+    elsif regtime < 86400
+      "#{(regtime/3600).to_i}小时前"
+    elsif regtime < 2592000
+      "#{(regtime/86400).to_i}天前"
+    elsif regtime < 31536000
+      "#{(regtime/2592000).to_i}个月前"
+    else 
+      normal
+    end
+  end
+
+  private
+  def t_to_i(regtime)
+    (regtime).to_i
   end
 end

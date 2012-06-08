@@ -4,11 +4,9 @@ class window.Jajax
 Jajax::callback = (data, operator)->
     if data.errors?
         Jajax::error_dealer(data)
+        false
     else
         operator(data)
 
 Jajax::error_dealer = (data)->
     alert(data.errors)
-
-Jajax::fuck = ()->
-    alert("fuck")

@@ -4,9 +4,9 @@ $(document).ready(->
   button = $("#comment_commit_button")
   $("#new_comment").live('ajax:success',(event,data)->
     console.log(data)
-    comments.append(wrap_comment(data))
+    comments.append(str) if str = Jajax::callback(data, wrap_comment)
     textarea.val("")
-    window.location = window.location+"#comment_#{data.id}"
+    set_location ("#comment_#{data.id}")
   )
 
   textarea.bind('focus', ->
@@ -31,7 +31,7 @@ wrap_comment = (comment)->
       <div class=\"comment_content\">
         <div>#{comment.user_name}</div><br/>
         #{comment.content}<br />
-        <div class=\"time pull-right\">#{comment.created_at}</div>
+        <div class=\"time pull-right\">#{comment.strtime}</div>
       </div>
 
       <div class=\"empty_height\"></div>
