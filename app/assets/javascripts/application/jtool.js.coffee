@@ -1,5 +1,5 @@
 $(document).ready(->
-  window.original_location = window.location.origin+window.location.pathname
+  window.original_location = window.location.pathname
 )
 
 window.set_location = (str) ->

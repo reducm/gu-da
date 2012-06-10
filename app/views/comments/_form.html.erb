@@ -10,7 +10,7 @@
       </div>
       <div id="comment_commit_div">
         <%= f.input :content , :required => false, :wrapper => false, :label => false, :input_html => {:id => 'comment_textarea', :class => nil } %>
-        <%= f.button :submit, '保存', :class => 'btn-primary span2', :id => 'comment_commit_button'%>
+        <%= f.button :submit, 'Ctrl+Enter', :class => 'btn-primary span2', :id => 'comment_commit_button', 'data-toggle' => 'button' %>
         <div class="empty_height"></div>
       </div>
 
@@ -22,7 +22,7 @@
         <%= f.input :content , :required => false, :wrapper => false, :label => false, :input_html => {:id => 'comment_textarea', :class => nil } %>
         <%= f.input :visitor_name, :wrapper => false, :placeholder=> '昵称', :label=>false, :input_html => {:id => 'visitor_name'}  %>
         <%= f.input :visitor_email, :wrapper => false, :label =>false, :placeholder=>'email', :input_html => {:id => 'visitor_email'} %>
-        <%= f.button :submit, '保存', :class => 'btn-primary span2', :id => 'comment_commit_button'%>
+        <%= f.button :submit, 'Ctrl+Enter', :class => 'btn-primary span2', :id => 'comment_commit_button', 'data-toggle' => 'button'%>
       </div>
     <%end%>
   <%end%>

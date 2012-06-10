@@ -2,11 +2,21 @@ $(document).ready(->
   comments = $("#comments")
   textarea = $("#comment_textarea")
   button = $("#comment_commit_button")
-  $("#new_comment").live('ajax:success',(event,data)->
+  form = $("#new_comment")
+
+  form.submit(()->
+    button.button('loading')
+  )
+  
+  form.live('ajax:success',(event,data)->
     console.log(data)
-    comments.append(str) if str = Jajax::callback(data, wrap_comment)
-    textarea.val("")
-    set_location ("#comment_#{data.id}")
+    if str = Jajax::callback(data, wrap_comment)
+      comments.append(str)
+      textarea.val("")
+      set_location ("#comment_#{data.id}")
+    else
+      textarea.focus()
+    button.button('reset')
   )
 
   textarea.bind('focus', ->

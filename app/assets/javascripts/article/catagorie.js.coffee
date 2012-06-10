@@ -63,3 +63,6 @@ $(document).ready(()->
   )
 )
 
+$('#add_catagory_modal').on('show',->
+  $('#catagory_name_input').focus()
+)

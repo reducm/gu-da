@@ -6,8 +6,9 @@ class Comment < ActiveRecord::Base
   attr_accessible :user_id, :content, :article_id, :visitor_name, :visitor_email
   
   validates :article_id, :presence => true 
-  validate :validate_email
+  validate :validate_visitor_email
   validate :validate_visitor_name
+
   validates :content, :presence => {:message => '评论内容不能为空' } 
   has_many :notifications, :as => :senderable
   
@@ -26,15 +27,20 @@ class Comment < ActiveRecord::Base
   end
 
   private
-  def validate_email
-    if ( visitor_email !~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i) && user_id == 0
-      errors[:visitor_email] << 'email格式不正确'
+  def validate_visitor_email
+    if visitor_email.nil? && user_id ==0
+      errors[:visitor_email] << 'Email不能为空'
+    elsif( visitor_email !~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i) && user_id == 0
+      errors[:visitor_email] << 'Email格式不正确'
+    
     end
   end
 
   def validate_visitor_name
-    if user_id == 0 && (visitor_name.blank?)
-      errors[:visitor_name] << '访客名称不能为空'
+    if user_id == 0 && visitor_name.nil?
+      errors[:visitor_name] << '昵称不能为空'
+    elsif user_id ==0 && (visitor_name.length<3 || visitor_name.length >15)
+      errors[:visitor_name] << '昵称长度要在3-15之间'
     end
   end
 end
