@@ -12,23 +12,6 @@ module ArticlesHelper
     render :partial => 'articles/userinformation', :locals => {:user => user}
   end
 
-  def catagory_sidebar_list(catagories)
-    str = ""
-    catagories.each do |c|
-      a = ""
-      d = ""
-      if c.id == nil || c.id == 0
-        a = link_to c.name, "#{catagory_path(0)}?user_id=#{c.user_id}"
-        d = nil
-      else
-        a = link_to c.name, catagory_path(c)
-        d = link_to "x", catagory_path(c), :method => 'delete', :remote => true 
-      end
-      str += owner? ? "<h3>#{a} #{d}</h3>" : "<h3>#{a}</h3>"
-    end
-    str.html_safe
-  end
-
   def catagory_get_name_link(c)
     link_to c.name, id_default?(c.id) ? "#{catagory_path(0)}?user_id=#{c.user_id}" : catagory_path(c)
   end

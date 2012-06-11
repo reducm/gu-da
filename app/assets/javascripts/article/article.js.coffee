@@ -8,11 +8,11 @@ $(document).ready(->
   button.height(article.height())
 
   button.bind('mouseover', ->
-    article.addClass('right_shadow')
+    #    article.addClass('right_shadow')
     button.addClass('bg_darker')
   )
   button.bind('mouseout', ->
-    article.removeClass('right_shadow')
+    #article.removeClass('right_shadow')
     button.removeClass('bg_darker')
   )
   button.bind('click',->

@@ -29,7 +29,7 @@ wrap_option_catagory = (obj)->
   "<option value=\"#{obj.id}\">#{obj.name}</option>"
 
 wrap_catagory = (obj) ->
-  $("<h3>#{catagory_name_link(obj)} #{catagory_delete_link(obj)}</h3>")
+  $("<div class=\"catagory_each\">#{catagory_name_link(obj)} #{catagory_delete_link(obj)}</div>")
 
 bind_ajax = ()->
   $("#catagories a").each((i)->
@@ -46,7 +46,7 @@ catagory_name_link = (obj)->
 
 catagory_delete_link = (obj) ->
   if obj.id != null
-    "<a href=\"/blog/catagories/#{obj.id}\" data-method=\"delete\" data-remote=\"true\" data-type=\"json\" rel=\"nofollow\" >x</a>"
+    "<a href=\"/blog/catagories/#{obj.id}\" data-method=\"delete\" class=\"pull-right\" data-remote=\"true\" data-type=\"json\" rel=\"nofollow\" >x</a>"
   else
     ""
 
@@ -62,12 +62,16 @@ $(document).ready(()->
       catagory_operate data
   )
 
-  $(".catagory_each").mouseover(()->
+  $(".catagory_each").live('mouseover',()->
     $(this).addClass("border_grey")
   )
 
-  $(".catagory_each").mouseout(()->
+  $(".catagory_each").live("mouseout",()->
     $(this).removeClass("border_grey")
 #    $(this).css({border:'0px'})
+  )
+
+  $("#add_catagory_modal").on('shown', ()->
+    $("#catagory_name_input").focus()
   )
 )

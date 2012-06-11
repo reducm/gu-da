@@ -30,7 +30,7 @@ module ApplicationHelper
         Pygments.highlight(code, lexer:'text', formatter:'html', options:{encoding:'utf-8'})
       end
     end
-      
+
     #from ruby-china
     def autolink(link, link_type)
       # return link

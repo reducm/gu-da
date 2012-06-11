@@ -21,7 +21,7 @@ $hc: #080;
 
 @mixin word_break {
   word-wrap: break-word;
-  word-break: brek-all;
+  word-break: break-all;
 }
 
 @mixin head {
@@ -32,6 +32,21 @@ $hc: #080;
   }
   span {
   }
+}
+
+@mixin markdown_blockquote {
+  blockquote {
+      @include border-radius(2px);
+      width:92%;
+      margin: 0 auto;
+      border:none;
+      padding: 5px 20px 0px 20px;
+      background: #e1e1e1;
+  }
+}
+
+@mixin markdown_style {
+  @include markdown_blockquote();
 }
 
 
@@ -125,10 +140,12 @@ $hc: #080;
 
 #article_show_content{
   @include markdown_h_color();
+  @include markdown_style();
 }
 
 .article_each {
   @include markdown_h_color();
+  @include markdown_style();
     margin-bottom: 15px;
   color: $textColor;
   word-wrap: break-word;
@@ -219,6 +236,7 @@ $hc: #080;
 #user_description_div {
   @include word_break();
   font-size:16px;
+  margin-bottom: 20px;
 }
 ///////end_user_information//////
 ///////comment///////////////
