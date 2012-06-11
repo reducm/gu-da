@@ -7,7 +7,7 @@
     <%= simple_form_for @user, :url => login_path, :html => { :id => 'login_form' }, :wrapper => :default   do|f|%>
       <%= f.input :name, :label => false, :placeholder => '输入用户名或者邮箱', :input_html =>{ :id => 'login_user_name' }   %> 
       <%= f.input :password, :label => false, :wrapper_html => {id:'input_password_div'}, :placeholder => '输入密码', :input_html =>{ :id => 'login_user_password' }%> 
-      <%= f.button :submit, "登录", :class => 'btn-primary', :style => 'margin-left:17px;width:76px;' %>
+      <%= f.button :submit, "登录", :class => 'btn-primary', :style => 'margin-left:17px;width:88px;' %>
       <%= f.input :remember_me, :as => :boolean, :label => '记住我', :label_html => {style:'color:grey;font-weight:bolder;margin-bottom:0px'}, :wrapper_html => {id:'input_rememberme_div'} %>
       <span class="font_red"><%= flash[:notice] %></span>
     <%end%>

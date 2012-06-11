@@ -1,5 +1,13 @@
 <div id="user_information">
-  <%= show_user_head user %>
+  <div id="user_head" >
+    <%= show_user_head user %>
+    <%= user.name %>
+  </div>
+  <div class="empty_height"></div>
+  <div id="user_description_div" class="border_bottom_grey">
+    <%= user.description %>
+  </div>
+
   <div class="modal" id="upload_head">
     <div class="modal-header">
       <button class="close" data-dismiss="modal">×</button>
@@ -13,3 +21,4 @@
     </div>
   </div>
 </div>
+<div class="empty_height"></div>

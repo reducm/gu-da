@@ -61,8 +61,13 @@ $(document).ready(()->
     (event, data)->
       catagory_operate data
   )
-)
 
-$('#add_catagory_modal').on('show',->
-  $('#catagory_name_input').focus()
+  $(".catagory_each").mouseover(()->
+    $(this).addClass("border_grey")
+  )
+
+  $(".catagory_each").mouseout(()->
+    $(this).removeClass("border_grey")
+#    $(this).css({border:'0px'})
+  )
 )

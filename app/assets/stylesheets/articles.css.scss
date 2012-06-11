@@ -24,16 +24,32 @@ $hc: #080;
   word-break: brek-all;
 }
 
+@mixin head {
+  text-align: center;
+  a,i,img {
+    display:block;
+    margin: 0 auto;
+  }
+  span {
+  }
+}
+
 
 ////////article/////////////
 #article {
-   @include border-radius(4px);
-     float: left;
-  background: #f2f2f2;
+  //@include border-radius(4px);
+    float: left;
+  background: #f8f8f8;
+}
+
+.head_div {
+  @include head();
+    float: left;
+  display: inline-block;
 }
 
 .right_shadow {
-  @include box-shadow(1px 0 0 1px rgba(0,0,0,.25));
+  @include box-shadow(4px 0 0 0 rgba(94,94,102,0.1));
 }
 
 .article_edit_width {
@@ -41,7 +57,7 @@ $hc: #080;
 }
 
 .article_normal_width {
-  width: 80%;
+  width: 78%;
 }
 
 .title_h {
@@ -69,17 +85,33 @@ $hc: #080;
 #articles {
   width:95%;
   clear:both;
+  display:inline-block;
   float: left;
   margin-left: 20px;
-  background: #f2f2f2;
+  background: #f8f8f8;
+  margin-top:24px;
 }
 
 #switch_sidebar_button {
-  float: right;
+  float:right;
+  height:100%;
+  cursor: pointer;
   a {
     outline: none;
   //  star:expression(this.onFocus=this.blur());
   }
+}
+
+.button_return {
+  border-left:1px solid #e8e8e8;
+  border-right:1px solid #e8e8e8;
+}
+
+.bg_darker {
+  background: #e7e7e7;
+}
+
+.counter {
 }
 
 
@@ -98,7 +130,6 @@ $hc: #080;
 .article_each {
   @include markdown_h_color();
     margin-bottom: 15px;
-  margin-top: 5px;
   color: $textColor;
   word-wrap: break-word;
   word-break: brek-all;
@@ -111,7 +142,6 @@ $hc: #080;
 
 #create_button_div {
   float:right;
-  margin-top: 10px;
 }
 
 #signup_new {
@@ -121,8 +151,6 @@ $hc: #080;
 /////////////end_article///////////////
 
 /////////catagory////////////////////
-
-
 #catagory {
   width: 100%;
 }
@@ -135,6 +163,12 @@ $hc: #080;
 #add_catagory_modal {
   display: none;
 }
+
+.catagory_each {
+  font-size:16px;
+  a {
+  }
+}
 ////////////end_catagory/////////////
 /////////////sidebar/////////////
 .little_fontsize {
@@ -142,9 +176,14 @@ $hc: #080;
 }
 
 #sidebar {
-  width: 20%;
+  width: 22%;
   float: left;
-  background: #f2f2f2;
+  background: #efefef;
+}
+
+#sidebar_container {
+  width: 92%;
+  margin: 6px auto 0 auto;
 }
 
 .avatar_image{
@@ -154,14 +193,32 @@ $hc: #080;
   background-image: image-url("avatar/small.png");
 }
 
+.sidebar_title {
+  font-size: 20px;
+}
+
 ///////end_sidebar//////////
 ///////user_information/////////
 #user_information {
-  @include white_radius();
+  //@include white_radius();
+  width: 230px;
 }
 
 #upload_head {
   display: none;
+}
+
+#user_head {
+  @include head();
+  margin:0 auto;
+  width: 100%;
+  border: 1px solid #dedede; 
+  padding: 16px 0 0 0;
+}
+
+#user_description_div {
+  @include word_break();
+  font-size:16px;
 }
 ///////end_user_information//////
 ///////comment///////////////

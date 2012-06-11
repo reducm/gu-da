@@ -20,12 +20,9 @@ class PictureUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  version :preview, :if => :image? do
-    process  :resize_to_fit => [50,nil] 
-  end
-
   version :head, :if => :image? do
-    process :resize_to_fit => [80,80] 
+    process :convert => 'jpg' 
+    process :resize_to_fit => [150,150] 
   end
  
   protected

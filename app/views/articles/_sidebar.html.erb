@@ -1,7 +1,9 @@
 <% unless new_or_edit? %>
   <div id="sidebar">
-    <%= user_information_sidebar(user) %>
+    <div id="sidebar_container">
+      <%= user_information_sidebar(user) %>
 
-    <%= catagory_sidebar(user) %>
+      <%= catagory_sidebar(user) %>
+    </div>
   </div>
 <%end%>

@@ -1,4 +1,3 @@
-<span class="gray_light">发表你的评论</span>
 <div id="comment_form">
   <%= simple_form_for comment, :html => {"data-type" => 'json'}, :wrapper => :default,  :remote => true  do|f| %> 
     <%= f.input :article_id, :as => :hidden, :input_html => { :value => article_id  }  %>
@@ -6,7 +5,7 @@
 
       <%= f.input :user_id, :as => :hidden, :input_html => { :value => @user_id  }   %>
       <div class="head_div">
-        <%= show_user_head user%>
+        <%= show_user_head user,80 %>
       </div>
       <div id="comment_commit_div">
         <%= f.input :content , :required => false, :wrapper => false, :label => false, :input_html => {:id => 'comment_textarea', :class => nil } %>
@@ -20,12 +19,12 @@
       </div>
       <div id="comment_commit_div">
         <%= f.input :content , :required => false, :wrapper => false, :label => false, :input_html => {:id => 'comment_textarea', :class => nil } %>
-        <%= f.input :visitor_name, :wrapper => false, :placeholder=> '昵称', :label=>false, :input_html => {:id => 'visitor_name'}  %>
-        <%= f.input :visitor_email, :wrapper => false, :label =>false, :placeholder=>'email', :input_html => {:id => 'visitor_email'} %>
+        <%= f.input :visitor_name, :wrapper => false, :placeholder=> '昵称(必填)', :label=>false, :input_html => {:id => 'visitor_name'}  %>
+        <%= f.input :visitor_email, :wrapper => false, :label =>false, :placeholder=>'Email(必填)', :input_html => {:id => 'visitor_email'} %>
         <%= f.button :submit, 'Ctrl+Enter', :class => 'btn-primary span2', :id => 'comment_commit_button', 'data-toggle' => 'button'%>
       </div>
     <%end%>
   <%end%>
 </div>
 <div class="empty_height"></div>
-<div class="empty_height"></div>
+<div class="empty_height border_bottom_grey margin_bottom"></div>

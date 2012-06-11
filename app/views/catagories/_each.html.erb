@@ -1,0 +1,5 @@
+<% catagories.each do|c| %>
+  <div class="catagory_each">
+    <%= catagory_get_name_link(c) %> <%= catagory_get_delete_link(c) if owner?%>
+  </div>
+<%end%>

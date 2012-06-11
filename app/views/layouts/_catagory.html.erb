@@ -1,7 +1,8 @@
 <div id="catagory">
-  <%= (link_to "+", "#add_catagory_modal", "data-toggle"=>'modal') if owner? %> 
+  <span class="strong sidebar_title">分类</span>
+  <%= (link_to "+", "#add_catagory_modal", "data-toggle"=>'modal', class:'pull-right') if owner? %> 
   <div id="catagories">
-    <%= catagory_sidebar_list(@catagories) unless @catagories.nil? %>
+    <%= render :partial => 'catagories/each', :locals => {catagories:catagories}  unless @catagories.nil? %>
   </div>
 </div>
 

@@ -1,8 +1,3 @@
-<% unless new_or_edit? %>
-  <div id="switch_sidebar_button">
-    <a href="javascript:void(0)"><i class="icon-forward"></i></a>
-  </div>
-<%end%>
 
 <div id="articles">
 
@@ -14,6 +9,18 @@
     <%= (link_to '编辑', edit_article_path(@article)) if owner? %> 
   </div>
 </div>
+
+<% unless new_or_edit? %>
+  <div id="switch_sidebar_button">
+    <a href="javascript:void(0)"><i class="icon-forward"></i></a>
+  </div>
+
+  <script>
+    $(document).ready(function(){
+      $("#switch_sidebar_button").click();
+    });
+  </script>
+<%end%>
 
 <%= content_for :comment do%>
   <div class="empty_height"></div>

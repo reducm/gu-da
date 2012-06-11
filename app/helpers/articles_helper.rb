@@ -29,6 +29,18 @@ module ArticlesHelper
     str.html_safe
   end
 
+  def catagory_get_name_link(c)
+    link_to c.name, id_default?(c.id) ? "#{catagory_path(0)}?user_id=#{c.user_id}" : catagory_path(c)
+  end
+
+  def catagory_get_delete_link(c)
+    id_default?(c.id) ? nil : (link_to "x", catagory_path(c), method:'delete', remote:true, class:'pull-right')
+  end
+
+  def id_default?(id)
+    id == nil || id ==0 
+  end
+
   def article_width_height
     if params[:action] == 'edit' || params[:action] == 'new'
       "class='article_edit_width'"
@@ -61,16 +73,16 @@ module ArticlesHelper
     end
   end
 
-  def show_user_head(user = nil)
+  def show_user_head(user = nil, width=nil)
     if user.nil?
       return content_tag :i, "",:class => 'avatar_image' 
     end
 
     if user.picture.present?
       if owner?
-        link_to (image_tag user.picture.file.head.url), "#upload_head", "data-toggle" => 'modal', "rel" => "popover", "data-content" => '这里可以快速设置你的头像'  
+        link_to (get_image_link(user,width)), "#upload_head", "data-toggle" => 'modal', "rel" => "popover", "data-content" => '这里可以快速设置你的头像'  
       else
-        image_tag user.picture.file.head.url
+        get_image_link(user,width)
       end
     else
       if owner?
@@ -106,5 +118,13 @@ module ArticlesHelper
   private
   def t_to_i(regtime)
     (regtime).to_i
+  end
+
+  def get_image_link(user,width=nil)
+    unless width.nil?
+      image_tag user.picture.file.head.url, :width=>"#{width}px"
+    else
+      image_tag user.picture.file.head.url
+    end
   end
 end
