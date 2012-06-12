@@ -134,6 +134,16 @@ $input_width: 90%;
   width:107px;
 }
 
+#user_form_toolbar li {
+  display: inline-block;
+  float: left;
+  font-size: 14px;
+  margin-right: 14px;
+  a:hover {
+    font-size: 15px;
+  }
+}
+
 .gray_light {
   color: $grayLight;
 }

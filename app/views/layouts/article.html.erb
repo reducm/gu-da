@@ -16,10 +16,12 @@
       <%= render :partial => 'layouts/breadcrumbs' %>
 
       <div id="article" <%= article_width_height %>>
-
         <%= yield %> 
       </div>
 
+      <div id="preview" class="span6">
+        <%= yield :preview %> 
+      </div>
 
       <%= render :partial => 'articles/sidebar', :locals => {:user => @current_user } %>
 
