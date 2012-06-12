@@ -34,10 +34,10 @@ $hc: #080;
   }
 }
 
-@mixin markdown_blockquote {
+@mixin markdown_blockquote($blockquote:92%) {
   blockquote {
       @include border-radius(2px);
-      width:92%;
+      width:$blockquote;
       margin: 0 auto;
       border:none;
       padding: 5px 20px 0px 20px;
@@ -45,8 +45,8 @@ $hc: #080;
   }
 }
 
-@mixin markdown_style {
-  @include markdown_blockquote();
+@mixin markdown_style($blockquote:92%) {
+  @include markdown_blockquote($blockquote);
 }
 
 
@@ -84,7 +84,7 @@ $hc: #080;
       font-size:41px;
     }
   }
-    border-bottom: 1px solid $grayLighter;
+  border-bottom: 1px solid $grayLighter;
 }
 
 .empty_height {
@@ -169,9 +169,24 @@ $hc: #080;
 
 #preview {
   display:none;
-  height:49%;
-  background:orange;
+  width:49%;
+  background:#f8f8f8;
   float: left;
+}
+
+#preview_container {
+  width:96%;
+  margin:19px auto 0;
+}
+
+#preview_title {
+
+}
+
+#preview_content {
+  @include markdown_h_color();
+  @include markdown_style(83%);
+  margin-top: 17px;
 }
 
 #create_button_div {

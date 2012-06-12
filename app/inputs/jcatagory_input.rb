@@ -2,7 +2,7 @@
 class JcatagoryInput < SimpleForm::Inputs::CollectionSelectInput
   #增加和修改文章时候的catagory select栏
   def input
-    collection[0].id=0
+    collection[collection.length-1].id=0
     super
 =begin
     str="<select id=\"catagory_select\" class=\"span2\" name=\"article[catagory_id]\">"

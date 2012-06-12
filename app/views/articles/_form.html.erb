@@ -17,7 +17,24 @@
 </div>
 
 <%= content_for :preview do %>
-  hahahaha
+  <div id="preview_container">
+    <div id="preview_toolbar">
+      <div class="btn-group">
+        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+          预览
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="javascript:void(0)" data-toggle='html'>预览</a></li>
+          <li><a href="javascript:void(0)" data-toggle='text'>HTML</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="preview_title"></div>
+
+    <div id="preview_content"></div>
+  </div>
 <%end%>
 
 <div class="modal" id="add_catagory_modal">

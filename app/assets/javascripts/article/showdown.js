@@ -873,9 +873,9 @@ var _DoCodeBlocks = function(text) {
 			codeblock = _Detab(codeblock);
 			codeblock = codeblock.replace(/^\n+/g,""); // trim leading newlines
 			codeblock = codeblock.replace(/\n+$/g,""); // trim trailing whitespace
-
-			codeblock = "<pre><code>" + codeblock + "\n</code></pre>";
-
+//here mod by JAS
+			//codeblock = "<pre><code>" + codeblock + "\n</code></pre>";
+                        codeblock = "<pre>"+codeblock+"\n</pre>"
 			return hashBlock(codeblock) + nextChar;
 		}
 	);
@@ -931,13 +931,19 @@ var _DoCodeSpans = function(text) {
 		/gm, function(){...});
 	*/
 
-	text = text.replace(/(^|[^\\])(`+)([^\r]*?[^`])\2(?!`)/gm,
-		function(wholeMatch,m1,m2,m3,m4) {
-			var c = m3;
+	text = text.replace(/(^|[^\\])(`+)(.*?\n)?([^\r]*?[^`])\2(?!`)/gm,
+		function(wholeMatch,m1,m2,m3,m4,m5) {
+			var c = m4;
 			c = c.replace(/^([ \t]*)/g,"");	// leading whitespace
 			c = c.replace(/[ \t]*$/g,"");	// trailing whitespace
+                        var codename=m3;
 			c = _EncodeCode(c);
-			return m1+"<code>"+c+"</code>";
+
+                        c = c.replace(/\n/g, "<br />"); //mod by jas, take the br!
+                        //mod by JAS here
+			return m1+"<pre code=\""+codename+"\">"+c+"</pre>";
+//			return "<code>"+c+"</code>";
+
 		});
 
 	return text;
