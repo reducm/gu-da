@@ -10,11 +10,14 @@ $(document).ready(->
   converter = new Showdown.converter()
 
   preview.height(article.height())
+
   $('#toggle_preview').bind('click',()->
     article.toggleClass("edit_preview_width")
     preview.toggle()
     fill_preview(content.val())
     fill_preview_title(title.val())
+    preview_content.height(preview.height()-preview_title.height()-12-17)
+    $("#temp_textarea").remove()
   )
 
   title.bind("keyup", ()->
@@ -22,9 +25,16 @@ $(document).ready(->
     fill_preview_title(str)
   )
 
+  content.bind("scroll", ()->
+    preview_content.scrollTop($(this).scrollTop())
+  )
+
   content.bind("keyup", ()->
     str = $(this).val()
     fill_preview(str)
+    preview_content.scrollTop($(this).scrollTop())
+    if $("#temp_textarea")[0]?
+      $("#temp_textarea").scrollTop($(this).scrollTop()+33)
   )
 
   $("#preview_toolbar ul li a").bind("click", ()->
@@ -40,12 +50,17 @@ $(document).ready(->
       when "html"
         preview_content.html(mstr)
       when "text"
-        preview_content.text(mstr)
+        raw = style_html(mstr)
+        ta = $("<textarea readonly=\"readonly\" id=\"temp_textarea\"></textarea>")
+        preview_content.html("")
+        preview_content.append(ta)
+        ta.height(content.height()+33)
+        ta.val(raw)
       else
-        nil
+        null
 
   fill_preview_title = (str) ->
-    preview_title.html("<h1 class=\"title_h\">#{str}</h1>")
+    preview_title.html("<h1>#{str}</h1>")
 )
 
 

@@ -141,7 +141,7 @@ $hc: #080;
 }
 
 .edit_preview_width {
-  width:49%;
+  width:50%;
 }
 
 #article_content{
@@ -150,12 +150,10 @@ $hc: #080;
 }
 
 #article_show_content{
-  @include markdown_h_color();
   @include markdown_style();
 }
 
 .article_each {
-  @include markdown_h_color();
   @include markdown_style();
   margin-bottom: 15px;
   color: $textColor;
@@ -169,14 +167,14 @@ $hc: #080;
 
 #preview {
   display:none;
-  width:49%;
+  width:50%;
   background:#f8f8f8;
   float: left;
 }
 
 #preview_container {
   width:96%;
-  margin:19px auto 0;
+  margin:12px auto 0;
 }
 
 #preview_title {
@@ -184,10 +182,20 @@ $hc: #080;
 }
 
 #preview_content {
-  @include markdown_h_color();
   @include markdown_style(83%);
   margin-top: 17px;
+  background: #f8f8f8;
+  overflow-y: auto;
 }
+
+#temp_textarea {
+  margin-top: 17px;
+  width:98%;
+  background: #f8f8f8;
+  overflow-y: auto;
+  display:block;
+}
+
 
 #create_button_div {
   float:right;

@@ -936,7 +936,7 @@ var _DoCodeSpans = function(text) {
 			var c = m4;
 			c = c.replace(/^([ \t]*)/g,"");	// leading whitespace
 			c = c.replace(/[ \t]*$/g,"");	// trailing whitespace
-                        var codename=m3;
+                        var codename=m3.replace(/\n/,"");
 			c = _EncodeCode(c);
 
                         c = c.replace(/\n/g, "<br />"); //mod by jas, take the br!
@@ -1069,6 +1069,7 @@ var _FormParagraphs = function(text) {
 		else if (str.search(/\S/) >= 0) {
 			str = _RunSpanGamut(str);
 			str = str.replace(/^([ \t]*)/g,"<p>");
+                        str = str.replace(/\n/g,"<br />"); //mode by jas, <p>make <br /> here
 			str += "</p>"
 			grafsOut.push(str);
 		}
