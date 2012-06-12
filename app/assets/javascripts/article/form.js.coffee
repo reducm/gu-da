@@ -16,17 +16,19 @@ $(document).ready(->
     preview.toggle()
     fill_preview(content.val())
     fill_preview_title(title.val())
-    preview_content.height(preview.height()-preview_title.height()-12-17)
+    fix_pcontent_height()
     $("#temp_textarea").remove()
   )
 
   title.bind("keyup", ()->
     str = $(this).val()
     fill_preview_title(str)
+    fix_pcontent_height()
   )
 
   content.bind("scroll", ()->
     preview_content.scrollTop($(this).scrollTop())
+    $("#temp_textarea").scrollTop($(this).scrollTop()+33)
   )
 
   content.bind("keyup", ()->
@@ -35,6 +37,7 @@ $(document).ready(->
     preview_content.scrollTop($(this).scrollTop())
     if $("#temp_textarea")[0]?
       $("#temp_textarea").scrollTop($(this).scrollTop()+33)
+    fix_pcontent_height()
   )
 
   $("#preview_toolbar ul li a").bind("click", ()->
@@ -61,8 +64,10 @@ $(document).ready(->
 
   fill_preview_title = (str) ->
     preview_title.html("<h1>#{str}</h1>")
-)
 
+  fix_pcontent_height = ()->
+    preview_content.height(preview.height()-preview_title.height()-12-17)
+)
 
 
 
