@@ -936,7 +936,10 @@ var _DoCodeSpans = function(text) {
 			var c = m4;
 			c = c.replace(/^([ \t]*)/g,"");	// leading whitespace
 			c = c.replace(/[ \t]*$/g,"");	// trailing whitespace
-                        var codename=m3.replace(/\n/,"");
+                        var codename=""
+                        if(typeof m3 !== 'undefined' && m3 !== null) {
+                          var codename=m3.replace(/\n/,"");
+                        }
 			c = _EncodeCode(c);
 
                         c = c.replace(/\n/g, "<br />"); //mod by jas, take the br!
