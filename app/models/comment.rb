@@ -28,6 +28,10 @@ class Comment < ActiveRecord::Base
     cs
   end
 
+  def get_user_name
+    self.visitor_name || self.user.name
+  end
+
   private
   def validate_visitor_email
     if visitor_email.nil? && user_id ==0

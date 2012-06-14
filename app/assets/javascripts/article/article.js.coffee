@@ -4,6 +4,8 @@ $(document).ready(->
   sidebar = $("#sidebar")
   comment = $('#comment')
   icon = button.find("i")
+  oah = article.height()
+  osh = article.height()
 
   button.height(article.height())
 
@@ -24,7 +26,14 @@ $(document).ready(->
     icon.toggleClass('icon-backward')
     sidebar.toggle()
     button.toggleClass('button_return')
+    set_height()
   )
-
-#  sidebar.height(article.height()) if article.height() > sidebar.height()
+  
+  set_height = ()->
+    if article.height() < sidebar.height()
+      if sidebar.css("display") == "block"
+        article.height(sidebar.height())
+        button.height(article.height())
 )
+
+

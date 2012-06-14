@@ -98,6 +98,16 @@ module ArticlesHelper
     end
   end
 
+  def get_notifications_count(user_id)
+    c = Notification.where("receiver_id=? and readed=0", user_id).count
+    span = if c > 0
+             content_tag :span, c, :class => 'badge badge-info'
+           else
+             content_tag :span, c, :class => 'badge '
+           end
+    link_to span, "#{edit_user_path(user_id)}#eu_message_div"
+  end
+
   private
   def t_to_i(regtime)
     (regtime).to_i

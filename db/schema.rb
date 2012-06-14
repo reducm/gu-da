@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120614095411) do
+ActiveRecord::Schema.define(:version => 20120614162908) do
 
   create_table "article_tagships", :force => true do |t|
     t.integer  "article_id"
@@ -54,9 +54,9 @@ ActiveRecord::Schema.define(:version => 20120614095411) do
     t.string   "senderable_type"
     t.integer  "receiver_id"
     t.string   "content"
-    t.boolean  "readed",          :default => true
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.boolean  "readed",          :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "pictures", :force => true do |t|

@@ -9,7 +9,7 @@
 
       <ul class="nav pull-right">
         <% unless @user_name.blank? %>
-          <li><span class="badge">1</span></li>
+          <li><%= get_notifications_count(@user_id) %></li>
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <%= @user_name %> 
