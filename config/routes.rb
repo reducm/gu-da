@@ -1,5 +1,4 @@
 GuDa::Application.routes.draw do
-
   root :to => 'blog#index'
   match "blog" => 'blog#index'
   match "/auth/:provider/callback", :to => "sessions#create"

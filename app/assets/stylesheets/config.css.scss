@@ -8,9 +8,6 @@ $sansFontFamily: "Microsoft Yahei",微软雅黑,"Helvetica Neue", Helvetica, Ari
 $bc: #4c5a76;
 $bb: #202e4b;
 
-p {
-  margin-bottom: 22px;
-}
 
 @mixin cw(){
   color: darken(#000000, 10%);
