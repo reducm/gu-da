@@ -4,19 +4,17 @@
 @import "twitter/bootstrap/";
 
 $bc: #4c5a76;
-$hc: #080;
+$hc: black;
 
 @mixin white_radius {
   @include border-radius(4px);
 }
 
-@mixin markdown_h_color {
-  h1 {color: $hc;}
-  h2 {color: $hc;}
-  h3 {color: $hc;}
-  h4 {color: $hc;}
-  h5 {color: $hc;}
-  h6 {color: $hc;}
+@mixin markdown_h_color($c) {
+  h1,h2,h3,h4,h5,h6{
+    color: $c;
+    border-bottom: 1px solid $grayLighter;
+  }
 }
 
 @mixin word_break {
@@ -35,6 +33,7 @@ $hc: #080;
 }
 
 @mixin markdown_blockquote($blockquote:92%) {
+  @include markdown_h_color(black);
   blockquote {
       @include border-radius(2px);
         width:$blockquote;
@@ -45,13 +44,27 @@ $hc: #080;
   }
 }
 
+@mixin markdown_li($bw) {
+  li {
+    width: $bw;
+    display: block;
+    margin-left: 0 auto;
+  }
+}
+
 @mixin markdown_style($blockquote:92%) {
   @include markdown_blockquote($blockquote);
+  $mb: 22px;
   p {
-    margin-bottom: 22px;
+    margin-bottom: $mb;
   }
   pre {
-    margin-bottom: 22px;
+    margin-bottom: $mb;
+  }
+  ul, ol{
+    width:$blockquote;
+    margin:0 auto; 
+    margin-bottom: $mb;
   }
 }
 

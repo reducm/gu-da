@@ -932,7 +932,7 @@ var _DoCodeSpans = function(text) {
 	*/
 
 	text = text.replace(/(^|[^\\])(`+)(.*?\n)?([^\r]*?[^`])\2(?!`)/gm,
-		function(wholeMatch,m1,m2,m3,m4,m5) {
+		function(wholeMatch,m1,m2,m3,m4,m5) {//m2:```,m4:content,m3:codenam
 			var c = m4;
 			c = c.replace(/^([ \t]*)/g,"");	// leading whitespace
 			c = c.replace(/[ \t]*$/g,"");	// trailing whitespace
@@ -944,7 +944,11 @@ var _DoCodeSpans = function(text) {
 
                         c = c.replace(/\n/g, "<br />"); //mod by jas, take the br!
                         //mod by JAS here
-			return m1+"<pre code=\""+codename+"\">"+c+"</pre>";
+                        if (m2.length == 1) {
+                          return m1+"<code>"+c+"</code>";
+                        }else {
+			  return m1+"<pre code=\""+codename+"\">"+c+"</pre>";
+                        }
 //			return "<code>"+c+"</code>";
 
 		});
