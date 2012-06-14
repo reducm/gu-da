@@ -1,0 +1,6 @@
+module JError
+  def notify
+    p 'fuck that shit'
+  end
+end
+

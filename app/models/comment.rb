@@ -1,5 +1,7 @@
 #encoding: utf-8
+require_dependency 'jas/jnotify'
 class Comment < ActiveRecord::Base
+  include JNotify
   belongs_to :user
   belongs_to :article
   
@@ -32,7 +34,6 @@ class Comment < ActiveRecord::Base
       errors[:visitor_email] << 'Email不能为空'
     elsif( visitor_email !~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i) && user_id == 0
       errors[:visitor_email] << 'Email格式不正确'
-    
     end
   end
 

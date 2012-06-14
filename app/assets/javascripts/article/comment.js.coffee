@@ -52,6 +52,6 @@ wrap_comment = (comment)->
 
 wrap_head = (comment)->
   if comment.user_picture?
-    "<a href=\"javascript:void(0)\"><img src=\"#{comment.user_picture}\" /></a>"
+    "<a href=\"javascript:void(0)\"><img src=\"#{comment.user_picture}\" width='80px' /></a>"
   else
     "<i class=\"avatar_image\"></i>"

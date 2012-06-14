@@ -9,6 +9,7 @@
 
       <ul class="nav pull-right">
         <% unless @user_name.blank? %>
+          <li><span class="badge">1</span></li>
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <%= @user_name %> 
@@ -23,6 +24,9 @@
           <li><%= link_to '登录', blog_path %> </li>
           <li><%= link_to '注册', new_user_path %> </li>
         <%end%>
-        </div>
-      </div>
-    </div> 
+      </ul>
+
+      
+    </div>
+  </div>
+</div> 
