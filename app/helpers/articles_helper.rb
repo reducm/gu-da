@@ -105,7 +105,13 @@ module ArticlesHelper
            else
              content_tag :span, c, :class => 'badge '
            end
-    link_to span, "#{edit_user_path(user_id)}#eu_message_div"
+    link_to span, "#{user_notifications_path(user_id)}"
+  end
+
+  def active_class(symbol)
+    if symbol.to_s == params[:controller]
+      'class=active'
+    end
   end
 
   private
