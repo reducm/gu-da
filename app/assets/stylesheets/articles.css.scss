@@ -332,6 +332,17 @@ $hc: black;
   @include word_break();
 }
 
+.comment_name{
+  float:left
+}
+
+.comment_reply {
+}
+
+.comment_current_content {
+
+}
+
 #comment {
   background: #f2f2f2; 
   @include border-radius(4px);

@@ -29,6 +29,14 @@ $(document).ready(->
   textarea.bind('keyup', (e)->
     $("#new_comment").submit() if (e.ctrlKey && e.which == 13 || e.which == 10)
   )
+
+  $("a[data-toggle='reply_comment']").bind('click',()->
+    name = $(this).parent().prev('.comment_name').text()
+    ov = textarea.val()
+    textarea.val("@#{name} #{ov}")
+    textarea.setCurPos(textarea.val().length)
+    textarea.focus()
+  )
 )
 
 wrap_comment = (comment)->
