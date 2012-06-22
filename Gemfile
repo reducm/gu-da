@@ -41,10 +41,7 @@ end
 
 gem 'jquery-rails'
 
-group :development, :test do
-#  gem 'ruby-debug19', :require => 'ruby-debug' 
-  gem 'pry-rails'
-  gem 'pry-nav'
+group :test do
   gem 'rspec-rails'
   gem 'rspec'
   gem 'factory_girl_rails'
@@ -57,4 +54,10 @@ group :development, :test do
   gem 'rb-inotify'
   gem 'rb-fsevent'
   gem 'database_cleaner'
+end
+
+group :development, :test do
+#  gem 'ruby-debug19', :require => 'ruby-debug' 
+  gem 'pry-rails'
+  gem 'pry-nav'
 end

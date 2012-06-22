@@ -4,9 +4,10 @@
 #guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, :cucumber => false, :test_unit => false, :bundler => false, :cli => "-d"  do
 notification :libnotify, :timeout => 2, :transient => true, :append => false
 group :jas do
-  guard :spork, :wait =>60  do
+  guard :spork, :wait =>60, :rspec_env => { 'RAILS_ENV' => 'test' }, :cucumber => false, :test_unit => false, :bundler => false do
     watch('config/application.rb')
     watch('config/environment.rb')
+    watch('Gemfile')
     watch(%r{^config/environments/.+\.rb$})
     watch(%r{^config/initializers/.+\.rb$})
     watch('spec/spec_helper.rb') { :rspec }
