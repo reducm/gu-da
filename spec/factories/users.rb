@@ -3,8 +3,8 @@
 FactoryGirl.define do
   factory :user, :aliases => [:jas] do
     name 'jas'
-    password '123456'
-    password_confirm '123456'
+    password 'aaaaaa'
+    password_confirm 'aaaaaa'
     email 'jas@gmail.com'
   end
 end
