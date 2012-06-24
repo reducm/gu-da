@@ -5,6 +5,7 @@ describe Article do
     @article = Factory.build(:article) 
   end
 
+
   context "model CURD" do
     it "test save" do
       @article.save.should be_true

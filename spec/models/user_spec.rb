@@ -1,7 +1,7 @@
 #encoding: utf-8
 require 'spec_helper'
 describe User do
-  let!(:user) {Factory :user}
+  let!(:user) {Factory :jas}
   let(:params) { {name:'jas',password:'aaaaaa' } }
 
   describe "test check function" do
