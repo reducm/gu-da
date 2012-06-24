@@ -12,6 +12,8 @@
 
     <%= render :partial => 'layouts/nav' %> 
 
+    <%= flash_message %>
+
     <div class="container row" id="container">
 
       <%= render :partial => 'layouts/breadcrumbs' %>
@@ -33,6 +35,6 @@
     <br/ >
     <script>window.action="<%= params[:action]%>"</script>
 
-    <%= debug params[:controller] %>
+    <%= debug flash %>
   </body>
 </html>

@@ -7,7 +7,7 @@ class Notification < ActiveRecord::Base
   validates :receiver_id, :presence => {message:'不能没有接收者'}
 
   def self.get_all(user_id)
-    ns = includes(:senderable => [:article,:user]).where("receiver_id=?", user_id)
+    ns = includes(:senderable => [:article,:user]).where("receiver_id=?", user_id).order("created_at desc")
     ns.update_all(readed:true)
     ns
   end

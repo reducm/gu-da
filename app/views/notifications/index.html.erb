@@ -1,9 +1,24 @@
 <div id="eu_form_div" class="tab-pane active">
-  <% @notifications.each do|n|%>
-    <div>
-      @<%= n.senderable.get_user_name%> 评论了你的文章 <%= link_to n.senderable.article.title, article_path(n.senderable.article_id)%>  
-      <br />
-      <strong> <%= n.senderable.content%> </strong>
-    </div>   
-  <% end %>
+  <div id="notifications">
+    <% if @notifications.size == 0%>
+      <div class='notification_each'>
+        当前用户暂无通知消息
+      </div>
+      <div class='empty_height'></div>
+    <%else%>
+      <% @notifications.each do|n|%>
+        <div class="notification_each">
+          <%= link_to "删除", notification_path(n), :method =>'delete', :class=>'btn btn-danger pull-right' %> 
+          <div class='head_div'>
+            <%= show_user_head(n.senderable.user, nil, :small)%>
+          </div>
+          <div class="pull-left notification_content">
+            <%= markdown(n.content)%>
+          </div>
+          <div class="empty_height"></div>
+        </div>   
+      <% end %>
+
+    <%end%>
+  </div>
 </div>

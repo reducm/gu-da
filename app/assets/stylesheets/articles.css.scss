@@ -41,6 +41,10 @@ $hc: black;
       border:none;
       padding: 5px 20px 0px 20px;
       background: #e1e1e1;
+      p {
+        margin:0;
+        padding:0;
+      }
   }
 }
 
@@ -355,4 +359,20 @@ $hc: black;
 }
 
 ///////end_comment//////////
+////////notification /////
+.notification_each {
+  @include markdown_style(); 
+  border-bottom: 1px solid #ddd;
+  margin-top: 12px;
+}
+
+#notifications {
+  width:97%;
+  margin: 0 auto;
+}
+
+.notification_content {
+  margin-left:12px;
+}
+///////end_notification//////////
 

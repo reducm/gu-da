@@ -4,6 +4,18 @@ module ArticlesHelper
     @owner
   end
 
+  def flash_message
+    f = flash.to_hash
+    if f.size > 0
+      str = link_to("x","javascript:void(0)",:class=>'pull-right', :style=>'color:white', 'data-dismiss'=>'close')
+      str +=  "<div>#{f.values.join(", ")}</div>".html_safe
+      c = "container #{f.keys.join(" ")}"
+      content_tag :div, :class => c, :id => 'flash' do
+        a = content_tag(:div,str,:id=>'flash_content')
+      end
+    end
+  end
+
   def catagory_sidebar(user)
     render :partial => 'layouts/catagory', :locals => { :catagories => @catagories, :user_id => user.id}
   end
@@ -56,16 +68,16 @@ module ArticlesHelper
     end
   end
 
-  def show_user_head(user = nil, width=nil)
+  def show_user_head(user = nil, width=nil, version=:head)
     if user.nil?
       return content_tag :i, "",:class => 'avatar_image' 
     end
 
     if user.picture.present?
       if owner?
-        link_to (get_image_link(user,width)), "#upload_head", "data-toggle" => 'modal', "rel" => "popover", "data-content" => '这里可以快速设置你的头像'  
+        link_to (get_image_link(user,width,version)), "#upload_head", "data-toggle" => 'modal', "rel" => "popover", "data-content" => '这里可以快速设置你的头像'  
       else
-        get_image_link(user,width)
+        get_image_link(user,width,version)
       end
     else
       if owner?
@@ -119,11 +131,11 @@ module ArticlesHelper
     (regtime).to_i
   end
 
-  def get_image_link(user,width=nil)
+  def get_image_link(user,width=nil,version)
     unless width.nil?
-      image_tag user.picture.file.head.url, :width=>"#{width}px"
+      image_tag user.picture.file.send(version).url, :width=>"#{width}px"
     else
-      image_tag user.picture.file.head.url
+      image_tag user.picture.file.send(version).url
     end
   end
 end

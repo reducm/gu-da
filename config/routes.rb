@@ -17,6 +17,7 @@ GuDa::Application.routes.draw do
   resources :catagories
   resources :tags
   resources :comments
+  resources :notifications
   post "users/login" => 'users#login', :as => :login 
 
 #  end

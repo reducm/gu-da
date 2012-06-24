@@ -21,7 +21,7 @@ $bb: #202e4b;
 html, body {
   background: $bb;
   @include cw();
-  height:100%;
+    height:100%;
   padding:20px;
 }
 
@@ -83,13 +83,13 @@ a {
   padding-top: 15px;
   padding-bottom: 11px;
   @include border-radius(4px);
-  
+
   input {
     width: 90%;
     display: block;
     margin: 0 auto;
   }
-  
+
   #signup_submit {
     display:inline-block;
     width: 30%;
@@ -187,7 +187,7 @@ $new_user_margin_left: 67px;
   height: 100%;
   border: 1px solid $border_color_grey;
   @include border-radius(4px);
-  background: white;
+    background: white;
 }
 
 #edit_user_div {
@@ -206,6 +206,31 @@ $new_user_margin_left: 67px;
 #edit_user_right {
   @include white_radius();
     width:68%;
-    float:left;
+    float:right;
 }
 /////end_user////////
+
+///flash///
+#flash {
+  margin: 15px auto 0;
+  color: white;
+  @include border-radius(4px);
+}
+.notice {
+  background: $green;
+}
+
+.error {
+  background: $red;
+}
+
+.wraning {
+  background: $blue;
+}
+
+#flash_content {
+  width:95%;
+  margin: 5px auto;
+}
+
+///end_flash /////////

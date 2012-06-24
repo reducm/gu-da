@@ -8,9 +8,9 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-
     <%= render :partial => 'layouts/nav' %> 
 
+    <%= flash_message %>
     <div class="container row" id="container">
 
       <div id="edit_user_div">
@@ -33,6 +33,6 @@
     <br/ >
     <script>window.action="<%= params[:action]%>"</script>
 
-    <%= debug params %>
+    <%= debug flash %>
   </body>
 </html>
