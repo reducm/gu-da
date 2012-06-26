@@ -1,0 +1,22 @@
+<div id="authentications">
+  <h2>绑定帐号后，可以在你创建或评论文章的时候分享到社交平台</h2>
+  <table class='table table-striped'>
+    <thead>
+      <tr>
+        <th>类型</th>
+        <th>状态</th>
+        <th>信息</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% %w(weibo douban facebook twitter).each do |client| %> 
+        <tr>
+          <td><%= sprite_tag("icons_#{client}")%></td>
+          <td><%= get_authentication_status(client, @authentication_hash) %></td>
+          <td><%= get_authentication_info(client, @authentication_hash)%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

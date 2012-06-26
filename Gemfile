@@ -1,6 +1,6 @@
 source 'http://ruby.taobao.org'
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.6'
 gem 'railties'
 
 #数据
@@ -23,9 +23,17 @@ gem 'kaminari'
 #社交平台
 gem 'omniauth'
 gem 'omniauth-weibo'
+gem 'omniauth-facebook'
+gem 'omniauth-douban'
+gem 'omniauth-twitter'
 gem 'omniauth-github'
 gem "social-share-button"
 gem 'weibo', :git => "https://github.com/ballantyne/weibo.git" 
+gem 'douban-ruby', :git => 'https://github.com/lidaobing/douban-ruby.git'
+
+#合并小图片
+gem 'sprite-factory'
+gem 'chunky_png'
 
 #上传
 gem 'carrierwave'

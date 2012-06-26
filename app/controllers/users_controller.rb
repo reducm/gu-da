@@ -32,13 +32,7 @@ class UsersController < ApplicationController
       format.html # new.html.erb
     end
   end
-
-  def edit
-    @user = User.find(params[:id])
-    @title = "#{@user.name} 用户设置"
-    render :layout => "acount_setting"
-  end
-
+  
   def create
     @user = User.new(params[:user])
     @title = "用户注册"
@@ -54,7 +48,7 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-      @setting = Setting.create(:user => @user )
+      @setting = Setting.create(:user => @user)
       set_session(@user)
       session[:signup_new] = true
       redirect_to articles_url, :method => 'get' 
@@ -62,6 +56,12 @@ class UsersController < ApplicationController
       #flash[:notice] = @user.jerrors
       render :new
     end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+    @title = "#{@user.name} 用户设置"
+    render :layout => "acount_setting"
   end
 
   def update

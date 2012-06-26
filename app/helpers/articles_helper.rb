@@ -37,7 +37,7 @@ module ArticlesHelper
   end
 
   def article_width_height
-    if params[:action] == 'edit' || params[:action] == 'new'
+    if new_or_edit?
       "class='article_edit_width'"
     else
       "class='article_normal_width'"
@@ -89,7 +89,8 @@ module ArticlesHelper
   end
 
   def new_or_edit?
-    params[:action] == 'edit' || params[:action] == 'new'
+    params[:action] == 'edit' || params[:action] == 'new' || params[:action] == 'create' || params[:action] == 'update'
+    #    params[:action] == ('edit' || 'new' || 'create' || 'update')
   end
 
   def jtime(time)
@@ -123,6 +124,26 @@ module ArticlesHelper
   def active_class(symbol)
     if symbol.to_s == params[:controller]
       'class=active'
+    end
+  end
+
+  def sprite_tag(class_name)
+    content_tag :i, '', class:class_name, style:'display:inline-block'
+  end
+
+  def get_authentication_status(client,authentication_hash)
+    if authentication_hash.nil? || authentication_hash[client].nil?
+      link_to "尚未关联", "/auth/#{client}"
+    else
+      content_tag(:span, '已关联 | ') + link_to('取消','#')
+    end
+  end
+
+  def get_authentication_info(client,authentication_hash)
+    if authentication_hash.nil? || authentication_hash[client].nil?
+      link_to "尚未关联", auth_path(client)
+    else
+      image_tag(authentication_hash[client]['image']) + content_tag(:span,authentication_hash[client]['nickname'], class:'luser_name')  
     end
   end
 

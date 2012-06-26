@@ -198,16 +198,22 @@ $new_user_margin_left: 67px;
 
 #edit_user_left {
   @include white_radius();
-    width:30%;
-    float:left;
-    margin-right: 16px;
+  width:30%;
+  float:left;
+  margin-right: 16px;
+  background:white;
 }
 
 #edit_user_right {
   @include white_radius();
-    width:68%;
-    float:right;
+  width:68%;
+  float:right;
+  background:white;
+  h2 {
+    color: $gray;
+  }
 }
+
 /////end_user////////
 
 ///flash///

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_one :setting, :dependent => :destroy 
   has_one :picture, :as => :pictureable, :dependent => :destroy  
   has_many :notifications, :as => :senderable
+  has_many :authentications
 
   scope :check
   attr_accessible :name, :email, :password, :password_confirm, :description, :picture, :setting

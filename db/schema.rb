@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120614162908) do
+ActiveRecord::Schema.define(:version => 20120626081523) do
 
   create_table "article_tagships", :force => true do |t|
     t.integer  "article_id"
@@ -29,6 +29,18 @@ ActiveRecord::Schema.define(:version => 20120614162908) do
     t.integer  "catagory_id",                :default => 0
     t.string   "preview",     :limit => 810
     t.integer  "visit",                      :default => 0
+  end
+
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "uid"
+    t.string   "nickname"
+    t.string   "image"
+    t.string   "asecret"
+    t.string   "atoken"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "provider"
   end
 
   create_table "catagories", :force => true do |t|

@@ -1,0 +1,22 @@
+/*
+
+        Creating a sprite from following images:
+        
+        app/assets/images/sprites/icons/douban.png (32x32)
+        app/assets/images/sprites/icons/facebook.png (32x32)
+        app/assets/images/sprites/icons/twitter.png (32x32)
+        app/assets/images/sprites/icons/weibo.png (32x32)
+
+        Output files:
+          app/assets/images/sprites/icons.png
+          app/assets/stylesheets/sprites/icons.scss
+
+        Output size:
+          128x32
+
+
+*/
+.icons_douban { width: 32px; height: 32px; background: url(image-path('sprites/icons.png')) 0px 0px no-repeat; }
+.icons_facebook { width: 32px; height: 32px; background: url(image-path('sprites/icons.png')) -32px 0px no-repeat; }
+.icons_twitter { width: 32px; height: 32px; background: url(image-path('sprites/icons.png')) -64px 0px no-repeat; }
+.icons_weibo { width: 32px; height: 32px; background: url(image-path('sprites/icons.png')) -96px 0px no-repeat; }

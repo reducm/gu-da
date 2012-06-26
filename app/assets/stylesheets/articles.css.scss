@@ -107,7 +107,7 @@ $hc: black;
       font-size:41px;
     }
   }
-    border-bottom: 1px solid $grayLighter;
+  border-bottom: 1px solid $grayLighter;
 }
 
 .empty_height {
@@ -375,4 +375,34 @@ $hc: black;
   margin-left:12px;
 }
 ///////end_notification//////////
+////////authentication/////
+.authentication_each {
+  @include markdown_style(); 
+  border-bottom: 1px solid #ddd;
+  margin-top: 12px;
+}
+
+#authentications {
+  width:97%;
+  margin: 0 auto;
+  td,th {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  table {
+    margin-top:15px;
+  }
+
+  h2 {
+    color: $gray;
+    border-bottom: 1px solid $grayLighter;
+  }
+}
+
+.luser_name {
+  font-size: 12px;
+}
+
+///////end_authentication//////////
 

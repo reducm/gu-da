@@ -1,6 +1,7 @@
 .bundle
 tmp/
 coverage/
+test/
 omniauth.rb
 db/*.sqlite3
 log/*.log
@@ -13,6 +14,9 @@ config/mongoid.yml
 config/config.yml
 config/redis.yml
 config/weibo.yml
+config/douban.yml
+config/twitter.yml
+config/facebook.yml
 config/mailer_daemon.yml
 public/uploads/**/*
 public/topics

@@ -1,7 +1,7 @@
 GuDa::Application.routes.draw do
   root :to => 'blog#index'
   match "blog" => 'blog#index'
-  match "/auth/:provider/callback", :to => "sessions#create"
+  match "/auth/:provider/callback", :to => "authentications#create", :as => :auth
 
   #scope 'blog' do
   resources :users do
@@ -11,6 +11,7 @@ GuDa::Application.routes.draw do
     end
     resources :notifications, :only => [:index, :show, :destroy] 
     resources :settings
+    resources :authentications
   end
 
   resources :articles

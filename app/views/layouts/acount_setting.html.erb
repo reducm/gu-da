@@ -15,11 +15,11 @@
 
       <div id="edit_user_div">
         <div id="edit_user_left">
-          <ul class="nav nav-pills nav-stacked">
+          <ul class="nav nav-tabs nav-stacked">
             <li <%= active_class(:users) %> > <%= link_to "个人资料", edit_user_path(@user_id) %> </li>
             <li <%= active_class(:blog) %> > <%= link_to "博客管理", "#eu_blogmanage_div"%></li>
             <li <%= active_class(:notifications) %> > <%= link_to "消息管理", user_notifications_path(@user_id)%></li>
-            <li <%= active_class(:athuthtication) %> > <%= link_to "社交授权", "#eu_social_div"%></li>
+            <li <%= active_class(:authentications) %> > <%= link_to "社交授权", user_authentications_path(@user_id)%></li>
           </ul>
         </div>
         <div id="edit_user_right" class="tab-content">
@@ -32,7 +32,5 @@
     <%= render :partial => 'layouts/foot' %>
     <br/ >
     <script>window.action="<%= params[:action]%>"</script>
-
-    <%= debug flash %>
   </body>
 </html>

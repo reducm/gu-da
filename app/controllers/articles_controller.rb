@@ -1,5 +1,7 @@
 # encoding: UTF-8
+require_dependency 'jas/jshare'
 class ArticlesController < ApplicationController
+  include JShare
   layout "article"
   before_filter :check_login, :only => [:edit, :create, :new, :update, :destroy]   
   before_filter :check_session
@@ -19,18 +21,22 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new(user_id:session[:user_id])
-    @catagories = Catagory.get_all(@user_id)
+    set_catagories(@user_id)
     set_page_title '新建文章'
   end
 
   def create
-    @a = Article.new(params[:article])
-    @a.user_id = @user_id
-    if @a.save
-      @pic = Picture.create(:file => (params[:article][:picture]), :pictureable => @a )
+    @article = Article.new(params[:article])
+    @article.user_id = @user_id
+    if @article.save
+      @pic = Picture.create(:file => (params[:article][:picture]), :pictureable => @article )
+      flash[:notice]='文章创建成功！'
+      jshare(@user_id, @article.title, @article.content, 'url'=>url_for(@article) )
       redirect_to articles_path, method:'get'  
     else
-
+      flash[:error] = "出错了:#{@article.jerrors}"
+      set_catagories(@user_id)
+      render :new
     end
   end
 
