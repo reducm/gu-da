@@ -8,7 +8,7 @@
       <ul class="unstyled" id="user_form_toolbar">
         <li><%= link_to "增加分类", "#add_catagory_modal", "data-toggle" => 'modal', "class"=>"little_fontsize" %> </li>
         <li><%= link_to "预览(beta)", 'javascript:void(0)', "data-toggle"=>'preview', id:'toggle_preview' %> </li>
-        <li><a href="#">test</a></li>
+        <li><a href="#draft" data-toggle="modal">草稿</a></li>
       </ul>
       <%= f.input :content, :label => false, :input_html => {}%>
       <%= f.button :submit, '保存', :class => 'btn-primary span2', :style => "margin-top:25px"  %>
@@ -51,5 +51,13 @@
   </div>
 </div>
 
+<div class="modal" id="draft">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">×</button>
+    <h3>草稿</h3>
+  </div>
+  <div class="modal-body">
+  </div>
+</div>
 
 

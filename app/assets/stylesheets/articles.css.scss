@@ -195,6 +195,10 @@ $hc: black;
   float: left;
 }
 
+#draft {
+  display:none;
+}
+
 #preview_container {
   width:96%;
   margin:12px auto 0;
