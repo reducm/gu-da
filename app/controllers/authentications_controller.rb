@@ -18,15 +18,8 @@ class AuthenticationsController < ApplicationController
     renv = request.env["omniauth.auth"]
     atoken = renv["credentials"].token
     asecret = request.env["omniauth.auth"]["credentials"].secret
-    binding.pry
     a = Authentication.find_by_user_id_and_provider(@user_id,renv.provider) || Authentication.create_from_request(@user_id, renv)
-
-    case renv["provider"]
-    when 'weibo'
-      @oauth = Weibo::OAuth.new(Weibo::Config.api_key, Weibo::Config.api_secret)
-    when 'douban'
-    end
+    binding.pry
     redirect_to user_authentications_path(@user_id)
   end
-
 end

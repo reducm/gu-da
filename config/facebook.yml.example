@@ -1,0 +1,14 @@
+development:
+  api_key: key
+  api_secret: secret
+
+test:
+  api_key: key
+  api_secret: secret
+
+
+production:
+  api_key: key
+  api_secret: secret
+
+

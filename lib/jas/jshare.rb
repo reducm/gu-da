@@ -7,20 +7,27 @@ module JShare
     if as.size > 0
       as.each do |a|
         args = {'title'=> title, 'content'=>content}.merge(options).merge(a.attributes)
-        send a.provider.to_sym, args
+        begin
+          send a.provider.to_sym, args
+        rescue Exception
+          Rails.logger.error $!.message
+          raise "出错啦！！！ #{$!.message}"
+        ensure
+          next
+        end
       end
     end
   end
 
   def weibo(options)
-    oauth = Weibo::OAuth.new(Weibo::Config.api_key, Weibo::Config.api_secret)
-    oauth.authorize_from_access(options['atoken'], options['asecret'])
+    client = Weibo2::Client.from_hash({access_token:options['atoken'],expires:options['expires'].to_i})
     content = "发表了博客：#{options['title']}, \"#{options['content'].first(50)}...\" #{options['url']}"
-    Weibo::Base.new(oauth).update(content)
+    #client.refresh! 这个要申请了refresh_key才能用
+    r = client.statuses.update(content)
+    r.parsed
   end
 
   def douban(options)
-    
     douban = Douban::Authorize.new(Douban::Config.api_key, Douban::Config.api_secret)
     douban.access_token = {token:options['atoken'], secret:options['asecret']}
     douban.create_note(options['title'], options['content'])

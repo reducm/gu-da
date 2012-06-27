@@ -22,13 +22,14 @@ gem 'kaminari'
 
 #社交平台
 gem 'omniauth'
-gem 'omniauth-weibo'
+gem 'omniauth-weibo-oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-douban'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
 gem "social-share-button"
-gem 'weibo', :git => "https://github.com/ballantyne/weibo.git" 
+#gem 'weibo', :git => "https://github.com/ballantyne/weibo.git" 
+gem 'weibo2', :git => "https://github.com/acenqiu/weibo2.git"
 gem 'douban-ruby', :git => 'https://github.com/lidaobing/douban-ruby.git'
 
 #合并小图片
