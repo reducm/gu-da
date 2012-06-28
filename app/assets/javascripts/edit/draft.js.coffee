@@ -8,7 +8,6 @@ $(document).ready(->
   draft_div = $('#draft')
 
   draft = store.get('draft')
-
   if (typeof draft == 'undefined' || draft == null)
     store.set('draft',{})
 
@@ -21,6 +20,7 @@ $(document).ready(->
   set_draft = (title, content)->
     window.draftstamp or= Date.now()
     draft = store.get('draft')
+    draft[window.draftstamp] = {} unless draft[window.draft]
     draft[window.draftstamp]['title'] = title
     draft[window.draftstamp]['content'] = content
     store.set('draft', draft)
