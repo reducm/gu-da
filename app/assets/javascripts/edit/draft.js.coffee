@@ -14,7 +14,6 @@ $(document).ready(->
     set_draft(title.val(), value)
   )
 
-
   draft_div.on('shown', ()->
     operate_draft()
   )
@@ -23,7 +22,8 @@ $(document).ready(->
 init_draft = ()->
   draft = store.get('draft')
   if (typeof draft == 'undefined' || draft == null)
-    store.set('draft',{})
+    draft = {}
+    store.set('draft',draft)
   window.draftstamp or= Date.now()
   draft[window.draftstamp] or= {}
   store.set('draft',draft)
@@ -39,10 +39,13 @@ set_draft = (title, content)->
 operate_draft = ()->
   draft = store.get('draft')
   div = $('#draft .modal-body')
-  div.append("<table class='table table-striped', id='draft_table'><th><td>日期</td><td>题目</td></th></table>") unless $('#draft_table')[-1]?
+  div.append("<table class='table table-striped', id='draft_table'><thead><tr><th>日期</th><th>题目</th></tr></thead></table>") unless $('#draft_table')[0]?
   table = $("#draft_table")
+  table.find("tbody").remove()
+  tbody = $("<tbody></tbody>")
+  table.append(tbody)
   map_draft(draft, (k,v)->
-    table.append(wrap_draft_tag(k,v))
+    tbody.append(wrap_draft_tag(k,v))
   )
 
 wrap_draft_tag = (timestamp, article_hash)->
@@ -56,9 +59,13 @@ operate_title = (title)->
   else
     return '无题目'
 
+  #便利draft提供出来的draft, yield出的是由新到旧排好序的草稿
 map_draft = (draft, fn)->
+  array = []
   for k,v of draft
-    fn(k,v)
-
-
+    array.push(parseInt(k))
+  array = Jarray::sort(array,true)
+  array.reverse()
+  for i in array
+    fn(i, draft[i])
 

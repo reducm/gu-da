@@ -30,22 +30,29 @@ class window.Jtime
   Jtime::time_at = (timestamp) ->
     d = new Date(timestamp)
     "#{d.getMonth()+1}月#{d.getDate()}日 #{d.getHours()}:#{d.getMinutes()}"
-  
+
 class window.Jarray
-  Jarray::sort = (array)->
-    `
-    l = array.length;
-    var i = 0;
-    var j = 0;
-    for(i;i<l;i++) {
-      for(j=i+1;j<l;j++) {
-        if (j < i) {
-          var temp = array[j];
-          array[j] = array[i];
-          array[i] = temp ;
+  #冒泡排序,要插原声javascript...,to_s是排序后元素是否转换回string
+  Jarray::sort = (array,to_s=false)->
+    array =
+    `function(array,to_s){
+      var l = array.length;
+      var i = 0;
+      var j = 0;
+      for(i;i<l;i++) {
+        for(j=i+1;j<l;j++) {
+          if (array[j] < array[i]) {
+            var temp = array[j];
+            array[j] = array[i];
+            array[i] = temp ;
+          }
         }
       }
-    }
-    return array;
-  `
+      return array;
+     }(array,to_s);`
+    if to_s
+      for element, i in array
+        array[i] = element.toString()
+    array
+
 
