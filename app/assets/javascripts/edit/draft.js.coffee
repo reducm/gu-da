@@ -7,31 +7,58 @@ $(document).ready(->
   preview_title = $('#preview_title')
   draft_div = $('#draft')
 
-  draft = store.get('draft')
-  if (typeof draft == 'undefined' || draft == null)
-    store.set('draft',{})
+  init_draft()
 
   content.bind('keyup',()->
     value = $(this).val()
-    if value.length > 50 && value.length % 60 == 0
-      set_draft(title.val(), value)
+    set_draft(title.val(), value)
   )
 
-  set_draft = (title, content)->
-    window.draftstamp or= Date.now()
+
+  draft_div.on('shown', ()->
+    operate_draft()
+  )
+)
+
+init_draft = ()->
+  draft = store.get('draft')
+  if (typeof draft == 'undefined' || draft == null)
+    store.set('draft',{})
+  window.draftstamp or= Date.now()
+  draft[window.draftstamp] or= {}
+  store.set('draft',draft)
+
+set_draft = (title, content)->
+  if content.length > 50 && content.length % 60 == 0
     draft = store.get('draft')
-    draft[window.draftstamp] = {} unless draft[window.draft]
     draft[window.draftstamp]['title'] = title
     draft[window.draftstamp]['content'] = content
     store.set('draft', draft)
-  
-  draft_div.on('shown', ()->
-    draft = store.get('draft')
-    div = $('#draft .modal-body')
-    for k,v of draft
-      div.append("#{k} : #{v}")
+
+
+operate_draft = ()->
+  draft = store.get('draft')
+  div = $('#draft .modal-body')
+  div.append("<table class='table table-striped', id='draft_table'><th><td>日期</td><td>题目</td></th></table>") unless $('#draft_table')[-1]?
+  table = $("#draft_table")
+  map_draft(draft, (k,v)->
+    table.append(wrap_draft_tag(k,v))
   )
-)
+
+wrap_draft_tag = (timestamp, article_hash)->
+  timestamp = Jtime::time_at(parseInt(timestamp))
+  "<tr><td>#{timestamp}</td><td>#{operate_title(article_hash.title)}</td></tr>"
+
+operate_title = (title)->
+  title = $.trim(title)
+  if title? && title.length!=0
+    return title
+  else
+    return '无题目'
+
+map_draft = (draft, fn)->
+  for k,v of draft
+    fn(k,v)
 
 
 

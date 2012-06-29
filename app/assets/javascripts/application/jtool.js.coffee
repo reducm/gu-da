@@ -25,3 +25,27 @@ $.fn.extend({ #自己写的扩展textarea的jquery插件，$(node).count_num(lim
         counter.text(num-str.length)
     )
 })
+
+class window.Jtime
+  Jtime::time_at = (timestamp) ->
+    d = new Date(timestamp)
+    "#{d.getMonth()+1}月#{d.getDate()}日 #{d.getHours()}:#{d.getMinutes()}"
+  
+class window.Jarray
+  Jarray::sort = (array)->
+    `
+    l = array.length;
+    var i = 0;
+    var j = 0;
+    for(i;i<l;i++) {
+      for(j=i+1;j<l;j++) {
+        if (j < i) {
+          var temp = array[j];
+          array[j] = array[i];
+          array[i] = temp ;
+        }
+      }
+    }
+    return array;
+  `
+
