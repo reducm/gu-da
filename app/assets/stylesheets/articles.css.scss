@@ -195,9 +195,6 @@ $hc: black;
   float: left;
 }
 
-#draft {
-  display:none;
-}
 
 #preview_container {
   width:96%;
@@ -409,4 +406,14 @@ $hc: black;
 }
 
 ///////end_authentication//////////
+////////////draft//////////////
+#draft {
+  display:none;
+}
 
+#automatic_draft {
+}
+
+#manual_draft {
+}
+////////////end_draft
