@@ -40,9 +40,13 @@ class DraftController
     mtbody = $("<tbody></tbody>")
     for draft, i in ds
       if draft.manual
-        mtbody.append("<tr><td>#{draft.date}</td><td>#{operate_title(draft.title)}</td></tr>")
+        tr = $("<tr><td>#{draft.date}</td><td>#{operate_title(draft.title)}</td><td></td></tr>")
+        tr.popover({title:operate_title(draft.title),content:draft.content})
+        mtbody.append(tr)
       else
-        atbody.append("<tr><td>#{draft.date}</td><td>#{operate_title(draft.title)}</td></tr>")
+        tr = $("<tr><td>#{draft.date}</td><td>#{operate_title(draft.title)}</td><td></td></tr>")
+        tr.popover({title:operate_title(draft.title),content:draft.content})
+        atbody.append(tr)
     build_table($("#automatic_draft"),atbody)
     build_table($("#manual_draft"),mtbody)
 
@@ -55,7 +59,7 @@ operate_title = (title)->
 
 build_table = (element, tbody)->
   element.find("table").remove()
-  element.append("<table class='table table-striped'><thead><tr><th>日期</th><th>题目</th></tr></thead></table>")
+  element.append("<table class='table table-striped'><thead><tr><th>日期</th><th>题目</th><th>操作</th></tr></thead></table>")
   element.find("table").append(tbody)
 
 

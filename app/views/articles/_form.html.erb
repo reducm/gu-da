@@ -55,14 +55,14 @@
 <div class="modal" id="draft">
   <div class="modal-header">
     <button class="close" data-dismiss="modal">×</button>
-    <h3>草稿</h3>
+    <h3>草稿<span class="prompt">(最多保存10个,自动覆盖旧草稿)</span></h3>
   </div>
   <div class="modal-body">
     <ul class="nav nav-tabs" id="draft_tab">
       <li class="active"><a href="#manual_draft" data-toggle="tab">手动</a></li>
       <li><a href="#automatic_draft" data-toggle="tab">自动</a></li>
     </ul>
-    <div class='tab-content'>
+    <div class='tab-content' id="table_div">
       <div id="manual_draft" class='tab-pane active'></div>
       <div id="automatic_draft" class='tab-pane'></div>
     </div>

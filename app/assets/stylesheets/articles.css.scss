@@ -409,6 +409,14 @@ $hc: black;
 ////////////draft//////////////
 #draft {
   display:none;
+  font-size:14px;
+  tr {
+    cursor:pointer;
+  }
+}
+
+#table_div {
+  margin-top:-25px;
 }
 
 #automatic_draft {

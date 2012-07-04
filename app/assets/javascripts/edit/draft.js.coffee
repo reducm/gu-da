@@ -11,6 +11,15 @@ class window.Draft
 
   save:()->
       draft = store.get('draft')
+      temparr = []
+      map_draft(draft, (timestamp, draft_hash)=>
+        if draft_hash.manual == this.manual
+          temparr.push(timestamp)
+      )
+      if temparr.length >= 10 #保证数组长度是10
+        count = temparr.length - 10 + 1
+        for i in [1..count]
+          delete draft[temparr.pop()]
       draft[@timestamp]['title'] = @title
       draft[@timestamp]['content'] = @content
       draft[@timestamp]['manual'] = @manual
@@ -44,20 +53,21 @@ Draft::find = (timestamp)->
     draft[timestamp]
 
 Draft::all = ()->#返回一个包装好的Draft由小到大的数组
-    #便利draft提供出来的draft, yield出的是由新到旧排好序的草稿
-    map_draft = (draft, fn)->
-      array = []
-      for k,v of draft
-        array.push(parseInt(k))
-      array = Jarray::sort(array,true)
-      array.reverse()
-      for i in array
-        fn(i, draft[i])
-
     draft = store.get('draft')
     ds = []
     map_draft(draft, (k, v)->
         ds.push(new Draft(k, v.title, v.content, v.manual))
     )
     ds
+
+#便利draft提供出来的draft, yield出的是由新到旧排好序的草稿
+map_draft = (draft, fn)->
+  array = []
+  for k,v of draft
+    array.push(parseInt(k))
+  array = Jarray::sort(array,true)
+  array.reverse()
+  for i in array
+    fn(i, draft[i])
+
 

@@ -1,7 +1,7 @@
 # encoding: UTF-8
 require_dependency 'jas/jshare'
 class ArticlesController < ApplicationController
-  include JShare
+  #include JShare
   layout "article"
   before_filter :check_login, :only => [:edit, :create, :new, :update, :destroy]   
   before_filter :check_session
@@ -31,7 +31,7 @@ class ArticlesController < ApplicationController
     if @article.save
       @pic = Picture.create(:file => (params[:article][:picture]), :pictureable => @article )
       flash[:notice]='文章创建成功！'
-      jshare(@user_id, @article.title, @article.content, 'url'=>url_for(@article) )
+      #jshare(@user_id, @article.title, @article.content, 'url'=>url_for(@article) )
       redirect_to articles_path, method:'get'  
     else
       flash[:error] = "出错了:#{@article.jerrors}"
