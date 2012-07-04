@@ -28,11 +28,13 @@ $.fn.extend({ #自己写的扩展textarea的jquery插件，$(node).count_num(lim
 
 class window.Jtime
   Jtime::time_at = (timestamp) ->
+    if typeof timestamp == 'string'
+      timestamp = parseInt(timestamp)
     d = new Date(timestamp)
     "#{d.getMonth()+1}月#{d.getDate()}日 #{d.getHours()}:#{d.getMinutes()}"
 
 class window.Jarray
-  #冒泡排序,要插原声javascript...,to_s是排序后元素是否转换回string
+  #冒泡排序,要插原生javascript...,to_s是排序后元素是否转换回string, 由小到大排列
   Jarray::sort = (array,to_s=false)->
     array =
     `function(array,to_s){
