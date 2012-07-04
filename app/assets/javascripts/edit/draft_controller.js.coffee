@@ -17,6 +17,11 @@ class DraftController
     @draft_div.bind('shown',()=>
       this.show()
     )
+    $("a[data-toggle='save-draft']").bind('click',()=>
+      draft = new Draft(@timestamp, @title.val(), @content.val(),true)
+      draft.save()
+      @draft_div.modal('show')
+    )
 
   init:()->
     @timestamp ?= Date.now()
@@ -31,19 +36,27 @@ class DraftController
   show:()->
     ds = Draft::all()
     div = @draft_div.find('.modal-body')
-    div.append("<table class='table table-striped', id='draft_table'><thead><tr><th>日期</th><th>题目</th></tr></thead></table>") unless $('#draft_table')[0]?
-    table = $("#draft_table")
-    table.find("tbody").remove()
-    tbody = $("<tbody></tbody>")
-    table.append(tbody)
+    atbody = $("<tbody></tbody>")
+    mtbody = $("<tbody></tbody>")
     for draft, i in ds
-      tbody.append("<tr><td>#{draft.date}</td><td>#{operate_title(draft.title)}</td></tr>")
-      
+      if draft.manual
+        mtbody.append("<tr><td>#{draft.date}</td><td>#{operate_title(draft.title)}</td></tr>")
+      else
+        atbody.append("<tr><td>#{draft.date}</td><td>#{operate_title(draft.title)}</td></tr>")
+    build_table($("#automatic_draft"),atbody)
+    build_table($("#manual_draft"),mtbody)
+
 operate_title = (title)->
   title = $.trim(title)
   if title? && title.length!=0
     return title
   else
     return '无题目'
+
+build_table = (element, tbody)->
+  element.find("table").remove()
+  element.append("<table class='table table-striped'><thead><tr><th>日期</th><th>题目</th></tr></thead></table>")
+  element.find("table").append(tbody)
+
 
 

@@ -1,5 +1,5 @@
 class window.Draft
-  constructor:(@timestamp,@title,@content)->
+  constructor:(@timestamp,@title,@content,@manual=false)->
     this.init()
     @date = Jtime::time_at(@timestamp)
 
@@ -10,11 +10,16 @@ class window.Draft
     store.set('draft',draft)
 
   save:()->
+      draft = store.get('draft')
+      draft[@timestamp]['title'] = @title
+      draft[@timestamp]['content'] = @content
+      draft[@timestamp]['manual'] = @manual
+      store.set('draft', draft)
+
+  check:()->
     if @content.length > 50 && @content.length % 60 == 0
-        draft = store.get('draft')
-        draft[@timestamp]['title'] = @title
-        draft[@timestamp]['content'] = @content
-        store.set('draft', draft)
+      this.save()
+    
     
   update_attributes:(timestamp,title,content)->
       @timestamp = timestamp
@@ -32,7 +37,7 @@ class window.Draft
 
 Draft::update = (timestamp, title, content)->
   draft = new Draft(timestamp, title,content)
-  draft.save()
+  draft.check()
 
 Draft::find = (timestamp)->
     draft = store.get('draft')
@@ -52,7 +57,7 @@ Draft::all = ()->#返回一个包装好的Draft由小到大的数组
     draft = store.get('draft')
     ds = []
     map_draft(draft, (k, v)->
-        ds.push(new Draft(k, v.title, v.content))
+        ds.push(new Draft(k, v.title, v.content, v.manual))
     )
     ds
 

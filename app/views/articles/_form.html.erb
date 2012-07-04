@@ -8,10 +8,11 @@
       <ul class="unstyled" id="user_form_toolbar">
         <li><%= link_to "增加分类", "#add_catagory_modal", "data-toggle" => 'modal', "class"=>"little_fontsize" %> </li>
         <li><%= link_to "预览(beta)", 'javascript:void(0)', "data-toggle"=>'preview', id:'toggle_preview' %> </li>
-        <li><a href="#draft" data-toggle="modal">草稿</a></li>
+        <li><a href="#draft" data-toggle="modal">查看草稿</a></li>
       </ul>
       <%= f.input :content, :label => false, :input_html => {}%>
-      <%= f.button :submit, '保存', :class => 'btn-primary span2', :style => "margin-top:25px"  %>
+      <%= f.button :submit, '发布', :class => 'btn-primary span2' %>
+      <a href="#draft" data-toggle="save-draft" class="btn btn-primary" >保存草稿</a>
     <%end%>
   </div> 
 </div>
@@ -62,8 +63,8 @@
       <li><a href="#automatic_draft" data-toggle="tab">自动</a></li>
     </ul>
     <div class='tab-content'>
-      <div id="manual_draft" class='tab-pane active'>手动</div>
-      <div id="automatic_draft" class='tab-pane'>自动</div>
+      <div id="manual_draft" class='tab-pane active'></div>
+      <div id="automatic_draft" class='tab-pane'></div>
     </div>
   </div>
 </div>
