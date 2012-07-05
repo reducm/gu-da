@@ -413,6 +413,9 @@ $hc: black;
   tr {
     cursor:pointer;
   }
+  a {
+    font-size:14px;
+  }
 }
 
 #table_div {
@@ -423,5 +426,17 @@ $hc: black;
 }
 
 #manual_draft {
+}
+
+.popover-content {
+  font-size:14px;
+}
+
+.width-all {
+  width:400px;
+}
+
+.del_link {
+  color:$red;
 }
 ////////////end_draft

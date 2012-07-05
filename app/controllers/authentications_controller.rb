@@ -4,6 +4,7 @@ class AuthenticationsController < ApplicationController
   before_filter :check_login
 
   def index
+    flash[:error] = 'test'
     @authentications = Authentication.get_all(@user_id)
     @authentication_hash = {}
     @authentications.each do |a|

@@ -50,7 +50,8 @@ Draft::update = (timestamp, title, content)->
 
 Draft::find = (timestamp)->
     draft = store.get('draft')
-    draft[timestamp]
+    d = draft[timestamp]
+    new Draft(timestamp,d.title,d.content,d.manual)
 
 Draft::all = ()->#返回一个包装好的Draft由小到大的数组
     draft = store.get('draft')
@@ -60,7 +61,16 @@ Draft::all = ()->#返回一个包装好的Draft由小到大的数组
     )
     ds
 
-#便利draft提供出来的draft, yield出的是由新到旧排好序的草稿
+Draft::destroy = (timestamp)->
+    draft = store.get('draft')
+    if typeof draft[timestamp] == 'undefined' || draft[timestamp] == null
+      false
+    else
+      delete draft[timestamp]
+      store.set('draft',draft)
+      true
+
+#遍历draft提供出来的draft, yield出的是由新到旧排好序的草稿
 map_draft = (draft, fn)->
   array = []
   for k,v of draft

@@ -7,12 +7,9 @@ module ArticlesHelper
   def flash_message
     f = flash.to_hash
     if f.size > 0
-      str = link_to("x","javascript:void(0)",:class=>'pull-right', :style=>'color:white', 'data-dismiss'=>'close')
-      str +=  "<div>#{f.values.join(", ")}</div>".html_safe
-      c = "container #{f.keys.join(" ")}"
-      content_tag :div, :class => c, :id => 'flash' do
-        a = content_tag(:div,str,:id=>'flash_content')
-      end
+      str = f.values.join(", ")
+      c = f.has_key?(:error) ? "danger" : "success"
+      content_tag :script, raw( "$(document).ready(function(){Jalert.prototype.alert(\"#{c}\",\"#{str}\")})")   
     end
   end
 
