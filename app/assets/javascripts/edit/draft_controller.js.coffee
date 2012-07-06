@@ -26,6 +26,7 @@ class DraftController
     )
     @draft_div.delegate('tr', 'mouseenter',()->
       $(".popover-inner").width(400)
+      $(".popover-content").addClass('word_break')
     ).delegate('tr','restore',()->
         that.restore($(this).attr('timestamp'))
     ).delegate('tr','delete',()->
@@ -59,7 +60,6 @@ class DraftController
     if Draft::destroy(timestamp)
         element.popover('hide')
         element.remove()
-
 
   show:()->
     ds = Draft::all()

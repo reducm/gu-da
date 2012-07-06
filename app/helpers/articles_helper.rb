@@ -9,7 +9,7 @@ module ArticlesHelper
     if f.size > 0
       str = f.values.join(", ")
       c = f.has_key?(:error) ? "danger" : "success"
-      content_tag :script, raw( "$(document).ready(function(){Jalert.prototype.alert(\"#{c}\",\"#{str}\")})")   
+      content_tag :script, raw( "$(document).ready(function(){Jalert.prototype.alert(\"#{str}\",\"#{c}\")})")   
     end
   end
 
