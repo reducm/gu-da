@@ -26,17 +26,14 @@ class DraftController
       @draft_div.modal('show')
       jalert("创建成功","success",@modal_body)
     )
-    @draft_div.delegate('tr', 'mouseenter',()->
-      $(".popover-inner").width(400)
-      $(".popover-content").addClass('word_break')
-    ).delegate('tr','restore',()->
+    @draft_div.delegate('tr','restore',()->
         that.restore($(this).attr('timestamp'))
     ).delegate('tr','delete',()->
         that.destroy($(this))
     )
 
     @draft_div.delegate('tr', 'mouseenter mouseleave', ()->
-      $(this).find('td:last div').toggle()
+      #$(this).find('td:last div').toggle()
     )
     @draft_div.delegate('a[data-toggle]','click',()->
         $(this).parents("tr").trigger($(this).attr('data-toggle'))
@@ -61,7 +58,6 @@ class DraftController
   destroy:(element)->
     timestamp = element.attr('timestamp')
     if Draft::destroy(timestamp)
-        element.popover('hide')
         element.remove()
 
   show:()->
@@ -76,7 +72,7 @@ class DraftController
       catch error
         content = draft.content
         
-      tr = wrap_tr(draft,content)
+      tr = wrap_tr(draft,content, @converter)
       if draft.manual
         mtbody.append(tr)
       else
@@ -96,9 +92,18 @@ build_table = (element, tbody)->
   element.append("<table class='table table-striped'><thead><tr><th>日期</th><th>题目</th><th></th></tr></thead></table>")
   element.find("table").append(tbody)
 
-wrap_tr = (draft,content)->
-    tr = $("<tr timestamp='#{draft.timestamp}'><td>#{draft.date}</td><td>#{operate_title(draft.title)}</td><td><div class=\"hide\">#{restore()}|#{del()}</div></td></tr>")
-    tr.popover({title:operate_title(draft.title),content:content})
+wrap_tr = (draft,content,converter)->
+    tr = $("<tr timestamp='#{draft.timestamp}'><td>#{draft.date}</td><td>#{operate_title(draft.title)}</td><td><div>#{restore()}|#{del()}</div></td></tr>")
+    tr.bind('click', ()->
+      div
+      if $("#draft_#{draft.timestamp}")[0]?
+        div = $("#draft_#{draft.timestamp}")
+      else
+        div = $("<div id='draft_#{draft.timestamp}'>#{converter.makeHtml(draft.content)}</div>")
+        tr.after(div)
+        div.hide()
+      div.toggle()
+    )
     tr
 
 restore = ()->
