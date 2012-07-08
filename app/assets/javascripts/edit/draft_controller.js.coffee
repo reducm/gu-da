@@ -13,6 +13,7 @@ class DraftController
     this.init()
     that = this
     @converter = new Showdown.converter()
+    @modal_body = @draft_div.find('.modal-body')
     @content.bind('keyup',()=>
       this.update(@title.val(), @content.val())
     )
@@ -23,6 +24,7 @@ class DraftController
       draft = new Draft(@timestamp, @title.val(), @content.val(),true)
       draft.save()
       @draft_div.modal('show')
+      jalert("创建成功","success",@modal_body)
     )
     @draft_div.delegate('tr', 'mouseenter',()->
       $(".popover-inner").width(400)
@@ -54,6 +56,7 @@ class DraftController
     draft = Draft::find(timestamp)
     @title.val(draft.title)
     @content.val(draft.content)
+    jalert("恢复成功", "success", @modal_body)
 
   destroy:(element)->
     timestamp = element.attr('timestamp')
@@ -104,3 +107,4 @@ restore = ()->
 del = ()->
     "<a href=\"#\" class=\"del_link\" data-toggle=\"delete\">删除</a>"
 
+jalert = Jalert::alert

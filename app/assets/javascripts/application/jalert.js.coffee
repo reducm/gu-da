@@ -2,19 +2,12 @@ class window.Jalert
 
 #输出信息
 Jalert::alert = (str, type='info',element="#flash") ->
-  if element == "#flash"
-    inside(str,type,element)
-  else
-    above(str,type,element)
-
-above = (str,type,element)->
-  parent = $(element).parent()
-  parent.find('.alert').remove()
-  parent.prepend(wrap(type,str))
+  element = $(element) if typeof element == 'string'
+  inside(str, type, element)
 
 inside = (str,type,element)->
-  $(element).empty()
-  $(element).append(wrap(type,str))
+  element.find(".alert").remove()
+  element.prepend(wrap(type,str))
 
 wrap = (type, str)->
   div = """
@@ -23,4 +16,3 @@ wrap = (type, str)->
             #{str}
           </div>
         """
-
