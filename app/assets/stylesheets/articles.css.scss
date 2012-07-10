@@ -413,6 +413,12 @@ $hc: black;
 #draft {
   display:none;
   font-size:14px;
+  table {
+    div {
+      @include word_break();
+      overflow-x:auto;
+    }
+  }
   tr {
     cursor:pointer;
   }

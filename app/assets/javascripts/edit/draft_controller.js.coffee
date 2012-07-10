@@ -89,7 +89,7 @@ operate_title = (title)->
 
 build_table = (element, tbody)->
   element.find("table").remove()
-  element.append("<table class='table table-striped'><thead><tr><th>日期</th><th>题目</th><th></th></tr></thead></table>")
+  element.append("<table class='table table-striped'><thead><tr><th>日期</th><th>题目</th><th>操作</th></tr></thead></table>")
   element.find("table").append(tbody)
 
 wrap_tr = (draft,content,converter)->
