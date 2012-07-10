@@ -414,13 +414,15 @@ $hc: black;
   display:none;
   font-size:14px;
   table {
-    div {
+    tr {
+      cursor:pointer;
+      max-width:560px;
       @include word_break();
-      overflow-x:auto;
+      td {
+        max-width:560px;
+        @include word_break();
+      }
     }
-  }
-  tr {
-    cursor:pointer;
   }
   a {
     font-size:14px;

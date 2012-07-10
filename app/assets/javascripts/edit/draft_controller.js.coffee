@@ -31,9 +31,8 @@ class DraftController
     ).delegate('tr','delete',()->
         that.destroy($(this))
     )
-
     @draft_div.delegate('tr', 'mouseenter mouseleave', ()->
-      #$(this).find('td:last div').toggle()
+      $(this).find('td:last div').toggle()
     )
     @draft_div.delegate('a[data-toggle]','click',()->
         $(this).parents("tr").trigger($(this).attr('data-toggle'))
@@ -59,6 +58,10 @@ class DraftController
     timestamp = element.attr('timestamp')
     if Draft::destroy(timestamp)
         element.remove()
+        try
+          $("#draft_#{timestamp}").remove()
+        catch Exception
+        jalert("删除成功", "success", @modal_body)
 
   show:()->
     ds = Draft::all()
@@ -89,20 +92,21 @@ operate_title = (title)->
 
 build_table = (element, tbody)->
   element.find("table").remove()
-  element.append("<table class='table table-striped'><thead><tr><th>日期</th><th>题目</th><th>操作</th></tr></thead></table>")
+  element.append("<table class='table table-condensed'><thead><tr><th>日期</th><th>题目</th><th></th></tr></thead></table>")
   element.find("table").append(tbody)
 
 wrap_tr = (draft,content,converter)->
-    tr = $("<tr timestamp='#{draft.timestamp}'><td>#{draft.date}</td><td>#{operate_title(draft.title)}</td><td><div>#{restore()}|#{del()}</div></td></tr>")
-    tr.bind('click', ()->
+    tr = $("<tr timestamp='#{draft.timestamp}'><td>#{draft.date}</td><td>#{operate_title(draft.title)}</td><td><div class='hide'>#{restore()}|#{del()}</div></td></tr>")
+    tr.bind('click', (event)->
       div
       if $("#draft_#{draft.timestamp}")[0]?
         div = $("#draft_#{draft.timestamp}")
       else
-        div = $("<div id='draft_#{draft.timestamp}'>#{converter.makeHtml(draft.content)}</div>")
+        div = $("<tr id='draft_#{draft.timestamp}'><td colspan=\"3\">#{converter.makeHtml(draft.content)}</td></tr>")
         tr.after(div)
         div.hide()
-      div.toggle()
+        div.bind('click',-> $(this).toggle('fast'))
+      div.toggle('fast')
     )
     tr
 
