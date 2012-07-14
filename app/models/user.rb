@@ -11,9 +11,9 @@ class User < ActiveRecord::Base
   has_many :authentications
 
   scope :check
-  attr_accessible :name, :email, :password, :password_confirm, :description, :picture, :setting
+  attr_accessible :nickname, :email, :password, :password_confirm, :description, :picture, :setting
 
-  validates :name, :presence => { :message => '用户名不能为空' }, :uniqueness => {:message => '用户名已存在' }, :uniqueness => {:case_sensitive=>false, :message => '用户名已存在'}, :length=>{:minimum=>3, :maximum=>15, :message => '用户名长度在3-15之间' }
+  validates :nickname, :presence => { :message => '昵称不能为空' }, :uniqueness => {:message => '昵称已存在' }, :uniqueness => {:case_sensitive=>false, :message => '昵称已存在'}, :length=>{:minimum=>3, :maximum=>15, :message => '用户名长度在3-15之间' }
 
   validates :email, :presence => {:message => 'Email不能为空'}, :uniqueness => {:message => 'Email已存在' }, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message => 'Email格式不正确'}
   validates :password, :presence => {:message => '密码不能为空'}
@@ -24,8 +24,16 @@ class User < ActiveRecord::Base
 
   attr_accessor :password_confirm, :remember_me
 
+  def name
+    self.nickname
+  end
+
+  def name=(val)
+    self.nickname = val
+  end
+
   def self.check(user)
-    @u = User.find_by_name(user[:name])
+    @u = User.find_by_email(user[:email])
     if @u
       hashpass = valid_pass(user[:password],@u.salt)
       return @u if hashpass == @u.password
@@ -34,7 +42,7 @@ class User < ActiveRecord::Base
       @u
     else
       @u = User.new
-      @u.errors.add(:name, '没有这个用户') 
+      @u.errors.add(:email, '没有这个用户') 
       @u
     end
   end

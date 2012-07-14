@@ -6,6 +6,8 @@ module JLogin
     @logined = session[:logined].nil? ? false : true
     @user_id = @logined ? session[:user_id] : nil
     @user_name = @logined ? session[:user_name] : nil
+    @user_nickname = @user_name
+    @user_email = @logined ? session[:user_email] : nil
     @blog_name = session[:blog_name]
   end
 
@@ -13,7 +15,8 @@ module JLogin
   def set_session(user)
     session[:logined] = true
     session[:user_id] = user.id
-    session[:user_name] = user.name
+    session[:user_email] = user.email
+    session[:user_name] = user.nickname || user.name
     session[:blog_name] = (user.setting.blog_name.blank?)? "#{session[:user_name]}的博客" : user.setting.blog_name
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120627054022) do
+ActiveRecord::Schema.define(:version => 20120714070052) do
 
   create_table "article_tagships", :force => true do |t|
     t.integer  "article_id"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(:version => 20120627054022) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name"
+    t.string   "nickname"
     t.string   "email"
     t.string   "password"
     t.string   "salt"

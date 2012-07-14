@@ -65,7 +65,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by_name(@user_name)
+    @user = User.find_by_email(@user_email)
     if params[:user][:password_new] != params[:user][:password_confirm]
       flash[:notice] = '两次输入密码不相同'
       render :edit

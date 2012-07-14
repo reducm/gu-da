@@ -6,8 +6,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-users = User.create([{name:'jas',password:'aaaaaa',email:'a@a.com',description:'fuck that shit'},
-                     {name:'fff',email:'f@f.com',password:'ffffff',description:'fuck that firefox'}
+users = User.create([{nickname:'jas',password:'aaaaaa',email:'a@a.com',description:'fuck that shit'},
+                     {nickname:'fff',email:'f@f.com',password:'ffffff',description:'fuck that firefox'}
 ])
 
 users.each_with_index do |u,i|
