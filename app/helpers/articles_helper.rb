@@ -1,7 +1,7 @@
 #encoding: utf-8
 module ArticlesHelper
   def owner?
-    @owner
+    @owner || @admin
   end
 
   def flash_message
@@ -111,11 +111,11 @@ module ArticlesHelper
   def get_notifications_count(user_id)
     c = Notification.where("receiver_id=? and readed=0", user_id).count
     span = if c > 0
-             content_tag :span, c, :class => 'badge badge-info'
+             content_tag :span, c, :class => 'badge jbadge-info'
            else
              content_tag :span, c, :class => 'badge '
            end
-    link_to span, "#{user_notifications_path(user_id)}"
+    link_to span, user_notifications_path(user_id)
   end
 
   def active_class(symbol)

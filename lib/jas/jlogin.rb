@@ -9,6 +9,7 @@ module JLogin
     @user_nickname = @user_name
     @user_email = @logined ? session[:user_email] : nil
     @blog_name = session[:blog_name]
+    @admin = session[:admin] ? true : false
   end
 
   #登录的时候设置一些session
@@ -18,6 +19,7 @@ module JLogin
     session[:user_email] = user.email
     session[:user_name] = user.nickname || user.name
     session[:blog_name] = (user.setting.blog_name.blank?)? "#{session[:user_name]}的博客" : user.setting.blog_name
+    session[:admin] = admin?(user)
   end
 
   def update_session
@@ -37,7 +39,12 @@ module JLogin
   end
 
   #用在index和show里头判断对比session和提交id是否owner, 增加@owner
-  def check_owner(id)
-    @owner = (id == @user_id) ? true : false
+  def check_owner(user)
+    @owner = (user.id == @user_id) ? true : false
+  end
+
+  private
+  def admin?(user)
+    user.email.in? Admin::Config.admin
   end
 end

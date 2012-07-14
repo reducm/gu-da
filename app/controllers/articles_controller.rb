@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
       @signup_new = true
     end
     set_catagories(@current_user.id)
-    check_owner(@current_user.id)
+    check_owner(@current_user)
   end
 
   def new
@@ -63,7 +63,7 @@ class ArticlesController < ApplicationController
     @comments = Comment.get_by_article_id(@article.id)
     set_catagories(@article.user_id)
     set_page_title @article.title
-    check_owner @article.user_id
+    check_owner @current_user
   end
 
   def destroy

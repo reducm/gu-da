@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
 
   def self.get_user(params)
     if params[:user_name]
-      where("name=?",params[:user_name])[0]
+      where("nickname=?",params[:user_name])[0]
     elsif params[:user_id]
       where("id=?",params[:user_id])[0]
     end

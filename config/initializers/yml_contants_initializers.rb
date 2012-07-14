@@ -14,3 +14,8 @@ module Weibo2
   Weibo2::Config.api_secret = Weibo::Config.api_secret
   Weibo2::Config.redirect_uri = Weibo::Config.redirect_uri
 end
+
+module Admin
+  FILE = "#{Rails.root}/config/admin.yml"
+  include Jconfig
+end 

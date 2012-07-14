@@ -258,4 +258,18 @@ $new_user_margin_left: 67px;
   margin: 5px auto;
 }
 
+@mixin jbadge {
+  @include border-radius("4px");
+  display:inline-block;
+}
+
+.jbadge {
+  @include jbadge();
+  background: white;
+}
+
+.jbadge-info {
+  background:#2f96b4;
+}
+
 ///end_flash /////////
