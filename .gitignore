@@ -18,6 +18,7 @@ config/douban.yml
 config/twitter.yml
 config/facebook.yml
 config/mailer_daemon.yml
+config/admin.yml
 public/uploads/**/*
 public/topics
 public/topics/**/*
