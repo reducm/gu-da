@@ -1,7 +1,7 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
 
-@import "twitter/bootstrap/";
+@import "bootstrap";
 
 $bc: #4c5a76;
 $hc: black;
@@ -76,6 +76,11 @@ $hc: black;
   @include word_break();
   overflow-x:auto;
 }
+
+.backward {
+  color:rgba(179, 175, 175, 0.26);
+  font-size:14px;
+}
 ////////article/////////////
 #article {
   //@include border-radius(4px);
@@ -98,7 +103,7 @@ $hc: black;
 }
 
 .article_normal_width {
-  width: 78%;
+  width: 77%;
 }
 
 .title_h {
@@ -126,6 +131,10 @@ $hc: black;
 #articles {
   width:95%;
   clear:both;
+  color:#333;
+  h1,h2,h3,h4,h5,h6{
+    color:#333;
+  }
   display:inline-block;
   float: left;
   margin-left: 20px;
@@ -145,7 +154,13 @@ $hc: black;
   cursor: pointer;
   a {
     outline: none;
-  //  star:expression(this.onFocus=this.blur());
+    &:hover {
+      text-decoration:none;
+    }
+  }
+  i {
+    background-position:-1000px;
+    color:rgba(180, 180, 180, 0.26);
   }
 }
 
@@ -262,7 +277,7 @@ $hc: black;
 
 #sidebar {
   width: 22%;
-  float: left;
+  float: right;
   background: #efefef;
 }
 
@@ -358,7 +373,7 @@ $hc: black;
 
 #comments {
   @include border-radius(4px);
-    margin:0 auto;
+  margin:0 auto 0 20px;
   width: 95%;
 }
 

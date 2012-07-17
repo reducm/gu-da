@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   scope :check
   attr_accessible :nickname, :email, :password, :password_confirm, :description, :picture, :setting
 
-  validates :nickname, :presence => { :message => '昵称不能为空' }, :uniqueness => {:message => '昵称已存在' }, :uniqueness => {:case_sensitive=>false, :message => '昵称已存在'}, :length=>{:minimum=>3, :maximum=>15, :message => '用户名长度在3-15之间' }
+  validates :nickname, :presence => { :message => '昵称不能为空' }, :uniqueness => {:message => '昵称已存在' }, :uniqueness => {:case_sensitive=>false, :message => '昵称已存在'}, :length=>{:minimum=>3, :maximum=>15, :message => '用户名长度在3-15之间' }, :exclusion => {:in => %w(users articles authentications blog catagories comments tags errors index notifications sessions tags auth callback), :message=> "该昵称不合法,请使用其他昵称" } 
 
   validates :email, :presence => {:message => 'Email不能为空'}, :uniqueness => {:message => 'Email已存在' }, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message => 'Email格式不正确'}
   validates :password, :presence => {:message => '密码不能为空'}
@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
       end
     else
       @user = User.new
-      @user.errors.add(:name, '没有这个用户')
+      @user.errors.add(:nickname, '没有这个用户')
       @user
     end
   end
@@ -87,11 +87,7 @@ class User < ActiveRecord::Base
   end
 
   def self.get_user(params)
-    if params[:user_name]
-      where("nickname=?",params[:user_name])[0]
-    elsif params[:user_id]
-      where("id=?",params[:user_id])[0]
-    end
+      params[:user_id].class==Fixnum || (params[:user_id] =~ /^\d+$/) ? where("id=?",params[:user_id])[0] : where("nickname=?",params[:user_id])[0]
   end
 
   def update_picture(params)

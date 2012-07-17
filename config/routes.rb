@@ -22,6 +22,6 @@ GuDa::Application.routes.draw do
   post "users/login" => 'users#login', :as => :login 
 
 #  end
-  match ':user_name', :to => 'articles#index', :as => :name
+  match ':user_id', :to => 'articles#index', :as => :name
   match ':controller(/:action(/:id(.:format)))'  
 end

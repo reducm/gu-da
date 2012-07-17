@@ -8,8 +8,12 @@ class ArticlesController < ApplicationController
   before_filter {|c| c.set_breadcrumbs '博客'}
 
   def index
-    params[:user_id] = @user_id if params[:user_name].blank? && params[:user_id].blank?
+    params[:user_id] = @user_id if params[:user_id].blank?
     @current_user = User.get_user(params)
+    unless @current_user
+      flash[:error] = "没有这个用户"
+      redirect_to root_path
+    end
     @articles = Article.get_index(@current_user.id)
     if session[:signup_new] || @articles.size == 0 #新注册进来产生一些提示操作的变量
       session[:signup_new] = nil

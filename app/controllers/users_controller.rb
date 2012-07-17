@@ -13,12 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id] || params[:name])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
-    end
+     redirect_to user_articles_path((params[:id] || params[:nickname])) 
   end
 
   def new
@@ -66,16 +61,17 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by_email(@user_email)
+    params.delete(:email)
     if params[:user][:password_new] != params[:user][:password_confirm]
       flash[:notice] = '两次输入密码不相同'
-      render :edit
+      render :edit, :layout => "acount_setting"
       return
     end
   
     @user = (params[:user][:password].blank?)? User.updates_nopass(params[:user], params[:id]) : User.updates(params[:user], params[:id])
     if @user.errors.any?
-      flash[:notice] = @user.jerrors
-      render :edit
+      flash[:error] = @user.jerrors
+      render :edit, :layout => "acount_setting"
       return
     else
       flash[:notice] = '用户更新成功'

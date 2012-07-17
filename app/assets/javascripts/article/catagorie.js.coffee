@@ -40,13 +40,13 @@ bind_ajax = ()->
 
 catagory_name_link = (obj)->
   if obj.id == null
-    "<a href=\"/blog/catagories/0\">#{obj.name}</a>"
+    "<a href=\"/catagories/0\">#{obj.name}</a>"
   else
-    "<a href=\"/blog/catagories/#{obj.id}\">#{obj.name}</a>"
+    "<a href=\"/catagories/#{obj.id}\">#{obj.name}</a>"
 
 catagory_delete_link = (obj) ->
   if obj.id != null
-    "<a href=\"/blog/catagories/#{obj.id}\" data-method=\"delete\" class=\"pull-right\" data-remote=\"true\" data-type=\"json\" rel=\"nofollow\" >x</a>"
+    "<a href=\"/catagories/#{obj.id}\" data-method=\"delete\" class=\"pull-right\" data-remote=\"true\" data-type=\"json\" rel=\"nofollow\" >x</a>"
   else
     ""
 

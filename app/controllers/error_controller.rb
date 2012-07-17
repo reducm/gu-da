@@ -1,3 +1,4 @@
+#encoding: utf-8
 class ErrorController < ApplicationController
   def login()
     flash[:notice] = "fucking no login error"
@@ -8,5 +9,9 @@ class ErrorController < ApplicationController
 
   def error
     
+  end
+
+  def nouser
+    flash[:notice] = "没有用户"
   end
 end

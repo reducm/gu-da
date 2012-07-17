@@ -47,6 +47,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   #gem 'bootstrap-sass-rails'
   gem 'bootstrap-sass'
+  gem 'font-awesome-rails'
 end
 
 gem 'jquery-rails'

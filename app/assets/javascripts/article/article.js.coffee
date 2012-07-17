@@ -7,7 +7,6 @@ $(document).ready(->
   oah = article.height()
   osh = article.height()
 
-  button.height(article.height())
 
   button.bind('mouseover', ->
     #    article.addClass('right_shadow')
@@ -33,7 +32,9 @@ $(document).ready(->
     if article.height() < sidebar.height()
       if sidebar.css("display") == "block"
         article.height(sidebar.height())
-        button.height(article.height())
+    button.height(article.height())
+
+  set_height()
 )
 
 
