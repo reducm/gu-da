@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   layout "article"
   before_filter :check_login, :only => [:edit, :create, :new, :update, :destroy]   
   before_filter :check_session
-  before_filter {|c| c.set_breadcrumbs '博客'}
+  before_filter {|c| c.set_breadcrumbs}
 
   def index
     params[:user_id] = @user_id if params[:user_id].blank?
@@ -20,13 +20,15 @@ class ArticlesController < ApplicationController
       @signup_new = true
     end
     set_catagories(@current_user.id)
+    drop_breadcrumbs {@current_user}
     check_owner(@current_user)
   end
 
   def new
     @article = Article.new(user_id:session[:user_id])
+    @current_user = User.bu_id(@user_id)
     set_catagories(@user_id)
-    set_page_title '新建文章'
+    set_page_title '新建文章',@current_user
   end
 
   def create
@@ -47,7 +49,8 @@ class ArticlesController < ApplicationController
   def edit
     @article = Article.find_by_id(params[:id])
     @catagories = Catagory.get_all(@user_id)
-    set_page_title "修改文章|#{@article.title}"
+    @current_user = User.by_id(@user_id)
+    set_page_title "修改文章|#{@article.title}", @current_user
   end
 
   def update
@@ -61,12 +64,12 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    @current_user = @article.user
+    @current_user = User.by_id(@article.user_id)
     @user = User.find(@user_id) if @user_id
     @comment = Comment.new
     @comments = Comment.get_by_article_id(@article.id)
     set_catagories(@article.user_id)
-    set_page_title @article.title
+    set_page_title( @article.title, @current_user)
     check_owner @current_user
   end
 
@@ -83,5 +86,8 @@ class ArticlesController < ApplicationController
   protected
   def set_catagories(user_id)
     @catagories = Catagory.get_all(user_id)
+  end
+
+  def init_base_breadcumbs
   end
 end

@@ -1,9 +1,9 @@
 <% unless @breadcrumbs.blank? %>
-  <ul class="breadcrumb hide">
+  <ul class="nav">
     <% @breadcrumbs.each_with_index do |b, i|%>
       <% unless i == (@breadcrumbs.size-1) %> 
         <li>
-          <%= b %>  <span class="divider">/</span>
+          <%= b %>
         </li>
       <%else%>
         <li class='active'>

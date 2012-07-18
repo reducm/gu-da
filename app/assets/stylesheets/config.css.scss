@@ -59,6 +59,14 @@ a {
     clear:both;
 }
 
+.jbreadcrumb {
+  li {
+    display:block;
+    float:left;
+    line-height:25px;
+  }
+}
+
 #login {
     margin-top: 60px;
   height: 328px;

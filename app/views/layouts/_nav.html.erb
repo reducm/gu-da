@@ -3,9 +3,7 @@
     <div class="container">
       <%= link_to '咕哒', logo_link , :class => 'brand' %> 
 
-      <ul class="nav">
-        <li><%= link_to '博客首页', blog_path %> </li>
-      </ul>
+      <%= render :partial => 'layouts/breadcrumbs'  %>
 
       <ul class="nav pull-right">
         <% unless @user_name.blank? %>

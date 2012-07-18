@@ -3,6 +3,7 @@ class CatagoriesController < ApplicationController
   layout 'article'
   before_filter :check_login, :only => [:create, :destroy, :update] 
   before_filter :check_session
+  before_filter :set_breadcrumbs
   before_filter {|c|c.set_breadcrumbs '分类'}
 
   def show
@@ -11,9 +12,11 @@ class CatagoriesController < ApplicationController
     else
       @articles = Article.where("catagory_id=?", params[:id])
     end
-    @user = User.find(@articles[0].user_id) if @articles.size > 0
+    @current_user = User.find(@articles[0].user_id) if @articles.size > 0
     @catagories = @articles.size > 0 ? Catagory.get_all(params[:user_id] || @articles[0].user_id) : nil
-    set_page_title ( params[:id]=='0' ? "默认分类" : Catagory.find(params[:id]).name)
+    title = ((params[:id]=='0') ? "默认分类" : Catagory.find(params[:id]).name)
+    set_page_title("分类:#{title}", @current_user)
+    render :template => 'articles/index'
   end
 
   def create
