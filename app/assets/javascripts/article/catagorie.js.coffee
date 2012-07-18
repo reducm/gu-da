@@ -1,4 +1,28 @@
+$(document).ready(()->
+  $("#catagories a").each((i)->
+    $(this).live("ajax:success", (event, data)->
+      catagory_operate data
+    )
+  )
 
+  $("#catagory_form").live("ajax:success",
+    (event, data)->
+      catagory_operate data
+  )
+
+  $(".catagory_each").live('mouseover',()->
+    $(this).addClass("border_grey")
+  )
+
+  $(".catagory_each").live("mouseout",()->
+    $(this).removeClass("border_grey")
+#    $(this).css({border:'0px'})
+  )
+
+  $("#add_catagory_modal").on('shown', ()->
+    $("#catagory_name_input").focus()
+  )
+)
 catagory_operate = (obj) ->
   if window.action == 'new' || window.action == 'edit'
     Jajax::callback obj,catagory_select
@@ -50,28 +74,3 @@ catagory_delete_link = (obj) ->
   else
     ""
 
-$(document).ready(()->
-  $("#catagories a").each((i)->
-    $(this).live("ajax:success", (event, data)->
-      catagory_operate data
-    )
-  )
-
-  $("#catagory_form").live("ajax:success",
-    (event, data)->
-      catagory_operate data
-  )
-
-  $(".catagory_each").live('mouseover',()->
-    $(this).addClass("border_grey")
-  )
-
-  $(".catagory_each").live("mouseout",()->
-    $(this).removeClass("border_grey")
-#    $(this).css({border:'0px'})
-  )
-
-  $("#add_catagory_modal").on('shown', ()->
-    $("#catagory_name_input").focus()
-  )
-)

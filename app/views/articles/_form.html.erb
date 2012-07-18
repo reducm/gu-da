@@ -2,7 +2,7 @@
   <div id="article_form">
     <h1><%= title %></h1> 
     <%= simple_form_for @article, :wrapper => :default, :html => {:multipart => true }    do|f| %> 
-      <%= f.input :catagory_id, :collection => @catagories, :label => false, :as => :jcatagory, :input_html => {:id => "catagories_select"}, :wrapper_html => {style:'display:inline' }   %> 
+      <%= f.input :catagory_id, :collection => @catagories, :label => false, :as => :jcatagory, :input_html => {:id => "catagories_select"}, :wrapper_html => {style:'display:inline' } %> 
       <%= f.input :title, :label => false, :input_html => {}, :wrapper_html => {style:'display:inline' }%>
       </br>
       <ul class="unstyled" id="user_form_toolbar">

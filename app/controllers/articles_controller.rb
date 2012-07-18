@@ -6,6 +6,7 @@ class ArticlesController < ApplicationController
   before_filter :check_login, :only => [:edit, :create, :new, :update, :destroy]   
   before_filter :check_session
   before_filter {|c| c.set_breadcrumbs}
+  before_filter :init_params, :only => [:create, :update]
 
   def index
     params[:user_id] = @user_id if params[:user_id].blank?
@@ -26,7 +27,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new(user_id:session[:user_id])
-    @current_user = User.bu_id(@user_id)
+    @current_user = User.by_id(@user_id)
     set_catagories(@user_id)
     set_page_title '新建文章',@current_user
   end
@@ -83,9 +84,21 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def demonew
+    render :new
+  end
+
+  def demoshow
+    render :show
+  end
+
   protected
   def set_catagories(user_id)
     @catagories = Catagory.get_all(user_id)
+  end
+
+  def init_params
+    params[:article][:catagory_id] = 0 if params[:article][:catagory_id].blank?
   end
 
   def init_base_breadcumbs
