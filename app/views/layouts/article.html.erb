@@ -7,6 +7,10 @@
     <%= javascript_include_tag "article" %>
     <%= javascript_include_tag "edit" if new_or_edit? %>
     <%= csrf_meta_tags %>
+    <script type="text/javascript" charset="utf-8">
+      window.guda = {};
+      window.guda.user_name = "<%= @user_name || 'DemoUser'%>"
+    </script>
   </head>
   <body>
 

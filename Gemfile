@@ -3,6 +3,9 @@ source 'http://ruby.taobao.org'
 gem 'rails', '3.2.6'
 gem 'railties'
 
+gem 'capistrano'
+gem 'capistrano-ext'
+
 #数据
 gem 'mysql2'
 gem 'redis'

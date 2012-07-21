@@ -90,8 +90,12 @@ module ArticlesHelper
   end
 
   def new_or_edit?
-    params[:action] == 'edit' || params[:action] == 'new' || params[:action] == 'create' || params[:action] == 'update'
+    params[:action].in? %w(edit new create update demonew demoshow)
     #    params[:action] == ('edit' || 'new' || 'create' || 'update')
+  end
+
+  def demo?
+    params[:action].in? %w(demonew demoshow)
   end
 
   def jtime(time)

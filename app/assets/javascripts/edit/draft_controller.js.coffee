@@ -10,6 +10,8 @@ $(document).ready(->
 
 class DraftController
   constructor:(@title,@content,@draft_div)->
+    @user_name = window.guda.user_name
+    window.draft_str = "#{@user_name}_draft"
     this.init()
     that = this
     @converter = new Showdown.converter()
@@ -40,10 +42,10 @@ class DraftController
 
   init:()->
     @timestamp ?= Date.now()
-    draft = store.get('draft')
+    draft = store.get(draft_str)
     if (typeof draft == 'undefined' || draft == null)
       draft = {}
-    store.set('draft',draft)
+    store.set(draft_str,draft)
 
   update:(title,content)->
     Draft::update(@timestamp, title, content)
@@ -68,6 +70,7 @@ class DraftController
     div = @draft_div.find('.modal-body')
     atbody = $("<tbody></tbody>")
     mtbody = $("<tbody></tbody>")
+    $("#draft_username").html("#{@user_name}的草稿")
     for draft, i in ds
       content=""
       try

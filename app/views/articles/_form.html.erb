@@ -11,7 +11,11 @@
         <li><a href="#draft" data-toggle="modal">查看草稿</a></li>
       </ul>
       <%= f.input :content, :label => false, :input_html => {}%>
-      <%= f.button :submit, '发布', :class => 'btn-primary span2' %>
+      <%if demo?%>
+        <%= f.button :submit, '发布', :class => 'btn-primary span2',:disabled=>true %>
+      <%else%>
+        <%= f.button :submit, '发布', :class => 'btn-primary span2'%>
+      <%end%>
       <a href="#draft" data-toggle="save-draft" class="btn btn-primary" >保存草稿</a>
     <%end%>
   </div> 
@@ -55,7 +59,7 @@
 <div class="modal" id="draft">
   <div class="modal-header">
     <button class="close" data-dismiss="modal">×</button>
-    <h3>草稿<span class="prompt">(点击条目显示草稿内容)</span></h3>
+    <h3><span id="draft_username">草稿</span><span class="prompt">(点击条目显示草稿内容)</span></h3>
   </div>
   <div class="modal-body">
     <ul class="nav nav-tabs" id="draft_tab">

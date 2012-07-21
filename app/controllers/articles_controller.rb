@@ -85,6 +85,10 @@ class ArticlesController < ApplicationController
   end
 
   def demonew
+    @article = Article.new
+    @current_user = User.new
+    @catagories = Catagory.get_all(@current_user.id)
+    set_page_title('新建文章Demo')
     render :new
   end
 
