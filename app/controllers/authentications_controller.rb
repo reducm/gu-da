@@ -4,6 +4,7 @@ class AuthenticationsController < ApplicationController
   before_filter :check_login
 
   def index
+    flash[:notice] = params[:message] unless params[:message].blank?
     @authentications = Authentication.get_all(@user_id)
     @authentication_hash = {}
     @authentications.each do |a|
@@ -18,8 +19,12 @@ class AuthenticationsController < ApplicationController
     renv = request.env["omniauth.auth"]
     atoken = renv["credentials"].token
     asecret = request.env["omniauth.auth"]["credentials"].secret
-    a = Authentication.find_by_user_id_and_provider(@user_id,renv.provider) || Authentication.create_from_request(@user_id, renv)
-#    binding.pry
+    if @a = Authentication.find_by_user_id_and_provider(@user_id,renv.provider) 
+      @a.update_from_request(renv)
+    else
+      @a = Authentication.create_from_request(@user_id, renv)
+    end
+    binding.pry
     redirect_to user_authentications_path(@user_id)
   end
 end

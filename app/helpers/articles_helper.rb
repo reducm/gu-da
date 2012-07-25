@@ -140,8 +140,20 @@ module ArticlesHelper
     if authentication_hash.nil? || authentication_hash[client].nil?
       link_to "尚未关联", "/auth/#{client}"
     else
-      content_tag(:span, '已关联 | ') + link_to('取消','#')
+      if expires?(authentication_hash[client]['expires']) 
+        link_to "已过期,重新授权", "/auth/#{client}"
+      else
+        content_tag(:span, '已关联 | ') + link_to('取消','#')
+      end
     end
+  end
+
+  def expires?(timestamp)
+    return false unless timestamp
+    if timestamp.class == String
+      timestamp = timestamp.to_i
+    end
+    Time.now.to_i - timestamp >= 0
   end
 
   def get_authentication_info(client,authentication_hash)

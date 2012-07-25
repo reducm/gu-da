@@ -17,8 +17,24 @@ class Authentication < ActiveRecord::Base
     create(user_id:user_id, uid:uid, provider:provider, image:image, nickname:nickname, atoken:atoken, asecret:asecret, expires:expires)
   end
 
+  def update_from_request(request)
+    atoken = request.credentials.token
+    asecret = request.credentials.secret
+    expires = request.credentials.expires_at
+    info = request.info
+    attributes = {
+      atoken:atoken,
+      asecret:asecret,
+      expires:expires,
+      uid:request.uid,
+      image:info.image,
+      nickname:info.nickname
+    }
+    self.update_attributes(attributes)
+  end
+
   def self.get_all(user_id)
-    as = select([:provider,:image,:uid,:id,:nickname]).find_all_by_user_id(user_id)
+    as = select([:expires,:provider,:image,:uid,:id,:nickname,:updated_at]).find_all_by_user_id(user_id)
   end
 
   def self.get_key(user_id)
