@@ -24,7 +24,6 @@ class AuthenticationsController < ApplicationController
     else
       @a = Authentication.create_from_request(@user_id, renv)
     end
-    binding.pry
     redirect_to user_authentications_path(@user_id)
   end
 end

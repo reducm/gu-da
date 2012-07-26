@@ -9,6 +9,17 @@ module Weibo
   include Jconfig
 end
 
+module Twitter
+  FILE = "#{Rails.root}/config/Twitter.yml"
+  include Jconfig
+end
+
+module Facebook
+  FILE = "#{Rails.root}/config/Facebook.yml"
+  include Jconfig
+end
+
+
 module Weibo2
   Weibo2::Config.api_key = Weibo::Config.api_key
   Weibo2::Config.api_secret = Weibo::Config.api_secret
