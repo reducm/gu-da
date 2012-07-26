@@ -2,11 +2,10 @@
 module Jconfig
   def self.included(receiver)
     receiver.send :include, Jconfig::Config
-    receiver::Config.set_config(receiver::FILE)
   end
 
   module Config
-    def self.set_config(file)
+    def set_config(file)
       if File.exist?(file)
         config = YAML.load_file(file)[Rails.env||'develoment'] 
         if config.has_key?('admin')

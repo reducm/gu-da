@@ -35,7 +35,7 @@ gem "social-share-button"
 #gem 'weibo', :git => "https://github.com/ballantyne/weibo.git" 
 gem 'weibo2', :git => "https://github.com/acenqiu/weibo2.git"
 gem 'douban-ruby', :git => 'https://github.com/lidaobing/douban-ruby.git'
-gem 'twitter', :git => 'https://github.com/sferik/twitter.git'
+gem 'twitter', :git => 'git://github.com/sferik/twitter.git'
 
 #合并小图片
 gem 'sprite-factory'
