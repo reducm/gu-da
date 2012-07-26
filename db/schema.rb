@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120714070052) do
+ActiveRecord::Schema.define(:version => 20120726030936) do
 
   create_table "article_tagships", :force => true do |t|
     t.integer  "article_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20120714070052) do
     t.datetime "updated_at",                  :null => false
     t.string   "provider"
     t.string   "expires",    :default => "0"
+    t.string   "location"
   end
 
   create_table "catagories", :force => true do |t|

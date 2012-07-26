@@ -13,6 +13,15 @@ GIT
       activemodel (~> 3.0)
 
 GIT
+  remote: git@github.com:reducm/omniauth-douban.git
+  revision: 0df8c3be884ef60dad0d6f4f18057403000f7db3
+  specs:
+    omniauth-douban (1.0.0.rc2)
+      multi_json
+      omniauth (~> 1.1.0)
+      omniauth-oauth (~> 1.0.1)
+
+GIT
   remote: https://github.com/acenqiu/weibo2.git
   revision: 3eb07f64139a87bcfb8926a04fe054f6fa6806b2
   specs:
@@ -151,13 +160,9 @@ GEM
     oauth2 (0.5.2)
       faraday (~> 0.7)
       multi_json (~> 1.0)
-    omniauth (1.0.3)
+    omniauth (1.1.0)
       hashie (~> 1.2)
       rack
-    omniauth-douban (1.0.0.rc2)
-      multi_json
-      omniauth (~> 1.0.0.rc2)
-      omniauth-oauth (~> 1.0.0.rc2)
     omniauth-facebook (1.2.0)
       omniauth-oauth2 (~> 1.0.0)
     omniauth-github (1.0.1)
@@ -280,8 +285,8 @@ DEPENDENCIES
   libnotify
   mime-types
   mysql2
-  omniauth (~> 1.0.0)
-  omniauth-douban
+  omniauth (~> 1.1.0)
+  omniauth-douban!
   omniauth-facebook
   omniauth-github
   omniauth-oauth2
