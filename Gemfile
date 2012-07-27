@@ -36,7 +36,7 @@ gem "social-share-button"
 gem 'weibo2', :git => "https://github.com/acenqiu/weibo2.git"
 gem 'douban-ruby', :git => 'https://github.com/lidaobing/douban-ruby.git'
 gem 'twitter'
-gem 'koala', :git => 'git://github.com/arsduo/koala.git'
+gem 'koala'
 
 #合并小图片
 gem 'sprite-factory'
