@@ -45,6 +45,6 @@ module JLogin
 
   private
   def admin?(user)
-    user.email.in? Admin::Config.admin
+    user.email.in? Admin.jconfig.admin
   end
 end

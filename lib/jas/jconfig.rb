@@ -1,13 +1,18 @@
 # encoding: UTF-8
 module Jconfig
   def self.included(receiver)
-    receiver.send :include, Jconfig::Config
+    receiver.instance_eval do
+      class << self
+        attr_accessor :jconfig
+      end 
+      self.jconfig = Jconfig.create_module(self::FILE)
+    end
   end
 
-  module Config
-    def set_config(file)
-      if File.exist?(file)
-        config = YAML.load_file(file)[Rails.env||'develoment'] 
+  def self.create_module(f)
+    Module.new do
+      if File.exist?(f)
+        config = YAML.load_file(f)[Rails.env||'develoment'] 
         if config.has_key?('admin')
           class << self
             attr_accessor :admin

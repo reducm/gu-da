@@ -28,7 +28,7 @@ module JShare
   end
 
   def douban(options)
-    douban = Douban::Authorize.new(Douban::Config.api_key, Douban::Config.api_secret)
+    douban = Douban::Authorize.new(Douban.jconfig.api_key, Douban.jconfig.api_secret)
     douban.access_token = {token:options['atoken'], secret:options['asecret']}
     douban.create_note(options['title'], options['content'])
   end

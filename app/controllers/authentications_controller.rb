@@ -19,6 +19,7 @@ class AuthenticationsController < ApplicationController
     renv = request.env["omniauth.auth"]
     atoken = renv["credentials"].token
     asecret = request.env["omniauth.auth"]["credentials"].secret
+    binding.pry
     if @a = Authentication.find_by_user_id_and_provider(@user_id,renv.provider) 
       @a.update_from_request(renv)
     else

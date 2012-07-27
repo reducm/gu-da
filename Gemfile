@@ -28,14 +28,14 @@ gem 'omniauth', '~> 1.1.0'
 gem 'omniauth-oauth2'
 gem 'omniauth-weibo-oauth2'
 gem 'omniauth-facebook'
-gem 'omniauth-douban', :git => "git@github.com:reducm/omniauth-douban.git" #:git=>"https://github.com/quake/omniauth-douban.git"
+gem 'omniauth-douban', :git => "git://github.com/reducm/omniauth-douban.git" #:git=>"https://github.com/quake/omniauth-douban.git"
 gem 'omniauth-twitter', :git => "https://github.com/arunagw/omniauth-twitter.git" 
 gem 'omniauth-github'
 gem "social-share-button"
 #gem 'weibo', :git => "https://github.com/ballantyne/weibo.git" 
 gem 'weibo2', :git => "https://github.com/acenqiu/weibo2.git"
 gem 'douban-ruby', :git => 'https://github.com/lidaobing/douban-ruby.git'
-gem 'twitter', :git => 'git://github.com/sferik/twitter.git'
+gem 'twitter'
 
 #合并小图片
 gem 'sprite-factory'
