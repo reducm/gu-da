@@ -12,6 +12,10 @@ end
 module Twitter
   FILE = "#{Rails.root}/config/twitter.yml"
   include Jconfig
+  self.configure do |c|
+    c.consumer_key = self.jconfig.api_key
+    c.consumer_secret = self.jconfig.api_secret
+  end
 end
 
 module Facebook

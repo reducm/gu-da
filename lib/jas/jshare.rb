@@ -37,5 +37,11 @@ module JShare
   end
 
   def twitter(options)
+    Twitter.configure do|c|
+      c.oauth_token = options['atoken']
+      c.oauth_token_secret = options['asecret']
+    end
+    content = "发表了博客：#{options['title']}, \"#{options['content'].first(50)}...\" #{options['url']}"
+    Twitter.update(content)
   end
 end
