@@ -42,6 +42,10 @@ class Authentication < ActiveRecord::Base
     as = select([:provider,:uid,:id,:atoken, :asecret,:expires]).find_all_by_user_id(user_id)
   end
 
+  def self.spec_provider(user_id,providers=[])
+    as = select([:provider,:uid,:id,:atoken, :asecret,:expires]).where("user_id = ? and provider in (?)",user_id, providers)
+  end
+
   def self.get_weibo(user_id)
     a = select([:provider,:uid,:id,:atoken, :asecret,:expires]).where("user_id=? and provider='weibo'", user_id)[0]
   end

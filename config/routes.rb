@@ -22,6 +22,11 @@ GuDa::Application.routes.draw do
   resources :tags
   resources :comments
   resources :notifications
+  resources :authentications do
+    collection do
+      post :share
+    end
+  end
   post "users/login" => 'users#login', :as => :login 
 
 #  end

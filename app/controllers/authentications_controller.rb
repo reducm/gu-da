@@ -1,5 +1,7 @@
+require_dependency 'jas/jshare'
 class AuthenticationsController < ApplicationController
   layout 'acount_setting'
+  include JShare
   before_filter :check_session
   before_filter :check_login
 
@@ -26,5 +28,9 @@ class AuthenticationsController < ApplicationController
       @a = Authentication.create_from_request(@user_id, renv)
     end
     redirect_to user_authentications_path(@user_id)
+  end
+
+  def share
+    share_to(Article.find(params['article']),params['providers'])
   end
 end

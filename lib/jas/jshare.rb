@@ -2,11 +2,15 @@
 require 'douban'
 module JShare
   private
-  def jshare(user_id, title,content,options={})
-    as = Authentication.get_key(user_id)
+  def share_to(article, providers)
+    jshare_article(article,providers)
+  end
+
+  def jshare_article(article, providers, options={})
+    as = Authentication.spec_provider(user_id,providers)
     if as.size > 0
       as.each do |a|
-        args = {'title'=> title, 'content'=>content}.merge(options).merge(a.attributes)
+        args = {'title'=> article.title, 'content'=>article.content}.merge(options).merge(a.attributes)
         begin
           send a.provider.to_sym, args
         rescue Exception
@@ -34,6 +38,8 @@ module JShare
   end
 
   def facebook(options)
+    @graph = Koala::Facebook::API.new(options["atoken"])
+    @graph.put_wall_post(content = "发表了博客：#{options['title']}, \"#{options['content'].first(50)}...\" #{options['url']}")  
   end
 
   def twitter(options)
