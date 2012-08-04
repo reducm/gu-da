@@ -24,7 +24,7 @@ module Facebook
 end
 
 module Weibo2
-  Weibo2::Config.api_key = Weibo.jconfig.api_key
+  Weibo2::Config.api_key = Weibo.jconfig.api_key.to_s
   Weibo2::Config.api_secret = Weibo.jconfig.api_secret
   Weibo2::Config.redirect_uri = Weibo.jconfig.redirect_uri
 end

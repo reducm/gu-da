@@ -34,6 +34,14 @@ class Authentication < ActiveRecord::Base
     self.update_attributes(attributes)
   end
 
+  def expires?
+    return false if self.provider == "douban" || self.provider == "twitter"
+    if self.provider == "facebook" || self.provider == "weibo"
+      return true if (self.expires.to_i-Time.now.to_i) <= 0
+    end
+    return false
+  end
+
   def self.get_all(user_id)
     as = select([:expires,:provider,:image,:uid,:id,:nickname,:updated_at]).find_all_by_user_id(user_id)
   end

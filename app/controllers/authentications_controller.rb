@@ -27,10 +27,16 @@ class AuthenticationsController < ApplicationController
     else
       @a = Authentication.create_from_request(@user_id, renv)
     end
-    redirect_to user_authentications_path(@user_id)
+
+    if session[:create_article] || session[:update_article]
+      redirect_to user_article_path(@user_id, session[:create_article] || session[:update_article])
+    else
+      redirect_to user_authentications_path(@user_id)
+    end
   end
 
   def share
+    session[:create_article], session[:update_article] = false, false
     share_to(Article.find(params['article']),params['providers'])
   end
 end

@@ -179,20 +179,22 @@ module ArticlesHelper
 
   def share_article(article)
     callpartial = false 
-    title_str = ""
+    title_str = "分享到社交网站"
     if session[:create_article]
-      session[:create_article] = false
       title_str = "文章创建成功,要分享吗?"
       callpartial = true
     end
 
     if session[:update_article]
-      session[:update_article] = false
       title_str = "文章修改成功,要分享吗?"
       callpartial = true
     end
 
     content = "发表了博客：#{article.title}, \"#{article.content.first(50)}...\" #{article_url(article)}"
     render :partial => 'share', :locals => {:authentications => Authentication.get_all(@user_id),:title=>title_str, :content => content, :article => article}
+  end
+
+  def share_to_image(provider)
+    content_tag :i,"",:class=>"icons_#{provider}", :style=>"display:inline-block"
   end
 end

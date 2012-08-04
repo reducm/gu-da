@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
     if @article.save
       @pic = Picture.create(:file => (params[:article][:picture]), :pictureable => @article )
       flash[:notice]='文章创建成功！'
-      session[:create_article] = true
+      session[:create_article] = @article.id 
       redirect_to article_path(@article)  
     else
       flash[:error] = "出错了:#{@article.jerrors}"
@@ -55,7 +55,7 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find_by_id(params[:id])
     if @article.update_attributes(params[:article])
-      session[:update_article] = true
+      session[:update_article] = @article.id
       redirect_to @article, notice: '编辑成功'
     else
       render :action => 'edit' 

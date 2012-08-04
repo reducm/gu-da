@@ -6,13 +6,13 @@ module JShare
     jshare_article(article,providers)
   end
 
-  def jshare_article(article, providers, options={})
-    as = Authentication.spec_provider(user_id,providers)
+  def jshare_article(article, providers, options={}) 
+    as = Authentication.spec_provider(article.user_id,providers)
     if as.size > 0
       as.each do |a|
         args = {'title'=> article.title, 'content'=>article.content}.merge(options).merge(a.attributes)
         begin
-          send a.provider.to_sym, args
+          send(a.provider.to_sym, args)
         rescue Exception
           Rails.logger.error $!.message
           raise "出错啦！！！ #{$!.message}"
@@ -24,7 +24,7 @@ module JShare
   end
 
   def weibo(options)
-    client = Weibo2::Client.from_hash({access_token:options['atoken'],expires:options['expires'].to_i})
+    client = Weibo2::Client.from_hash({access_token:options['atoken'],expires_in:options['expires'].to_i})
     content = "发表了博客：#{options['title']}, \"#{options['content'].first(50)}...\" #{options['url']}"
     #client.refresh! 这个要申请了refresh_key才能用
     r = client.statuses.update(content)

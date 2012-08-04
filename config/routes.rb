@@ -1,7 +1,7 @@
 GuDa::Application.routes.draw do
   root :to => 'blog#index'
   match "blog" => 'blog#index'
-  match "/auth/:provider/callback", :to => "authentications#create", :as => :auth
+  match "/auth/:provider/callback", :to => "authentications#create"
   match "/auth/failure", :to => "authentications#index"
   match "articles/demonew", :to => "articles#demonew"
   match "articles/demoshow", :to => "articles#demoshow"

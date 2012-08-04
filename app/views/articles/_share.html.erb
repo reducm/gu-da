@@ -7,17 +7,15 @@
   <div class="modal-body">
     <%= form_tag share_authentications_path do%>
       <% authentications.each do |a|%>
-        <%= a.nickname %>
-        <%= a.provider %>
-        <%= image_tag a.image%>
-        <%= check_box_tag 'providers[]',a.provider, true%>
+        <%= share_to_image a.provider%>
+        <% if a.expires? %>
+          <%= link_to "绑定已过期，点击关联", "/auth/#{a.provider}"%> 
+        <%else%>
+          <%= check_box_tag 'providers[]',a.provider, true%>
+        <%end%>
       <%end%>
       <%= hidden_field_tag 'article', article.id %>
-      <%= submit_tag "确定"%>
+      <%= submit_tag "确定", :class => 'btn btn-primary pull-right'%>
     <%end%>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary">Save changes</a>
   </div>
 </div>
