@@ -158,7 +158,7 @@ module ArticlesHelper
 
   def get_authentication_info(client,authentication_hash)
     if authentication_hash.nil? || authentication_hash[client].nil?
-      link_to "尚未关联", auth_path(client)
+      link_to "尚未关联", "/auth/#{client}"
     else
       image_tag(authentication_hash[client]['image']) + content_tag(:span,authentication_hash[client]['nickname'], class:'luser_name')  
     end

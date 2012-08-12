@@ -223,6 +223,8 @@ GEM
       json (~> 1.4)
     redcarpet (2.1.1)
     redis (3.0.1)
+    redis-objects (0.5.2)
+      redis (>= 2.1.1)
     rmagick (2.13.1)
     rspec (2.10.0)
       rspec-core (~> 2.10.0)
@@ -310,7 +312,7 @@ DEPENDENCIES
   rb-fsevent
   rb-inotify
   redcarpet
-  redis
+  redis-objects
   rmagick
   rspec
   rspec-rails

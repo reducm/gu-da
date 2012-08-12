@@ -1,7 +1,6 @@
 <div id="articles">
-
   <h1><%= @article.title %></h1>
-
+  <div class="time"><%= jtime @article.created_at %> | 访问量:<%= @article.visit %></div>
   <div id="article_show_content">
     <p><%= markdown(@article.content) %></p>
     <%= (image_tag @article.pictures[0].file.preview.url) if @article.pictures.size > 0  %>

@@ -7,7 +7,9 @@ class Article < ActiveRecord::Base
   has_many :comments, :dependent => :destroy 
   has_many :pictures, :as => :pictureable, :dependent => :destroy 
   has_many :notifications, :as => :senderable
-  
+
+  include Redis::Objects
+  counter :visit
 
   attr_accessible :user, :title, :content, :catagory_id, :picture, :user_id
   attr_accessor :picture
