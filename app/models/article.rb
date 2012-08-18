@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require_dependency 'jas/jredis_counter'
 class Article < ActiveRecord::Base
   belongs_to :user
   belongs_to :catagory
@@ -9,7 +10,8 @@ class Article < ActiveRecord::Base
   has_many :notifications, :as => :senderable
 
   include Redis::Objects
-  counter :visit
+  include JCounter
+  jcounter :visit
 
   attr_accessible :user, :title, :content, :catagory_id, :picture, :user_id
   attr_accessor :picture

@@ -78,6 +78,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-nav'
   gem 'libnotify'
+  gem 'thin'
   gem 'rb-inotify'
   gem 'rb-fsevent'
 end

@@ -64,6 +64,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @article.visit_key.increment
     @current_user = User.by_id(@article.user_id)
     @user = User.find(@user_id) if @user_id
     @comment = Comment.new

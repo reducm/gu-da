@@ -191,7 +191,7 @@ module ArticlesHelper
     end
 
     content = "发表了博客：#{article.title}, \"#{article.content.first(50)}...\" #{article_url(article)}"
-    render :partial => 'share', :locals => {:authentications => Authentication.get_all(@user_id),:title=>title_str, :content => content, :article => article}
+    render :partial => 'share', :locals => {:authentications => Authentication.get_all(@user_id),:title=>title_str, :content => content, :article => article} if callpartial
   end
 
   def share_to_image(provider)
