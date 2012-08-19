@@ -23,6 +23,9 @@ gem 'simple_form', :git => "git://github.com/plataformatec/simple_form.git"
 #分页
 gem 'kaminari'
 
+#定时任务
+gem 'whenever', :require => false 
+
 #社交平台
 gem 'omniauth', '~> 1.1.0'
 gem 'omniauth-oauth2'
