@@ -1,6 +1,6 @@
 <div id="articles">
-  <h1><%= @article.title %></h1>
-  <div class="time"><%= jtime @article.created_at %> | 访问量:<%= @article.visit %></div>
+  <h1 class="title_h"><%= @article.title %></h1>
+  <div class="time">发表于:<%= jtime @article.created_at %> | 访问量:<%= @article.visit %> | 分类:<%= catagory_name(@article,@catagories) %></div>
   <div id="article_show_content">
     <p><%= markdown(@article.content) %></p>
     <%= (image_tag @article.pictures[0].file.preview.url) if @article.pictures.size > 0  %>

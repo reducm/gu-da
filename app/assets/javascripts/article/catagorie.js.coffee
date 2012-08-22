@@ -64,9 +64,9 @@ bind_ajax = ()->
 
 catagory_name_link = (obj)->
   if obj.id == null
-    "<a href=\"/catagories/0\">#{obj.name}</a>"
+    "<a href=\"/users/#{obj.user_id}/catagories/0\">#{obj.name}</a>"
   else
-    "<a href=\"/catagories/#{obj.id}\">#{obj.name}</a>"
+    "<a href=\"/users/#{obj.user_id}/catagories/#{obj.id}\">#{obj.name}</a>"
 
 catagory_delete_link = (obj) ->
   if obj.id != null

@@ -10,7 +10,7 @@ $hc: black;
   @include border-radius(4px);
 }
 
-@mixin markdown_h_color($c) {
+@mixin markdown_h_color($c:#333) {
   h1,h2,h3,h4,h5,h6{
     color: $c;
     border-bottom: 1px solid $grayLighter;
@@ -192,6 +192,7 @@ $hc: black;
 
 #article_show_content{
   @include markdown_style();
+  @include markdown_h_color(#333);
 }
 
 .article_each {

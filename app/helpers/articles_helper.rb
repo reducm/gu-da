@@ -26,11 +26,15 @@ module ArticlesHelper
   end
 
   def catagory_get_name_link(c)
-    link_to c.name, id_default?(c.id) ? "#{catagory_path(0)}?user_id=#{c.user_id}" : catagory_path(c)
+    link_to c.name, id_default?(c.id) ? "#{catagory_path(0)}?user_id=#{c.user_id}" : user_catagory_path(c.user_id, c)
   end
 
   def catagory_get_delete_link(c)
     id_default?(c.id) ? nil : (link_to "x", catagory_path(c), method:'delete', remote:true, class:'pull-right')
+  end
+
+  def catagory_name(article, catagories)
+    article.catagory_id == 0 ? link_to("默认分类",user_catagory_path(article.user_id, 0)) : link_to(catagories.find{|c| c.id == article.catagory_id}.name, user_catagory_path(article.user_id,article.catagory_id))
   end
 
   def id_default?(id)

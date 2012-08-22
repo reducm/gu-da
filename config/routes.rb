@@ -15,6 +15,7 @@ GuDa::Application.routes.draw do
     resources :notifications, :only => [:index, :show, :destroy] 
     resources :settings
     resources :authentications
+    resources :catagories
   end
 
   resources :articles
