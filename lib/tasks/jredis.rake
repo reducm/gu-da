@@ -7,12 +7,14 @@ namespace :redis do
         r = Redis.current
         keysarr = r.keys("article:*:visit_key")
         idsarr = keysarr.map{|a|a.split(":")[1]}
+        sql = "update articles set visit=( case id "
         idsarr.each_with_index do |id|
-          a = Article.find(id)
-          if a.old_visit < a.visit_key.value
-            puts "article_id: #{a.id} --- visit_set_to : #{a.visit_key.value}" if a.update_attribute(:visit, a.visit_key.value)
-          end
+          visit = r.get("article:#{id}:visit_key")
+          sql << " when #{id} then #{visit} " 
         end
+        sql << " end) where id in #{idsarr.inspect.sub("[","(").sub("]",")")} ;"
+        puts "sql: ---\n #{sql} \n ---"
+        puts ActiveRecord::Base.connection.execute(sql)
       end
     end
     Rails.logger.info b
