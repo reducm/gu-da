@@ -39,3 +39,4 @@ package/
 *.jas
 *.bak
 *.rb~
+shared/*
