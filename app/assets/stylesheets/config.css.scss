@@ -67,6 +67,10 @@ a {
   }
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 #login {
     margin-top: 60px;
   height: 328px;
@@ -137,7 +141,7 @@ $input_width: 90%;
 }
 
 #input_password_div {
-    width: $input_width - 20%; 
+  width: $input_width - 34%; 
   margin-left: 19px;
   margin-bottom: 0px;
   float: left;

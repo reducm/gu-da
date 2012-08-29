@@ -7,7 +7,20 @@
     <%= simple_form_for @user, :url => login_path, :html => { :id => 'login_form' }, :wrapper => :default   do|f|%>
       <%= f.input :email, :label => false, :placeholder => '邮箱', :input_html =>{ :id => 'login_user_name' }   %> 
       <%= f.input :password, :label => false, :wrapper_html => {id:'input_password_div'}, :placeholder => '密码', :input_html =>{ :id => 'login_user_password' }%> 
-      <%= f.button :submit, "登录", :class => 'btn-primary', :style => 'margin-left:17px;width:88px;margin-bottom:14px;' %>
+      <%= f.button :submit, "登录", :class => 'btn-primary inline-block', :style => 'float:left; margin: 0 6px 14px 17px;' %>
+
+      <div class="btn-group inline-block">
+        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+          第三方
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="/auth/weibo"><%= share_to_image("weibo") %> 微博</a></li>
+          <li><a href="/auth/douban"><%= share_to_image("douban") %> 豆瓣</a></li>
+          <li><a href="/auth/twitter"><%= share_to_image("twitter") %> Twitter</a></li>
+          <li><a href="/auth/facebook"><%= share_to_image("facebook") %> Facebook</a></li>
+        </ul>
+      </div>
     <%end%>
 
     <%= simple_form_for @user, :url =>{:controller => 'users', :action => 'new' }, :defaults => { :label => false, :input_html => {:autocomplete=>'off'}}, :html => {:id => 'signup_form'}, :wrapper => :default do |f| %>

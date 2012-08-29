@@ -3,7 +3,7 @@ class AuthenticationsController < ApplicationController
   layout 'acount_setting'
   include JShare
   before_filter :check_session
-  before_filter :check_login
+  #before_filter :check_login
 
   def index
     flash[:notice] = params[:message] unless params[:message].blank?
