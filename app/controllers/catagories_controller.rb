@@ -20,6 +20,7 @@ class CatagoriesController < ApplicationController
   end
 
   def create
+    params.delete(:id)
     @catagory = Catagory.create(params[:catagory])
     if @catagory.errors.any?
       render :json => {errors:"#{@catagory.jerrors}"}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726030936) do
+ActiveRecord::Schema.define(:version => 20120830051014) do
 
   create_table "article_tagships", :force => true do |t|
     t.integer  "article_id"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(:version => 20120726030936) do
     t.integer  "visit",                      :default => 0
   end
 
+  add_index "articles", ["catagory_id"], :name => "index_articles_on_catagory_id"
+  add_index "articles", ["user_id"], :name => "index_articles_on_user_id"
+
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
     t.string   "uid"
@@ -45,6 +48,8 @@ ActiveRecord::Schema.define(:version => 20120726030936) do
     t.string   "location"
   end
 
+  add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
+
   create_table "catagories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at",                :null => false
@@ -52,6 +57,8 @@ ActiveRecord::Schema.define(:version => 20120726030936) do
     t.integer  "user_id"
     t.integer  "pid",        :default => 0
   end
+
+  add_index "catagories", ["user_id"], :name => "index_catagories_on_user_id"
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -62,6 +69,9 @@ ActiveRecord::Schema.define(:version => 20120726030936) do
     t.string   "visitor_name"
     t.string   "visitor_email"
   end
+
+  add_index "comments", ["article_id"], :name => "index_comments_on_article_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "notifications", :force => true do |t|
     t.integer  "senderable_id"
@@ -90,6 +100,8 @@ ActiveRecord::Schema.define(:version => 20120726030936) do
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
   end
+
+  add_index "settings", ["user_id"], :name => "index_settings_on_user_id"
 
   create_table "tags", :force => true do |t|
     t.string   "name"
