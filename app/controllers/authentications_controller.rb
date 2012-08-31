@@ -18,6 +18,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def new
+    @user ||= User.new
     render :layout => 'application'
   end
 
