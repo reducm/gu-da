@@ -17,15 +17,25 @@ class AuthenticationsController < ApplicationController
     @authentication_hash
   end
 
+  def new
+    render :layout => 'application'
+  end
+
   def create
     renv = request.env["omniauth.auth"]
     atoken = renv["credentials"].token
     asecret = request.env["omniauth.auth"]["credentials"].secret
-    binding.pry
-    if @a = Authentication.find_by_user_id_and_provider(@user_id,renv.provider) 
+
+    if @a = Authentication.find_by_uid_and_provider(renv.uid, renv.provider) 
       @a.update_from_request(renv)
     else
-      @a = Authentication.create_from_request(@user_id, renv)
+      if @user_id
+        @a = Authentication.create_from_request(@user_id, renv)
+      else
+        @user = User.new(nickname:renv.info.nickname)
+        @user.valid?
+        render :new 
+      end
     end
 
     if session[:create_article] || session[:update_article]
