@@ -1,7 +1,7 @@
 class CreateAuthentications < ActiveRecord::Migration
   def change
     create_table :authentications do |t|
-      t.integer :user_id
+      t.integer :user_id, :default => 0
       t.string :uid
       t.string :nickname
       t.string :image

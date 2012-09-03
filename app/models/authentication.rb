@@ -17,6 +17,16 @@ class Authentication < ActiveRecord::Base
     create(user_id:user_id, uid:uid, provider:provider, image:image, nickname:nickname, atoken:atoken, asecret:asecret, expires:expires, location:info.location)
   end
 
+  def self.find_or_create(user_id, request)
+    a = Authentication.find_by_uid_and_provider(renv.uid, renv.provider) 
+    if a
+      a.update_from_request(request)
+    else
+      a = Authentication.create_from_request(user_id,request)
+    end
+    a
+  end
+
   def update_from_request(request)
     atoken = request.credentials.token
     asecret = request.credentials.secret

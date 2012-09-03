@@ -14,21 +14,21 @@ module JCounter
 
       self.after_find do |model|
         begin
-          value_db = model.send method_symbol
+          db_counter = model.send method_symbol
           redis_counter = model.send "#{method_symbol}_key".to_sym
-          if value_db > redis_counter.value
-            redis_counter.incr(value_db - redis_counter.value)
+          if db_counter > redis_counter.value
+            redis_counter.incr(db_counter - redis_counter.value)
           end
 
           model.define_singleton_method "old_#{method_symbol}".to_sym do
-            value_db
+            db_counter
           end
 
           model.define_singleton_method method_symbol do
             redis_counter.value
           end
         rescue Exception
-
+          #没有redis，或者redis里面没有这个counter的key的情况,可以写进日志里头
         end
       end
     end

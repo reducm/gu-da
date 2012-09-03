@@ -14,5 +14,17 @@ class AddIndex1st < ActiveRecord::Migration
   end
 
   def down
+    remove_index :articles, :column => :user_id
+    remove_index :articles, :column => :catagory_id
+
+    remove_index :authentications, :column => :user_id
+
+    remove_index :catagories, :column => :user_id
+
+    remove_index :comments, :column => :user_id
+    remove_index :comments, :column => :article_id
+
+    remove_index :settings, :column => :user_id
+
   end
 end

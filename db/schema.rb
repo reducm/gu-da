@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20120830051014) do
   add_index "articles", ["user_id"], :name => "index_articles_on_user_id"
 
   create_table "authentications", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",    :default => 0
     t.string   "uid"
     t.string   "nickname"
     t.string   "image"
