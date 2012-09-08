@@ -80,8 +80,5 @@ group :development, :test do
 #  gem 'ruby-debug19', :require => 'ruby-debug' 
   gem 'pry-rails'
   gem 'pry-nav'
-  gem 'libnotify'
   gem 'thin'
-  gem 'rb-inotify'
-  gem 'rb-fsevent'
 end
