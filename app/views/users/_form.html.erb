@@ -14,11 +14,12 @@
     <%= f.button :submit, '确定', :class => 'btn btn-primary' %>
   <%end%>
 <% else%>
-  <%= simple_form_for @user, :defaults=>{:input_html=>{:class => 'span3' }, :required => false }, :html => { :id => 'new_user_form', :class => 'form-vertical' }  do |f|%> 
+    <%= simple_form_for @user, :url => {controller:'users', action:'create'}, :defaults=>{:input_html=>{:class => 'span3' }, :required => false }, :html => { :id => 'new_user_form', :class => 'form-vertical' }  do |f|%> 
     <%= f.input :nickname, :label => false, :input_html => {:autocomplete => 'off'}, :placeholder => '昵称' %>
     <%= f.input :email, :label => false, :input_html => {:autocomplete => 'off'}, :placeholder => 'example@email.com', :placeholder => 'Email' %>
     <%= f.input :password, :label=>false, :placeholder => '密码', :input_html => {:value => @user.password} %>
     <%= f.input :password_confirm, :label=>false, :placeholder => '确认你的密码' %>
+    <%= (f.input :authentications, :value => auth_id, :as => hidden) if auth_id %>
     <%= f.button :submit, '创建我的帐号', :class => 'btn-warning', :style => 'width:41%' %>
   <%end%>
 <% end %>

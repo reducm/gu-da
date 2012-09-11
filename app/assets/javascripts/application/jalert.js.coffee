@@ -3,7 +3,7 @@ class window.Jalert
 #输出信息
 Jalert::alert = (str, type='info',element="#flash",time=120) ->
   element = $(element) if typeof element == 'string'
-  inside(str, type, element,time)
+  inside(str, type, element, time)
 
 inside = (str,type,element,time)->
   aalert = element.find('.alert')

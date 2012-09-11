@@ -1,11 +1,12 @@
 #encoding: utf-8
 class Authentication < ActiveRecord::Base
-  attr_accessible :asecret, :atoken, :image, :nickname, :uid, :user_id, :provider, :location,:expires #新浪微博有expires_at
+  attr_accessible :asecret, :atoken, :image, :nickname, :uid, :user_id, :provider, :location,:expires,:temp #新浪微博有expires_at
   belongs_to :user
-  validates_presence_of :user_id,:atoken, :provider #豆瓣是没有uid的,新浪2.0没有了asecret
+  validates_presence_of :atoken, :provider #豆瓣是没有uid的,新浪2.0没有了asecret
   validates_uniqueness_of :provider, :scope => [:user_id], :message => '同一用户下不能绑定多个社交帐号'
+  validates :user_id, :presence => {:message => '非临时验证,user_id不能为空'}
 
-  def self.create_from_request(user_id, request)
+  def self.create_from_request(user_id = 0, request)
     atoken = request.credentials.token
     asecret = request.credentials.secret
     expires = request.credentials.expires_at
@@ -15,6 +16,10 @@ class Authentication < ActiveRecord::Base
     nickname = info.nickname
     provider = request.provider
     create(user_id:user_id, uid:uid, provider:provider, image:image, nickname:nickname, atoken:atoken, asecret:asecret, expires:expires, location:info.location)
+  end
+
+  def self.create_temp_from_request(request)
+    self.create_from_request(0, request) 
   end
 
   def self.find_or_create(user_id, request)
@@ -50,6 +55,10 @@ class Authentication < ActiveRecord::Base
       return true if (self.expires.to_i-Time.now.to_i) <= 0
     end
     return false
+  end
+
+  def temp?
+    return self.temp
   end
 
   def self.get_all(user_id)

@@ -1,5 +1,19 @@
 <div id="new_user_div">
-  <h1 id="new_user_title">现在就加入咕哒</h1>
-  <%= render :partial => 'users/form', :locals => {:action => 'new', :user => @user } %>
+  <h1 id="new_user_title"><img src="<%= @a.image %>" /><%= "欢迎你! #{@a.nickname}"%></h1>
+  <div id="create_user">
+    <input type="radio" />
+    <%= render :partial => 'users/form', :locals => {:action => 'new', :user => @user, :auth_id => @a.id} %>
+  </div>
+
+  <div id="bind_user">
+    <input type="radio" />
+    <%= simple_form_for @user, :url => {controller:'authentications', action:'bind'} do|f| %>
+      <%= f.input :email, :label => false, :placeholder => '邮箱', :input_html =>{}   %> 
+      <%= f.input :password, :label => false, :wrapper_html => {}, :placeholder => '密码', :input_html =>{}%> 
+      <%= f.input :authentications, :value => @a.id, :as => :hidden %>
+      <%= f.button :submit, "确定", :class => 'btn-primary inline-block', :style => 'float:left; margin: 0 6px 14px 17px;' %>
+    <%end%>
+  </div>
 </div>
 
+<%= debug @a %>
