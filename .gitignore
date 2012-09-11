@@ -34,9 +34,11 @@ solr/pids/
 app/assets/images/sprites/*.png
 bin/
 tag
+tags
 package/
 *.vim
 *.jas
 *.bak
 *.rb~
 shared/*
+
