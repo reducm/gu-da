@@ -18,7 +18,8 @@ class AuthenticationsController < ApplicationController
   end
 
   def new
-    @user ||= User.new
+    @user = User.first
+    @a = Authentication.first
     render :layout => 'application'
   end
 
@@ -45,7 +46,11 @@ class AuthenticationsController < ApplicationController
         redirect_to user_path(@user)
       else
         #找不到认证的，就render去new让他绑定已有用户或者创建用户
-        @a = @a.valid? ? @a : Authentication.create_temp_from_request(renv)
+        if @a
+          @a = @a.valid? ? @a : Authentication.create_temp_from_request(renv)
+        else
+          @a = Authentication.create_temp_from_request(renv)
+        end
         # TODO: 做到生成的user form hidden里面有问题
         @user = User.new
         binding.pry

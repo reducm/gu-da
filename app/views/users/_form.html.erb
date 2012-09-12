@@ -19,7 +19,9 @@
     <%= f.input :email, :label => false, :input_html => {:autocomplete => 'off'}, :placeholder => 'example@email.com', :placeholder => 'Email' %>
     <%= f.input :password, :label=>false, :placeholder => '密码', :input_html => {:value => @user.password} %>
     <%= f.input :password_confirm, :label=>false, :placeholder => '确认你的密码' %>
-    <%= (f.input :authentications, :value => auth_id, :as => hidden) if auth_id %>
+    <%if auth_id%>
+        <%= f.input :authentications, :value => auth_id, :as => :hidden %>
+    <%end%>
     <%= f.button :submit, '创建我的帐号', :class => 'btn-warning', :style => 'width:41%' %>
   <%end%>
 <% end %>
