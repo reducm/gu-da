@@ -16,18 +16,18 @@ $bb: #202e4b;
 
 
 @mixin cw(){
-    color: darken(#000000, 10%);
+  color: darken(#000000, 10%);
 }
 
 @mixin white_radius {
-    background: white;
+  background: white;
   @include border-radius(4px);
 }
 
 html, body {
-    background: $bb;
+  background: $bb;
   @include cw();
-      height:100%;
+    height:100%;
   padding:20px;
 }
 
@@ -43,20 +43,27 @@ a {
 }
 
 .desc_textarea {
-    height: $baseLineHeight*3; 
+  height: $baseLineHeight*3; 
+}
+
+.error {
+  padding: 5px 0px 5px 5px;
+  display: inline-block;
+  width: 600px;
+  @include border-radius(4px);
 }
 
 .jlabel {
-    color: white;
+  color: white;
   display: inline;
 }
 
 .font_red {
-    color: #9d261d;
+  color: #9d261d;
 }
 
 .clear {
-    clear:both;
+  clear:both;
 }
 
 .jbreadcrumb {
@@ -72,72 +79,72 @@ a {
 }
 
 #login {
-    margin-top: 60px;
+  margin-top: 60px;
   height: 328px;
 }
 
 #login_left {
-    height: 100%;
+  height: 100%;
   width: 60%;
   background: red;
   float: left;
 }
 
 #login_right {
-    height: 100%;
+  height: 100%;
   width: 40%;
   float: left;
 }
 
 #login_form {
-    background: white;
+  background: white;
   padding-top: 15px;
   @include border-radius(4px);
-      margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 #signup_form {
-    background: white;
+  background: white;
   padding-top: 15px;
   padding-bottom: 11px;
   @include border-radius(4px);
 
   input {
-      width: 90%;
+    width: 90%;
     display: block;
     margin: 0 auto;
   }
 
   #signup_submit {
-      display:inline-block;
+    display:inline-block;
     width: 30%;
     margin-left: 202px;
   }
 }
 
 #new_user_h {
-    display:inline-block;
+  display:inline-block;
   margin-left: 19px;
 }
 
 .grey_font {
-    color: grey;
+  color: grey;
 }
 
 $input_width: 90%;
 .input {
-    width: 100%;
+  width: 100%;
   margin-bottom: 10px;
 }
 
 #login_user_name {
-    width: $input_width;
+  width: $input_width;
   margin: 0 auto;
   display: block;
 }
 
 #login_user_password {
-    width: 100%;
+  width: 100%;
 }
 
 #input_password_div {
@@ -148,17 +155,17 @@ $input_width: 90%;
 }
 
 #input_rememberme_div {
-    clear: both;
+  clear: both;
   margin-left: 18px;
   width:107px;
 }
 
 #user_form_toolbar{
-    float:left;
+  float:left;
 }
 
 #user_form_toolbar li {
-    display: inline-block;
+  display: inline-block;
   float: left;
   font-size: 14px;
   margin-right: 14px;
@@ -168,64 +175,77 @@ $input_width: 90%;
 }
 
 .gray_light {
-    color: $grayLight;
+  color: $grayLight;
 }
 
 .strong {
-    font-weight: bolder;
+  font-weight: bolder;
 }
 
 .prompt{
-    font-size:14px;
+  font-size:14px;
   color: $grayLight;
 }
 
 
 $border_color_grey: rgba(0,0,0,0.1);
 .border_bottom_grey {
-    border-bottom: 1px solid $border_color_grey;
+  border-bottom: 1px solid $border_color_grey;
 }
 .margin_bottom {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 .border_grey {
-    border: 1px solid $border_color_grey;
+  border: 1px solid $border_color_grey;
 }
 .border_none {
-    border: 0px;
+  border: 0px;
 }
 
 /////user/////////////
 $new_user_margin_left: 67px;
 #new_user_title {
-    color: #333333;
+  color: #333333;
   margin: 4px 0 15px $new_user_margin_left;
 }
 
-#new_user_form {
-    margin-left:$new_user_margin_left;
+#new_user_form, #bind_user_form{
+  margin-left:$new_user_margin_left;
   input {
-      width: 40%;
+      //width: 40%;
+        margin-bottom: 0px;
+    width: 452px;
   }
 }
 
+.switch_radio {
+  display: inline;
+}
+
+
 #new_user_div {
-    width: 100%;
+  width: 100%;
   height: 100%;
   border: 1px solid $border_color_grey;
   @include border-radius(4px);
-      background: white;
+    background: white;
+  label {
+    display: inline-block;
+    margin-left: 10px;
+  }
+
+
 }
 
 #edit_user_div {
-    width: 100%;
+  width: 100%;
   height: 100%;
   @include border-radius(4px);
 }
 
 #edit_user_left {
   @include white_radius();
-      width:30%;
+    width:30%;
   float:left;
   margin-right: 16px;
   background:white;
@@ -233,11 +253,11 @@ $new_user_margin_left: 67px;
 
 #edit_user_right {
   @include white_radius();
-  width:68%;
+    width:68%;
   float:right;
   background:white;
   h2 {
-      color: $gray;
+    color: $gray;
   }
 }
 
@@ -248,21 +268,21 @@ $new_user_margin_left: 67px;
   margin: 15px auto 0;
   color: white;
   @include border-radius(4px);
-  width:1190px;
+    width:1190px;
   div {
     margin-bottom:0px;
   }
 }
 .notice {
-    background: $green;
+  background: $green;
 }
 
 .error {
-    background: $red;
+  background: $red;
 }
 
 .wraning {
-    background: $blue;
+  background: $blue;
 }
 
 #flash_content {
@@ -272,12 +292,12 @@ $new_user_margin_left: 67px;
 
 @mixin jbadge {
   @include border-radius("4px");
-  display:inline-block;
+    display:inline-block;
 }
 
 .jbadge {
   @include jbadge();
-  background: white;
+    background: white;
 }
 
 .jbadge-info {
