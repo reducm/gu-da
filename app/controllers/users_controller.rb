@@ -31,17 +31,24 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @title = "用户注册"
-    @user.valid?
+    render_to = 'new'
+    if params[:user][:authentications]
+      @a = Authentication.find(params[:user][:authentications])
+      render_to = 'authentications/new'
+    end
+
+    @user.valid? 
     if @user.password != @user.password_confirm
       @user.errors[:password] << '密码确认与密码不相符'
-      render :new
+      render render_to
       return
     elsif @user.password.length < 6 or @user.password.length >20
       @user.errors[:password] << '密码长度在6-20之间'
-      render :new
+      render render_to
       return
     end
-
+   
+    @user.authentications << @a if @a
     if @user.save
       @setting = Setting.create(:user => @user)
       set_session(@user)
@@ -49,7 +56,7 @@ class UsersController < ApplicationController
       redirect_to articles_url, :method => 'get' 
     else
       #flash[:notice] = @user.jerrors
-      render :new
+      render render_to
     end
   end
 

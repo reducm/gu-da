@@ -218,10 +218,10 @@ $new_user_margin_left: 67px;
   }
 }
 
-.switch_radio {
+input[name="switch"] {
+  margin-left: 67px; 
   display: inline;
 }
-
 
 #new_user_div {
   width: 100%;
@@ -233,8 +233,6 @@ $new_user_margin_left: 67px;
     display: inline-block;
     margin-left: 10px;
   }
-
-
 }
 
 #edit_user_div {

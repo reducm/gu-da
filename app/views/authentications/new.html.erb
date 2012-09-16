@@ -1,17 +1,17 @@
 <div id="new_user_div">
   <h1 id="new_user_title"><img src="<%= @a.image %>" /><%= "欢迎你! #{@a.nickname}"%></h1>
-    <div id="create_user">
-      <input type="radio" name="switch" class="switch_radio" checked="checked" /><label>创建新用户</label>
-      <%= render :partial => 'users/form', :locals => {:action => 'new', :user => @user, :auth_id => @a.id} %>
-    </div>
+  <div id="create_user">
+    <input type="radio" name="switch" checked="checked" /><label>创建新用户</label>
+    <%= render :partial => 'users/form', :locals => {:action => 'new', :user => @user} %>
+  </div>
 
-    <div id="bind_user">
-      <input type="radio" class="switch_radio" name="switch" /><label>绑定已有账号</label>
-      <%= simple_form_for @user, :url => {controller:'authentications', action:'bind'}, :html => {:id => 'bind_user_form', :class => 'form-vertical'} do|f| %>
-        <%= f.input :email, :label => false, :placeholder => '邮箱', :input_html =>{}   %> 
-        <%= f.input :password, :label => false, :wrapper_html => {}, :placeholder => '密码', :input_html =>{}%> 
-        <%= f.input :authentications, :value => @a.id, :as => :hidden %>
-        <%= f.button :submit, "确定", :class => 'btn-primary inline-block', :style => 'width:41%;' %>
-      <%end%>
-    </div>
+  <div id="bind_user">
+    <input type="radio" name="switch" /><label>绑定已有账号</label>
+    <%= simple_form_for @user, :url => {controller:'authentications', action:'bind'}, :html => {:id => 'bind_user_form', :class => 'form-vertical'} do|f| %>
+      <%= f.input :email, :label => false, :placeholder => '邮箱', :input_html =>{}   %> 
+      <%= f.input :password, :label => false, :wrapper_html => {}, :placeholder => '密码', :input_html =>{}%> 
+      <%= f.input :authentications, :value => @a.id, :as => :hidden %>
+      <%= f.button :submit, "确定", :class => 'btn-primary inline-block', :style => 'width:41%;' %>
+    <%end%>
+  </div>
 </div>

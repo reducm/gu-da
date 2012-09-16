@@ -1,28 +1,29 @@
 <% if action == 'edit' %> 
-  <%= simple_form_for @user, :defaults=>{:input_html=>{:class => 'span3' }, :label_html => {}, :required => false }, :html => { :class => 'form-horizontal' }  do |f|%> 
-    <%= show_user_head(@user) %>
-    <%= f.input :picture, :label => false, :as=> :file %>
-    <%= f.input :nickname, :label => '昵称', :input_html => {:maxlength => 20 } %>
-    <%= f.input :email, :placeholder => 'example@email.com', :disabled => true %>
-    <%= f.input :password, :label => '旧密码(不需要修改密码请留空)', :required => false %>
-    <%= f.input :password_new, :hint => false, :error_html => { :id => 'password_error' }, :label=>'新密码' %>
-    <%= f.input :password_confirm, :label=>'新密码确认' %>
-    <%= f.simple_fields_for @user.setting do |setting|%>
-      <%= setting.input :blog_name, :label => '博客名称'  %>
+    <%= simple_form_for @user, :defaults=>{:input_html=>{:class => 'span3' }, :label_html => {}, :required => false }, :html => { :class => 'form-horizontal' }  do |f|%> 
+        <%= show_user_head(@user) %>
+        <%= f.input :picture, :label => false, :as=> :file %>
+        <%= f.input :nickname, :label => '昵称', :input_html => {:maxlength => 20 } %>
+        <%= f.input :email, :placeholder => 'example@email.com', :disabled => true %>
+        <%= f.input :password, :label => '旧密码(不需要修改密码请留空)', :required => false %>
+        <%= f.input :password_new, :hint => false, :error_html => { :id => 'password_error' }, :label=>'新密码' %>
+        <%= f.input :password_confirm, :label=>'新密码确认' %>
+        <%= f.simple_fields_for @user.setting do |setting|%>
+            <%= setting.input :blog_name, :label => '博客名称'  %>
+        <%end%>
+        <%= f.input :description, :label => '个人描述', :as => :text, :input_html => {:class => 'desc_textarea span3' }  %>
+        <%= f.button :submit, '确定', :class => 'btn btn-primary' %>
     <%end%>
-    <%= f.input :description, :label => '个人描述', :as => :text, :input_html => {:class => 'desc_textarea span3' }  %>
-    <%= f.button :submit, '确定', :class => 'btn btn-primary' %>
-  <%end%>
 <% else%>
     <%= simple_form_for @user, :url => {controller:'users', action:'create'}, :defaults=>{:input_html=>{:class => 'span3' }, :required => false }, :html => { :id => 'new_user_form', :class => 'form-vertical' }  do |f|%> 
-    <%= f.input :nickname, :label => false, :input_html => {:autocomplete => 'off'}, :placeholder => '昵称' %>
-    <%= f.input :email, :label => false, :input_html => {:autocomplete => 'off'}, :placeholder => 'example@email.com', :placeholder => 'Email' %>
-    <%= f.input :password, :label=>false, :placeholder => '密码', :input_html => {:value => @user.password} %>
-    <%= f.input :password_confirm, :label=>false, :placeholder => '确认你的密码' %>
-    <%if (auth_id ||= nil)%>
-        <%= f.input :authentications, :value => auth_id, :as => :hidden %>
+        <%= f.input :nickname, :label => false, :input_html => {:autocomplete => 'off'}, :placeholder => '昵称' %>
+        <%= f.input :email, :label => false, :input_html => {:autocomplete => 'off'}, :placeholder => 'example@email.com', :placeholder => 'Email' %>
+        <%= f.input :password, :label=>false, :placeholder => '密码', :input_html => {:value => @user.password} %>
+        <%= f.input :password_confirm, :label=>false, :placeholder => '确认你的密码' %>
+        <%if @user.authentications.size > 0%>
+            <%= f.input :authentications, :as => :hidden, :input_html => {:value => @user.authentications[0].id} %>
+        <%end%>
+        <%= f.button :submit, '创建我的帐号', :class => 'btn-warning', :style => 'width:41%' %>
     <%end%>
-    <%= f.button :submit, '创建我的帐号', :class => 'btn-warning', :style => 'width:41%' %>
-  <%end%>
 <% end %>
+
 

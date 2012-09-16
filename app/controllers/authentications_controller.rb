@@ -18,8 +18,9 @@ class AuthenticationsController < ApplicationController
   end
 
   def new
-    @user = User.first
+    @user = User.new
     @a = Authentication.first
+    @user.authentications << @a
     render :layout => 'application'
   end
 
