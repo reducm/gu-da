@@ -5,7 +5,8 @@ class Authentication < ActiveRecord::Base
   validates_presence_of :atoken, :provider #豆瓣是没有uid的,新浪2.0没有了asecret
   validates_uniqueness_of :provider, :scope => [:user_id], :message => '同一用户下不能绑定多个社交帐号'
   validates :user_id, :presence => {:message => '非临时验证,user_id不能为空'}
-
+  
+  #TODO :authentication model 在authen_controller bind和users_create里头需要检验一下合法性
   def self.create_from_request(user_id = 0, request)
     atoken = request.credentials.token
     asecret = request.credentials.secret
@@ -23,7 +24,7 @@ class Authentication < ActiveRecord::Base
   end
 
   def self.find_or_create(user_id, request)
-    a = Authentication.find_by_uid_and_provider(renv.uid, renv.provider) 
+    a = Authentication.find_by_uid_and_provider(request.uid, request.provider) 
     if a
       a.update_from_request(request)
     else

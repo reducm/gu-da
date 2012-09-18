@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
-     redirect_to user_articles_path((params[:id] || params[:nickname])) 
+    redirect_to user_articles_path((params[:id] || params[:nickname])) 
   end
 
   def new
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       format.html # new.html.erb
     end
   end
-  
+
   def create
     @user = User.new(params[:user])
     @title = "用户注册"
@@ -47,10 +47,10 @@ class UsersController < ApplicationController
       render render_to
       return
     end
-   
-    @user.authentications << @a if @a
+
     if @user.save
       @setting = Setting.create(:user => @user)
+      @user.authentications << @a if @a
       set_session(@user)
       session[:signup_new] = true
       redirect_to articles_url, :method => 'get' 
@@ -74,7 +74,7 @@ class UsersController < ApplicationController
       render :edit, :layout => "acount_setting"
       return
     end
-  
+
     @user = (params[:user][:password].blank?)? User.updates_nopass(params[:user], params[:id]) : User.updates(params[:user], params[:id])
     if @user.errors.any?
       flash[:error] = @user.jerrors
@@ -85,7 +85,7 @@ class UsersController < ApplicationController
       set_session(@user)
       redirect_to edit_user_url(@user_id) 
     end
- end
+  end
 
   def destroy
     @user = User.find(params[:id])

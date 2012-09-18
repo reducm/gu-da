@@ -1,3 +1,4 @@
+#encoding: UTF-8
 require_dependency 'jas/jshare'
 class AuthenticationsController < ApplicationController
   include JShare
@@ -18,9 +19,9 @@ class AuthenticationsController < ApplicationController
   end
 
   def new
-    @user = User.new
-    @a = Authentication.first
-    @user.authentications << @a
+    #@user = User.new
+    #@a = Authentication.first
+    #@user.authentications << @a
     render :layout => 'application'
   end
 
@@ -54,8 +55,9 @@ class AuthenticationsController < ApplicationController
         end
         # TODO: 做到生成的user form hidden里面有问题
         @user = User.new
-        binding.pry
-        render :template => 'authentications/new'
+        @user.authentications << @a
+        #binding.pry
+        render :new
       end    
     end
 =begin
@@ -71,5 +73,20 @@ class AuthenticationsController < ApplicationController
   def share
     session[:create_article], session[:update_article] = false, false
     share_to(Article.find(params['article']),params['providers'])
+  end
+
+  def bind
+    @user = User.check(params[:user])
+    @a = Authentication.find(params[:user][:authentications])
+    if @user.jerrors
+      flash[:notice] = @user.jerrors
+      render :new
+    else
+      @user.authentications << @a
+      @setting = @user.setting
+      set_session(@user)
+      flash[:notice] = "第三方账号绑定成功！"
+      redirect_to articles_url, :method => :get 
+    end
   end
 end
