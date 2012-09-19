@@ -43,6 +43,13 @@ module JLogin
     @owner = (user.id == @user_id) ? true : false
   end
 
+  def check_admin
+    unless @admin
+      flash[:error] = '当前用户不是管理员!'
+      redirect_to(controller:'users', action:'show')
+    end
+  end
+
   private
   def admin?(user)
     user.email.in? Admin.jconfig.admin

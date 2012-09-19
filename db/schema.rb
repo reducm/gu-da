@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120830051014) do
+ActiveRecord::Schema.define(:version => 20120919095602) do
 
   create_table "article_tagships", :force => true do |t|
     t.integer  "article_id"
@@ -81,6 +81,13 @@ ActiveRecord::Schema.define(:version => 20120830051014) do
     t.boolean  "readed",          :default => false
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "pictures", :force => true do |t|

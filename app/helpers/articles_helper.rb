@@ -4,6 +4,10 @@ module ArticlesHelper
     @owner || @admin
   end
 
+  def admin?
+    @admin
+  end
+
   def logo_link
     @logined ? name_path(@user_name) : root_path
   end

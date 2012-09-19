@@ -21,6 +21,9 @@
             <li <%= active_class(:blog) %> > <%= link_to "博客管理", "#eu_blogmanage_div"%></li>
             <li <%= active_class(:notifications) %> > <%= link_to "消息管理", user_notifications_path(@user_id)%></li>
             <li <%= active_class(:authentications) %> > <%= link_to "社交授权", user_authentications_path(@user_id)%></li>
+            <%if admin?%>
+              <li <%= active_class(:authentications) %> > <%= link_to "管理员", admin_path(@user_id)%></li>
+            <%end%>
           </ul>
         </div>
         <div id="edit_user_right" class="tab-content">

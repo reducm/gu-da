@@ -1,0 +1,11 @@
+<h1><%= "管理员 #{@user.nickname}"%></h1>
+
+<div id="index_images">
+  <%= simple_form_for @pages['index_images'] || Page.new(title:"index_images") do|f| %>
+    <%= f.input :pictures, :label => false, :as=> :file %>
+    <%= f.input :pictures, :label => false, :as=> :file %>
+    <%= f.input :pictures, :label => false, :as=> :file %>
+    <%= f.input :pictures, :label => false, :as=> :file %>
+    <%= f.button :submit, '确定', :class => 'btn btn-primary' %>
+  <%end%>
+</div>

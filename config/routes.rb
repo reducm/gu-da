@@ -17,7 +17,9 @@ GuDa::Application.routes.draw do
     resources :authentications
     resources :catagories
   end
-
+  
+  resources :admins
+  resources :pages
   resources :articles
   resources :catagories
   resources :tags
