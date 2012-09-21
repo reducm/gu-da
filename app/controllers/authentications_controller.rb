@@ -53,7 +53,6 @@ class AuthenticationsController < ApplicationController
         else
           @a = Authentication.create_temp_from_request(renv)
         end
-        # TODO: 做到生成的user form hidden里面有问题
         @user = User.new
         @user.authentications << @a
         #binding.pry
