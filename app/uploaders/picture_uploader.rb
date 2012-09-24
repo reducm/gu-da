@@ -23,14 +23,24 @@ class PictureUploader < CarrierWave::Uploader::Base
   version :head, :if => :image? do
     process :resize_to_fit => [150,150] 
   end
+  
+  version :normal, :if => :image? && :geometry_limit  do
+    process :resize_to_fit => [800,800] 
+  end
 
   version :small, :if => :image? do
     process :resize_to_fit => [80, 80] 
   end
- 
+
   protected
   def image?(new_file)
     new_file.content_type.include? 'image'
+  end
+
+  def geometry_limit(new_file)
+    geometry = ::Magick::Image.read(new_file.file).first
+    return false if geometry.columns < 800 
+    true
   end
 
   def extension_white_list

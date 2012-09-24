@@ -3,9 +3,8 @@ class PagesController < ApplicationController
   before_filter :check_session
   before_filter :check_admin
   
-  def create
+  def update
     page = params[:page]
-    binding.pry
     if page[:title] == 'index_images' && page[:pictures]
       @page = Page.find_or_create(page)
       page[:pictures].each do|k,v|
@@ -16,6 +15,4 @@ class PagesController < ApplicationController
     end
   end
 
-  def update
-  end
 end

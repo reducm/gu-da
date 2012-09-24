@@ -72,6 +72,10 @@ class ArticlesController < ApplicationController
     set_catagories(@article.user_id)
     set_page_title( @article.title, @current_user)
     check_owner @current_user
+    respond_to do|format|
+      format.html
+      format.json {render json:@article.to_json }
+    end
   end
 
   def destroy
