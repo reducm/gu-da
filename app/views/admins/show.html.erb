@@ -3,12 +3,15 @@
 <div id="index_images">
   <%if @pages['index_images']%>
     <% @pages['index_images'].pictures.each do|p| %>
-      <img src="<%= p.file%>" />
+      <img src="<%= p.file.small.url%>" />
     <%end%>
   <%end%>
-  <%= simple_form_for @pages['index_images'] || Page.new(title:"index_images"), :remote => true do|f| %>
+  <%= simple_form_for @pages['index_images'] || Page.new(title:"index_images"), :url => "/pages", :remote => true, :html => {:id=> "index_images_form"} do|f| %>
     <%= f.input :title, as: :hidden%>
-    <%= f.input :pictures, :as => :file %> 
+    <%= f.input :pictures, :as => :file, input_html:{name:"page[pictures][1]"}, label:false%> 
+    <%= f.input :pictures, :as => :file, input_html:{name:"page[pictures][2]"}, label:false%> 
     <%= f.button :submit, '确定', :class => 'btn btn-primary' %>
   <%end%>
 </div>
+
+<%= debug @pages %>

@@ -3,8 +3,10 @@ GuDa::Application.routes.draw do
   match "blog" => 'blog#index'
   match "/auth/:provider/callback", :to => "authentications#create"
   match "/auth/failure", :to => "authentications#index"
-  match "articles/demonew", :to => "articles#demonew"
-  match "articles/demoshow", :to => "articles#demoshow"
+  match "/articles/demonew", :to => "articles#demonew"
+  match "/articles/demoshow", :to => "articles#demoshow"
+  post "/pages/", :to => "pages#create"
+  put "/pages/", :to => "pages#create"
 
   #scope 'blog' do
   resources :users do
@@ -19,7 +21,6 @@ GuDa::Application.routes.draw do
   end
   
   resources :admins
-  resources :pages
   resources :articles
   resources :catagories
   resources :tags
