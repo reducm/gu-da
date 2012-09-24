@@ -12,4 +12,9 @@ class Page < ActiveRecord::Base
     end
     pages
   end
+
+  def self.find_or_create(params)
+    page = Page.find_by_title(params[:title]) || Page.create(title:params[:title])
+    page
+  end
 end

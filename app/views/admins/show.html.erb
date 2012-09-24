@@ -7,6 +7,7 @@
     <%end%>
   <%end%>
   <%= simple_form_for @pages['index_images'] || Page.new(title:"index_images"), :remote => true do|f| %>
+    <%= f.input :title, as: :hidden%>
     <%= f.input :pictures, :as => :file %> 
     <%= f.button :submit, '确定', :class => 'btn btn-primary' %>
   <%end%>
