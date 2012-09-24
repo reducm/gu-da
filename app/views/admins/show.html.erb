@@ -1,8 +1,10 @@
 <h1><%= "管理员 #{@user.nickname}"%></h1>
 
 <div id="index_images">
-  <% @pages['index_images'].pictures.each do|p| %>
-    <img src="<%= p.%>" />
+  <%if @pages['index_images']%>
+    <% @pages['index_images'].pictures.each do|p| %>
+      <img src="<%= p.file%>" />
+    <%end%>
   <%end%>
   <%= simple_form_for @pages['index_images'] || Page.new(title:"index_images"), :remote => true do|f| %>
     <%= f.input :pictures, :as => :file %> 
