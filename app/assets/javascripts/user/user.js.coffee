@@ -7,7 +7,7 @@ $(document).ready(()->
       )
     )
 
-  $("#user_description").count_num(140) #description会有字数限制的提示
+  $("#user_description").count_num(140) if $("#user_description")[0]#description会有字数限制的提示
 )
 
 

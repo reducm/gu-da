@@ -1,6 +1,6 @@
 source 'http://ruby.taobao.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.8'
 gem 'railties'
 
 gem 'capistrano'
@@ -57,6 +57,7 @@ group :assets do
   #gem 'bootstrap-sass-rails'
   gem 'bootstrap-sass'
   gem 'font-awesome-rails'
+  gem 'rails-asset-jqueryui', :git => "git://github.com/allen13/rails-asset-jqueryui.git"
 end
 
 gem 'jquery-rails'
