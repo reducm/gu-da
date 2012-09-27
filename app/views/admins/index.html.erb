@@ -12,7 +12,26 @@
     <%= f.input :pictures, :as => :file, input_html:{name:"page[pictures][1]"}, label:false%> 
     <%= f.input :pictures, :as => :file, input_html:{name:"page[pictures][2]"}, label:false%> 
     <%= f.button :submit, '确定', :class => 'btn btn-primary' %>
+    <style>
+      #drop_file {
+        border: 1px solid orange;
+        width: 300px;
+        height: 200px;
+      }   
+
+      #drag_test {
+        border: 1px solid orange;
+        width: 100px;
+        height: 100px;
+      }   
+    </style>
+
+    <div id="drag_test">
+      drag me! 
+    </div>
+    <div id="drop_file">
+        put some file here!
+    </div>
   <%end%>
 </div>
 
-<%= debug @pages %>

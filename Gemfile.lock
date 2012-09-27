@@ -5,13 +5,6 @@ GIT
     quiet_assets (0.0.1)
 
 GIT
-  remote: git://github.com/allen13/rails-asset-jqueryui.git
-  revision: 18e211bc1c4d8bde687ea087cdc3a5fa9a1a92ca
-  specs:
-    rails-asset-jqueryui (0.0.3)
-      jquery-rails
-
-GIT
   remote: git://github.com/plataformatec/simple_form.git
   revision: 4e6508e45f2cb46cf1a3e6a125e8f39233c7822d
   specs:
@@ -325,7 +318,6 @@ DEPENDENCIES
   pygments.rb
   quiet_assets!
   rails (= 3.2.8)
-  rails-asset-jqueryui!
   railties
   rb-fsevent
   rb-inotify
