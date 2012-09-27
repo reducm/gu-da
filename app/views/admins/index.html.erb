@@ -3,8 +3,8 @@
 
 <div id="index_images">
   <%if @pages['index_images']%>
-    <% @pages['index_images'].pictures.each do|p| %>
-      <img src="<%= p.file.small.url%>" />
+    <% @pages['index_images'].pictures.each_with_index do|picture, i| %>
+      <img src="<%= picture.file.small.url%>" id="img_<%= i%>"/>
     <%end%>
   <%end%>
   <%= simple_form_for @pages['index_images'] || Page.new(title:"index_images"), :url => "/pages", :remote => true, :html => {:id=> "index_images_form"} do|f| %>
