@@ -2,36 +2,17 @@
 <h1><%= "管理员 #{@user.nickname}"%></h1>
 
 <div id="index_images">
+  <h1>首页焦点图</h1>
   <%if @pages['index_images']%>
     <% @pages['index_images'].pictures.each_with_index do|picture, i| %>
       <img src="<%= picture.file.small.url%>" id="img_<%= i%>"/>
     <%end%>
   <%end%>
-  <%= simple_form_for @pages['index_images'] || Page.new(title:"index_images"), :url => "/pages", :remote => true, :html => {:id=> "index_images_form"} do|f| %>
-    <%= f.input :title, as: :hidden%>
-    <%= f.input :pictures, :as => :file, input_html:{name:"page[pictures][1]"}, label:false%> 
-    <%= f.input :pictures, :as => :file, input_html:{name:"page[pictures][2]"}, label:false%> 
-    <%= f.button :submit, '确定', :class => 'btn btn-primary' %>
-    <style>
-      #drop_file {
-        border: 1px solid orange;
-        width: 300px;
-        height: 200px;
-      }   
-
-      #drag_test {
-        border: 1px solid orange;
-        width: 100px;
-        height: 100px;
-      }   
-    </style>
-
-    <div id="drag_test">
-      drag me! 
+    <div class="drop_file upload_button btn btn-primary">
+      点击上传图片<br />或<br />拖动文件到此处
+      <input type="file" multiple id="upload_input" />
     </div>
-    <div id="drop_file">
-        put some file here!
-    </div>
-  <%end%>
+
+  <hr>
 </div>
 

@@ -475,4 +475,37 @@ $hc: black;
 .del_link {
   color:$red;
 }
+
+///-----------drag & drop-------------
+.drop_file {
+  position:relative;
+  input {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    font-family: Arial;
+    font-size: 118px;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+    opacity: 0;
+    height: auto;
+  }
+}
+
+.upload_button {
+  width: 200px;
+}
+
+.show_upload_pic {
+  li {
+    float: left;
+    margin-left: 10px;
+  }
+}
+
+#upload_input {
+}
+
+
 ////////////end_draft

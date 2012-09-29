@@ -35,7 +35,7 @@ $(document).ready(->
 
   set_height()
   
-  if window.action != 'index'
+  if window.action != 'index' && button[0]
     button.click()
 )
 
