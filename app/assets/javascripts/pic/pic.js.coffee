@@ -4,6 +4,7 @@ $(document).ready(->
     e.preventDefault()
     false
   )
+
   $("#drag_test").draggable()
   $("#drop_file").droppable(
     {

@@ -7,7 +7,6 @@ $(document).ready(->
   oah = article.height()
   osh = article.height()
 
-
   button.bind('mouseover', ->
     #    article.addClass('right_shadow')
     button.addClass('bg_darker')
@@ -35,6 +34,9 @@ $(document).ready(->
     button.height(article.height())
 
   set_height()
+  
+  if window.action != 'index'
+    button.click()
 )
 
 
