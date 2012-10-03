@@ -54,8 +54,8 @@ group :assets do
   gem 'sass-rails',   '>= 3.2'
   gem 'coffee-rails', '>= 3.2'
   gem 'uglifier', '>= 1.0.3'
-  #gem 'bootstrap-sass-rails'
-  gem 'bootstrap-sass'
+  gem 'bootstrap-sass-rails'
+  #gem 'bootstrap-sass'
   gem 'font-awesome-rails'
   #gem 'rails-asset-jqueryui', :git => "git://github.com/allen13/rails-asset-jqueryui.git"
 end
