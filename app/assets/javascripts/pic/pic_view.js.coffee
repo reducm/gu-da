@@ -1,7 +1,8 @@
 class window.PicView
   constructor:(@img)->
+    @id = @img.attr("id").match(/\d+/)
     @div = $("<div class=\"inline-block\"></div>")
-    @remove_icon = $("<a href='###' data-toggle><i class=\"icon-remove pull-right\"></i></a>")
+    @remove_icon = $("<a href='/pictures/#{@id}' data-remote=\"true\" data-method=\"delete\" ><i class=\"icon-remove pull-right\"></i></a>")
     @img.wrap(@div)
     @img.parent()
     @div = @img.parent()
@@ -19,6 +20,15 @@ class window.PicView
       e.preventDefault()
       $(this).toggleClass("grey")
     )
+    @div.find("a").on("click", ()=>
+      @div.loading()
+    ).on("ajax:success",(event,data)=>
+      console.log(data)
+      Jalert::alert(data.message)
+      @div.unloading()
+      @div.hide()
+    )
+    
 
 
     

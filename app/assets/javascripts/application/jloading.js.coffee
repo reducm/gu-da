@@ -17,6 +17,7 @@ $.fn.extend({ #自己写的loading扩展,会在元素上面加一个透明dark_b
     span.attr("interval", interval_id)
   unloading: ()->
     div = this.find(".jloading")
+    return false unless div[0]
     clearInterval(div.find("span").attr("interval"))
     div.remove()
 })
