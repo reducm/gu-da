@@ -1,6 +1,7 @@
 class window.PicController
   constructor:(drop_button, @ul, @action, @picwidth="100px")->
     @button = drop_button
+    @button.css("display","block")
     @input = @button.find("input")
     @imgs = []
     @formdata = new FormData()
@@ -22,6 +23,9 @@ class window.PicController
       files = event.originalEvent.dataTransfer.files
       that.create_upload_button(that.ul)
       that.imgs = that.makePicArr(files)
+    )
+    $("img[data-toggle='pic']").each(()->
+      new PicView($(this))
     )
 
   makePicArr:(files,ul=@ul)->

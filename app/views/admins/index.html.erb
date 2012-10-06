@@ -5,7 +5,7 @@
   <h1>首页焦点图</h1>
   <%if @pages['index_images']%>
     <% @pages['index_images'].pictures.each_with_index do|picture, i| %>
-      <img src="<%= picture.file.small.url%>" id="img_<%= i%>" class="img-polaroid" />
+    <%= pic_preview(picture) %> 
     <%end%>
   <%end%>
   <div class="drop_file upload_button btn btn-primary">

@@ -205,4 +205,8 @@ module ArticlesHelper
   def share_to_image(provider)
     content_tag :i,"",:class=>"icons_#{provider}", :style=>"display:inline-block"
   end
+
+  def pic_preview(picture)
+    raw "<img class=\"img-polaroid\" data-toggle='pic' src=\"#{picture.file.small.url}\" id='img_#{picture.id}'/>"
+  end
 end
