@@ -2,7 +2,7 @@ $.fn.extend({ #自己写的loading扩展,会在元素上面加一个透明dark_b
   loading: ()->
     return false unless this[0]
     div = $("<div class='jloading'>loading<span class='loading_text'></span></div>")
-    div.width(this[0].offsetWidth).height(this[0].offsetHeight)
+    div.width(this.outerWidth()).height(this.outerHeight())
     this.css("position","relative")
     div.css({position:"absolute", top:0, left:0, background:"black", opacity:0.7,"z-index:999",color:"white"})
     this.append(div)
