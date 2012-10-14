@@ -2,7 +2,7 @@ $gridColumnWidth: 81px;
 $gridGutterWidth: 20px;
 $baseFontSize: 19px;
 $baseLineHeight: 25px;
-$sansFontFamily: "Microsoft Yahei",微软雅黑,"Helvetica Neue", Helvetica, Arial, sans-serif;
+//$sansFontFamily: "Microsoft Yahei",微软雅黑,"Helvetica Neue", Helvetica, Arial, sans-serif;
 $infoBackground:#049cdb;
 $errorBackground:#bd362f;
 $successBackground:#468847;
@@ -76,7 +76,8 @@ a {
 .inline-block {
   display: inline-block;
 }
-
+///// login_start/////
+$input_font_size: 15px;
 #login {
   margin-top: 60px;
   height: 328px;
@@ -86,20 +87,91 @@ a {
   height: 100%;
   width: 60%;
   background: red;
+  margin: 0px 50px 0px 40px;
   float: left;
+  position: relative;
 }
+
+/// slides /////////
+#slides {
+  height: 100%;
+}
+
+.slides_container{
+  height: 100%;
+}
+
+#slides .next {
+  position: absolute;
+  top: 107px;
+  left: 715px;
+  width: 24px;
+  height: 43px;
+  display: block;
+  z-index: 101;
+}
+
+.slide {
+}
+
+#slides .prev {
+  position: absolute;
+  top: 107px;
+  left: -24px;
+  width: 24px;
+  height: 43px;
+  display: block;
+  z-index: 101;
+}
+
+.caption {
+  z-index: 500;
+  position: absolute;
+  bottom: -35px;
+  left: 0;
+  height: 30px;
+  padding: 5px 20px 0 20px;
+  background: black;
+  background: rgba(0, 0, 0, 0.5);
+  width: 540px;
+  font-size: 1.3em;
+  line-height: 1.33;
+  color: white;
+  border-top: 1px solid black;
+  text-shadow: none;
+}
+
+///end_slides/////////
 
 #login_right {
   height: 100%;
   width: 28%;
-  float: right;
+  float: left;
+}
+
+@mixin index_input {
+   input {
+    width: 90%;
+    display: block;
+    height: 20px;
+    font-size:$input_font_size;
+    margin: 0 auto;
+  }
 }
 
 #login_form {
   background: white;
   padding-top: 15px;
   @include border-radius(4px);
-    margin-bottom: 10px;
+  margin-bottom: 10px;
+  @include index_input();
+  input[type="submit"]{
+    padding-top: 0px;
+    float:left;
+    margin: 0 6px 14px 7px;
+    width: 20%;
+    height: 30px;
+  }
 }
 
 #signup_form {
@@ -107,23 +179,30 @@ a {
   padding-top: 15px;
   padding-bottom: 11px;
   @include border-radius(4px);
-
-  input {
-    width: 90%;
-    display: block;
-    margin: 0 auto;
-  }
-
+  @include index_input();
   #signup_submit {
     display:inline-block;
-    width: 30%;
-    margin-left: 202px;
+    width: 48%;
+    margin-left: 20px;
+    height: 30px;
+    padding-top: 0px;
   }
 }
 
+#login_third_part {
+  a {
+    height:24px;
+    padding-top: 0px;
+    font-size: $input_font_size;
+  }
+  margin-bottom: 10px;
+}
+
+
 #new_user_h {
   display:inline-block;
-  margin-left: 19px;
+  margin: 0 0 0 12px;
+  line-height: 14px;
 }
 
 .grey_font {
@@ -147,11 +226,12 @@ $input_width: 90%;
 }
 
 #input_password_div {
-  width: $input_width - 34%; 
-  margin-left: 19px;
+  width: $input_width - 47%; 
+  margin-left: 10px;
   margin-bottom: 0px;
   float: left;
 }
+
 
 #input_rememberme_div {
   clear: both;
@@ -173,6 +253,7 @@ $input_width: 90%;
   }
 }
 
+/////// login_end /////
 .gray_light {
   color: $grayLight;
 }
@@ -309,5 +390,9 @@ input[name="switch"] {
   color:grey;
 }
 
-
+img {
+  max-width: 100%;
+}
 ///end_flash /////////
+
+

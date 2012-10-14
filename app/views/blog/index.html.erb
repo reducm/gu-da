@@ -1,16 +1,34 @@
+<%= content_for :other_js do%>
+  <%= javascript_include_tag "slides" %>
+<%end%>
 <div id="login">
   <div id="login_left">
-
+    <% if @page %>
+      <div id="slides">
+        <div class="slides_container">
+          <% @page.pictures.each_with_index do|picture,i| %>
+            <div class="slide" >
+              <p><a href="#<%= i+1 %>" class="link"><img src="<%= picture.file.url %>" /></a></p>
+              <div class="caption">
+                <p>test</p>
+              </div>
+            </div>
+          <%end%>
+        </div>
+        <a href="#" class="prev"><%= sprite_tag("slides_prev") %></a>
+        <a href="#" class="next"><%= sprite_tag("slides_next") %></a>
+      </div>
+    <%end%>
   </div>
 
   <div id="login_right">
     <%= simple_form_for @user, :url => login_path, :html => { :id => 'login_form' }, :wrapper => :default   do|f|%>
       <%= f.input :email, :label => false, :placeholder => '邮箱', :input_html =>{ :id => 'login_user_name' }   %> 
       <%= f.input :password, :label => false, :wrapper_html => {id:'input_password_div'}, :placeholder => '密码', :input_html =>{ :id => 'login_user_password' }%> 
-      <%= f.button :submit, "登录", :class => 'btn-primary inline-block', :style => 'float:left; margin: 0 6px 14px 17px;' %>
+      <%= f.button :submit, "登录", :class => 'btn-primary inline-block' %>
 
-      <div class="btn-group inline-block">
-        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+      <div class="btn-group inline-block" id="login_third_part" >
+        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#" >
           第三方
           <span class="caret"></span>
         </a>

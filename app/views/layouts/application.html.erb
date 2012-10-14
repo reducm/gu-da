@@ -6,6 +6,7 @@
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "user" %>
     <%= javascript_include_tag "user" if params[:controller] == 'users'%>
+    <%= yield :other_js %>
     <%= csrf_meta_tags %>
   </head>
   <body>

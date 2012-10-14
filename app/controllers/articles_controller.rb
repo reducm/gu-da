@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   before_filter :check_session
   before_filter {|c| c.set_breadcrumbs}
   before_filter :init_params, :only => [:create, :update]
-
+  # TODO: 处理头像的modal要fix成partial，现在index一个show里面一个
   def index
     params[:user_id] = @user_id if params[:user_id].blank?
     @current_user = User.get_user(params)

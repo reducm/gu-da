@@ -56,21 +56,27 @@ $hc: black;
   }
 }
 
-@mixin markdown_style($blockquote:92%) {
+@mixin markdown_style($blockquote:92%,$m_color:#5c5c5c) {
   @include markdown_blockquote($blockquote);
   $mb: 22px;
   p {
     margin-bottom: $mb;
     font-size:18px;
+    strong {
+      font-weight: bolder;
+      color: #333;
+    }
   }
   pre {
     margin-bottom: $mb;
+    color: $m_color;
   }
   ul, ol{
     width:$blockquote;
     margin:0 auto; 
     margin-bottom: $mb;
   }
+  color: $m_color;
 }
 
 .word_break {
@@ -203,8 +209,7 @@ $hc: black;
 
 .article_each {
   @include markdown_style();
-    margin-bottom: 15px;
-  color: $textColor;
+  margin-bottom: 15px;
   @include word_break();
 }
 
@@ -503,6 +508,7 @@ $hc: black;
     margin-left: 10px;
   }
 }
+
 
 
 

@@ -1,0 +1,18 @@
+/*
+
+        Creating a sprite from following images:
+        
+        app/assets/images/sprites/slides/next.png (24x43)
+        app/assets/images/sprites/slides/prev.png (24x43)
+
+        Output files:
+          app/assets/images/sprites/slides.png
+          app/assets/stylesheets/sprites/slides.scss
+
+        Output size:
+          48x43
+
+
+*/
+.slides_next { width: 24px; height: 43px; background: url(image-path('sprites/slides.png')) 0px 0px no-repeat; }
+.slides_prev { width: 24px; height: 43px; background: url(image-path('sprites/slides.png')) -24px 0px no-repeat; }

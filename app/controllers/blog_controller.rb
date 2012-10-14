@@ -3,6 +3,7 @@ class BlogController < ApplicationController
   def index
     redirect_to articles_path if session[:logined]
     @user = User.new
+    @page = Page.includes(:pictures).find_by_title("index_images")
   end
 
   def logout

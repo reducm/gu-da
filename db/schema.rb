@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120919095602) do
+ActiveRecord::Schema.define(:version => 20121014081514) do
 
   create_table "article_tagships", :force => true do |t|
     t.integer  "article_id"
@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(:version => 20120919095602) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "pages", ["title"], :name => "index_pages_on_title"
 
   create_table "pictures", :force => true do |t|
     t.string   "file"
