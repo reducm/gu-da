@@ -5,16 +5,11 @@
   <div id="login_left">
     <% if @page %>
       <div id="slides">
-        <div class="slides_container">
-          <% @page.pictures.each_with_index do|picture,i| %>
-            <div class="slide" >
-              <a href="#<%= i+1 %>" class="link"><img src="<%= picture.file.url %>" /></a>
-              <div class="caption">
-                <p>test</p>
-              </div>
-            </div>
+        <ul class="rslides">
+          <% @page.pictures.each_with_index do |picture, i|%>
+            <li><img src="<%= picture.file.url %>" /></li>
           <%end%>
-        </div>
+        </ul>
         <a href="#" class="prev"><%= sprite_tag("slides_prev") %></a>
         <a href="#" class="next"><%= sprite_tag("slides_next") %></a>
       </div>

@@ -94,52 +94,52 @@ $input_font_size: 15px;
 
 /// slides /////////
 #slides {
+  height:100%;  
+  .prev {
+    position: absolute;
+    top:127px;
+    left:-2px;
+  }
+
+  .next {
+    position: absolute;
+    top:127px;
+    left:692px;
+  }
+}
+
+.rslides {
+  position: relative;
   height: 100%;
-}
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  }
 
-.slides_container{
-  height: 100%;
-}
-
-#slides .next {
+.rslides li {
   position: absolute;
-  top: 107px;
-  left: 715px;
-  width: 24px;
-  height: 43px;
-  display: block;
-  z-index: 101;
-}
-
-.slide {
-}
-
-#slides .prev {
-  position: absolute;
-  top: 107px;
-  left: -24px;
-  width: 24px;
-  height: 43px;
-  display: block;
-  z-index: 101;
-}
-
-.caption {
-  z-index: 500;
-  position: absolute;
-  bottom: -35px;
+  display: none;
+  width: 100%;
   left: 0;
-  height: 30px;
-  padding: 5px 20px 0 20px;
-  background: black;
-  background: rgba(0, 0, 0, 0.5);
-  width: 540px;
-  font-size: 1.3em;
-  line-height: 1.33;
-  color: white;
-  border-top: 1px solid black;
-  text-shadow: none;
-}
+  top: 0;
+  }
+
+.rslides li:first-child {
+  position: relative;
+  display: block;
+  float: left;
+  }
+
+.rslides img {
+  display: block;
+  height: auto;
+  float: left;
+  width: 100%;
+  border: 0;
+  }
+
 
 ///end_slides/////////
 
@@ -151,7 +151,7 @@ $input_font_size: 15px;
 
 @mixin index_input {
    input {
-    width: 90%;
+     width: 90%;
     display: block;
     height: 20px;
     font-size:$input_font_size;
@@ -163,7 +163,7 @@ $input_font_size: 15px;
   background: white;
   padding-top: 15px;
   @include border-radius(4px);
-  margin-bottom: 10px;
+    margin-bottom: 10px;
   @include index_input();
   input[type="submit"]{
     padding-top: 0px;
@@ -195,7 +195,7 @@ $input_font_size: 15px;
     padding-top: 0px;
     font-size: $input_font_size;
   }
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 
