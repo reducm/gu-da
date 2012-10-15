@@ -25,6 +25,11 @@ wrap = (type, str,time)->
   div.find("a").bind('click',()->
     clearInterval(interval)
   )
+  div.on("click", ()->
+    $(this).alert("close")
+  ).on("mouseenter",()->
+    $(this).css("cursor","pointer")
+  )
   div
 
 #设置倒数,参数{倒数所在的span element, 倒数秒数}

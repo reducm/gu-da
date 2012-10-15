@@ -8,7 +8,7 @@
         <div class="slides_container">
           <% @page.pictures.each_with_index do|picture,i| %>
             <div class="slide" >
-              <p><a href="#<%= i+1 %>" class="link"><img src="<%= picture.file.url %>" /></a></p>
+              <a href="#<%= i+1 %>" class="link"><img src="<%= picture.file.url %>" /></a>
               <div class="caption">
                 <p>test</p>
               </div>

@@ -14,11 +14,13 @@
         <div class='time'><%= jtime a.created_at %></div>
         <div class='empty_height'> </div>
         <%= markdown(a.preview) %>
-        <%= link_to '阅读全文', article_path(a.id)%> 
-        <%= (link_to '删除', article_path(a), :method => 'delete') if owner?%> 
-        <%= (link_to '修改', edit_article_path(a)) if owner? %> 
+        <%= link_to '阅读全文', article_path(a.id), :class=>"article_link_button" %>  
+        <%= (link_to '删除', article_path(a), :method => 'delete',:class=>"article_link_button") if owner?%>  
+        <%= (link_to '修改', edit_article_path(a),:class=>"article_link_button") if owner? %>  
       </div>
       <%unless (i+1) == @articles.size %>
+        <div class="articles_hr"></div>
+        <div class="empty_height"></div>
         <div class="empty_height"></div>
         <div class="empty_height"></div>
       <%end%>
