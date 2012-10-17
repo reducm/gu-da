@@ -16,6 +16,7 @@ class Comment < ActiveRecord::Base
   
   attr_accessor :user_name, :user_picture, :strtime
 
+
   def self.get_by_article_id(id)
     cs = Comment.includes(user:[:picture]).select('id, content, created_at, user_id, visitor_name').where("article_id=?", id).order("created_at asc").all
     cs.each do |c|

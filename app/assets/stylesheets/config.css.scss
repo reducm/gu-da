@@ -95,51 +95,18 @@ $input_font_size: 15px;
 /// slides /////////
 #slides {
   height:100%;  
-  .prev {
-    position: absolute;
-    top:127px;
-    left:-2px;
-  }
+  //.prev {
+    //position: absolute;
+    //top:127px;
+    //left:-2px;
+  //}
 
-  .next {
-    position: absolute;
-    top:127px;
-    left:692px;
-  }
+  //.next {
+    //position: absolute;
+    //top:127px;
+    //left:692px;
+  //}
 }
-
-.rslides {
-  position: relative;
-  height: 100%;
-  list-style: none;
-  overflow: hidden;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  }
-
-.rslides li {
-  position: absolute;
-  display: none;
-  width: 100%;
-  left: 0;
-  top: 0;
-  }
-
-.rslides li:first-child {
-  position: relative;
-  display: block;
-  float: left;
-  }
-
-.rslides img {
-  display: block;
-  height: auto;
-  float: left;
-  width: 100%;
-  border: 0;
-  }
-
 
 ///end_slides/////////
 
@@ -191,7 +158,6 @@ $input_font_size: 15px;
 
 #login_third_part {
   a {
-    height:24px;
     padding-top: 0px;
     font-size: $input_font_size;
   }
@@ -367,7 +333,7 @@ input[name="switch"] {
   width:95%;
   margin: 5px auto;
 }
-
+///// badge /////
 @mixin jbadge {
   @include border-radius("4px");
     display:inline-block;
@@ -381,6 +347,15 @@ input[name="switch"] {
 .jbadge-info {
   background:#2f96b4;
 }
+
+.nav {
+  .badge {
+    display: inline-block;
+    margin-top: -5px;
+  }
+}
+
+//// end_badge////
 
 .black {
   color:black;

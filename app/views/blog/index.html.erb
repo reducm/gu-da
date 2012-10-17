@@ -4,14 +4,15 @@
 <div id="login">
   <div id="login_left">
     <% if @page %>
-      <div id="slides">
+      <div id="slides" class="rslides_container">
         <ul class="rslides">
           <% @page.pictures.each_with_index do |picture, i|%>
-            <li><img src="<%= picture.file.url %>" /></li>
+            <li>
+              <img src="<%= picture.file.url %>" />
+              <p class='caption'>test <%= i%></p>
+            </li>
           <%end%>
         </ul>
-        <a href="#" class="prev"><%= sprite_tag("slides_prev") %></a>
-        <a href="#" class="next"><%= sprite_tag("slides_next") %></a>
       </div>
     <%end%>
   </div>
@@ -27,7 +28,7 @@
           第三方
           <span class="caret"></span>
         </a>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
           <li><a href="/auth/weibo"><%= share_to_image("weibo") %> 微博</a></li>
           <li><a href="/auth/douban"><%= share_to_image("douban") %> 豆瓣</a></li>
           <li><a href="/auth/twitter"><%= share_to_image("twitter") %> Twitter</a></li>

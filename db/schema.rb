@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121014081514) do
+ActiveRecord::Schema.define(:version => 20121017095837) do
 
   create_table "article_tagships", :force => true do |t|
     t.integer  "article_id"
@@ -134,5 +134,8 @@ ActiveRecord::Schema.define(:version => 20121014081514) do
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["nickname"], :name => "index_users_on_nickname"
 
 end

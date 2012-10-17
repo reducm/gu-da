@@ -6,10 +6,12 @@ class ArticlesController < ApplicationController
   before_filter {|c| c.set_breadcrumbs}
   before_filter :init_params, :only => [:create, :update]
   # TODO: 处理头像的modal要fix成partial，现在index一个show里面一个
+  # TODO: 增加回复别人评论时候notify一下的功能，要大修了
   # TODO: edit和new article表单要设成在浏览器不用滚动
   # TODO: 每个blog要有加banner功能
   # TODO: 小工具， todo list
   # TODO: 草稿功能能保存到服务器
+  # TODO: 模板功能
   def index
     params[:user_id] = @user_id if params[:user_id].blank?
     @current_user = User.get_user(params)
