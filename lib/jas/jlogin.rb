@@ -40,7 +40,7 @@ module JLogin
 
   #用在index和show里头判断对比session和提交id是否owner, 增加@owner
   def check_owner(user)
-    @owner = (user.id == @user_id) ? true : false
+    @owner = ((user.id == @user_id) || @admin) ? true : false
   end
 
   def check_admin

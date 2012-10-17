@@ -2,6 +2,7 @@
 require_dependency 'jas/jshare'
 class AuthenticationsController < ApplicationController
   include JShare
+  before_filter :check_login
   before_filter :check_session
   #before_filter :check_login
 
@@ -68,10 +69,28 @@ class AuthenticationsController < ApplicationController
     login_or_create_user
 =end
   end
+  
+  def destroy
+    @authentication = Authentication.find(params[:id])
+    if check_owner(@authentication.user)
+      @authentication.destroy
+      respond_to do |format|
+        format.html { redirect_to user_authentications_url(@user_id) }
+        format.json { head :ok }
+      end
+    else
+      flash[:error]= '当前用户没有权限删除！'
+      redirect_to user_authentications_url(@user_id)
+    end
+
+  end
 
   def share
+    article_id = session[:create_article] || session[:update_article]
     session[:create_article], session[:update_article] = false, false
-    share_to(Article.find(params['article']),params['providers'])
+    #发送失败的话会显示一个出错信息
+    flash[:error] = '发送失败,请稍后再试' unless share_to(Article.find(params['article']),params['providers'])
+    redirect_to user_article_path(@user_id, article_id)
   end
 
   def bind

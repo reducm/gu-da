@@ -6,6 +6,10 @@ class ArticlesController < ApplicationController
   before_filter {|c| c.set_breadcrumbs}
   before_filter :init_params, :only => [:create, :update]
   # TODO: 处理头像的modal要fix成partial，现在index一个show里面一个
+  # TODO: edit和new article表单要设成在浏览器不用滚动
+  # TODO: 每个blog要有加banner功能
+  # TODO: 小工具， todo list
+  # TODO: 草稿功能能保存到服务器
   def index
     params[:user_id] = @user_id if params[:user_id].blank?
     @current_user = User.get_user(params)
@@ -80,11 +84,15 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
-    @article.destroy
-
-    respond_to do |format|
-      format.html { redirect_to articles_url }
-      format.json { head :ok }
+    if check_owner(@article.user)
+      @article.destroy
+      respond_to do |format|
+        format.html { redirect_to articles_url }
+        format.json { head :ok }
+      end
+    else
+      flash[:error]= '当前用户没有权限删除！'
+      redirect_to root_path
     end
   end
 

@@ -8,6 +8,7 @@ module JShare
 
   def jshare_article(article, providers, options={}) 
     as = Authentication.spec_provider(article.user_id,providers)
+    options['url'] ||= user_article_url(article.user_id, article)
     if as.size > 0
       as.each do |a|
         args = {'title'=> article.title, 'content'=>article.content}.merge(options).merge(a.attributes)
@@ -20,6 +21,8 @@ module JShare
           next
         end
       end
+    else
+      false
     end
   end
 
@@ -34,7 +37,7 @@ module JShare
   def douban(options)
     douban = Douban::Authorize.new(Douban.jconfig.api_key, Douban.jconfig.api_secret)
     douban.access_token = {token:options['atoken'], secret:options['asecret']}
-    douban.create_note(options['title'], options['content'])
+    douban.create_note(options['title'], "#{options['content']}\n来自:#{options['url']}")
   end
 
   def facebook(options)

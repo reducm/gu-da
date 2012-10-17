@@ -151,7 +151,7 @@ module ArticlesHelper
       if expires?(authentication_hash[client]['expires']) 
         link_to "已过期,重新授权", "/auth/#{client}"
       else
-        content_tag(:span, '已关联 | ') + link_to('取消','#')
+        content_tag(:span, '已关联 | ') + link_to('取消', user_authentication_path(@user_id, authentication_hash[client]['id']), method:'delete')
       end
     end
   end
