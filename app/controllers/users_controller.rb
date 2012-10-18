@@ -1,6 +1,6 @@
 #encoding: utf-8
 class UsersController < ApplicationController
-  before_filter :check_login, :only => [:edit, :update, :destroy] 
+  before_filter :check_login, only: [:edit, :update, :destroy] 
   before_filter :check_session
 
   def index
@@ -49,11 +49,11 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-      @setting = Setting.create(:user => @user)
+      @setting = Setting.create(user: @user)
       @user.authentications << @a if @a
       set_session(@user)
       session[:signup_new] = true
-      redirect_to articles_url, :method => 'get' 
+      redirect_to articles_url, method: 'get' 
     else
       #flash[:notice] = @user.jerrors
       render render_to
@@ -63,7 +63,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @title = "#{@user.name} 用户设置"
-    render :layout => "acount_setting"
+    render layout: "acount_setting"
   end
 
   def update
@@ -71,14 +71,14 @@ class UsersController < ApplicationController
     params.delete(:email)
     if params[:user][:password_new] != params[:user][:password_confirm]
       flash[:notice] = '两次输入密码不相同'
-      render :edit, :layout => "acount_setting"
+      render :edit, layout: "acount_setting"
       return
     end
 
     @user = (params[:user][:password].blank?)? User.updates_nopass(params[:user], params[:id]) : User.updates(params[:user], params[:id])
     if @user.errors.any?
       flash[:error] = @user.jerrors
-      render :edit, :layout => "acount_setting"
+      render :edit, layout: "acount_setting"
       return
     else
       flash[:notice] = '用户更新成功'
@@ -101,11 +101,11 @@ class UsersController < ApplicationController
     @user = User.check(params[:user])
     if @user.jerrors
       flash[:notice] = @user.jerrors
-      redirect_to :controller => 'blog', :action => 'index'   
+      redirect_to controller: 'blog', action: 'index'   
     else
       @setting = @user.setting
       set_session(@user)
-      redirect_to articles_url, :method => :get 
+      redirect_to articles_url, method: :get 
     end
   end
 end

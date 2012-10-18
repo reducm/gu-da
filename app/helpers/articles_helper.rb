@@ -22,11 +22,11 @@ module ArticlesHelper
   end
 
   def catagory_sidebar(user)
-    render :partial => 'layouts/catagory', :locals => { :catagories => @catagories, :user_id => user.id}
+    render partial: 'layouts/catagory', locals: { catagories: @catagories, user_id: user.id}
   end
 
   def user_information_sidebar(user)
-    render :partial => 'articles/userinformation', :locals => {:user => user}
+    render partial: 'articles/userinformation', locals: {user: user}
   end
 
   def catagory_get_name_link(c)
@@ -69,7 +69,7 @@ module ArticlesHelper
     if comments.size>0
       str = ""
       comments.each_with_index do |c,i|
-        str += content_tag :div, "#{c.user_name}: #{c.content}</br>#{c.created_at}", :class => 'comment_each' 
+        str += content_tag :div, "#{c.user_name}: #{c.content}</br>#{c.created_at}", class: 'comment_each' 
       end
       str.html_safe
     else
@@ -79,7 +79,7 @@ module ArticlesHelper
 
   def show_user_head(user = nil, width=nil, version=:head)
     if user.nil?
-      return content_tag :i, "",:class => 'avatar_image' 
+      return content_tag :i, "", class: 'avatar_image' 
     end
 
     if user.picture.present?
@@ -92,7 +92,7 @@ module ArticlesHelper
       if owner?
         link_to "", "#upload_head", "data-toggle" => 'modal', "rel" => "popover", "data-content" => '这里可以快速设置你的头像', "class" => "avatar_image"  
       else
-        content_tag :i, "",:class => 'avatar_image' 
+        content_tag :i, "",class: 'avatar_image' 
       end
     end
   end
@@ -127,9 +127,9 @@ module ArticlesHelper
   def get_notifications_count(user_id)
     c = Notification.where("receiver_id=? and readed=0", user_id).count
     span = if c > 0
-             content_tag :span, c, :class => 'badge jbadge-info'
+             content_tag :span, c, class: 'badge jbadge-info'
            else
-             content_tag :span, c, :class => 'badge '
+             content_tag :span, c, class: 'badge '
            end
     link_to span, user_notifications_path(user_id)
   end
@@ -179,7 +179,7 @@ module ArticlesHelper
 
   def get_image_link(user,width=nil,version)
     unless width.nil?
-      image_tag user.picture.file.send(version).url, :width=>"#{width}px"
+      image_tag user.picture.file.send(version).url, width:"#{width}px"
     else
       image_tag user.picture.file.send(version).url
     end
@@ -199,11 +199,11 @@ module ArticlesHelper
     end
 
     content = "发表了博客：#{article.title}, \"#{article.content.first(50)}...\" #{article_url(article)}"
-    render :partial => 'share', :locals => {:authentications => Authentication.get_all(@user_id),:title=>title_str, :content => content, :article => article} if callpartial
+    render partial: 'share', locals: {authentications: Authentication.get_all(@user_id),title: title_str, content: content, article: article} if callpartial
   end
 
   def share_to_image(provider)
-    content_tag :i,"",:class=>"icons_#{provider}", :style=>"display:inline-block"
+    content_tag :i,"", class: "icons_#{provider}", style: "display:inline-block"
   end
 
   def pic_preview(picture)

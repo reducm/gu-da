@@ -14,9 +14,9 @@ class PagesController < ApplicationController
         end
         @page.save
       end
-      render :json => @page.to_json(:include => [:pictures=>{:only => [:id, :file]}])
+      render json: @page.to_json(include: [pictures:{only: [:id, :file]}])
     else
-      render :json => {message:"message"}
+      render json: {message:"message"}
     end
   end
 

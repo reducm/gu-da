@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class PicturesController < ApplicationController
   layout false
-  before_filter :check_login, :only => [:edit, :create, :new, :update, :destroy] 
+  before_filter :check_login, only: [:edit, :create, :new, :update, :destroy] 
   before_filter :check_session
   before_filter :check_admin
 

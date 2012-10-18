@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   def create
     c = Comment.create(params[:comment])
     if c.errors.any?
-      render :json => {errors:c.jerrors} 
+      render json: {errors:c.jerrors} 
       return
     end
 
@@ -16,6 +16,6 @@ class CommentsController < ApplicationController
       c.user_name = c.visitor_name
       c.user_picture = nil
     end
-    render :json => c.to_json(methods: [:strtime, :user_name, :user_picture], except:[:visitor_email, :updated_at])
+    render json: c.to_json(methods: [:strtime, :user_name, :user_picture], except:[:visitor_email, :updated_at])
   end
 end

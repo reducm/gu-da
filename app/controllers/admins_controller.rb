@@ -5,6 +5,6 @@ class AdminsController < ApplicationController
   def index
     @user = User.find(@user_id) 
     @pages = Page.get_index
-    render :layout => 'acount_setting'
+    render layout: 'acount_setting'
   end
 end

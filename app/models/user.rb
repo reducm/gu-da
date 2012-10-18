@@ -3,22 +3,22 @@ class User < ActiveRecord::Base
   has_many :articles#, :dependent => :destroy 
   has_many :comments
   has_many :user_tagships
-  has_many :tags, :through => :user_tagships
+  has_many :tags, through: :user_tagships
   has_many :catagories
-  has_one :setting, :dependent => :destroy 
-  has_one :picture, :as => :pictureable, :dependent => :destroy  
-  has_many :notifications, :as => :senderable
+  has_one :setting, dependent: :destroy 
+  has_one :picture, as: :pictureable, dependent: :destroy  
+  has_many :notifications, as: :senderable
   has_many :authentications
 
   scope :check
   attr_accessible :nickname, :email, :password, :password_confirm, :description, :picture, :setting
 
-  validates :nickname, :presence => { :message => '昵称不能为空' }, :uniqueness => {:message => '昵称已存在' }, :uniqueness => {:case_sensitive=>false, :message => '昵称已存在'}, :length=>{:minimum=>3, :maximum=>15, :message => '用户名长度在3-15之间' }, :exclusion => {:in => %w(users articles authentications blog catagories comments tags errors index notifications sessions tags auth callback admin admins pages picture pictures), :message=> "该昵称不合法,请使用其他昵称" } 
+  validates :nickname, presence: { message: '昵称不能为空' }, uniqueness: {message: '昵称已存在' }, uniqueness: {case_sensitive:false, message: '昵称已存在'}, length:{minimum:3, maximum:15, message: '用户名长度在3-15之间' }, exclusion: {in: %w(users articles authentications blog catagories comments tags errors index notifications sessions tags auth callback admin admins pages picture pictures), message: "该昵称不合法,请使用其他昵称" } 
 
-  validates :email, :presence => {:message => 'Email不能为空'}, :uniqueness => {:message => 'Email已存在' }, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message => 'Email格式不正确'}
-  validates :password, :presence => {:message => '密码不能为空'}
+  validates :email, presence: {message: 'Email不能为空'}, uniqueness: {message: 'Email已存在' }, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, message: 'Email格式不正确'}
+  validates :password, presence: {message: '密码不能为空'}
 
-  validates :description, :length => {:maximum => 200} 
+  validates :description, length: {maximum: 200} 
 
   before_create :encode_pass
 

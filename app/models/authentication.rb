@@ -3,8 +3,8 @@ class Authentication < ActiveRecord::Base
   attr_accessible :asecret, :atoken, :image, :nickname, :uid, :user_id, :provider, :location,:expires,:temp #新浪微博有expires_at
   belongs_to :user
   validates_presence_of :atoken, :provider #豆瓣是没有uid的,新浪2.0没有了asecret
-  validates_uniqueness_of :provider, :scope => [:user_id], :message => '同一用户下不能绑定多个社交帐号'
-  validates :user_id, :presence => {:message => '非临时验证,user_id不能为空'}
+  validates_uniqueness_of :provider, scope: [:user_id], message: '同一用户下不能绑定多个社交帐号'
+  validates :user_id, presence: {:message => '非临时验证,user_id不能为空'}
   
   #TODO :authentication model 在authen_controller bind和users_create里头需要检验一下合法性
   def self.create_from_request(user_id = 0, request)
@@ -75,7 +75,7 @@ class Authentication < ActiveRecord::Base
   end
 
   def self.get_weibo(user_id)
-    a = select([:provider,:uid,:id,:atoken, :asecret,:expires]).where("user_id=? and provider='weibo'", user_id)[0]
+    a = select([:provider, :uid, :id, :atoken, :asecret, :expires]).where("user_id=? and provider='weibo'", user_id)[0]
   end
   private
 end

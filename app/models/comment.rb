@@ -7,12 +7,12 @@ class Comment < ActiveRecord::Base
   
   attr_accessible :user_id, :content, :article_id, :visitor_name, :visitor_email
   
-  validates :article_id, :presence => true 
+  validates :article_id, presence: true 
   validate :validate_visitor_email
   validate :validate_visitor_name
 
-  validates :content, :presence => {:message => '评论内容不能为空' } 
-  has_many :notifications, :as => :senderable
+  validates :content, presence: {:message => '评论内容不能为空' } 
+  has_many :notifications, as: :senderable
   
   attr_accessor :user_name, :user_picture, :strtime
 

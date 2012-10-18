@@ -9,6 +9,6 @@ class BlogController < ApplicationController
   def logout
     clear_session
     flash[:notice] = '注销成功'
-    redirect_to :action => 'index'
+    redirect_to action: 'index'
   end
 end

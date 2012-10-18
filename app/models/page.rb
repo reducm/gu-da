@@ -1,8 +1,8 @@
 #encoding: UTF-8
 class Page < ActiveRecord::Base
-  has_many :pictures, :as => :pictureable, :dependent => :destroy  
+  has_many :pictures, as: :pictureable, dependent: :destroy  
   attr_accessible :content, :title, :user_id
-  validates :title, :uniqueness => {message: '题目不能重复'}, :presence => true 
+  validates :title, uniqueness: {message: '题目不能重复'}, presence: true 
 
   def self.get_index
     ps = includes(:pictures).all
