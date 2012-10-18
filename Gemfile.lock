@@ -5,6 +5,14 @@ GIT
     quiet_assets (0.0.1)
 
 GIT
+  remote: git://github.com/ctran/annotate_models.git
+  revision: 4a96f3a15902c58e6044f8229d81a7554149219a
+  specs:
+    annotate (2.6.0.beta1)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
+
+GIT
   remote: git://github.com/lidaobing/douban-ruby.git
   revision: b95370a262521834d0e9b6c33725039c3ad3a33a
   specs:
@@ -75,6 +83,7 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
+    awesome_print (1.1.0)
     blankslate (2.1.2.4)
     bootstrap-sass-rails (2.1.1.1)
       railties (~> 3.1)
@@ -93,6 +102,8 @@ GEM
       activesupport (>= 3.2.0)
     chronic (0.6.7)
     chunky_png (1.2.6)
+    code_analyzer (0.2.0)
+      sexp_processor
     coderay (1.0.7)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -101,6 +112,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.3.3)
+    colored (1.2)
     daemons (1.1.9)
     database_cleaner (0.8.0)
     diff-lcs (1.1.3)
@@ -186,6 +198,7 @@ GEM
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
     polyglot (0.3.3)
+    progressbar (0.11.0)
     pry (0.9.10)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -211,6 +224,14 @@ GEM
       activesupport (= 3.2.8)
       bundler (~> 1.0)
       railties (= 3.2.8)
+    rails_best_practices (1.11.1)
+      activesupport
+      awesome_print
+      code_analyzer
+      colored
+      erubis
+      i18n
+      progressbar
     railties (3.2.8)
       actionpack (= 3.2.8)
       activesupport (= 3.2.8)
@@ -252,6 +273,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    sexp_processor (4.0.1)
     simple_oauth (0.1.9)
     slop (3.3.2)
     social-share-button (0.0.8)
@@ -289,6 +311,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate!
   bootstrap-sass-rails
   capistrano
   capistrano-ext
@@ -320,6 +343,7 @@ DEPENDENCIES
   pygments.rb
   quiet_assets!
   rails (= 3.2.8)
+  rails_best_practices
   railties
   rb-fsevent
   rb-inotify

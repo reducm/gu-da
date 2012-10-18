@@ -45,6 +45,10 @@ gem 'koala'
 gem 'sprite-factory'
 gem 'chunky_png'
 
+#小工具
+gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+gem "rails_best_practices"
+
 #上传
 gem 'carrierwave'
 gem 'rmagick'
