@@ -2,7 +2,7 @@
   <span class="strong sidebar_title">分类</span>
   <%= (link_to "增加", "#add_catagory_modal", "data-toggle"=>'modal', class:'pull-right') if owner? %> 
   <div id="catagories">
-    <%= render :partial => 'catagories/each', :locals => {catagories:catagories}  unless @catagories.nil? %>
+    <%= render partial: 'catagories/each', locals: {catagories:catagories}  unless @catagories.nil? %>
   </div>
 </div>
 
@@ -12,10 +12,10 @@
     <h3>增加分类</h3>
   </div>
   <div class="modal-body">
-    <%= simple_form_for Catagory.new(), :remote => true, :html => {:id => 'catagory_form', "data-type" => 'json', :class => 'form-horizontal' } do |f| %>
-      <%= f.input :user_id, :as => :hidden, :input_html => {:value => user_id, :autocomplete => 'off'}  %>
-      <%= f.input :name, :label => '分类名称', :wrapper_html => {:style=>"float:left;margin-right:10px"}, :input_html => {:id => 'catagory_name_input' } %>
-      <%= f.submit '确定', :class => 'btn btn-primary'  %>
+    <%= simple_form_for Catagory.new(), remote: true, html: {id: 'catagory_form', "data-type" => 'json', class: 'form-horizontal' } do |f| %>
+      <%= f.input :user_id, as: :hidden, input_html: {value: user_id, autocomplete: 'off'}  %>
+      <%= f.input :name, label: '分类名称', wrapper_html: {style: "float:left;margin-right:10px"}, input_html: {id: 'catagory_name_input' } %>
+      <%= f.submit '确定', class: 'btn btn-primary'  %>
     <% end %>
   </div>
 </div>

@@ -1,20 +1,20 @@
 <div id="article_edit" style="margin-top:10px;">
   <div id="article_form">
     <h1><%= title %></h1> 
-    <%= simple_form_for @article, :wrapper => :default, :html => {:multipart => true }    do|f| %> 
-      <%= f.input :catagory_id, :collection => @catagories, :label => false, :as => :jcatagory, :input_html => {:id => "catagories_select"}, :wrapper_html => {style:'display:inline' } %> 
-      <%= f.input :title, :label => false, :input_html => {}, :wrapper_html => {style:'display:inline' }%>
+    <%= simple_form_for @article, wrapper: :default, html: {multipart: true }    do|f| %> 
+      <%= f.input :catagory_id, collection: @catagories, label: false, as: :jcatagory, input_html: {id: "catagories_select"}, wrapper_html: {style: 'display:inline' } %> 
+      <%= f.input :title, label: false, input_html: {}, wrapper_html: {style: 'display:inline' }%>
       </br>
       <ul class="unstyled" id="user_form_toolbar">
         <li><%= link_to "增加分类", "#add_catagory_modal", "data-toggle" => 'modal', "class"=>"little_fontsize" %> </li>
         <li><%= link_to "预览(beta)", 'javascript:void(0)', "data-toggle"=>'preview', id:'toggle_preview' %> </li>
         <li><a href="#draft" data-toggle="modal">查看草稿</a></li>
       </ul>
-      <%= f.input :content, :label => false, :input_html => {}%>
+      <%= f.input :content, label: false, input_html: {}%>
       <%if demo?%>
-        <%= f.button :submit, '发布', :class => 'btn-primary span2',:disabled=>true %>
+        <%= f.button :submit, '发布', class: 'btn-primary span2', disabled: true %>
       <%else%>
-        <%= f.button :submit, '发布', :class => 'btn-primary span2'%>
+        <%= f.button :submit, '发布', class: 'btn-primary span2'%>
       <%end%>
       <a href="#draft" data-toggle="save-draft" class="btn btn-primary" >保存草稿</a>
     <%end%>
@@ -48,10 +48,10 @@
     <h3>增加分类</h3>
   </div>
   <div class="modal-body">
-    <%= simple_form_for Catagory.new(), :remote => true, :html => {:id => 'catagory_form', "data-type" => 'json', :class => 'form-horizontal' }   do |f| %>
-      <%= f.input :user_id, :as => :hidden, :input_html => {:value => @user_id, :autocomplete => 'off'}  %>
-      <%= f.input :name, :label => '分类名称', :wrapper_html => {:style=>"float:left;margin-right:10px"}, :input_html => {:id => 'catagory_name_input' } %>
-      <%= f.submit '确定', :class => 'btn btn-primary'  %>
+    <%= simple_form_for Catagory.new(), remote: true, html: {id: 'catagory_form', "data-type" => 'json', class: 'form-horizontal' }   do |f| %>
+      <%= f.input :user_id, as: :hidden, input_html: {value: @user_id, autocomplete: 'off'}  %>
+      <%= f.input :name, label: '分类名称', wrapper_html: {style: "float:left;margin-right:10px"}, input_html: {id: 'catagory_name_input' } %>
+      <%= f.submit '确定', class: 'btn btn-primary'  %>
     <% end %>
   </div>
 </div>

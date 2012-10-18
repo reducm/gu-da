@@ -48,7 +48,7 @@ module JLogin
       flash[:error] = '当前用户不是管理员!'
       respond_to do|format|
         format.html {redirect_to(controller:'users', action:'show')}
-        format.json {render :json => {errors:"你不是管理员！"}}
+        format.json {render json: {errors:"你不是管理员！"}}
       end
     end
   end

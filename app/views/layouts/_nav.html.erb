@@ -1,9 +1,9 @@
 <div class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to '咕哒', logo_link , :class => 'brand' %> 
+      <%= link_to '咕哒', logo_link , class: 'brand' %> 
 
-      <%= render :partial => 'layouts/breadcrumbs'  %>
+      <%= render partial: 'layouts/breadcrumbs'  %>
 
       <ul class="nav pull-right">
         <% unless @user_name.blank? %>

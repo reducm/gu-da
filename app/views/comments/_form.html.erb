@@ -1,14 +1,14 @@
 <div id="comment_form">
-  <%= simple_form_for comment, :html => {"data-type" => 'json'}, :wrapper => :default,  :remote => true  do|f| %> 
-    <%= f.input :article_id, :as => :hidden, :input_html => { :value => article_id  }  %>
+  <%= simple_form_for comment, html: {"data-type" => 'json'}, wrapper: :default,  remote: true  do|f| %> 
+    <%= f.input :article_id, as: :hidden, input_html: { value: article_id  }  %>
     <% if logined? %>
 
-      <%= f.input :user_id, :as => :hidden, :input_html => { :value => @user_id  }   %>
+      <%= f.input :user_id, as: :hidden, input_html: { value: @user_id  } %>
       <div class="head_div">
         <%= show_user_head user,80 %>
       </div>
       <div id="comment_commit_div">
-        <%= f.input :content , :required => false, :wrapper => false, :label => false, :input_html => {:id => 'comment_textarea', :class => nil } %>
+        <%= f.input :content , required: false, wrapper: false, label: false, input_html: {id: 'comment_textarea'} %>
         <%= f.button :submit, 'Ctrl+Enter', :class => 'btn-primary span2', :id => 'comment_commit_button', 'data-toggle' => 'button' %>
         <div class="empty_height"></div>
       </div>

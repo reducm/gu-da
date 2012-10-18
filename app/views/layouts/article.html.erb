@@ -14,7 +14,7 @@
   </head>
   <body>
 
-    <%= render :partial => 'layouts/nav' %> 
+    <%= render partial: 'layouts/nav' %> 
 
     <div id="flash"><%= flash_message %></div>
 
@@ -28,12 +28,12 @@
         <%= yield :preview %> 
       </div>
 
-      <%= render :partial => 'articles/sidebar', :locals => {:user => @current_user } %>
+      <%= render partial: 'articles/sidebar', locals: {user: @current_user } %>
 
       <%= yield :comment %>
     </div>
 
-    <%= render :partial => 'layouts/foot' %>
+    <%= render partial: 'layouts/foot' %>
     <br/ >
     <script>window.action="<%= params[:action]%>"</script>
   </body>

@@ -8,7 +8,7 @@
     <%else%>
       <% @notifications.each do|n|%>
         <div class="notification_each">
-          <%= link_to "删除", notification_path(n), :method =>'delete', :class=>'btn btn-danger pull-right' %> 
+          <%= link_to "删除", notification_path(n), method: 'delete', class: 'btn btn-danger pull-right' %> 
           <div class='head_div'>
             <%= show_user_head(n.senderable.user, nil, :small)%>
           </div>
