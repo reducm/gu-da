@@ -21,6 +21,14 @@ GIT
       oauth
 
 GIT
+  remote: git://github.com/nragaz/jcrop-rails.git
+  revision: 9ccd8956c29f8898fe8180e45ddfc339246f8b27
+  specs:
+    jcrop-rails (1.0.2)
+      railties (~> 3.0)
+      thor (~> 0.14)
+
+GIT
   remote: git://github.com/plataformatec/simple_form.git
   revision: 4e6508e45f2cb46cf1a3e6a125e8f39233c7822d
   specs:
@@ -325,6 +333,7 @@ DEPENDENCIES
   guard
   guard-rspec
   guard-spork
+  jcrop-rails!
   jquery-rails
   kaminari
   koala

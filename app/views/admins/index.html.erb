@@ -1,4 +1,6 @@
-<%= javascript_include_tag "pic" %>
+<% content_for :other_js do|c|%>
+  <%= javascript_include_tag "pic" %>
+<%end%>
 <h1><%= "管理员 #{@user.nickname}"%></h1>
 
 <div id="index_images">

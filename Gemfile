@@ -45,6 +45,9 @@ gem 'koala'
 gem 'sprite-factory'
 gem 'chunky_png'
 
+#前端剪切图片
+gem 'jcrop-rails', git:'git://github.com/nragaz/jcrop-rails.git'
+
 #小工具
 gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
 gem "rails_best_practices"

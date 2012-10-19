@@ -178,10 +178,11 @@ module ArticlesHelper
   end
 
   def get_image_link(user,width=nil,version)
+    url = (version) == :origin ? user.picture.file.url : user.picture.file.send(version).url
     unless width.nil?
-      image_tag user.picture.file.send(version).url, width:"#{width}px"
+      image_tag url, width:"#{width}px"
     else
-      image_tag user.picture.file.send(version).url
+      image_tag url
     end
   end
 
