@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
     if params[:picture]
       picture = self.picture || Picture.new
       picture.update_attributes(pictureable:self, file:params[:picture])
-      params.delete :picture
+      params.delete :picture #mass
     end
   end
 

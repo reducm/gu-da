@@ -5,11 +5,10 @@ class ArticlesController < ApplicationController
   before_filter :check_session
   before_filter {|c| c.set_breadcrumbs}
   before_filter :init_params, :only => [:create, :update]
-  # TODO: 处理头像的modal要fix成partial，现在index一个show里面一个
   # TODO: 头像可切割
+  # TODO: edit和new article表单要设成在浏览器不用滚动
   # TODO: 增加回复别人评论时候notify一下的功能，要大修了
   # TODO: 关注用户，用户更新有notify功能
-  # TODO: edit和new article表单要设成在浏览器不用滚动
   # TODO: 每个blog要有加banner功能
   # TODO: 用户设置美化
   # TODO: ssl通道

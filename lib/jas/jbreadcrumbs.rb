@@ -2,8 +2,8 @@
 module JBreadcrumbs
 protected
   def set_breadcrumbs(controller_title=nil)
-    home_link = "<a href=\"/\">HOME</a>"
-    @breadcrumbs = [home_link.html_safe]
+    #home_link = "<a href=\"/\">HOME</a>"
+    @breadcrumbs = []
   end
 
   def set_page_title(page_title,current_user=nil)
