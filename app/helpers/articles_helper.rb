@@ -212,7 +212,7 @@ module ArticlesHelper
   end
 
   def modal(options = {})
-    options={id:"",button:"确定",header:"", style:""}.merge(options)
+    options= {id:"",button:"确定",header:"", style:""}.merge(options)
     render(layout:"layouts/modal", locals:options) do
       yield
     end

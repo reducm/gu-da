@@ -7,7 +7,9 @@
   <div class="modal-body">
     <%= yield %>
   </div>
-  <div class="modal-footer">
-    <a href="#" class="btn btn-primary"><%= button || nil %></a>
-  </div>
+  <% if button %> 
+    <div class="modal-footer">
+      <a href="#" class="btn btn-primary"><%= button %></a>
+    </div>
+  <% end %>
 </div>

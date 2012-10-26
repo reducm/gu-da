@@ -1,12 +1,14 @@
 #给我一个drop的按钮,ul列表，要ajax_upload到的action，预览图的宽度, 生成一个可以传图的controller
 class window.PicController
-  constructor:(drop_button, @ul, @action, @picwidth="100px")->
-    @button = drop_button
+  constructor:(@button, @ul, @action, @picwidth="100px",fdata)->
     @button.css("display","block")
     @input = @button.browseElement()
     @imgs = []
     @formdata = new FormData()
-    @formdata.append("title","index_images")
+
+    for key, value of fdata
+      @formdata.append(key, value)
+
     that = this
     window.tempf = @formdata
     @input.on("change", (event)->

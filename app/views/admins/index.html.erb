@@ -1,6 +1,11 @@
 <% content_for :other_js do|c|%>
   <%= javascript_include_tag "pic" %>
 <%end%>
+<script type="text/javascript">
+  $(document).ready(function(){
+      new PicController($(".drop_file"), $("#ul_for_pic"), "/pages", "150px", {title:'index_images'})  
+  });
+</script>
 <h1><%= "管理员 #{@user.nickname}"%></h1>
 
 <div id="index_images">

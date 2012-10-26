@@ -5,8 +5,9 @@ class ArticlesController < ApplicationController
   before_filter :check_session
   before_filter {|c| c.set_breadcrumbs}
   before_filter :init_params, :only => [:create, :update]
-  # TODO: page model controller view 更加细化
   # TODO: 文章图片
+  # TODO: markdown提示
+  # TODO: page model controller view 更加细化
   # TODO: 增加回复别人评论时候notify一下的功能，要大修了
   # TODO: 关注用户，用户更新有notify功能
   # TODO: ssl通道, 上线后再处理

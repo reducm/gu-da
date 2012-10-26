@@ -1,5 +1,14 @@
+<% content_for :other_js do %>
+  <%= javascript_include_tag 'pic'%> 
+  <script type="text/javascript">
+    $(document).ready(function(){
+      new PicController($(".drop_file"), $("#ul_for_pic"), "/pages", "100px", {title:'index_images'});
+    });
+  </script>
+<%end%>
+
 <div id="article_edit" style="margin-top:10px;">
-    <h1><%= title %></h1> 
+    <h2><%= title %></h2> 
     <%= simple_form_for @article, wrapper: :default, html: {multipart: true, id: 'article_form' } do|f| %> 
       <%= f.input :catagory_id, collection: @catagories, label: false, as: :jcatagory, input_html: {id: "catagories_select"}, wrapper_html: {style: 'display:inline' } %> 
       <%= f.input :title, label: false, input_html: {}, wrapper_html: {style: 'display:inline' }%>
@@ -8,6 +17,7 @@
         <li><%= link_to "增加分类", "#add_catagory_modal", "data-toggle" => 'modal', "class"=>"little_fontsize" %> </li>
         <li><%= link_to "预览(beta)", 'javascript:void(0)', "data-toggle"=>'preview', id:'toggle_preview' %> </li>
         <li><a href="#draft" data-toggle="modal">查看草稿</a></li>
+        <li><%= link_to "添加图片", "#upload_pic_modal", "data-toggle" => 'modal', "class"=>"little_fontsize" %> </li>
       </ul>
       <%= f.input :content, as: :text, label: false, input_html:{rows:0, cols:0}, wrapper_html:{id:'content_wrapper'}%>
       <%if demo?%>
@@ -54,6 +64,8 @@
   </div>
 </div>
 
+
+
 <div class="modal" id="draft">
   <div class="modal-header">
     <button class="close" data-dismiss="modal">×</button>
@@ -71,4 +83,7 @@
   </div>
 </div>
 
-
+<%= modal(id:"upload_pic_modal", header:'添加图片',button:nil) do %>
+  <div class="drop_file btn btn-primary">点击或把图片拖动到此处</div>
+  <ul id="ul_for_pic" class="show_upload_pic unstyled"></ul>
+<%end%>
