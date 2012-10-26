@@ -1,8 +1,6 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
 
-@import "twitter/bootstrap";
-
 $bc: #4c5a76;
 $hc: black;
 
@@ -105,7 +103,7 @@ $hc: black;
 }
 .head_div {
   @include head();
-    float: left;
+  float: left;
   display: inline-block;
 }
 
@@ -160,7 +158,7 @@ $bb: #202e4b;
   h1,h2,h3,h4,h5,h6{
     color:#333;
   }
-    display:inline-block;
+  display:inline-block;
   float: left;
   margin-left: 20px;
   background: #f8f8f8;
@@ -169,8 +167,13 @@ $bb: #202e4b;
 
 #article_edit {
   width:95%;
+  height:97%;
   margin:0 auto;
   background: #f8f8f8;
+}
+
+#article_form {
+  height: 89%;
 }
 
 #switch_sidebar_button {
@@ -211,9 +214,13 @@ $bb: #202e4b;
   width:50%;
 }
 
+#content_wrapper {
+  height:81%;
+}
+
 #article_content{
-  height: 70%;
   width: 99%;
+  height: 88%;
 }
 
 #article_show_content{
@@ -238,6 +245,7 @@ $bb: #202e4b;
   display:none;
   width:50%;
   background:#f8f8f8;
+  overflow-y: scroll;
   float: left;
 }
 

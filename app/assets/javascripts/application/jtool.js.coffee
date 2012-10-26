@@ -26,6 +26,19 @@ $.fn.extend({ #自己写的扩展textarea的jquery插件，$(node).count_num(lim
     )
 })
 
+$.fn.extend({ #获取img的原始大小，有bug
+  originSize : ()->
+    fakeImg = this.clone()
+    $("body").append(fakeImg)
+    fakeImg.css({position:'absolute', left:'-10000px'})
+    fakeImg.removeAttr("height")
+    fakeImg.removeAttr("width")
+    w = fakeImg.width()
+    h = fakeImg.height()
+    arr = [w, h]
+    arr
+})
+
 class window.Jtime
   Jtime::time_at = (timestamp) ->
     if typeof timestamp == 'string'

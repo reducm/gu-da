@@ -5,13 +5,13 @@ class ArticlesController < ApplicationController
   before_filter :check_session
   before_filter {|c| c.set_breadcrumbs}
   before_filter :init_params, :only => [:create, :update]
-  # TODO: 头像可切割
-  # TODO: edit和new article表单要设成在浏览器不用滚动
+  # TODO: page model controller view 更加细化
+  # TODO: 文章图片
   # TODO: 增加回复别人评论时候notify一下的功能，要大修了
   # TODO: 关注用户，用户更新有notify功能
+  # TODO: ssl通道, 上线后再处理
   # TODO: 每个blog要有加banner功能
-  # TODO: 用户设置美化
-  # TODO: ssl通道
+  # TODO: 头像可切割
   # TODO: 文章追加功能
   # TODO: 小工具， todo list
   # TODO: 草稿功能能保存到服务器

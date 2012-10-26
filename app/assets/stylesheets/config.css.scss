@@ -9,10 +9,11 @@ $successBackground:#468847;
 $infoText:white;
 $errorText:white;
 $successText:white;
-@import "twitter/bootstrap";
 
 $bc: #4c5a76;
 $bb: #202e4b;
+
+@import "twitter/bootstrap";
 
 @mixin cw(){
   color: darken(#000000, 10%);
@@ -305,6 +306,10 @@ input[name="switch"] {
   }
 }
 
+#submit_edit_user {
+  margin-left: 397px;
+}
+
 /////end_user////////
 
 ///flash///
@@ -369,5 +374,58 @@ img {
   max-width: 100%;
 }
 ///end_flash /////////
+
+////avatar ///////
+@mixin avatar_img() { 
+  img {
+    display: inline-block;
+    border: 1px solid $border_color_grey;
+  }
+}
+
+.avatar_upload_container {
+
+}
+
+.avatar_container {
+  div{
+    width: 150px; 
+    height: 150px;
+    float: left;
+    line-height: 150px;
+      }
+  .preview_show {
+    span {
+      display: block;
+      width: 50px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.eu_form_div {
+  padding-top: 27px;
+}
+
+.avatar_preview {
+  float: left;
+  .avatar_temp {
+    width: 300px;
+    height: 300px;
+    border: 1px solid $border_color_grey;
+    span {
+      line-height: 300px;
+    }
+  }
+}
+
+.avatar_current {
+  float: left;
+  @include avatar_img();
+}
+
+.avatar_upload {
+}
+////end_ avatar ///////
 
 

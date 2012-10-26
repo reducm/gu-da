@@ -57,6 +57,9 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'mime-types'
 
+#ssl
+gem 'rack-ssl-enforcer'
+
 group :assets do
   gem 'sass-rails',   '>= 3.2'
   gem 'coffee-rails', '>= 3.2'

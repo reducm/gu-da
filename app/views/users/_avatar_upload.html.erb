@@ -1,13 +1,20 @@
 <% content_for :other_js do|c|%>
   <%= javascript_include_tag "jcrop" %> 
+  <%= javascript_include_tag "avatar" %> 
 <%end%>
-<script type="text/javascript">
-  $(document).ready(function(){
 
-      
-      });
-</script>
+<%= modal_link "#avatar_modal", "修改头像", "btn btn-primary"%> 
+<%= modal(id:"avatar_modal", header:"修改头像" ) do%>
+  <div class="avatar_upload_container">
+    <div class="avatar_preview">
+      <div class="btn btn-primary" >选择图片</div>
+      <div class="avatar_temp">
+        <span>预览(你可以适当的剪裁图像)</span>
+      </div>
+    </div>
 
-<%= show_user_head(user,nil, :head)%>
-<%= show_user_head(user,nil, :origin)%>
-<%= show_user_head(user,nil, :small)%>
+    <div class="avatar_current">
+      <div style="width:150px;height:150px;overflow:hidden;border: 1px solid orange;"><img class="avatar_upload" src="" alt="" /></div>
+    </div>
+  </div>
+<%end%>

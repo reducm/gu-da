@@ -47,6 +47,10 @@ $(document).ready(->
     fill_preview(content.val())
   )
 
+  $(window).bind("resize", ->
+    preview.height(article.height())
+  )
+
   fill_preview = (str)->
     mstr = converter.makeHtml(str)
     switch window.preview_style

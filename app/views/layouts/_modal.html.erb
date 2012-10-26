@@ -1,0 +1,13 @@
+
+<div class="modal hide fade" id="<%= id || nil %>" style="<%= style || nil%>">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <h3><%= header || nil %></h3>
+  </div>
+  <div class="modal-body">
+    <%= yield %>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn btn-primary"><%= button || nil %></a>
+  </div>
+</div>

@@ -210,4 +210,15 @@ module ArticlesHelper
   def pic_preview(picture)
     raw "<img class=\"img-polaroid\" data-toggle='pic' src=\"#{picture.file.small.url}\" id='img_#{picture.id}'/>"
   end
+
+  def modal(options = {})
+    options={id:"",button:"确定",header:"", style:""}.merge(options)
+    render(layout:"layouts/modal", locals:options) do
+      yield
+    end
+  end
+  
+  def modal_link(href, str, sclass="btn")
+    raw "<a href=\"#{href}\" role=\"button\" class=\"#{sclass}\" data-toggle=\"modal\">#{str}</a>"
+  end
 end

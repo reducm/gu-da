@@ -1,7 +1,6 @@
 <div id="article_edit" style="margin-top:10px;">
-  <div id="article_form">
     <h1><%= title %></h1> 
-    <%= simple_form_for @article, wrapper: :default, html: {multipart: true }    do|f| %> 
+    <%= simple_form_for @article, wrapper: :default, html: {multipart: true, id: 'article_form' } do|f| %> 
       <%= f.input :catagory_id, collection: @catagories, label: false, as: :jcatagory, input_html: {id: "catagories_select"}, wrapper_html: {style: 'display:inline' } %> 
       <%= f.input :title, label: false, input_html: {}, wrapper_html: {style: 'display:inline' }%>
       </br>
@@ -10,7 +9,7 @@
         <li><%= link_to "预览(beta)", 'javascript:void(0)', "data-toggle"=>'preview', id:'toggle_preview' %> </li>
         <li><a href="#draft" data-toggle="modal">查看草稿</a></li>
       </ul>
-      <%= f.input :content, label: false, input_html: {}%>
+      <%= f.input :content, as: :text, label: false, input_html:{rows:0, cols:0}, wrapper_html:{id:'content_wrapper'}%>
       <%if demo?%>
         <%= f.button :submit, '发布', class: 'btn-primary span2', disabled: true %>
       <%else%>
@@ -18,7 +17,6 @@
       <%end%>
       <a href="#draft" data-toggle="save-draft" class="btn btn-primary" >保存草稿</a>
     <%end%>
-  </div> 
 </div>
 
 <%= content_for :preview do %>

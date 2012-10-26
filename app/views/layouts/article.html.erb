@@ -6,6 +6,7 @@
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "article" %>
     <%= javascript_include_tag "edit" if new_or_edit? %>
+    <%= yield :other_js %>
     <%= csrf_meta_tags %>
     <script type="text/javascript" charset="utf-8">
       window.guda = {};
