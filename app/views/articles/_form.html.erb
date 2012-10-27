@@ -3,7 +3,7 @@
   <%= javascript_include_tag 'jqueryui'%> 
   <script type="text/javascript">
     $(document).ready(function(){
-      new PicController($(".drop_file"), $("#ul_for_pic"), "/pages", "100px", {title:'index_images'});
+      new PicController($(".drop_file"), $("#ul_for_pic"), "/pages", "100px", {title:'index_images'}, $(".drag_to") );
     });
   </script>
 <%end%>
@@ -89,5 +89,6 @@
     <span class="grey_font">把图片拖动到此处<br />或</span>
     <div class="drop_file btn_in_drag btn btn-primary">点击添加图片</div>
   </div>
+  <div class="empty_height"></div>
   <ul id="ul_for_pic" class="show_upload_pic unstyled"></ul>
 <%end%>

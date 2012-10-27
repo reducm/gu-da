@@ -24,7 +24,7 @@ class window.PicView
       @div.loading()
     ).on("ajax:success",(event,data)=>
       console.log(data)
-      Jalert::alert(data.message)
+      $.pnotify({text:data.message, type:"success"})
       @div.unloading()
       @div.hide()
     )

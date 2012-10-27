@@ -26,7 +26,7 @@ class DraftController
       draft = new Draft(@timestamp, @title.val(), @content.val(),true)
       draft.save()
       @draft_div.modal('show')
-      jalert("创建成功","success",@modal_body)
+      $.pnotify({text:"草稿创建成功",type:"success"})
     )
     @draft_div.delegate('tr','restore',()->
         that.restore($(this).attr('timestamp'))
@@ -55,6 +55,7 @@ class DraftController
     @title.val(draft.title)
     @content.val(draft.content)
     jalert("恢复成功", "success", @modal_body)
+    $.pnotify({text:"恢复成功", type:"success"})
 
   destroy:(element)->
     timestamp = element.attr('timestamp')

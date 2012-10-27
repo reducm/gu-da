@@ -4,6 +4,7 @@
     <title><%= @title || '咕哒网' %></title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "pnotify" %>
     <%= javascript_include_tag "user" %>
     <%= javascript_include_tag "user" if params[:controller] == 'users'%>
     <%= yield :other_js %>

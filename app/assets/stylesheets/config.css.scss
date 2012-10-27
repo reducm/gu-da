@@ -3,12 +3,12 @@ $gridGutterWidth: 20px;
 $baseFontSize: 19px;
 $baseLineHeight: 25px;
 //$sansFontFamily: "Microsoft Yahei",微软雅黑,"Helvetica Neue", Helvetica, Arial, sans-serif;
-$infoBackground:#049cdb;
-$errorBackground:#bd362f;
-$successBackground:#468847;
-$infoText:white;
-$errorText:white;
-$successText:white;
+//$infoBackground:#049cdb;
+//$errorBackground:#bd362f;
+//$successBackground:#468847;
+//$infoText:white;
+//$errorText:white;
+//$successText:white;
 
 $bc: #4c5a76;
 $bb: #202e4b;
@@ -427,5 +427,7 @@ img {
 .avatar_upload {
 }
 ////end_ avatar ///////
-
+.jpnotify {
+  font-size:13px;
+}
 

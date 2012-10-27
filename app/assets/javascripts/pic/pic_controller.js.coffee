@@ -22,7 +22,10 @@ class window.PicController
   fill_ul: (event)->
     event.stopPropagation()
     event.preventDefault()
-    files = event.originalEvent.target.files
+    `var target = (event.originalEvent.dataTransfer)  ? (event.originalEvent.dataTransfer) : (event.originalEvent.target)`
+    debugger
+    files = target.files
+    $.pnotify({text:"选择的图片超过4张,将上传最后4张", type:"error", title:"注意!" }) if files.length > 4
     this.create_upload_button(this.ul)
     this.imgs = this.makePicArr(files)
 
