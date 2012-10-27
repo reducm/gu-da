@@ -1,5 +1,6 @@
 <% content_for :other_js do %>
   <%= javascript_include_tag 'pic'%> 
+  <%= javascript_include_tag 'jqueryui'%> 
   <script type="text/javascript">
     $(document).ready(function(){
       new PicController($(".drop_file"), $("#ul_for_pic"), "/pages", "100px", {title:'index_images'});
@@ -83,10 +84,10 @@
   </div>
 </div>
 
-<%= modal(id:"upload_pic_modal", header:"添加图片",prompt:'(可以选择多张图片)',button:nil) do %>
+<%= modal(id:"upload_pic_modal", header:"添加图片",prompt:'(一次可选择上传4张图片)',button:nil) do %>
   <div class="drag_to">
     <span class="grey_font">把图片拖动到此处<br />或</span>
     <div class="drop_file btn_in_drag btn btn-primary">点击添加图片</div>
-    <ul id="ul_for_pic" class="show_upload_pic unstyled"></ul>
   </div>
+  <ul id="ul_for_pic" class="show_upload_pic unstyled"></ul>
 <%end%>

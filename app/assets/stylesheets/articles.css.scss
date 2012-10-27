@@ -522,6 +522,7 @@ $drag_height: 250px;
     left: 50%;
     margin-left: -23%;
     height: $drag_height / 5;
+    line-height:$drag_height / 5;
     margin-top: - ($drag_height / 5 / 2);
   }
 }
