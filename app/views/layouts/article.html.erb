@@ -10,7 +10,8 @@
     <%= csrf_meta_tags %>
     <script type="text/javascript" charset="utf-8">
       window.guda = {};
-      window.guda.user_name = "<%= @user_name || 'DemoUser'%>"
+      window.guda.user_name = "<%= @user_name || 'DemoUser'%>";
+      window.guda.user_id = <%= @user_id || nil %>;
     </script>
   </head>
   <body>

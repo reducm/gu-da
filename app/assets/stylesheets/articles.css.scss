@@ -504,20 +504,41 @@ $bb: #202e4b;
 }
 
 ///-----------drag & drop-------------
-.drop_file {
-  position:relative;
-  input {
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    font-family: Arial;
-    font-size: 118px;
-    margin: 0px;
-    padding: 0px;
-    cursor: pointer;
-    opacity: 0;
-    height: auto;
+$drag_height: 250px;
+.drag_to {
+  border: 2px dashed grey;
+  height: $drag_height;
+  position: relative;
+  text-align: center;
+  span {
+    display:block;
+    margin-top: 25px;
+    font-size: 25px;
   }
+  .btn_in_drag {
+    width: 40%;  
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    margin-left: -23%;
+    height: $drag_height / 5;
+    margin-top: - ($drag_height / 5 / 2);
+  }
+}
+
+.drop_file {
+  //input {
+    //position: absolute;
+    //right: 0px;
+    //top: 0px;
+    //font-family: Arial;
+    //font-size: 118px;
+    //margin: 0px;
+    //padding: 0px;
+    //cursor: pointer;
+    //opacity: 0;
+    //height: auto;
+  //}
 }
 
 .upload_button {
