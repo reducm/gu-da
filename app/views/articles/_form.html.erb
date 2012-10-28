@@ -18,7 +18,7 @@
         <li><%= link_to "增加分类", "#add_catagory_modal", "data-toggle" => 'modal', "class"=>"little_fontsize" %> </li>
         <li><%= link_to "预览(beta)", 'javascript:void(0)', "data-toggle"=>'preview', id:'toggle_preview' %> </li>
         <li><a href="#draft" data-toggle="modal">查看草稿</a></li>
-        <li><%= link_to "添加图片", "#upload_pic_modal", "data-toggle" => 'modal', "class"=>"little_fontsize" %> </li>
+        <li><%= link_to "上传图片", "#upload_pic_modal", "data-toggle" => 'modal', "class"=>"little_fontsize" %> </li>
       </ul>
       <%= f.input :content, as: :text, label: false, input_html:{rows:0, cols:0}, wrapper_html:{id:'content_wrapper'}%>
       <%if demo?%>
@@ -45,7 +45,7 @@
       </div>
     </div>
 
-    <div id="preview_title"></div>
+    <div id="preview_title"><h1>题目</h1></div>
 
     <div id="preview_content"></div>
   </div>
@@ -84,7 +84,7 @@
   </div>
 </div>
 
-<%= modal(id:"upload_pic_modal", header:"添加图片",prompt:'(一次可选择上传4张图片)',button:nil) do %>
+<%= modal(id:"upload_pic_modal", header:"上传图片",prompt:'(一次可选择上传4张图片)',button:nil) do %>
   <div class="drag_to">
     <span class="grey_font">把图片拖动到此处<br />或</span>
     <div class="drop_file btn_in_drag btn btn-primary">点击添加图片</div>

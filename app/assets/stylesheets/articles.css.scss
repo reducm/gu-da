@@ -249,10 +249,15 @@ $bb: #202e4b;
   float: left;
 }
 
+.border_left {
+  border-left: 1px dashed grey;
+}
+
 
 #preview_container {
   width:96%;
   margin:12px auto 0;
+  border-left: 1px dashed grey;
 }
 
 #preview_title {

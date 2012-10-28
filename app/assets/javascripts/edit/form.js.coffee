@@ -67,7 +67,8 @@ $(document).ready(->
         null
 
   fill_preview_title = (str) ->
-    preview_title.html("<h1>#{str}</h1>")
+    `var str1 = str ? str : "题目"`
+    preview_title.html("<h1>#{str1}</h1>")
 
   fix_pcontent_height = ()->
     preview_content.height(preview.height()-preview_title.height()-12-17)
