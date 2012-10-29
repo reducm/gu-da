@@ -18,7 +18,7 @@ class Comment < ActiveRecord::Base
 
 
   def self.get_by_article_id(id)
-    cs = Comment.includes(user:[:picture]).select('id, content, created_at, user_id, visitor_name').where("article_id=?", id).order("created_at asc").all
+    cs = Comment.includes(user:[setting:[:picture]]).select('id, content, created_at, user_id, visitor_name').where("article_id=?", id).order("created_at asc").all
     cs.each do |c|
       if c.user != nil
         c.user_name = c.user.name
