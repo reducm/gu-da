@@ -82,7 +82,7 @@ module ArticlesHelper
       return content_tag :i, "", class: 'avatar_image' 
     end
 
-    if user.picture.present?
+    if user.head.present?
       if owner?
         link_to (get_image_link(user,width,version)), "#upload_head", "data-toggle" => 'modal', "rel" => "popover", "data-content" => '这里可以快速设置你的头像'  
       else
@@ -178,7 +178,7 @@ module ArticlesHelper
   end
 
   def get_image_link(user,width=nil,version)
-    url = (version) == :origin ? user.picture.file.url : user.picture.file.send(version).url
+    url = (version) == :origin ? user.head.file.url : user.head.file.send(version).url
     unless width.nil?
       image_tag url, width:"#{width}px"
     else

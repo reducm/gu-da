@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :tags, through: :user_tagships
   has_many :catagories
   has_one :setting, dependent: :destroy 
-  has_one :picture, as: :pictureable, dependent: :destroy  
+  has_many :pictures, as: :pictureable, dependent: :destroy  
   has_many :notifications, as: :senderable
   has_many :authentications
 
@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
 
   def name
     self.nickname
+  end
+
+  def head
+    self.setting.picture
   end
 
   def name=(val)
@@ -55,7 +59,6 @@ class User < ActiveRecord::Base
         if user[:password].length >= 6 && user[:password].length <= 20
           user[:password] = Digest::SHA2.new.hexdigest(user[:password_new]+@user.salt)
           User.transaction do
-            @user.update_picture(user)
             @user.update_setting(user)
             @user.update_attributes(user) if user.size > 0
           end
@@ -79,7 +82,6 @@ class User < ActiveRecord::Base
     user.reject! {|k,v| !(k.to_s.index("password").nil?)} 
     @user = User.where('id=?',id).includes(:setting)[0]
     User.transaction do
-      @user.update_picture(user)
       @user.update_setting(user)
       @user.update_attributes(user) if user.size > 0
     end
@@ -94,19 +96,16 @@ class User < ActiveRecord::Base
     includes(:setting).where("id=?",id)[0] 
   end
 
-  def update_picture(params)
-    if params[:picture]
-      picture = self.picture || Picture.new
-      picture.update_attributes(pictureable:self, file:params[:picture])
-      params.delete :picture #mass
+  def update_setting(params) 
+    return unless params[:setting]
+    if params[:setting][:picture]
+      picture = self.setting.picture ||= Picture.new
+      picture.update_attributes(pictureable: self.setting, file:params[:setting][:picture])
+      params[:setting].delete :picture
     end
-  end
 
-  def update_setting(params)
-    if params[:setting]
-      self.setting.update_attributes(params[:setting]) 
-      params.delete :setting
-    end
+    self.setting.update_attributes(params[:setting]) 
+    params.delete :setting
   end
 
   private

@@ -26,7 +26,11 @@
       <div class="preview_show"></div>
     </div>
     <div class="clear"></div>
-    <%= f.input :picture, label: false, as: :file %>
+
+    <%= f.simple_fields_for @user.setting do |setting|%>
+      <%= setting.input :picture, label: false, as: :file %>
+    <%end%>
+
     <%= f.input :nickname, label: '昵称', input_html: { maxlength: 20 } %>
     <%= f.input :email, placeholder: 'example@email.com', disabled: true %>
 
@@ -46,7 +50,9 @@
     <%= f.input :description, label: '个人描述', as: :text, input_html: {class: 'desc_textarea span3' }  %>
     <%= f.button :submit, '确定', class: 'btn btn-primary', id:"submit_edit_user" %>
   <%end%>
+
 <% else%>
+
   <%= simple_form_for @user, url: {controller: 'users', action: 'create'}, defaults: {input_html:{class: 'span3' }, required: false }, html: { id: 'new_user_form', class: 'form-vertical' }  do |f|%> 
     <%= f.input :nickname, label: false, input_html: {autocomplete: 'off'}, placeholder:'昵称' %>
     <%= f.input :email, label:false,   placeholder: 'Email'  %>

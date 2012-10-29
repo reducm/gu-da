@@ -1,4 +1,4 @@
-#给我一个drop的按钮,ul列表，要ajax_upload到的action，预览图的宽度, 生成一个可以传图的controller
+#给我一个drop的按钮,ul列表，要ajax_upload到的action，预览图的宽度, 可选框框的drag_div, 和上传图片的限制生成一个可以传图的controller
 class window.PicController
   constructor:(@button, @ul, @action, @picwidth="100px",fdata, @drag_div, @limit=4)->
     @button.css("display","block")

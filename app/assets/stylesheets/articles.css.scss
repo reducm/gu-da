@@ -94,6 +94,7 @@ $hc: black;
 ////////article/////////////
 #article {
   //@include border-radius(8px);
+  position: relative;
   float: left;
   background: #f8f8f8;
 }
