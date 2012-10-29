@@ -34,8 +34,9 @@
 
       <%= yield :comment %>
     </div>
-
-    <%= render partial: 'layouts/foot' %>
+    <% unless new_or_edit? %>
+      <%= render partial: 'layouts/foot' %>
+    <%end%>
     <br/ >
     <script>window.action="<%= params[:action]%>"</script>
   </body>

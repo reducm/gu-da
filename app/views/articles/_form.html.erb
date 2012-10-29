@@ -4,31 +4,39 @@
   <%= javascript_include_tag 'jqueryui'%> 
   <script type="text/javascript">
     $(document).ready(function(){
-      new PicController($(".drop_file"), $("#ul_for_pic"), "/pages", "100px", {title:'index_images'}, $(".drag_to") );
+        new PicController($(".drop_file"), $("#ul_for_pic"), "/pages", "100px", {title:'index_images'}, $(".drag_to") );
+        $("#form_toolbox").find("a").each(function(){
+          $(this).tooltip({
+            delay:200,
+            placement:'bottom',
+          });
+        });
     });
-  </script>
+</script>
 <%end%>
 
-<div id="article_edit" style="margin-top:10px;">
-    <h2><%= title %></h2> 
-    <%= simple_form_for @article, wrapper: :default, html: {multipart: true, id: 'article_form' } do|f| %> 
-      <%= f.input :catagory_id, collection: @catagories, label: false, as: :jcatagory, input_html: {id: "catagories_select"}, wrapper_html: {style: 'display:inline' } %> 
-      <%= f.input :title, label: false, input_html: {}, wrapper_html: {style: 'display:inline' }%>
-      </br>
-      <ul class="unstyled" id="user_form_toolbar">
-        <li><%= link_to "增加分类", "#add_catagory_modal", "data-toggle" => 'modal', "class"=>"little_fontsize" %> </li>
-        <li><%= link_to "预览(beta)", 'javascript:void(0)', "data-toggle"=>'preview', id:'toggle_preview' %> </li>
-        <li><a href="#draft" data-toggle="modal">查看草稿</a></li>
-        <li><%= link_to "上传图片", "#upload_pic_modal", "data-toggle" => 'modal', "class"=>"little_fontsize" %> </li>
-      </ul>
-      <%= f.input :content, as: :text, label: false, input_html:{rows:0, cols:0}, wrapper_html:{id:'content_wrapper'}%>
-      <%if demo?%>
-        <%= f.button :submit, '发布', class: 'btn-primary span2', disabled: true %>
-      <%else%>
-        <%= f.button :submit, '发布', class: 'btn-primary span2'%>
-      <%end%>
-      <a href="#draft" data-toggle="save-draft" class="btn btn-primary" >保存草稿</a>
+<div id="article_edit" >
+  <%= simple_form_for @article, wrapper: :default, html: {multipart: true, id: 'article_form' } do|f| %> 
+    <%= f.input :catagory_id, collection: @catagories, label: false, as: :jcatagory, input_html: {id: "catagories_select"}, wrapper_html: {style: 'display:inline' } %> 
+    <%= f.input :title, label: false, input_html: {}, wrapper_html: {style: 'display:inline' }%>
+    </br>
+    <ul class="unstyled" id="form_toolbox">
+      <li><a href="#add_catagory_modal" data-toggle='modal' rel='tooltip' title='添加分类'><i class="icon-plus"></i></a> </li>
+      <li><a href='javascript:void(0)' data-toggle='preview' id='toggle_preview' rel='tooltip' title='预览'><i class="icon-eye-open"></i> </a></li>
+      <li><a href="#draft" data-toggle="modal" rel='tooltip' title='草稿'><i class="icon-pencil"></i></a></li>
+      <li><a href="#upload_pic_modal" data-toggle='modal' rel='tooltip' title='图片'><i class="icon-picture "></i></a></li>
+      <li><a href="javascript:void(0)" rel='tooltip' title='链接'><i class="icon-link "></i></a></li>
+      <li><a href="javascript:void(0)"><i class="icon-bold"></i></a></li>
+      <li><a href="javascript:void(0)"><i class="icon-italic "></i></a></li>
+    </ul>
+    <%= f.input :content, as: :text, label: false, input_html:{rows:0, cols:0}, wrapper_html:{id:'content_wrapper'}%>
+    <%if demo?%>
+      <%= f.button :submit, '发布', class: 'btn-primary span2', disabled: true %>
+    <%else%>
+      <%= f.button :submit, '发布', class: 'btn-primary span2'%>
     <%end%>
+    <a href="#draft" data-toggle="save-draft" class="btn btn-primary" >保存草稿</a>
+  <%end%>
 </div>
 
 <%= content_for :preview do %>

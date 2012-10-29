@@ -49,6 +49,7 @@ gem 'chunky_png'
 gem 'jcrop-rails', git:'git://github.com/nragaz/jcrop-rails.git'
 
 #小工具
+#运行annotate可以把model的属性都打出来
 gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
 gem "rails_best_practices"
 
@@ -58,7 +59,7 @@ gem 'rmagick'
 gem 'mime-types'
 
 #ssl
-gem 'rack-ssl-enforcer'
+#gem 'rack-ssl-enforcer'
 
 group :assets do
   gem 'sass-rails',   '>= 3.2'
@@ -66,7 +67,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass-rails'
   #gem 'bootstrap-sass'
-  gem 'font-awesome-rails'
+  #gem 'font-awesome-rails'
+  gem 'font-awesome-sass-rails'
+end
+
+group :console do
+  gem 'awesome_print'
 end
 
 gem 'jquery-rails'

@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
   end
 
   def self.by_id(id)
-    includes(:setting).where("id=?",id)[0] 
+    includes(setting:[:picture]).where("id=?",id)[0] 
   end
 
   def update_setting(params) 
