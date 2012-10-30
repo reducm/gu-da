@@ -88,7 +88,8 @@ class AuthenticationsController < ApplicationController
   def share
     #发送失败的话会显示一个出错信息
     share_to(Article.find(params['article']),params['providers']) ? (flash[:notice]= '分享成功') : (flash[:error] = '发送失败,请稍后再试')
-    cookies[:create_article], cookies[:update_article] = false, false
+    cookies.delete :update_article, path:'/'
+    cookies.delete :create_article, path:'/'
     redirect_to user_article_path(@user_id, params['article'])
   end
 
