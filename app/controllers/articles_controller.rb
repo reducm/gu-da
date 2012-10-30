@@ -8,7 +8,8 @@ class ArticlesController < ApplicationController
   # TODO: 文章图片
   # TODO: markdown提示
   # TODO: page model controller view 更加细化
-  # TODO: 增加回复别人评论时候notify一下的功能，要大修了
+  # TODO: 增加回复别人评论时候notify一下的功能，要大修了, 还有全站ajax获取有没有新notify
+  # TODO: notify画面可以直接回复
   # TODO: 关注用户，用户更新有notify功能
   # TODO: ssl通道, 上线后再处理
   # TODO: 每个blog要有加banner功能
@@ -17,6 +18,7 @@ class ArticlesController < ApplicationController
   # TODO: 小工具， todo list
   # TODO: 草稿功能能保存到服务器
   # TODO: 模板功能
+  
   def index
     params[:user_id] = @user_id if params[:user_id].blank?
     @current_user = User.get_user(params)

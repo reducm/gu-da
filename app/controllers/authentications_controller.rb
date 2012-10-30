@@ -86,8 +86,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def share
-    article_id = session[:create_article] || session[:update_article]
-    session[:create_article], session[:update_article] = false, false
+    article_id = params[:article_id]
     #发送失败的话会显示一个出错信息
     flash[:error] = '发送失败,请稍后再试' unless share_to(Article.find(params['article']),params['providers'])
     redirect_to user_article_path(@user_id, article_id)
