@@ -29,7 +29,7 @@ $(document).ready(->
   content.on("scroll", ()->
     preview_content.scrollTop($(this).scrollTop()+33)
     $("#temp_textarea").scrollTop($(this).scrollTop()+33)
-    console.log("as:",$(this).scrollTop(), "   ps:", preview_content.scrollTop())
+    #console.log("as:",$(this).scrollTop(), "   ps:", preview_content.scrollTop())
   )
 
   content.bind("keyup", ()->

@@ -31,10 +31,10 @@ class AuthenticationsController < ApplicationController
     atoken = renv["credentials"].token
     asecret = request.env["omniauth.auth"]["credentials"].secret
     if @user_id
-      #已登录，新绑定的情况或更新信息，跳转到创建文章或者更新文章的session，或者跳回绑定设置页面
+      #已登录，新绑定的情况或更新信息，跳转到创建文章或者更新文章的cookies，或者跳回绑定设置页面
       @a = Authentication.find_or_create(@user_id, renv)
-      if session[:create_article] || session[:update_article]
-        redirect_to user_article_path(@user_id, session[:create_article] || session[:update_article])
+      if cookies[:create_article] || cookies[:update_article]
+        redirect_to user_article_path(@user_id, cookies[:create_article] || cookies[:update_article])
       else
         redirect_to user_authentications_path(@user_id)
       end
@@ -86,10 +86,10 @@ class AuthenticationsController < ApplicationController
   end
 
   def share
-    article_id = params[:article_id]
     #发送失败的话会显示一个出错信息
-    flash[:error] = '发送失败,请稍后再试' unless share_to(Article.find(params['article']),params['providers'])
-    redirect_to user_article_path(@user_id, article_id)
+    share_to(Article.find(params['article']),params['providers']) ? (flash[:error] = '发送失败,请稍后再试') : (flash[:notice]= '分享成功')
+    cookies[:create_article], cookies[:update_article] = false, false
+    redirect_to user_article_path(@user_id, params['article'])
   end
 
   def bind

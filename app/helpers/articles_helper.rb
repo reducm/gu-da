@@ -189,16 +189,15 @@ module ArticlesHelper
   def share_article(article)
     callpartial = false 
     title_str = "分享文章"
-    if session[:create_article]
+    if cookies[:create_article]
       title_str = "文章创建成功,要分享吗?"
       callpartial = true
     end
 
-    if session[:update_article]
+    if cookies[:update_article]
       title_str = "文章修改成功,要分享吗?"
       callpartial = true
     end
-    session[:create_article], session[:update_article] = false, false
     content = "发表了文章：#{article.title}, \"#{article.content.first(50)}...\" #{article_url(article)}"
     callpartial ? (render partial: 'share', locals: {authentications: Authentication.get_all(@user_id),title: title_str, content: content, article: article}) : nil
   end
