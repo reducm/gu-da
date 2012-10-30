@@ -2,7 +2,7 @@
 require_dependency 'jas/jshare'
 class AuthenticationsController < ApplicationController
   include JShare
-  before_filter :check_login
+  before_filter :check_login, only:[:index, :share, :destroy, :bind]
   before_filter :check_session
   #before_filter :check_login
 
@@ -56,18 +56,9 @@ class AuthenticationsController < ApplicationController
         end
         @user = User.new
         @user.authentications << @a
-        #binding.pry
         render :new
       end    
     end
-=begin
-  if @user_id
-    #新绑定的情况或更新信息
-    find_or_create(env)
-  else
-    #用于登录或者创建用户的情况
-    login_or_create_user
-=end
   end
   
   def destroy
