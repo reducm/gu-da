@@ -2,7 +2,7 @@
 # More info at https://github.com/guard/guard#readme
 
 #guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, :cucumber => false, :test_unit => false, :bundler => false, :cli => "-d"  do
-notification :libnotify, :timeout => 2, :transient => true, :append => false
+notification :ruby_gntp, :timeout => 2, :append => false
 group :jas do
   guard :spork, :wait =>60, :rspec_env => { 'RAILS_ENV' => 'test' }, :cucumber => false, :test_unit => false, :bundler => false do
     watch('config/application.rb')

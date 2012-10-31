@@ -62,6 +62,7 @@ gem 'mime-types'
 #gem 'rack-ssl-enforcer'
 
 group :assets do
+  #gem "spine-rails"
   gem 'sass-rails',   '>= 3.2'
   gem 'coffee-rails', '>= 3.2'
   gem 'uglifier', '>= 1.0.3'
@@ -79,19 +80,20 @@ gem 'jquery-rails'
 
 group :test do
   gem 'rspec-rails'
-  gem 'rspec'
   gem 'factory_girl_rails'
-  gem 'spork', '~>1.0rc'
+  #gem 'spork', '~>1.0rc'
   gem 'spork-rails'
   gem 'guard'
   gem 'guard-spork'
   gem 'guard-rspec'
-  gem 'libnotify'
-  gem 'rb-inotify'
+  #gem 'libnotify'
+  #gem 'rb-inotify'
   gem 'rb-fsevent'
   gem 'database_cleaner'
 end
 
+#gem 'growl_notify', group:[:test,:development]
+gem 'ruby_gntp', group:[:test,:development]
 group :development, :test do
 #  gem 'ruby-debug19', :require => 'ruby-debug' 
   gem 'pry-rails'

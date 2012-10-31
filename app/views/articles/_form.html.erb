@@ -7,7 +7,7 @@
         new PicController($(".drop_file"), $("#ul_for_pic"), "/pages", "100px", {title:'index_images'}, $(".drag_to") );
         $("#form_toolbox").find("a").each(function(){
           $(this).tooltip({
-            delay:200,
+            delay:100,
             placement:'bottom',
           });
         });
@@ -25,11 +25,21 @@
       <li><a href='javascript:void(0)' data-toggle='preview' id='toggle_preview' rel='tooltip' title='预览'><i class="icon-eye-open"></i> </a></li>
       <li><a href="#draft" data-toggle="modal" rel='tooltip' title='草稿'><i class="icon-pencil"></i></a></li>
       <li><a href="#upload_pic_modal" data-toggle='modal' rel='tooltip' title='图片'><i class="icon-picture "></i></a></li>
+      <li><a href="javascript:void(0)" id='toggle_pic' data-toggle='modal' rel='tooltip' title='图片'><i class="icon-upload"></i></a></li>
       <li><a href="javascript:void(0)" rel='tooltip' title='链接'><i class="icon-link "></i></a></li>
       <li><a href="javascript:void(0)"><i class="icon-bold"></i></a></li>
       <li><a href="javascript:void(0)"><i class="icon-italic "></i></a></li>
     </ul>
-    <%= f.input :content, as: :text, label: false, input_html:{rows:0, cols:0}, wrapper_html:{id:'content_wrapper'}%>
+    <div class='ul_content_wrapper'>
+      <%= f.input :content, as: :text, label: false, input_html:{rows:0, cols:0, class:'content_normal_width'}, wrapper_html:{id:'content_wrapper'}%>
+      <ul id="ul_showpic">
+        <li><a href="###">fuck</a></li>
+        <li><a href="###">fuck</a></li>
+        <li><a href="###">fuck</a></li>
+        <li><a href="###">fuck</a></li>
+      </ul>
+    </div>
+    <div class="clear"></div>
     <%if demo?%>
       <%= f.button :submit, '发布', class: 'btn-primary span2', disabled: true %>
     <%else%>

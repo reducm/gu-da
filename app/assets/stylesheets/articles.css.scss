@@ -218,12 +218,25 @@ $lifontsize:17px;
       font-size: $lifontsize;
       color: grey;
       &:hover {
-        font-size: $lifontsize+1;
+        font-size: $lifontsize+10;
         color: $linkColor;
         text-decoration: none;
       }
     }
   }
+}
+
+#ul_showpic {
+  border: 1px solid black;
+  float:left;
+  display:none;
+  li {
+     
+  }
+}
+
+.ul_content_wrapper{
+  height:90%;
 }
 
 #article_title {
@@ -235,12 +248,19 @@ $lifontsize:17px;
 }
 
 #content_wrapper {
-  height:93%;
+  clear: both;
+  float: left;
+  height: 95%;
+  margin-bottom: 0px;
+}
+
+.content_showpic_width{
+  width: 77%;
 }
 
 #article_content{
   width: 99%;
-  height: 88%;
+  height: 96%;
 }
 
 #article_show_content{
@@ -281,7 +301,9 @@ $lifontsize:17px;
 }
 
 #preview_title {
-
+  h1{
+    font-size: 32px;
+  }
 }
 
 #preview_content {

@@ -2,22 +2,29 @@ $(document).ready(->
   article = $("#article")
   preview = $("#preview")
   content = $("#article_content")
+  content_wrapper = content.parent()
   title = $("#article_title")
   preview_content = $('#preview_content')
   preview_title = $('#preview_title')
+  ul_showpic = $("#ul_showpic")
   window.preview_style = "html"
 
   converter = new Showdown.converter()
 
   preview.height(article.height())
 
-  $('#toggle_preview').bind('click',()->
+  $('#toggle_preview').on('click',()->
     article.toggleClass("edit_preview_width")
     preview.toggle()
     fill_preview(content.val())
     fill_preview_title(title.val())
     fix_pcontent_height()
     $("#temp_textarea").remove()
+  )
+
+  $("#toggle_pic").on('click',()->
+    content_wrapper.toggleClass('content_showpic_width')
+    ul_showpic.toggle()
   )
 
   title.on("keyup", ()->

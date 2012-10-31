@@ -37,7 +37,7 @@ class PictureUploader < CarrierWave::Uploader::Base
     new_file.content_type.include? 'image'
   end
 
-  def geometry_limit(new_file)
+  def geometry_limit(new_file) #如果宽度小于800就不必整个normal_version 
     geometry = ::Magick::Image.read(new_file.file).first
     return false if geometry.columns < 800 
     true
