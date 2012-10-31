@@ -13,7 +13,7 @@ group :jas do
     watch('spec/spec_helper.rb') { :rspec }
   end
 
-  guard :rspec, :cli => "--drb -b" do
+  guard :rspec, :cli => "--drb -b", all_on_start:false do
     watch(%r{^spec/.+_spec\.rb$})
     #  watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
     watch('spec/spec_helper.rb')  { "spec" }
@@ -29,3 +29,5 @@ group :jas do
     watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
   end
 end
+
+

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Article do
   before(:all) do
-    @article = Factory.build(:article) 
+    @article = FactoryGirl.build(:article) 
   end
 
 

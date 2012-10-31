@@ -78,12 +78,11 @@ end
 
 gem 'jquery-rails'
 
+gem 'rspec-rails', group:[:test, :development]
 group :test do
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
+  gem "factory_girl_rails", "~> 4.0"
   #gem 'spork', '~>1.0rc'
   gem 'spork-rails'
-  gem 'guard'
   gem 'guard-spork'
   gem 'guard-rspec'
   #gem 'libnotify'

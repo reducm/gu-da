@@ -329,9 +329,8 @@ DEPENDENCIES
   coffee-rails (>= 3.2)
   database_cleaner
   douban-ruby!
-  factory_girl_rails
+  factory_girl_rails (~> 4.0)
   font-awesome-sass-rails
-  guard
   guard-rspec
   guard-spork
   jcrop-rails!
