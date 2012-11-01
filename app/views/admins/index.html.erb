@@ -4,7 +4,7 @@
 <%end%>
 <script type="text/javascript">
   $(document).ready(function(){
-      new PicController($(".drop_file"), $("#ul_for_pic"), "/pages", "150px", {title:'index_images'})  
+      new PicController($(".drop_file"), $("#ul_for_pic"), "/pages", "150px", {title:'index_images'}, null, 4, function(data){console.log(data);})  
   });
 </script>
 <h1><%= "管理员 #{@user.nickname}"%></h1>

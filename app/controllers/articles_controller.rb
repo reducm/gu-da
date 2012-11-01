@@ -39,6 +39,7 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new(user_id:session[:user_id])
     @current_user = User.by_id(@user_id)
+    @pictures = @current_user.pictures.page(1).per(4).order("created_at desc")
     set_catagories(@user_id)
     set_page_title '新建文章',@current_user
   end
@@ -62,6 +63,7 @@ class ArticlesController < ApplicationController
     @article = Article.find_by_id(params[:id])
     @catagories = Catagory.get_all(@user_id)
     @current_user = User.by_id(@user_id)
+    @pictures = @current_user.pictures.page(1).per(4).order("created_at desc")
     set_page_title "修改文章|#{@article.title}", @current_user
   end
 

@@ -227,11 +227,14 @@ $lifontsize:17px;
 }
 
 #ul_showpic {
-  border: 1px solid black;
+  //border: 1px solid black;
   float:left;
   display:none;
+  margin-left: 26px;
+  width:18%;
+  height: 100%;
+  overflow-y: scroll;
   li {
-     
   }
 }
 

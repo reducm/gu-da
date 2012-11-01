@@ -1,10 +1,14 @@
 <% content_for :other_js do %>
   <%= javascript_include_tag "edit" %>
   <%= javascript_include_tag 'pic'%> 
-  <%= javascript_include_tag 'jqueryui'%> 
+  <%= javascript_include_tag 'action/article_form'%> 
   <script type="text/javascript">
+    var callback = function(data){
+      console.log("in fomr callback", data)
+    }
+
     $(document).ready(function(){
-        new PicController($(".drop_file"), $("#ul_for_pic"), "/pages", "100px", {title:'index_images'}, $(".drag_to") );
+        new PicController($(".drop_file"), $("#ul_for_pic"), "/pictures", "100px", {pictureable_type:'User', pictureable_id:<%= user.id %>}, $(".drag_to"),4, callback );
         $("#form_toolbox").find("a").each(function(){
           $(this).tooltip({
             delay:100,
@@ -24,19 +28,19 @@
       <li><a href="#add_catagory_modal" data-toggle='modal' rel='tooltip' title='添加分类'><i class="icon-plus"></i></a> </li>
       <li><a href='javascript:void(0)' data-toggle='preview' id='toggle_preview' rel='tooltip' title='预览'><i class="icon-eye-open"></i> </a></li>
       <li><a href="#draft" data-toggle="modal" rel='tooltip' title='草稿'><i class="icon-pencil"></i></a></li>
-      <li><a href="#upload_pic_modal" data-toggle='modal' rel='tooltip' title='图片'><i class="icon-picture "></i></a></li>
-      <li><a href="javascript:void(0)" id='toggle_pic' data-toggle='modal' rel='tooltip' title='图片'><i class="icon-upload"></i></a></li>
+      <li></li>
+      <li><a href="javascript:void(0)" id='toggle_pic' data-toggle='modal' rel='tooltip' title='图片'><i class="icon-picture"></i></a></li>
       <li><a href="javascript:void(0)" rel='tooltip' title='链接'><i class="icon-link "></i></a></li>
       <li><a href="javascript:void(0)"><i class="icon-bold"></i></a></li>
       <li><a href="javascript:void(0)"><i class="icon-italic "></i></a></li>
     </ul>
     <div class='ul_content_wrapper'>
       <%= f.input :content, as: :text, label: false, input_html:{rows:0, cols:0, class:'content_normal_width'}, wrapper_html:{id:'content_wrapper'}%>
-      <ul id="ul_showpic">
-        <li><a href="###">fuck</a></li>
-        <li><a href="###">fuck</a></li>
-        <li><a href="###">fuck</a></li>
-        <li><a href="###">fuck</a></li>
+      <ul id="ul_showpic" class="unstyled">
+        <a href="#upload_pic_modal" class="btn btn-primary" data-toggle='modal' rel='tooltip' title='图片'><i class="icon-upload"></i><span>上传图片</span></a>
+        <% pictures.each do|picture|%>
+          <li><a href="javascript:void(0)"><img src="<%= picture.file.url %>" alt="" /></a></li>
+        <%end%> 
       </ul>
     </div>
     <div class="clear"></div>

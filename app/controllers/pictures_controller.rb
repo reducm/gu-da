@@ -1,11 +1,16 @@
 # encoding: UTF-8
 class PicturesController < ApplicationController
-  layout false
   before_filter :check_login, only: [:edit, :create, :new, :update, :destroy] 
   before_filter :check_session
-  before_filter :check_admin
 
   def create
+    ps = []
+    params[:pictures].each do|key,value|
+      picture = Picture.new(file:value, pictureable_type: params[:pictureable_type], pictureable_id: params[:pictureable_id]) 
+      picture.save
+      ps << picture.file.url unless picture.errors.any?
+    end
+    ps.size > 0 ? (render json: ps) : (render json: {errors:'上传出错了,请检查你的图片符合规范'})
   end
 
   def update

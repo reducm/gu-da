@@ -3,10 +3,11 @@ class window.PicUploader
   upload: ()->
     that = this
     $.ajax({
-      url:that.action,
-      type:"POST",
-      data:that.formdata,
-      success:that.callback,
-      processData:false,
+      url:that.action
+      type:"POST"
+      data:that.formdata
+      success:(data)->
+        Jajax::callback(data, that.callback)
+      processData:false
       contentType:false
     })
