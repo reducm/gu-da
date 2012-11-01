@@ -225,15 +225,17 @@ $lifontsize:17px;
     }
   }
 }
-
+$content_height:95%;
 #ul_showpic {
   //border: 1px solid black;
   float:left;
   display:none;
   margin-left: 26px;
+  margin-bottom: 0px;
   width:18%;
-  height: 100%;
+  height: $content_height;
   overflow-y: scroll;
+  
   li {
   }
 }
@@ -263,7 +265,7 @@ $lifontsize:17px;
 
 #article_content{
   width: 99%;
-  height: 96%;
+  height: $content_height+1;
 }
 
 #article_show_content{

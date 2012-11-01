@@ -1,22 +1,13 @@
 <% content_for :other_js do %>
   <%= javascript_include_tag "edit" %>
   <%= javascript_include_tag 'pic'%> 
-  <%= javascript_include_tag 'action/article_form'%> 
-  <script type="text/javascript">
-    var callback = function(data){
-      console.log("in fomr callback", data)
-    }
+  <%= javascript_include_tag 'actions/article_form'%> 
 
-    $(document).ready(function(){
-        new PicController($(".drop_file"), $("#ul_for_pic"), "/pictures", "100px", {pictureable_type:'User', pictureable_id:<%= user.id %>}, $(".drag_to"),4, callback );
-        $("#form_toolbox").find("a").each(function(){
-          $(this).tooltip({
-            delay:100,
-            placement:'bottom',
-          });
-        });
-    });
-</script>
+  <style type="text/css">
+    body {
+      overflow-y:hidden;
+    }
+  </style>
 <%end%>
 
 <div id="article_edit" >

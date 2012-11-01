@@ -23,7 +23,11 @@ class PictureUploader < CarrierWave::Uploader::Base
   version :head, :if => :image? do
     process :resize_to_fit => [150,150] 
   end
-  
+
+  version :preview, :if => :image? do
+    process :resize_to_fit => [250,250] 
+  end
+ 
   version :normal, :if => :image? && :geometry_limit  do
     process :resize_to_fit => [800,800] 
   end
