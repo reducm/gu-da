@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   validates :description, length: {maximum: 200} 
 
   before_create :encode_pass
+  after_create :create_setting
 
   attr_accessor :password_confirm, :remember_me
 
@@ -51,31 +52,22 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.updates(user, id)
+  def self.updates(params, id)
+    params.delete :email
+    return updates_nopass(params,id) if params[:password].blank?
     @user = User.find(id)
-    if @user
-      hashpass = valid_pass(user[:password], @user.salt)
-      if hashpass == @user.password
-        if user[:password].length >= 6 && user[:password].length <= 20
-          user[:password] = Digest::SHA2.new.hexdigest(user[:password_new]+@user.salt)
-          User.transaction do
-            @user.update_setting(user)
-            @user.update_attributes(user) if user.size > 0
-          end
-          @user
-        else
-          @user.errors.add(:password_new, '新密码长度要在6-20之间')
-          @user
-        end
-      else
-        @user.errors.add(:password, '旧密码错误')
-        @user
-      end
-    else
-      @user = User.new
-      @user.errors.add(:nickname, '没有这个用户')
-      @user
+    return @user if (error_password_params(params, @user).errors.any?)
+    hashpass = valid_pass(params[:password], @user.salt)
+    if hashpass != @user.password
+      @user.errors.add(:password, '旧密码错误') 
+      return @user
     end
+    params[:password] = Digest::SHA2.new.hexdigest(params[:password_new]+@user.salt)
+    User.transaction do
+      @user.update_setting(params)
+      @user.update_attributes(params) if params.size > 0
+    end
+    @user
   end
 
   def self.updates_nopass(user, id)
@@ -109,6 +101,10 @@ class User < ActiveRecord::Base
   end
 
   private
+  def create_setting
+    Setting.create(user:self)
+  end
+
   def getSalt
     Random.rand(10000..100000).to_s
   end
@@ -121,6 +117,12 @@ class User < ActiveRecord::Base
 
   def self.valid_pass(pass, salt)
     Digest::SHA2.new.hexdigest(pass+salt)
+  end
+
+  def self.error_password_params(params, user)
+    user.errors.add(:password_new,'两次输入密码不同') if params[:password_new] != params[:password_confirm]
+    user.errors.add(:password_new, '新密码长度要在6-20之间') unless (params[:password_new].length >= 6) && (params[:password_new].length <= 20)
+    user
   end
 
   def self.validte_passlength

@@ -10,12 +10,14 @@ group :jas do
     watch('Gemfile')
     watch(%r{^config/environments/.+\.rb$})
     watch(%r{^config/initializers/.+\.rb$})
+    watch(%r{^app/models/(.+)\.rb$})
+    watch(%r{^lib/(.+)\.rb$})
     watch('spec/spec_helper.rb') { :rspec }
   end
 
-  guard :rspec, :cli => "--drb -b", all_on_start:false do
+  guard :rspec, :cli => "--drb", all_on_start:false do
     watch(%r{^spec/.+_spec\.rb$})
-    #  watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
+    watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
     watch('spec/spec_helper.rb')  { "spec" }
     watch('spec/factories.rb')
     # Rails example

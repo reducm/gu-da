@@ -49,7 +49,6 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-      @setting = Setting.create(user: @user)
       @user.authentications << @a if @a
       set_session(@user)
       session[:signup_new] = true
@@ -67,24 +66,32 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by_email(@user_email)
-    params.delete(:email)
-    if params[:user][:password_new] != params[:user][:password_confirm]
-      flash[:notice] = '两次输入密码不相同'
-      render :edit, layout: "acount_setting"
-      return
-    end
-
-    @user = (params[:user][:password].blank?)? User.updates_nopass(params[:user], params[:id]) : User.updates(params[:user], params[:id])
-    if @user.errors.any?
+    (@user = User.new(params[:user])) && (flash[:notice] = "非法修改数据!") && (render :edit, layout:"acount_setting") if @user_id != params[:id].to_i
+    params.delete :email
+    @user = User.updates params[:user],params[:id]
+    unless @user.errors.any?
+      flash[:notice] ='用户更新成功'
+      redirect_to edit_user_path(@user)
+    else
       flash[:error] = @user.jerrors
       render :edit, layout: "acount_setting"
-      return
-    else
-      flash[:notice] = '用户更新成功'
-      set_session(@user)
-      redirect_to edit_user_url(@user_id) 
     end
+    #if params[:user][:password_new] != params[:user][:password_confirm]
+      #flash[:notice] = '两次输入密码不相同'
+      #render :edit, layout: "acount_setting"
+      #return
+    #end
+
+    #@user = (params[:user][:password].blank?)? User.updates_nopass(params[:user], params[:id]) : User.updates(params[:user], params[:id])
+    #if @user.errors.any?
+      #flash[:error] = @user.jerrors
+      #render :edit, layout: "acount_setting"
+      #return
+    #else
+      #flash[:notice] = '用户更新成功'
+      #set_session(@user)
+      #redirect_to edit_user_url(@user_id) 
+    #end
   end
 
   def destroy
