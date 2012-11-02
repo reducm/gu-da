@@ -61,9 +61,12 @@ gem 'mime-types'
 #ssl
 #gem 'rack-ssl-enforcer'
 
+gem 'jquery-rails'
 group :assets do
   #gem "spine-rails"
   gem 'sass-rails',   '>= 3.2'
+  gem 'eco'
+  gem 'spine-rails'
   gem 'coffee-rails', '>= 3.2'
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass-rails'
@@ -76,7 +79,6 @@ group :console do
   gem 'awesome_print'
 end
 
-gem 'jquery-rails'
 
 gem 'rspec-rails', group:[:test, :development]
 group :test do

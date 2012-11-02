@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
   # TODO: 文章图片
   # TODO: markdown提示
   # TODO: page model controller view 更加细化
+  # TODO: 分页功能
   # TODO: 增加回复别人评论时候notify一下的功能，要大修了, 还有全站ajax获取有没有新notify
   # TODO: notify画面可以直接回复
   # TODO: 关注用户，用户更新有notify功能

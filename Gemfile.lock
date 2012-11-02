@@ -124,6 +124,11 @@ GEM
     daemons (1.1.9)
     database_cleaner (0.8.0)
     diff-lcs (1.1.3)
+    eco (1.0.0)
+      coffee-script
+      eco-source
+      execjs
+    eco-source (1.1.0.rc.1)
     erubis (2.7.0)
     eventmachine (0.12.10)
     execjs (1.4.0)
@@ -285,6 +290,8 @@ GEM
     simple_oauth (0.1.9)
     slop (3.3.2)
     social-share-button (0.0.8)
+    spine-rails (0.1.0)
+      rails (>= 3.1.0)
     spork (1.0.0rc3)
     spork-rails (3.2.0)
       rails (>= 3.0.0, < 3.3.0)
@@ -329,6 +336,7 @@ DEPENDENCIES
   coffee-rails (>= 3.2)
   database_cleaner
   douban-ruby!
+  eco
   factory_girl_rails (~> 4.0)
   font-awesome-sass-rails
   guard-rspec
@@ -362,6 +370,7 @@ DEPENDENCIES
   sass-rails (>= 3.2)
   simple_form!
   social-share-button
+  spine-rails
   spork-rails
   sprite-factory
   thin
