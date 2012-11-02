@@ -22,10 +22,6 @@ $(document).ready(->
     $("#temp_textarea").remove()
   )
 
-  $("#toggle_pic").on('click',()->
-    content_wrapper.toggleClass('content_showpic_width')
-    ul_showpic.toggle()
-  )
 
   title.on("keyup", ()->
     str = $(this).val()
