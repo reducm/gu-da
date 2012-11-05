@@ -8,11 +8,6 @@
     <%= javascript_include_tag "article" %>
     <%= yield :other_js %>
     <%= csrf_meta_tags %>
-    <script type="text/javascript" charset="utf-8">
-      window.guda = {};
-      window.guda.user_name = "<%= @user_name || 'DemoUser'%>";
-      window.guda.user_id = <%= @user_id || nil %>;
-    </script>
   </head>
   <body>
 
@@ -37,6 +32,12 @@
       <%= render partial: 'layouts/foot' %>
     <%end%>
     <br/ >
-    <script>window.action="<%= params[:action]%>"</script>
+    <script type="text/javascript" charset="utf-8">
+      window.action="<%= params[:action]%>"
+      window.guda = {};
+      guda.user_name = "<%= @user_name || 'DemoUser'%>";
+      guda.user_id = <%= @user_id || nil %>;
+      guda.controllers=[]
+    </script>
   </body>
 </html>

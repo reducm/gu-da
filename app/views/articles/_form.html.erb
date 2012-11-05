@@ -2,7 +2,6 @@
   <%= javascript_include_tag "edit" %>
   <%= javascript_include_tag 'blog/spine'%> 
   <%= javascript_include_tag 'blog/picture'%> 
-  <%= javascript_include_tag 'actions/article_form'%> 
 
   <style type="text/css">
     body {
@@ -30,9 +29,6 @@
       <%= f.input :content, as: :text, label: false, input_html:{rows:0, cols:0, class:'content_normal_width'}, wrapper_html:{id:'content_wrapper'}%>
       <ul id="ul_showpic" class="unstyled">
         <a href="#upload_pic_modal" class="btn btn-primary" data-toggle='modal' rel='tooltip' title='图片'><i class="icon-upload"></i><span>上传图片</span></a>
-        <% pictures.each do|picture|%>
-          <li><a href="javascript:void(0)"><img src="<%= picture.file.url %>" alt="" /></a></li>
-        <%end%> 
       </ul>
     </div>
     <div class="clear"></div>

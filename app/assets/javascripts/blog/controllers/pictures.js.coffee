@@ -8,15 +8,18 @@ $.fn.item = ->
 
 class Blog.PicturesUpload extends Spine.Controller
   #events:
+  @include Blog.ajax_formdata
+
+  elements:
+    ".drop_file": "button"
+    ".drag_to": "drag_div"
+    "#ul_for_pic": "ul_upload"
 
   constructor: ->
     super
     @url or= "/pictures"
-    @el = $("#upload_pic_modal")
-    @button or= $(".drop_file")
-    @ul_upload or= $("#ul_for_pic")
-    @drag_div or= $(".drag_to")
     @limit or= 4
+    @picwidth or= "100px"
     @pictureable_type or="User"
     @pictureable_id or= window.guda.user_id
     @models or= []
@@ -24,6 +27,7 @@ class Blog.PicturesUpload extends Spine.Controller
     @input.on("change", @fill_ul)
     @button.on("drop", @fill_ul)
     @drag_div.on("drop", @fill_fl)
+    $("body").on("dragover", @clean_propagation)
 
 #event callback
   fill_ul: (event)=>
@@ -36,8 +40,13 @@ class Blog.PicturesUpload extends Spine.Controller
     @upload_button.on("click", @upload)
     @show_pic(files)
 
-  #upload: (event)=>
-
+  upload: (event)=>
+    formdata = new FormData()
+    formdata.append("pictureable_type",@pictureable_type)
+    formdata.append("pictureable_id",@pictureable_id)
+    formdata.append("pictures[#{i}]", model.file)for model,i in @models
+    @upload_button.loading()
+    @ajax_formdata(@url,formdata,@upload_success)
 
 #private method
   create_upload_button: (ul)->
@@ -45,7 +54,7 @@ class Blog.PicturesUpload extends Spine.Controller
     a = $("<a href=\"###\" class=\"btn btn-success\">上传</a>")
     ul.append(a)
     a
-  
+
   show_pic: (files)=>
     for file,i in files
       break if i == @limit
@@ -59,12 +68,114 @@ class Blog.PicturesUpload extends Spine.Controller
     p = new Picture({pictureable_type:@pictureable_type, pictureable_id:@pictureable_id, file: file})
     @models.push(p)
 
+  clean_propagation:(event)->
+    event.stopPropagation()
+    event.preventDefault()
+    false
 
-class PicturesLoad extends Spine.Controller
+  upload_success:(data)=>
+    $.pnotify(text:"上传成功", type:"success")
+    @upload_button.unloading()
+    @ul_upload.empty()
+    @el.modal("hide")
+    @PicturesLoad.preload(data)
 
+class Blog.PicturesLoad extends Spine.Controller
+  #elements:
+  events:
+    "click .pic_item":"click_item"
+    "mouseenter .pic_item":"show_wrapper"
+    "mouseleave .pic_item":"clean_wrapper"
 
+  constructor:()->
+    super
+    @models or= []
+    @page or= 1
+    @url = "/users/#{guda.user_id}/pictures"
+    @button = @el.children(".btn")
+    @append_ajax()
+
+#private
+  click_item:(e)->
+
+ 
+  show_wrapper:(e)->
+    e.stopPropagation()
+    e.preventDefault()
+    return false if e.target.tagName.toLowerCase() != 'img'
+    img = $(e.target)
+    li = img.parent()
+    model = Picture.find(li.attr("pid"))
+    li.append @view("pictures/pic_wrapper")({model:model}) unless li.children(".remove_pic")[0]
+
+  clean_wrapper:(e)->
+    e.stopPropagation()
+    e.preventDefault()
+    return false if e.target.tagName.toLowerCase() != 'img'
+    img = $(e.target)
+    li = img.parent()
+    model = Picture.find(li.attr("pid"))
+    li.children(".remove_pic").remove()
+
+  append_ajax:()=>
+    @el.loading()
+    $.get(@url, {page:@page}, @append_data, "json")
+
+  append_data:(data)=>
+    $.pnotify(type:'info', text:"读取 #{data.pictures.length} 张新图片")
+    @el.unloading()
+    temp_models = @deal_data(data)
+    @append @view("pictures/item")({models:temp_models})
+
+  preload:(data)=>
+    if data?
+     return @prepend_data(data)
+    return @append_ajax()
+
+  prepend_data:(data)=>
+    temp_models = @deal_data(data)
+    @button.after @view("pictures/item")({models:temp_models})
+
+  deal_data:(data)=>
+    @page = data.page + 1
+    temp = []
+    for picture in data.pictures
+      p = new Picture(picture)
+      p.save()
+      @models.push(p)
+      temp.push(p)
+    temp
 
 class Blog.PicturesController extends Spine.Controller
+  @extend Spine.Events
+  elements:
+    "#toggle_pic": "toggle_pic_button" #button
+    "#form_toolbox": "form_toolbox"
+    "#content_wrapper": "content_wrapper"
+    "#ul_showpic": "ul_showpic"
+    "#upload_pic_modal": "upload_modal"
+
+  constructor: ->
+    super
+    @el or= $("#container")
+    @form_toolbox.find("a").each(-> $(this).tooltip({ delay:100, placement:'bottom'}))
+    @toggle_pic_button.on("click", @toggle_pic)
+    @toggle_upload_button = @ul_showpic.children(".btn")
+    @upload_modal.on("shown", @init_upload)
+    @PicturesLoad = new Blog.PicturesLoad({el: @ul_showpic.selector})
+
+#private
+  init_upload:()=>
+    el = "#upload_pic_modal"
+    that = @
+    @PictureUpload = new Blog.PicturesUpload({el:el, PicturesController:that, PicturesLoad:@PicturesLoad})
+
+  toggle_pic:()=>
+    @content_wrapper.toggleClass('content_showpic_width')
+    @ul_showpic.toggle()
+
+
+  
 
 
 

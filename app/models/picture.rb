@@ -1,5 +1,6 @@
 #encoding: utf-8
 class Picture < ActiveRecord::Base
+  paginates_per 8
   mount_uploader :file, PictureUploader
   belongs_to :pictureable, polymorphic: true 
 
@@ -10,6 +11,10 @@ class Picture < ActiveRecord::Base
   before_save :set_file_name_type_size
   before_destroy :remember_storedir
   after_destroy :remove_storedir
+
+  def self.get_index(params)
+    where("pictureable_type='User' and pictureable_id=?", params[:user_id]).order("id desc").page(params[:page] || 1)
+  end
 
   protected
   def set_file_name_type_size

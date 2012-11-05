@@ -21,7 +21,7 @@ GuDa::Application.routes.draw do
     resources :pictures
   end
  
-  resources :pictures
+  resources :pictures, :only => [:create, :destroy]
   resources :admins
   resources :articles
   resources :catagories

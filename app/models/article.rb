@@ -1,6 +1,7 @@
 # encoding: UTF-8
 require_dependency 'jas/jredis_counter'
 class Article < ActiveRecord::Base
+  paginates_per 10 
   belongs_to :user
   belongs_to :catagory
   has_many :article_tagships

@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
   # TODO: 文章图片
   # TODO: markdown提示
   # TODO: page model controller view 更加细化
-  # TODO: 分页功能
+  # TODO: 美化article_index 分页导航
   # TODO: 增加回复别人评论时候notify一下的功能，要大修了, 还有全站ajax获取有没有新notify
   # TODO: notify画面可以直接回复
   # TODO: 关注用户，用户更新有notify功能
@@ -27,7 +27,7 @@ class ArticlesController < ApplicationController
       flash[:error] = "没有这个用户"
       redirect_to root_path
     end
-    @articles = Article.get_index(@current_user.id)
+    @articles = Article.select("id, preview, created_at, title").order("created_at desc").page(params[:page] ||= 1)
     if session[:signup_new] || @articles.size == 0 #新注册进来产生一些提示操作的变量
       session[:signup_new] = nil
       @signup_new = true
@@ -40,7 +40,6 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new(user_id:session[:user_id])
     @current_user = User.by_id(@user_id)
-    @pictures = @current_user.pictures.page(1).per(4).order("created_at desc")
     set_catagories(@user_id)
     set_page_title '新建文章',@current_user
   end
@@ -64,7 +63,6 @@ class ArticlesController < ApplicationController
     @article = Article.find_by_id(params[:id])
     @catagories = Catagory.get_all(@user_id)
     @current_user = User.by_id(@user_id)
-    @pictures = @current_user.pictures.page(1).per(4).order("created_at desc")
     set_page_title "修改文章|#{@article.title}", @current_user
   end
 

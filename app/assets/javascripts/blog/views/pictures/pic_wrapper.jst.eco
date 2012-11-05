@@ -1,0 +1,1 @@
+<a href="javascript:void(0)" class="remove_pic" data-dismiss="<%= @model.id %>"><i class="icon-remove"></i></a>

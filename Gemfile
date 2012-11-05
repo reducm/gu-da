@@ -73,6 +73,7 @@ group :assets do
   #gem 'bootstrap-sass'
   #gem 'font-awesome-rails'
   gem 'font-awesome-sass-rails'
+  gem 'bourbon'
 end
 
 group :console do

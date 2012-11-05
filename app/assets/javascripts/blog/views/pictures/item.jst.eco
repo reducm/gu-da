@@ -1,0 +1,3 @@
+<% for model in @models: %>
+  <li class="pic_item" pid="<%= model.id %>" ><img src="<%= model.file.preview.url %>"/></li>
+<% end %>

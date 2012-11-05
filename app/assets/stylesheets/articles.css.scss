@@ -54,7 +54,7 @@ $hc: black;
   }
 }
 
-@mixin markdown_style($blockquote:92%,$m_color:#5c5c5c) {
+@mixin markdown_style($blockquote:92%,$m_color: darken(#5c5c5c, 10%)) {
   @include markdown_blockquote($blockquote);
   $mb: 22px;
   p {
@@ -237,6 +237,20 @@ $content_height:95%;
   overflow-y: scroll;
   
   li {
+    position: relative; 
+    margin-bottom: 2px;
+    cursor: pointer;
+    a.remove_pic{
+      text-decoration: none;
+      display: inline-block;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      z-index:80;
+      &:hover {
+        color:write;
+      }
+    }
   }
 }
 

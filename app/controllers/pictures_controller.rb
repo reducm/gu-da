@@ -8,9 +8,9 @@ class PicturesController < ApplicationController
     params[:pictures].each do|key,value|
       picture = Picture.new(file:value, pictureable_type: params[:pictureable_type], pictureable_id: params[:pictureable_id]) 
       picture.save
-      ps << picture.file.preview.url unless picture.errors.any?
+      ps << picture unless picture.errors.any?  #picture.file.preview.url unless picture.errors.any?
     end
-    ps.size > 0 ? (render json: ps) : (render json: {errors:'上传出错了,请检查你的图片符合规范'})
+    ps.size > 0 ? (render json: {pictures:ps}) : (render json: {errors:'上传出错了,请检查你的图片符合规范'})
   end
 
   def update
@@ -26,5 +26,11 @@ class PicturesController < ApplicationController
     else
       render json:{errors:"删除picture_#{params[:id]}失败"}
     end
+  end
+  
+  def index 
+    params[:page] ||= 1
+    @pictures = Picture.get_index(params)
+    render json: {page: params[:page], pictures:@pictures}
   end
 end
