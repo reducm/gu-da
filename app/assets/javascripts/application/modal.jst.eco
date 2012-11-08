@@ -1,0 +1,13 @@
+<div class="modal hide fade" id="<%= @id or null %>" style="<%= @style or null %>">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <h3><%= @header or "注意" %><span class="prompt"><%= @prompt or null %></span></h3>
+  </div>
+  <div class="modal-body">
+    <%= @message %>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn btn-primary">确定</a>
+    <a href="#" class="btn">取消</a>
+  </div>
+</div>
