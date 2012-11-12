@@ -149,7 +149,21 @@ class Blog.PicturesLoad extends Spine.Controller
     $.pnotify(type:'info', text:"读取 #{data.pictures.length} 张新图片")
     @el.unloading()
     temp_models = @deal_data(data)
-    @append @view("pictures/item")({models:temp_models})
+    that = @
+    if @footer
+      @footer.before @view("pictures/item")({models:temp_models})
+    else
+      @append @view("pictures/item")({models:temp_models})
+      @el.append("<div class='footer'></div>")
+      @footer = @el.children(".footer")
+      @footer.waypoint((event, direction)->
+        console.log direction
+        that.append_ajax() if direction == 'down'
+      ,
+      offset: 'bottom-in-view'
+      context: "#ul_showpic"
+      )
+
 
   preload:(data)=>
     if data?
@@ -161,7 +175,7 @@ class Blog.PicturesLoad extends Spine.Controller
     @button.after @view("pictures/item")({models:temp_models})
 
   deal_data:(data)=>
-    @page = data.page + 1
+    @page = parseInt(data.page) + 1
     temp = []
     for picture in data.pictures
       p = new Picture(picture)
