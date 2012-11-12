@@ -28,6 +28,7 @@ $.rails.showConfirmDialog = (element, id="delete_confirm")->
   cancel_button = template.find("a[data-bind='cancel']")
   ok_button.on("click", ()->
     $.rails.confirmed(element)
+    template.modal('hide')
   )
   cancel_button.on("click", ()->
     template.modal('hide')
