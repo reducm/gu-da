@@ -9,4 +9,7 @@ Blog.ajax_formdata = {
       processData:false
       contentType:false
     })
+
+  ajax_loading:()->
+    $.pnotify(text:"处理中...")
 }

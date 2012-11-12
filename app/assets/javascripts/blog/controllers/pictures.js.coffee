@@ -82,10 +82,13 @@ class Blog.PicturesUpload extends Spine.Controller
 
 class Blog.PicturesLoad extends Spine.Controller
   #elements:
+  @include Blog.ajax_formdata
   events:
-    "click .pic_item":"click_item"
+    "click .append_pic":"append_pic"
     "mouseenter .pic_item":"show_wrapper"
     "mouseleave .pic_item":"clean_wrapper"
+    "ajax:loading .remove_pic":"ajax_loading"
+    "ajax:success .remove_pic":"destroy"
 
   constructor:()->
     super
@@ -95,10 +98,31 @@ class Blog.PicturesLoad extends Spine.Controller
     @button = @el.children(".btn")
     @append_ajax()
 
-#private
-  click_item:(e)->
 
- 
+#private
+  append_pic:(e)->
+    id = $(e.target).parent().attr("pid")
+    model = Picture.find(id)
+    console.log(model)
+    pos = @article_content.getCurPos()
+    content = @article_content.val()
+    left = content.slice(0, pos)
+    right = content.slice(pos)
+    url = model.file.normal.url || model.file.url
+    left = left+"![](#{url})"
+    newPos = left.length
+    @article_content.val(left+right)
+    @article_content.setCurPos(newPos)
+
+  destroy:(event, data)=>
+    that = @
+    Jajax::callback(data, (data)->
+      $.pnotify(text:data.message, type:'success')
+      id = data.id
+      Picture.find(id).destroy()
+      that.el.children("li[pid='#{id}']").remove()
+    )
+  
   show_wrapper:(e)->
     e.stopPropagation()
     e.preventDefault()
@@ -115,7 +139,7 @@ class Blog.PicturesLoad extends Spine.Controller
     img = $(e.target)
     li = img.parent()
     model = Picture.find(li.attr("pid"))
-    li.children(".remove_pic").remove()
+    li.children("a").remove()
 
   append_ajax:()=>
     @el.loading()
@@ -154,6 +178,7 @@ class Blog.PicturesController extends Spine.Controller
     "#content_wrapper": "content_wrapper"
     "#ul_showpic": "ul_showpic"
     "#upload_pic_modal": "upload_modal"
+    "#article_content": "article_content"
 
   constructor: ->
     super
@@ -162,7 +187,7 @@ class Blog.PicturesController extends Spine.Controller
     @toggle_pic_button.on("click", @toggle_pic)
     @toggle_upload_button = @ul_showpic.children(".btn")
     @upload_modal.on("shown", @init_upload)
-    @PicturesLoad = new Blog.PicturesLoad({el: @ul_showpic.selector})
+    @PicturesLoad = new Blog.PicturesLoad({el: @ul_showpic.selector, article_content: @article_content})
     @ul_showpic.on('scroll',(event)->
       event.stopPropagation()
       event.preventDefault()

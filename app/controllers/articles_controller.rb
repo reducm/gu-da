@@ -6,6 +6,7 @@ class ArticlesController < ApplicationController
   before_filter {|c| c.set_breadcrumbs}
   before_filter :init_params, :only => [:create, :update]
   # TODO: 文章图片
+  # TODO: 滚动添加图片ajax
   # TODO: markdown提示
   # TODO: page model controller view 更加细化
   # TODO: 美化article_index 分页导航
