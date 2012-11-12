@@ -163,6 +163,10 @@ class Blog.PicturesController extends Spine.Controller
     @toggle_upload_button = @ul_showpic.children(".btn")
     @upload_modal.on("shown", @init_upload)
     @PicturesLoad = new Blog.PicturesLoad({el: @ul_showpic.selector})
+    @ul_showpic.on('scroll',(event)->
+      event.stopPropagation()
+      event.preventDefault()
+    )
 
 #private
   init_upload:()=>
@@ -173,9 +177,3 @@ class Blog.PicturesController extends Spine.Controller
   toggle_pic:()=>
     @content_wrapper.toggleClass('content_showpic_width')
     @ul_showpic.toggle()
-
-
-  
-
-
-

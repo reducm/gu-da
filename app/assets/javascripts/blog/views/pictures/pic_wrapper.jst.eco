@@ -1,1 +1,3 @@
-<a href="pictures/<%= @model.id %>" class="remove_pic" data-dismiss="<%= @model.id %>" data-confirm="你确定删除这张图片吗?" data-method="delete" data-remote="true"><i class="icon-remove"></i></a>
+<a href="/pictures/<%= @model.id %>" class="remove_pic" data-dismiss="<%= @model.id %>" data-confirm="你确定删除这张图片吗?" data-method="delete" data-remote="true">
+  <i class="icon-remove"></i>
+</a>

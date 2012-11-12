@@ -21,6 +21,7 @@ class PicturesController < ApplicationController
   end
 
   def destroy
+    
     if Picture.destroy(params[:id])
       render json:{message:"删除成功",success:true}
     else

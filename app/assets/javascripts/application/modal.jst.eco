@@ -7,7 +7,7 @@
     <%= @message %>
   </div>
   <div class="modal-footer">
-    <a href="#" class="btn btn-primary">确定</a>
-    <a href="#" class="btn">取消</a>
+    <a href="#" class="btn btn-danger" data-bind="ok">确定</a>
+    <a href="#" class="btn" data-bind="cancel">取消</a>
   </div>
 </div>
