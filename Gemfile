@@ -14,8 +14,9 @@ gem 'redis-objects'
 gem 'quiet_assets', :git => 'git://github.com/AgilionApps/quiet_assets.git'
 
 #markdown
-gem 'redcarpet'
+gem 'redcarpet', '~> 2.2.2'
 gem 'pygments.rb'
+gem 'rails_autolink'
 
 #表单
 gem 'simple_form', :git => "git://github.com/plataformatec/simple_form.git"
