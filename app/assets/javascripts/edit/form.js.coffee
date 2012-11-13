@@ -8,10 +8,21 @@ $(document).ready(->
   preview_title = $('#preview_title')
   ul_showpic = $("#ul_showpic")
   window.preview_style = "html"
-
+  markdown_hint = $("#markdown_hint")
   converter = new Showdown.converter()
 
   preview.height(article.height())
+
+  markdown_hint.find("tbody>tr").each(->
+    target = $(this).children("td:last")
+    origin = target.prev()
+    unless target.html()? && target.html().length > 0
+      target.html(converter.makeHtml(origin.text()))
+  )
+
+  $("body").bind("keydown", "m", ()->
+    markdown_hint.modal(keyboard:true)
+  )
 
   $('#toggle_preview').on('click',()->
     article.toggleClass("edit_preview_width")
@@ -22,7 +33,7 @@ $(document).ready(->
     $("#temp_textarea").remove()
   )
 
-
+  
   title.on("keyup", ()->
     str = $(this).val()
     fill_preview_title(str)

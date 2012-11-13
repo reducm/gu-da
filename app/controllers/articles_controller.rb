@@ -8,8 +8,10 @@ class ArticlesController < ApplicationController
   # TODO: 文章图片(初步完成 添加 删除 ajax滚动读取)
   # TODO: markdown提示
   # TODO: preview 滚动问题
+  # TODO: draft 自动保存出问题了
   # TODO: preview显示添加的图片的时候可以remove走同时 remove掉 textarea里面的链接
   # TODO: page model controller view 更加细化
+  # TODO: 删减一下bootstrap css里面用不到的东西例如图标自体那些
   # TODO: 美化article_index 分页导航
   # TODO: 增加回复别人评论时候notify一下的功能，要大修了, 还有全站ajax获取有没有新notify
   # TODO: notify画面可以直接回复

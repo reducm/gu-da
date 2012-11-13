@@ -1,0 +1,130 @@
+<div class="modal" id="markdown_hint">
+<div class="modal-header">
+  <button class="close" data-dismiss="modal">×</button>
+  <h4>Markdown提示</h4>
+</div>
+<div class="modal-body">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#basic_hint" data-toggle="tab">基本编辑</a></li>
+    <li><a href="#linkpic_hint" data-toggle="tab">链接&图片</a></li>
+    <li><a href="#blockcode_hint" data-toggle="tab">引用&代码</a></li>
+  </ul>
+  <div class='tab-content'>
+    <div id="basic_hint" class='tab-pane active'>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>示例</td>
+            <td>效果</td>
+          </tr>
+        </thead>
+
+        <tbody> 
+          <tr>
+            <td>标题h1-h6</td>
+            <td>
+            <pre class="cleanpre">
+
+#标题1
+##标题2
+###标题3
+######标题6
+            </pre>
+            </td>
+            <td></td>
+          </tr>
+
+        </tbody> 
+      </table>
+    </div>
+
+    <div id="linkpic_hint" class='tab-pane'>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>示例</td>
+            <td>效果</td>
+          </tr>
+        </thead>
+
+        <tbody> 
+          <tr>
+            <td>链接</td>
+            <td><%= h "[网易](http://www.163.com)" %></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>直接使用网址</td>
+            <td><%= h "什么是网易 <http://www.163.com>" %></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>图片</td>
+            <td><%= h "![](/assets/sprites/icons.png)" %></td>
+            <td></td>
+          </tr>
+
+        </tbody> 
+      </table>
+    </div>
+
+    <div id="blockcode_hint" class='tab-pane'>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>示例</td>
+            <td>效果</td>
+          </tr>
+        </thead>
+
+        <tbody> 
+          <tr>
+            <td>引用</td>
+            <td> 
+<pre class="cleanpre">
+>哭疼，老叔，昏压，小窍 流水，忍夹，鼓捣，细缝，手麻，吸阳膝下，短 长 韧，再舔呀...
+>from --**无名**
+</pre>
+            </td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>行内代码</td>
+            <td> <%= h "这一句`javascript:void(0)`令点击失效" %> </td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>多行代码</td>
+            <td>
+<pre class="cleanpre">
+```ruby
+def say(str)
+  p "what you say is #{str}"
+end
+```
+</pre> 
+            </td>
+            <td>
+              <div class="highlight">
+              <pre>
+<span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+  <span class="nb">p</span> <span class="s2">&quot;what you say is </span><span class="si">#{</span><span class="n">str</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">end</span>
+                </pre>
+            </div>
+          </td>
+        </tr>
+ 
+        </tbody> 
+      </table>
+    </div>
+  </div>
+</div>
+</div>

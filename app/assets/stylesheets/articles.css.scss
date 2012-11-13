@@ -596,7 +596,47 @@ $content_height:95%;
 .del_link {
   color:$red;
 }
-
+////////////markdown_hint////////
+#markdown_hint {
+  display:none;
+  @include markdown_blockquote(91%);
+  width:900px;
+  left:36%;
+  font-size:12px;
+  .nav-tabs{margin-bottom:2px;}
+  h4{
+    margin: 1px 0px 0px;   
+    border-bottom: none;
+  }
+  td{
+    h1,h2,h3,h4,h5,h6{
+      border-bottom: none;
+      margin: 0px 0px;
+    }
+  }
+  a {
+    font-size:12px;
+  }
+  code{
+    font-size:12px;
+  }
+  pre {
+    font-size:12px;
+    margin: 0 0 0 0;
+  }
+  pre.cleanpre{
+    font-size:12px;
+    border: none;
+    background: none;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+  }
+  blockquote{
+    font-size:12px;
+    p{font-size:12px;}
+  }
+}
+/////////// markdown_hint end ///////
 ///-----------drag & drop-------------
 $drag_height: 250px;
 .drag_to {
