@@ -5,9 +5,10 @@ class ArticlesController < ApplicationController
   before_filter :check_session
   before_filter {|c| c.set_breadcrumbs}
   before_filter :init_params, :only => [:create, :update]
-  # TODO: 文章图片
-  # TODO: 滚动添加图片ajax
+  # TODO: 文章图片(初步完成 添加 删除 ajax滚动读取)
   # TODO: markdown提示
+  # TODO: 修正markdown问题
+  # TODO: preview显示添加的图片的时候可以remove走同时 remove掉 textarea里面的链接
   # TODO: page model controller view 更加细化
   # TODO: 美化article_index 分页导航
   # TODO: 增加回复别人评论时候notify一下的功能，要大修了, 还有全站ajax获取有没有新notify

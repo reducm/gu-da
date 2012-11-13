@@ -89,6 +89,7 @@ class Blog.PicturesLoad extends Spine.Controller
     "mouseleave .pic_item":"clean_wrapper"
     "ajax:loading .remove_pic":"ajax_loading"
     "ajax:success .remove_pic":"destroy"
+    "mousewheel":"scroll_nopropa"
 
   constructor:()->
     super
@@ -162,22 +163,19 @@ class Blog.PicturesLoad extends Spine.Controller
     @footer = @el.children(".footer")
     that = @
     @footer.waypoint((event, direction)->
-      console.log direction
+      $(this).loading()
       if direction == 'down'
-        $(this).loading()
         that.append_ajax()
-    , {offset: '100%', context: "#ul_showpic"}
+    , {offset: 'bottom-in-view', context: "#ul_showpic"}
     )
-    @footer.on("mousewheel",(e,d)->
-       console.log(d)
-       if d > 0 && $(this).scrollTop() == 0
-         e.preventDefault()
-       else
-         if (d < 0 &&  $(this).scrolTop() == $(this).get(0).scrollHeight - $(this).innerHeight())
-          e.preventDefault()
-    )
-
-
+   
+  scroll_nopropa:(e,d)->
+    console.log(@el)
+    height = @el.height()
+    scrollHeight = @el.get(0).scrollHeight
+    if (@el[0].scrollTop == (scrollHeight - height) && d < 0) || (@el[0].scrollTop == 0 && d > 0)
+      e.preventDefault()
+               
   preload:(data)=>
     if data?
      return @prepend_data(data)
