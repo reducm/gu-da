@@ -10,14 +10,14 @@ module ApplicationHelper
   end
 
   def markdown(str, options = {})
-    options[:hard_wrap] ||= false
-    options[:class] ||= ''
-    assembler = Redcarpet::Render::HTML.new(:hard_wrap => options[:hard_wrap]) # auto <br> in <p>
+    #options[:hard_wrap] ||= false
+    #options[:class] ||= ''
+    #assembler = Redcarpet::Render::HTML.new(:hard_wrap => options[:hard_wrap]) # auto <br> in <p>
 
-    renderer = Redcarpet::Markdown.new(assembler, {
-      :autolink => true,
-      :fenced_code_blocks => true
-    })
-    raw(MarkdownConverter.convert(str))
+    #renderer = Redcarpet::Markdown.new(assembler, {
+      #:autolink => true,
+      #:fenced_code_blocks => true
+    #})
+    raw(MarkdownTopicConverter.convert(MarkdownTopicConverter.format(str)))
   end
 end

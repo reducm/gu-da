@@ -95,22 +95,22 @@ class MarkdownTopicConverter < MarkdownConverter
     return text
   end
 
-  def replace_emoji(text)
-    text.gsub(/:(\S+):/) do |emoji|
+  #def replace_emoji(text)
+    #text.gsub(/:(\S+):/) do |emoji|
 
-      emoji_code = emoji #.gsub("|", "_")
-      emoji      = emoji_code.gsub(":", "")
+      #emoji_code = emoji #.gsub("|", "_")
+      #emoji      = emoji_code.gsub(":", "")
 
-      if MdEmoji::EMOJI.include?(emoji)
-        file_name    = "#{emoji.gsub('+', 'plus')}.png"
+      #if MdEmoji::EMOJI.include?(emoji)
+        #file_name    = "#{emoji.gsub('+', 'plus')}.png"
 
-        %{<img src="#{Setting.upload_url}/assets/emojis/#{file_name}" class="emoji" } +
-        %{title="#{emoji_code}" alt="" />}
-      else
-        emoji_code
-      end
-    end
-  end
+        #%{<img src="#{Setting.upload_url}/assets/emojis/#{file_name}" class="emoji" } +
+        #%{title="#{emoji_code}" alt="" />}
+      #else
+        #emoji_code
+      #end
+    #end
+  #end
 
   private
   # convert bbcode-style image tag [img]url[/img] to markdown syntax ![alt](url)
@@ -146,6 +146,6 @@ class MarkdownTopicConverter < MarkdownConverter
         :no_intra_emphasis => true
       })
     # @emoji = Redcarpet::Markdown.new(MdEmoji::Render)
-    @emoji = MdEmoji::Render.new
+    #@emoji = MdEmoji::Render.new
   end
 end
