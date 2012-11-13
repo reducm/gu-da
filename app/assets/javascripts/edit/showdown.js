@@ -1197,7 +1197,6 @@ var _FormParagraphs = function(text) {
 	// Strip leading and trailing lines:
 	text = text.replace(/^\n+/g,"");
 	text = text.replace(/\n+$/g,"");
-	text = text.replace(/\n{1,1}/g, "<br />"); //add by jas to make a hard_wrap in paragrah
 
 	var grafs = text.split(/\n{2,}/g);
 	var grafsOut = [];
@@ -1215,6 +1214,7 @@ var _FormParagraphs = function(text) {
 		}
 		else if (str.search(/\S/) >= 0) {
 			str = _RunSpanGamut(str);
+			str = str.replace(/\n{1,1}/g,"<br />") //hack by jas to make it support hard_wrap
 			str = str.replace(/^([ \t]*)/g,"<p>");
 			str += "</p>"
 			grafsOut.push(str);
