@@ -265,6 +265,9 @@ $content_height:95%;
       opacity: 0.7;
     }
   }
+  div.footer{
+  }
+
 }
 
 .ul_content_wrapper{
@@ -319,6 +322,12 @@ $content_height:95%;
   background:#f8f8f8;
   overflow-y: scroll;
   float: left;
+  img{
+    max-width:50%;
+    display:block;
+    margin: 0 auto;
+    @include box-shadow(3px 3px 7px 1px hsla(0, 0%, 0%, 0.65));
+  }
 }
 
 .border_left {

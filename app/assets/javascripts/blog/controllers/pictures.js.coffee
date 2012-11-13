@@ -96,7 +96,7 @@ class Blog.PicturesLoad extends Spine.Controller
     @page or= 1
     @url = "/users/#{guda.user_id}/pictures"
     @button = @el.children(".btn")
-    @append_ajax()
+    @add_footer()
 
 
 #private
@@ -146,23 +146,36 @@ class Blog.PicturesLoad extends Spine.Controller
     $.get(@url, {page:@page}, @append_data, "json")
 
   append_data:(data)=>
-    $.pnotify(type:'info', text:"读取 #{data.pictures.length} 张新图片")
+    $.pnotify(type:'info', text:"读取 #{data.pictures.length} 张新图片") if data.pictures.length>0
     @el.unloading()
     temp_models = @deal_data(data)
-    that = @
+    return $.pnotify(text:"已取出所有图片!") if temp_models.length == 0
     if @footer
       @footer.before @view("pictures/item")({models:temp_models})
+      @footer.before("<hr />")
+      @footer.unloading()
     else
-      @append @view("pictures/item")({models:temp_models})
-      @el.append("<div class='footer'></div>")
-      @footer = @el.children(".footer")
-      @footer.waypoint((event, direction)->
-        console.log direction
-        that.append_ajax() if direction == 'down'
-      ,
-      offset: 'bottom-in-view'
-      context: "#ul_showpic"
-      )
+      @el.append @view("pictures/item")({models:temp_models})
+      
+  add_footer:()=>
+    @el.append("<div class='footer'></div>")
+    @footer = @el.children(".footer")
+    that = @
+    @footer.waypoint((event, direction)->
+      console.log direction
+      if direction == 'down'
+        $(this).loading()
+        that.append_ajax()
+    , {offset: '100%', context: "#ul_showpic"}
+    )
+    @footer.on("mousewheel",(e,d)->
+       console.log(d)
+       if d > 0 && $(this).scrollTop() == 0
+         e.preventDefault()
+       else
+         if (d < 0 &&  $(this).scrolTop() == $(this).get(0).scrollHeight - $(this).innerHeight())
+          e.preventDefault()
+    )
 
 
   preload:(data)=>
@@ -175,6 +188,8 @@ class Blog.PicturesLoad extends Spine.Controller
     @button.after @view("pictures/item")({models:temp_models})
 
   deal_data:(data)=>
+    if data.pictures.length <= 0
+      return []
     @page = parseInt(data.page) + 1
     temp = []
     for picture in data.pictures
