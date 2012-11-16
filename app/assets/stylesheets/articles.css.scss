@@ -602,7 +602,8 @@ $content_height:95%;
   @include markdown_blockquote(91%);
   width:900px;
   left:36%;
-  font-size:12px;
+  $temp_fz:12px;
+  font-size: $temp_fz;
   .nav-tabs{margin-bottom:2px;}
   h4{
     margin: 1px 0px 0px;   
@@ -615,25 +616,28 @@ $content_height:95%;
     }
   }
   a {
-    font-size:12px;
+    font-size: $temp_fz;
   }
   code{
-    font-size:12px;
+    font-size: $temp_fz;
   }
   pre {
-    font-size:12px;
+    font-size: $temp_fz;
     margin: 0 0 0 0;
   }
   pre.cleanpre{
-    font-size:12px;
+    font-size: $temp_fz;
     border: none;
     background: none;
     margin: 0 0 0 0;
     padding: 0 0 0 0;
   }
+  pre.fs_bigger{
+    font-size: $temp_fz+1;
+  }
   blockquote{
-    font-size:12px;
-    p{font-size:12px;}
+    font-size: $temp_fz;
+    p{font-size: $temp_fz;}
   }
 }
 /////////// markdown_hint end ///////

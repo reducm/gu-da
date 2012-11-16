@@ -16,12 +16,25 @@ $(document).ready(->
   markdown_hint.find("tbody>tr").each(->
     target = $(this).children("td:last")
     origin = target.prev()
+    origin = origin.children() if origin.children('pre')[0]?
     unless target.html()? && target.html().length > 0
       target.html(converter.makeHtml(origin.text()))
   )
 
-  $("body").bind("keydown", "m", ()->
-    markdown_hint.modal(keyboard:true)
+  #markdown_hint.bind("mousewheel",(e, d)->
+    #height = $(this).height()
+    #scrollHeight = $(this).get(0).scrollHeight
+    #if((this.scrollTop == (scrollHeight - height) && d < 0) || (this.scrollTop == 0 && d > 0))
+      #e.preventDefault()
+  #)
+
+
+  $("body").bind("keydown.m", ()->
+    markdown_hint.modal(
+      backdrop:true
+      keyboard:true
+      show:true
+    )
   )
 
   $('#toggle_preview').on('click',()->

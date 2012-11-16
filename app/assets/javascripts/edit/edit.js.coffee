@@ -18,7 +18,6 @@ $(document).ready(()->
 
   fix_container_height()
   $(window).on("resize",fix_container_height)
-
 )
 
 
