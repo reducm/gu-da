@@ -24,6 +24,7 @@ class Blog.EditorController extends Spine.Controller
     @init_article_preview_height()
     $("body").bind("keydown.m", @markdown_modal)
     $(window).on("resize",@init_article_preview_height)
+    $('textarea').editor()
 #private
   init_article_preview_height: ()=>
     @article.height($("body").height() - $("#navbar").height() - 40)
