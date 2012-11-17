@@ -1,0 +1,12 @@
+<h1>Listing Drafts</h1>
+
+<% for draft in @drafts: %>
+  <div class="item" data-id="<%= draft.id %>">
+    <a data-type="show"><%= draft.title %></a>
+    
+    <a data-type="edit">Edit</a> 
+    <a data-type="destroy">Destroy</a>
+  </div>
+<% end %>
+
+<p><a data-type="new">New Draft</a></p>

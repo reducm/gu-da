@@ -1,3 +1,4 @@
+#= require ./controllers/drafts
 #= require ./controllers/editor
 
 $(document).ready ()->
