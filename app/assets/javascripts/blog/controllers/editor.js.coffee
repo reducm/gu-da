@@ -1,3 +1,6 @@
+#= require ./drafts
+$ = jQuery.sub()
+
 class Blog.EditorController extends Spine.Controller
   elements:
     '#article': 'article'
@@ -22,6 +25,7 @@ class Blog.EditorController extends Spine.Controller
     @converter = new Showdown.converter()
     @init_markdown_hint()
     @init_article_preview_height()
+    @draft_controller = new Blog.DraftsController({el:'#draft', content:@content, title:@title, converter:@converter, save_button:$("a[data-toggle='save-draft']")})
     $("body").bind("keydown.m", @markdown_modal)
     $(window).on("resize",@init_article_preview_height)
     $('textarea').editor()

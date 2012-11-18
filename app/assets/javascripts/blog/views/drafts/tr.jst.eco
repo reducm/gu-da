@@ -1,0 +1,10 @@
+<tr>
+  <td><%= Jtime::time_at(new Date(@created_at)) || Jtime::time_at(new Date())%></td>
+  <td><%= @title %></td>
+  <td>
+    <div class='hide'>
+      <a href="javascript:void(0)" data-toggle="restore">恢复</a> | 
+      <a href="javascript:void(0)" class="del_link" data-toggle="delete">删除</a>
+    </div>
+  </td>
+</tr>
