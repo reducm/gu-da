@@ -20,9 +20,9 @@ Blog.Draft.bind("error", (event,message)->
   $.pnotify({title:'保存失败', text:message, type:'error'})
 )
 
-Blog.Draft.bind("ajaxError", (event,message)->
-  $.pnotify({title:'服务器忙，请稍后重试', text:message, type:'error'})
-)
+#Blog.Draft.bind("ajaxError", (event,message)->
+  #$.pnotify({title:'服务器忙，请稍后重试', text:message, type:'error'})
+#)
 
 
 Blog.AutoDraft.bind("create", (model)->
