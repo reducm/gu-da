@@ -30,6 +30,15 @@ $hc: black;
   }
 }
 
+@mixin markdown_img($w:100%) {
+    img { 
+      max-width:$w;
+      display:block;
+      margin: 0 auto;
+      @include box-shadow(3px 3px 7px 1px hsla(0, 0%, 0%, 0.65));
+    }
+}
+
 @mixin markdown_blockquote($blockquote:92%) {
   @include markdown_h_color(black);
   blockquote {
@@ -164,11 +173,7 @@ $bb: #202e4b;
   margin-left: 20px;
   background: #f8f8f8;
   margin-top: 24px;
-  img {
-    display: block; 
-    margin: 0 auto;
-    @include box-shadow(3px 3px 7px 1px hsla(0, 0%, 0%, 0.65));
-  }
+  @include markdown_img();
 }
 
 #article_edit {
@@ -328,12 +333,7 @@ $content_height:95%;
   background:#f8f8f8;
   overflow-y: scroll;
   float: left;
-  img{
-    max-width:50%;
-    display:block;
-    margin: 0 auto;
-    @include box-shadow(3px 3px 7px 1px hsla(0, 0%, 0%, 0.65));
-  }
+  @include markdown_img(50%);
 }
 
 .border_left {
@@ -573,6 +573,36 @@ $content_height:95%;
   a {
     font-size:14px;
   }
+  @include markdown_blockquote(91%);
+  width:900px;
+  left:36%;
+  $temp_fz:12px;
+  font-size: $temp_fz;
+  .nav-tabs{margin-bottom:2px;}
+  h4{
+    margin: 1px 0px 0px;   
+    border-bottom: none;
+  }
+  td{
+    h1,h2,h3,h4,h5,h6{
+      border-bottom: none;
+    }
+  }
+  a {
+    font-size: $temp_fz;
+  }
+  code{
+    font-size: $temp_fz;
+  }
+  pre {
+    font-size: $temp_fz;
+  }
+  
+  blockquote{
+    font-size: $temp_fz;
+    p{font-size: $temp_fz;}
+  }
+  @include markdown_img(50%);
 }
 
 #table_div {

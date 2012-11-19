@@ -72,7 +72,7 @@ class Blog.DraftsController extends Spine.Controller
     Draft.fetch()
     AutoDraft.fetch()
     @el.on("shown",@refresh)
-    #每5分钟自动保存一次
+    #每3分钟自动保存一次
     @interval_id = setInterval(@actually_automatic_save, 180000)
 
 #private
