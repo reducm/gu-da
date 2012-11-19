@@ -1,4 +1,4 @@
-<tr data-id='<%= @id %>'>
+<tr data-id='<%= @id %>' class='title_tr'>
   <td><%= Jtime::time_at(new Date(@created_at)) || Jtime::time_at(new Date())%></td>
   <td>
       <%= @title || '无题目' %>
@@ -11,5 +11,11 @@
   </td>
 </tr>
 <tr id="draft_<%= @id%>" class="hide">
-  <td colspan="3"><%- (new Showdown.converter()).makeHtml(@content)%></td>
+  <td colspan="3">
+<% if @content: %>
+  <%- (new Showdown.converter()).makeHtml(@content)%>
+<% else: %>
+  无内容
+<% end %>
+  </td>
 </tr>

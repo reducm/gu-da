@@ -8,14 +8,16 @@ class Show extends Spine.Controller
   constructor:()->
     super
     tr = @view('drafts/tr')(@model)
-    @tr = $(tr)
+    @tbody = @table.children("tbody")
+    @tbody.prepend(tr)
+    @tr = @tbody.find("tr[data-id='#{@model.id}']")
+    @tr_content = $("#draft_#{@model.id}")
     @restore_button = @tr.find("a[data-toggle='restore']")
     @delete_button = @tr.find("a[data-toggle='delete']")
-    @tbody = @table.children("tbody")
-    @tbody.prepend(@tr)
-    @model.bind("update", @render)
+    #@model.bind("update", @render)
     @model.bind("destroy", @remove)
     @delete_button.on("click", (event)=>
+      AutoDraft.fetch() unless @model.manual
       @model.destroy()
       event.stopPropagation()
       event.preventDefault()
@@ -24,13 +26,15 @@ class Show extends Spine.Controller
     @tr.on("mouseenter mouseleave", @toggle_button)
     @tr.on("click", @model, @toggle_content)
 
-  render:(model)=>
-    console.log "fuck"
-    tr = @view('drafts/tr')(model)
-    @tr.html($(tr).html())
+  #render:(model)=>
+    #if model.manual
+      #Draft.trigger("refresh")
+    #else
+      #AutoDraft.trigger("refresh")
 
   remove:()=>
     @tr.remove()
+    @tr_content.remove()
 
   restore: (event)=>
     @content.val(@model.content)
@@ -64,17 +68,24 @@ class Blog.DraftsController extends Spine.Controller
     @manual_draft.append(@view("drafts/table"))
     @automatic_draft.append(@view("drafts/table"))
     @save_button.bind("click", @manual_save)
-    Draft.fetch()
-    Draft.bind("refresh", ()=>Draft.each(@init_show))
-    AutoDraft.fetch()
-    Draft.bind("refresh", ()=>AutoDraft.each(@init_show))
     @content.on("keyup", @automatic_save)
+    Draft.fetch()
+    AutoDraft.fetch()
+    @el.on("shown",@refresh)
+    #每5分钟自动保存一次
+    @interval_id = setInterval(@actually_automatic_save, 180000)
 
 #private
   init_show: (draft)=>
     options = {model:draft, converter:@converter, title:@title, content:@content, table:@automatic_draft.children("table")}
     options['table'] = @manual_draft.children("table") if draft.manual
     new Show(options)
+
+  refresh:()=>
+    @manual_draft.find("tbody").empty()
+    @automatic_draft.find("tbody").empty()
+    Draft.each(@init_show)
+    AutoDraft.each(@init_show)
   
   manual_save: ()=>
     if @manual_model
@@ -84,13 +95,16 @@ class Blog.DraftsController extends Spine.Controller
       if d.save()
         @init_show(d)
         @manual_model = d
+    @el.modal()
 
   automatic_save: ()=>
-    # should add 60words save and settimeout save
+    l = @content.val().length
+    @actually_automatic_save() if (l > 50 && l % 60 == 0)
+
+  actually_automatic_save:()=>
+    AutoDraft.fetch()
     if @automatic_model
-      @automatic_model.updateAttributes(title:@title.val(), content:@content.val())
+      @automatic_model = AutoDraft.find(@automatic_model.id).updateAttributes(title:@title.val(), content:@content.val())
     else
       @automatic_model = new AutoDraft({title:@title.val(),content:@content.val(),manual:false, created_at: (new Date())})
-      if @automatic_model.save()
-        @init_show(@automatic_model)
-
+      @automatic_model.save()
