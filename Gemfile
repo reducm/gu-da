@@ -19,7 +19,7 @@ gem 'pygments.rb'
 gem 'rails_autolink'
 
 #表单
-gem 'simple_form', :git => "git://github.com/plataformatec/simple_form.git"
+gem 'simple_form'
 
 #分页
 gem 'kaminari'
