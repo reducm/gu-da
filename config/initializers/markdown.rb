@@ -44,9 +44,9 @@ module Redcarpet
 
     class HTMLwithTopic < HTMLwithSyntaxHighlight
       # Topic 里面，所有的 head 改为 h4 显示
-      def header(text, header_level)
-        "<h4>#{text}</h4>"
-      end
+      #def header(text, header_level)
+        #"<h4>#{text}</h4>"
+      #end
     end
   end
 end
@@ -142,7 +142,7 @@ class MarkdownTopicConverter < MarkdownConverter
         :autolink => true,
         :fenced_code_blocks => true,
         :strikethrough => true,
-        :space_after_headers => true,
+        #:space_after_headers => true,
         :no_intra_emphasis => true
       })
     # @emoji = Redcarpet::Markdown.new(MdEmoji::Render)
