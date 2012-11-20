@@ -8,7 +8,6 @@ class ArticlesController < ApplicationController
   # TODO: 文章图片(初步完成 添加 删除 ajax滚动读取)
   # TODO: markdown提示
   # TODO: preview 滚动问题
-  # TODO: draft 自动保存出问题了
   # TODO: demo完善
   # TODO: 分页
   # TODO: preview显示添加的图片的时候可以remove走同时 remove掉 textarea里面的链接

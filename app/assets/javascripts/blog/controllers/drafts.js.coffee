@@ -60,13 +60,15 @@ class Blog.DraftsController extends Spine.Controller
     '.modal-body': 'modal_body'
     '#automatic_draft': 'automatic_draft'
     '#manual_draft': 'manual_draft'
+
   events:
     "click a[data-toggle='save-draft']": "manual_create"
-  
+    "click a[data-toggle='destroyAll']": "clear_autodrafts"
+
   constructor: ()->
     super
-    @manual_draft.append(@view("drafts/table"))
-    @automatic_draft.append(@view("drafts/table"))
+    @manual_draft.prepend(@view("drafts/table"))
+    @automatic_draft.prepend(@view("drafts/table"))
     @save_button.bind("click", @manual_save)
     @content.on("keyup", @automatic_save)
     Draft.fetch()
@@ -108,3 +110,10 @@ class Blog.DraftsController extends Spine.Controller
     else
       @automatic_model = new AutoDraft({title:@title.val(),content:@content.val(),manual:false, created_at: (new Date())})
       @automatic_model.save()
+
+  clear_autodrafts:()=>
+    AutoDraft.destroyAll()
+    table = @automatic_draft.children("tbody")
+    table.remove() if table[0]
+
+
