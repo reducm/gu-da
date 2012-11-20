@@ -30,5 +30,7 @@ Blog.AutoDraft.bind("create", (model)->
 )
 
 Blog.AutoDraft.bind("update", (model)->
-  $.pnotify({text:'自动草稿更新', type:'success'})
+  r = _.random(1,10)
+  if r == 5
+    $.pnotify({text:'自动草稿更新', type:'success'})
 )

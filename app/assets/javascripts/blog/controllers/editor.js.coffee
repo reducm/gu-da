@@ -16,6 +16,7 @@ class Blog.EditorController extends Spine.Controller
     'click #toggle_preview': 'toggle_preview'
     'keyup #article_title': 'fill_preview_title'
     'keyup #article_content': 'fill_preview_content'
+    #'keypress #article_content': 'fix_pcontent_height'
     'click #preview_toolbar ul li a': 'switch_preview_status'
 
   constructor: ->
@@ -57,12 +58,16 @@ class Blog.EditorController extends Spine.Controller
     @preview.toggle()
     @fill_preview_content("html")
     @fill_preview_title()
-    #fix_pcontent_height()
 
-
+  fix_pcontent_height: ()=>
+    if @preview_style == 'html'
+    else
+      pos = @content.getCurPos()
 
   fill_preview_content: (preview_style)=>
-    @preview_style = preview_style || @preview_style
+    return false if $("#preview").is(":hidden")
+    preview_style = preview_style.data if _.isObject(preview_style)
+    @preview_style = preview_style if preview_style
     str = @content.val()
     mstr = @converter.makeHtml(str)
     switch @preview_style
