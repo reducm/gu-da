@@ -16,7 +16,6 @@ class Blog.EditorController extends Spine.Controller
     'click #toggle_preview': 'toggle_preview'
     'keyup #article_title': 'fill_preview_title'
     'keyup #article_content': 'fill_preview_content'
-    'keypress #article_content': 'fix_pcontent_height'
     'click #preview_toolbar ul li a': 'switch_preview_status'
 
   constructor: ->
@@ -31,6 +30,7 @@ class Blog.EditorController extends Spine.Controller
     $(window).on("resize",@init_article_preview_height)
     $('textarea').editor()
     @content.dontScrollParent()
+    @content.on("scroll", @fix_scroll)
 #private
   init_article_preview_height: ()=>
     @article.height($("body").height() - $("#navbar").height() - 40)
@@ -58,14 +58,9 @@ class Blog.EditorController extends Spine.Controller
     @preview.toggle()
     @fill_preview_content("html")
     @fill_preview_title()
-    @fix_pcontent_height()
+    @fix_scroll()
 
-  fix_pcontent_height: ()=>
-    if @preview_style == 'html'
-    else
-      pos = @content.getCurPos()
-      @preview_content.setCurPos(pos)
-
+  
   fill_preview_content: (preview_style)=>
     return false if $("#preview").is(":hidden")
     preview_style = preview_style.data if _.isObject(preview_style)
@@ -84,6 +79,7 @@ class Blog.EditorController extends Spine.Controller
         ta.val(raw)
       else
         null
+    @fix_scroll()
 
   fill_preview_title: () =>
     str = @title.val()
@@ -97,7 +93,28 @@ class Blog.EditorController extends Spine.Controller
     @preview_style = button.attr("data-toggle")
     @fill_preview_content()
 
+  fix_scroll:()=>
+    return false if $("#preview").is(":hidden")
+    neo = @content
+    if $("#temp_textarea")[0]
+      matrix = $("#temp_textarea")
+    else
+      matrix = $("#preview")
+    @calculate_scroll(neo, matrix)
+
+  calculate_scroll:(neo, matrix)->
+    if matrix[0].scrollHeight > neo[0].scrollHeight
+      r = matrix[0].scrollHeight / neo[0].scrollHeight
+      matrix.scrollTop(neo.scrollTop() * r)
+    else
+      matrix.scrollTop(neo.scrollTop())
+    console.log "neo:", neo.scrollTop(), " matrix:", matrix.scrollTop()
+    console.log neo[0].scrollHeight, "|", matrix[0].scrollHeight
 
 
-
+  fix_pcontent_height: ()=>
+      if @preview_style == 'html'
+      else
+        pos = @content.getCurPos()
+        @preview_content.setCurPos(pos)
 
