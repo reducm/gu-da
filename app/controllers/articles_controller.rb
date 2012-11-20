@@ -9,6 +9,7 @@ class ArticlesController < ApplicationController
   # TODO: markdown提示
   # TODO: preview 滚动问题
   # TODO: draft 自动保存出问题了
+  # TODO: demo完善
   # TODO: preview显示添加的图片的时候可以remove走同时 remove掉 textarea里面的链接
   # TODO: page model controller view 更加细化
   # TODO: 删减一下bootstrap css里面用不到的东西例如图标自体那些

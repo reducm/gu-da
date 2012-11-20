@@ -29,6 +29,7 @@ class Blog.EditorController extends Spine.Controller
     $("body").bind("keydown.m", @markdown_modal)
     $(window).on("resize",@init_article_preview_height)
     $('textarea').editor()
+    @content.dontScrollParent()
 #private
   init_article_preview_height: ()=>
     @article.height($("body").height() - $("#navbar").height() - 40)
@@ -51,17 +52,17 @@ class Blog.EditorController extends Spine.Controller
       show:true
     )
 
-  toggle_preview: ()->
+  toggle_preview: ()=>
     @article.toggleClass("edit_preview_width")
     @preview.toggle()
-    @fill_preview_content()
+    @fill_preview_content("html")
     @fill_preview_title()
     #fix_pcontent_height()
-    $("#temp_textarea").remove() if $("#temp_textarea")[0]?
 
 
 
-  fill_preview_content: ()=>
+  fill_preview_content: (preview_style)=>
+    @preview_style = preview_style || @preview_style
     str = @content.val()
     mstr = @converter.makeHtml(str)
     switch @preview_style
@@ -72,6 +73,7 @@ class Blog.EditorController extends Spine.Controller
         ta = $("<textarea readonly=\"readonly\" id=\"temp_textarea\"></textarea>")
         @preview_content.html("")
         @preview_content.append(ta)
+        ta.height(@content.height())
         ta.val(raw)
       else
         null
