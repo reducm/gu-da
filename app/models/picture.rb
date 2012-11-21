@@ -12,7 +12,7 @@ class Picture < ActiveRecord::Base
   before_destroy :remember_storedir
   after_destroy :remove_storedir
 
-  attr_accessible :pictureable, :file
+  attr_accessible :pictureable, :file, :pictureable_type, :pictureable_id
 
   def self.get_index(params)
     where("pictureable_type='User' and pictureable_id=?", params[:user_id]).order("id desc").page(params[:page] || 1)

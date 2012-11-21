@@ -91,8 +91,8 @@ class User < ActiveRecord::Base
   def update_setting(params) 
     return unless params[:setting]
     if params[:setting][:picture]
-      picture = self.setting.picture ||= Picture.new
-      picture.update_attributes(pictureable: self.setting, file:params[:setting][:picture])
+      picture = self.setting.picture || Picture.new
+      picture.update_attributes(pictureable: self.setting, file: params[:setting][:picture])
       params[:setting].delete :picture
     end
 
