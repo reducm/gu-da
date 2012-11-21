@@ -5,6 +5,10 @@ class ErrorController < ApplicationController
   end
 
   def nonelogin
+    respond_to do|format|
+      format.html
+      format.json {render json: {errors:flash[:notice]}}
+    end
   end
 
   def error

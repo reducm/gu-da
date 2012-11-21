@@ -32,6 +32,7 @@ class Blog.EditorController extends Spine.Controller
     @content.dontScrollParent()
     @content.on("scroll", @fix_img_scroll)
     @preview_content.on("contentchange", ()->console.log "in trigger---", $(this)[0].scrollHeight)
+    $.pnotify(type:'error', text:'注意!Demo用户不能使用图片上传和手动保存草稿功能',hide:false) if guda.user_id == 0
 #private
   init_article_preview_height: ()=>
     @article.height($("body").height() - $("#navbar").height() - 40)

@@ -17,7 +17,7 @@ class Blog.PicturesUpload extends Spine.Controller
 
   constructor: ->
     super
-    @url or= "/pictures"
+    @url or= "/pictures.json"
     @limit or= 4
     @picwidth or= "100px"
     @pictureable_type or="User"
@@ -214,7 +214,7 @@ class Blog.PicturesController extends Spine.Controller
     @toggle_pic_button.on("click", @toggle_pic)
     @toggle_upload_button = @ul_showpic.children(".btn")
     @upload_modal.on("shown", @init_upload)
-    @PicturesLoad = new Blog.PicturesLoad({el: @ul_showpic.selector, article_content: @article_content})
+    @PicturesLoad = new Blog.PicturesLoad({el: @ul_showpic.selector, article_content: @article_content}) if guda.user_id != 0
     @ul_showpic.on('scroll',(event)->
       event.stopPropagation()
       event.preventDefault()

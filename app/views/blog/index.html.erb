@@ -3,6 +3,7 @@
 <%end%>
 <div id="login">
   <div id="login_left">
+    <%= link_to "试试编辑器", {controller: :articles, action: 'demonew'}, class:"btn btn-warning pull-right" %> 
     <% if @page %>
       <div id="slides" class="rslides_container">
         <ul class="rslides">
@@ -45,6 +46,5 @@
     <%end%>
   </div>
 </div>
-
 
 

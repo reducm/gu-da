@@ -36,7 +36,7 @@
       window.action="<%= params[:action]%>"
       window.guda = {};
       guda.user_name = "<%= @user_name || 'DemoUser'%>";
-      guda.user_id = <%= @user_id || nil %>;
+      guda.user_id = <%= @user_id || 0 %>;
       guda.controllers=[]
     </script>
   </body>
