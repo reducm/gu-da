@@ -51,8 +51,8 @@ gem 'jcrop-rails', git:'git://github.com/nragaz/jcrop-rails.git'
 
 #小工具
 #运行annotate可以把model的属性都打出来
-gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
-gem "rails_best_practices"
+#gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+#gem "rails_best_practices"
 
 #上传
 gem 'carrierwave'
