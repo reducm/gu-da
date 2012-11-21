@@ -9,7 +9,8 @@ GuDa::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  # 所以生产环境的 rails s 是不处理静态文件的，页面的样式和图片都没有。要解决可以把这个选项设成 true，或者用 passenger。（真正部署是设 false）
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -43,7 +44,9 @@ GuDa::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-   config.assets.precompile += %w( article.js user.js )
+   config.assets.js_compressor  = :uglifier
+   config.assets.css_compressor = :scss
+   config.assets.precompile += %w( application.css article.js user.js application.js avatar.js edit.js jqueryui.js pic.js pnotify.js share.js slides.js user.js blog/editor.js blog/picture.js blog/spine.js pnotify/jquery.pnotify.default.css )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

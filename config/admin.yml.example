@@ -1,0 +1,9 @@
+development:
+  admin: ['a@a.com']
+
+test:
+  admin: ['a@a.com']
+
+production:
+  admin: ['a@a.com']
+
