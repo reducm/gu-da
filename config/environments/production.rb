@@ -10,7 +10,7 @@ GuDa::Application.configure do
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   # 所以生产环境的 rails s 是不处理静态文件的，页面的样式和图片都没有。要解决可以把这个选项设成 true，或者用 passenger。（真正部署是设 false）
-  config.serve_static_assets = true
+  config.serve_static_assets = false
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
