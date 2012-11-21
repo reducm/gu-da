@@ -42,7 +42,7 @@ module JShare
 
   def facebook(options)
     @graph = Koala::Facebook::API.new(options["atoken"])
-    @graph.put_wall_post(content = "发表了博客：#{options['title']}, \"#{options['content'].first(50)}...\" #{options['url']}")  
+    @graph.put_wall_post(content = "发表了博客：#{options['title']} #{options['url']}")  
   end
 
   def twitter(options)
