@@ -30,7 +30,8 @@ class Blog.EditorController extends Spine.Controller
     $(window).on("resize",@init_article_preview_height)
     $('textarea').editor()
     @content.dontScrollParent()
-    @content.on("scroll", @fix_scroll)
+    @content.on("scroll", @fix_img_scroll)
+    @preview_content.on("contentchange", ()->console.log "in trigger---", $(this)[0].scrollHeight)
 #private
   init_article_preview_height: ()=>
     @article.height($("body").height() - $("#navbar").height() - 40)
@@ -66,21 +67,37 @@ class Blog.EditorController extends Spine.Controller
     preview_style = preview_style.data if _.isObject(preview_style)
     @preview_style = preview_style if preview_style
     str = @content.val()
-    mstr = @converter.makeHtml(str)
+    marked_str = @get_marked(str,@content.getCurPos())
+    mstr = @converter.makeHtml(marked_str)
     switch @preview_style
       when "html"
+        mstr = mstr.replace("[[jojo]]", "<span id='marked_jojo'></span>")
         @preview_content.html(mstr)
+        target = "#marked_jojo"
+        $.smoothScroll($(target).scrollTop()+50)
       when "text"
+        mstr = mstr.replace("[[jojo]]", "$$")
         raw = style_html(mstr)
         ta = $("<textarea readonly=\"readonly\" id=\"temp_textarea\"></textarea>")
         @preview_content.html("")
         @preview_content.append(ta)
         ta.height(@content.height())
         ta.val(raw)
+        @fix_img_scroll()
       else
-        null
-    @fix_scroll()
-
+    #@fix_img_scroll()
+    #@fix_img_scroll()
+  
+  get_marked:(str,pos)->
+    left = str.slice(0,pos)
+    right = str.slice(pos,str.length)
+    marked = "[[jojo]]"
+    mstr = left+marked+right
+    #若然是连接或图片的话不用加mark
+    if (/\[.*?\]\(.*?\[\[jojo\]\].*?\)/).test(mstr) or (/\[.*?\[\[jojo\]\].*?\]\(.*?/).test(mstr) #or (/\[.*?\[\[jojo\]\].*?\]/)
+      return str
+    mstr
+    
   fill_preview_title: () =>
     str = @title.val()
     `var str1 = str ? str : "题目"`
@@ -93,28 +110,42 @@ class Blog.EditorController extends Spine.Controller
     @preview_style = button.attr("data-toggle")
     @fill_preview_content()
 
-  fix_scroll:()=>
+  fix_img_scroll:()=>
+    imgs = @preview_content.find("img")
+    pc = @preview_content
+    if imgs.length > 0
+      imgs_height = 0
+      imgs.each(()->
+        tm = new Image()
+        tm.src = this.src
+        tow = tm.width
+        toh = tm.height
+        limit_width =  pc.width()*0.5
+        if tow > limit_width
+          r = tow / limit_width
+          rh = toh / r
+        else
+          rh = toh
+        imgs_height += rh
+      )
+    @fix_scroll(Math.round(imgs_height))
+
+  fix_scroll:(imgs_height = 0)=>
     return false if $("#preview").is(":hidden")
+    imgs_height = 0 unless $.isNumeric(imgs_height)
     neo = @content
     if $("#temp_textarea")[0]
       matrix = $("#temp_textarea")
     else
       matrix = $("#preview")
-    @calculate_scroll(neo, matrix)
+    @calculate_scroll(neo, matrix, imgs_height)
 
-  calculate_scroll:(neo, matrix)->
-    if matrix[0].scrollHeight > neo[0].scrollHeight
-      r = matrix[0].scrollHeight / neo[0].scrollHeight
+  calculate_scroll:(neo, matrix, imgs_height)->
+    real_height = matrix[0].scrollHeight + imgs_height
+    if real_height > neo[0].scrollHeight
+      r = real_height / neo[0].scrollHeight
       matrix.scrollTop(neo.scrollTop() * r)
     else
       matrix.scrollTop(neo.scrollTop())
-    console.log "neo:", neo.scrollTop(), " matrix:", matrix.scrollTop()
-    console.log neo[0].scrollHeight, "|", matrix[0].scrollHeight
-
-
-  fix_pcontent_height: ()=>
-      if @preview_style == 'html'
-      else
-        pos = @content.getCurPos()
-        @preview_content.setCurPos(pos)
-
+    #console.log "neo:", neo.scrollTop(), " matrix:", matrix.scrollTop()
+    #console.log neo[0].scrollHeight, "|", matrix[0].scrollHeight, imgs_height

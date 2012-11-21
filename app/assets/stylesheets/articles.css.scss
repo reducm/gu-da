@@ -355,7 +355,8 @@ $content_height:95%;
 #preview_content {
   @include markdown_style(83%);
   @include markdown_h_color(#333);
-    margin-top: 17px;
+  @include word_break();
+  margin-top: 17px;
   background: #f8f8f8;
   overflow-y: auto;
 }
