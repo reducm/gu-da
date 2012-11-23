@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
   # TODO: preview 滚动问题
   # TODO: demo完善
   # TODO: 分页
+  # TODO: catagory重构删除加data-confirm
   # TODO: preview显示添加的图片的时候可以remove走同时 remove掉 textarea里面的链接
   # TODO: page model controller view 更加细化
   # TODO: 删减一下bootstrap css里面用不到的东西例如图标自体那些
@@ -32,7 +33,7 @@ class ArticlesController < ApplicationController
       flash[:error] = "没有这个用户"
       redirect_to root_path
     end
-    @articles = Article.select("id, preview, created_at, title").where("user_id=?", @current_user.id).order("created_at desc").page(params[:page] ||= 1)
+    @articles = Article.get_index(@current_user.id, params[:page])
     if session[:signup_new] || @articles.size == 0 #新注册进来产生一些提示操作的变量
       session[:signup_new] = nil
       @signup_new = true

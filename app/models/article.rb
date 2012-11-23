@@ -23,8 +23,19 @@ class Article < ActiveRecord::Base
 
   before_save :set_preview 
 
-  def self.get_index(user_id)
-    as = select("id, preview, created_at, title").where("user_id=?", user_id).order("created_at desc").all
+  def self.get_index(user_id, page=1)
+    includes(:catagory).select("id, preview, created_at, title, user_id, catagory_id").where("user_id=?", user_id).order("created_at desc").page(page)
+  end
+
+  def self.catagory_index(catagory_id, page=1)
+  end
+  
+  def catagory
+    c = super
+    unless c
+      c = Catagory.default(self.user_id)
+    end
+    c
   end
 
   private

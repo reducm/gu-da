@@ -13,4 +13,8 @@ class Catagory < ActiveRecord::Base
     catagories << self.new(id:0, name:'默认分类', user_id: user_id)
     catagories
   end
+
+  def self.default(user_id=0)
+    self.new(name:"默认分类", id:'0', user_id:user_id)
+  end
 end
