@@ -8,9 +8,9 @@ class CatagoriesController < ApplicationController
 
   def show
     if (params[:id] == '0' || params[:id] == nil) && !(params[:user_id].blank?)
-      @articles = Article.where("user_id=? and catagory_id=0", params[:user_id]).all
+      @articles = Article.select("id, preview, created_at, title").where("user_id=? and catagory_id = 0", params[:user_id]).order("created_at desc").page(params[:page] ||= 1)
     else
-      @articles = Article.where("catagory_id=?", params[:id])
+      @articles = Article.select("id, preview, created_at, title").where("catagory_id=?", params[:id]).order("created_at desc").page(params[:page] ||= 1)
     end
     @current_user = User.find(params[:user_id])
     @catagories = Catagory.get_all(params[:user_id])
