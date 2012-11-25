@@ -85,6 +85,7 @@ end
 gem 'rspec-rails', group:[:test, :development]
 group :test do
   gem "factory_girl_rails", "~> 4.0"
+  gem "shoulda-matchers"
   #gem 'spork', '~>1.0rc'
   gem 'spork-rails'
   gem 'guard-spork'

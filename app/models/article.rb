@@ -19,7 +19,7 @@ class Article < ActiveRecord::Base
 
   validates :user_id, presence: {message: '用户id不能为空' }
   validates :title, presence: { message: '题目不能为空' }#, :length=>{ :minimum=>5, :maximum=>100, :message => '题目长度在6-20之间'  } 
-  validates :content, presence: { message: '内容不能为空' } 
+  validates :content, presence: { message: '内容不能为空' }
 
   before_save :set_preview 
 
@@ -27,7 +27,13 @@ class Article < ActiveRecord::Base
     includes(:catagory).select("id, preview, created_at, title, user_id, catagory_id").where("user_id=?", user_id).order("created_at desc").page(page)
   end
 
-  def self.catagory_index(catagory_id, page=1)
+  def self.catagory_index(user_id, catagory_id=0, page=1)
+    if user_id
+      articles = Article.select("id, preview, created_at, title").where("user_id=? and catagory_id = ?", user_id, catagory_id).order("created_at desc").page(page)
+    else
+      articles = Article.select("id, preview, created_at, title").where(catagory_id).order("created_at desc").page(page)
+    end
+    articles
   end
   
   def catagory

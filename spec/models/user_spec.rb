@@ -78,12 +78,30 @@ describe User do
       u.errors.any?.should be_true
       u.errors[:password_new].should == ['新密码长度要在6-20之间']
     end
+
+    it "get_user" do
+      params[:user_id] = user.id
+      User.get_user(params).should_not be_nil
+      params[:user_id] = 'jas'
+      User.get_user(params).should_not be_nil
+    end
   end
 
   context "integrate setting" do
     it "has setting after creat" do
       u = FactoryGirl.create(:user)
       u.setting.new_record?.should == false
+    end
+
+    it "head" do
+      u = FactoryGirl.create(:user)
+      u.setting.new_record?.should == false
+      u.head.should be_nil
+      p = Picture.new(pictureable: u.setting, file:File.open("#{Rails.root}/app/assets/images/rails.png"))
+      p.save
+      u.setting.reload
+      u.setting.picture.should == p
+      u.head.should == p
     end
   end
 end

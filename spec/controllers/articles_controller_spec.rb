@@ -1,25 +1,30 @@
 require 'spec_helper'
 
 describe ArticlesController do
-  let!(:user) {FactoryGirl.create :jas}
-  let!(:artilces) {15.times{FactoryGirl.create :article, user:user}}
-
-  context "index" do
-    it "get" do
-      get "index", {user_id:user.id, page:1}
-      response.code.should eq('200')
-      response.should render_template("index")
-      assigns(:catagories).should_not be_nil
-      assigns(:articles).size.should == 10
-      assigns(:current_user).should_not be_nil
-    end
+  #intergrate_views
+  before(:each) do
+    @user = FactoryGirl.create(:jas)
+    @articles = 15.times{|i| FactoryGirl.create(:article, user: @user)}
+    session[:user_id] = @user.id
   end
 
-  context "anonymous user" do
-     it "anonymous couldn't create" do
-       expect{
-         post 'create', article:{title:'hello', content:'content', user_id: user.id}
-       }.to_not change(Article)
-     end
+  describe "index" do
+    it "get" do
+      get :index, {user_id:@user.id, page:1}
+      response.code.should eq('200')
+      should respond_with(:success)
+      should render_template("index")
+      should assign_to(:catagories)
+      should assign_to(:current_user)
+      assigns(:articles).size.should == 10
+    end
+   
+    it "new" do
+      get :new
+      should assign_to :article
+      should assign_to :current_user
+      should assign_to :catagories
+      should assign_to :breadcrumbs
+    end
   end
 end

@@ -81,7 +81,8 @@ class User < ActiveRecord::Base
   end
 
   def self.get_user(params)
-      params[:user_id].class==Fixnum || (params[:user_id] =~ /^\d+$/) ? where("id=?",params[:user_id]).includes(:setting)[0] : where("nickname=?",params[:user_id]).includes(:setting)[0]
+    params[:user_id] = params[:id] if params[:id]
+    params[:user_id].class==Fixnum || (params[:user_id] =~ /^\d+$/) ? where("id=?",params[:user_id]).includes(:setting)[0] : where("nickname=?",params[:user_id]).includes(:setting)[0]
   end
 
   def self.by_id(id)
