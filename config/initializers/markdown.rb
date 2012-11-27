@@ -87,7 +87,7 @@ class MarkdownTopicConverter < MarkdownConverter
     self.link_mention_floor(result)
     self.link_mention_user(result)
 
-    #result = self.instance.replace_emoji(result)
+    result = self.instance.replace_emoji(result)
 
     return result.strip
   rescue => e
@@ -145,7 +145,7 @@ class MarkdownTopicConverter < MarkdownConverter
         #:space_after_headers => true,
         :no_intra_emphasis => true
       })
-    # @emoji = Redcarpet::Markdown.new(MdEmoji::Render)
+    #@emoji = Redcarpet::Markdown.new(MdEmoji::Render)
     #@emoji = MdEmoji::Render.new
   end
 end
