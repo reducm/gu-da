@@ -79,6 +79,15 @@ describe User do
       u.errors[:password_new].should == ['新密码长度要在6-20之间']
     end
 
+    it "updates function with picture" do
+      update_params[:setting] = {}
+      update_params[:setting][:picture] = File.open("#{Rails.root}/app/assets/images/rails.png")
+      user.head.should be_nil
+      User.updates(update_params, user.id)
+      user.reload
+      user.head.should_not be_nil
+    end
+
     it "get_user" do
       params[:user_id] = user.id
       User.get_user(params).should_not be_nil

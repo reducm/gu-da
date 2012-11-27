@@ -54,7 +54,6 @@ class ArticlesController < ApplicationController
     @article = Article.new(params[:article])
     @article.user_id = @user_id
     if @article.save
-      @pic = Picture.create(:file => (params[:article][:picture]), :pictureable => @article )
       flash[:notice]='文章创建成功！'
       cookies[:create_article] = @article.id 
       redirect_to article_path(@article)  
@@ -78,6 +77,7 @@ class ArticlesController < ApplicationController
       cookies[:update_article] = @article.id
       redirect_to @article, notice: '编辑成功'
     else
+      flash[:error] = @article.jerrors
       render :action => 'edit' 
     end
   end

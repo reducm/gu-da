@@ -87,7 +87,7 @@ class MarkdownTopicConverter < MarkdownConverter
     self.link_mention_floor(result)
     self.link_mention_user(result)
 
-    result = self.instance.replace_emoji(result)
+    #result = self.instance.replace_emoji(result)
 
     return result.strip
   rescue => e

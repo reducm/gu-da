@@ -27,11 +27,11 @@ class Article < ActiveRecord::Base
     includes(:catagory).select("id, preview, created_at, title, user_id, catagory_id").where("user_id=?", user_id).order("created_at desc").page(page)
   end
 
-  def self.catagory_index(user_id, catagory_id=0, page=1)
+  def self.catagory_index(user_id=nil, catagory_id=0, page=1)
     if user_id
-      articles = Article.select("id, preview, created_at, title").where("user_id=? and catagory_id = ?", user_id, catagory_id).order("created_at desc").page(page)
+      articles = Article.select("id, user_id, catagory_id, preview, created_at, title").where("user_id=? and catagory_id = ?", user_id, catagory_id).order("created_at desc").page(page)
     else
-      articles = Article.select("id, preview, created_at, title").where(catagory_id).order("created_at desc").page(page)
+      articles = Article.select("id, user_id, catagory_id, preview, created_at, title").where("catagory_id=?", catagory_id).order("created_at desc").page(page)
     end
     articles
   end

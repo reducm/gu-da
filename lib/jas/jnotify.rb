@@ -17,8 +17,6 @@ module JNotify
 
   def notify_reply(article_user_id, article)
     result = self.content.scan /@[a-z1-9_]+? /
-      p "result size #{result.size}"
-    p "!!!!!!!!!!"
     if result.size > 0
       result.each do |r|
         r = r.strip.delete('@')

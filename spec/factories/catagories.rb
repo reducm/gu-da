@@ -1,9 +1,7 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
+#encoding: UTF-8
 FactoryGirl.define do
-  factory :catagory, :class => 'Catagory'  do
-    association :user, :factory => :user, :strategy => :build 
-#    association :article, :factory => :article, :strategy => :build 
-    name "catagory_test"   
+  factory :catagory, :class => 'Catagory' do
+    association :user, factory: :user
+    sequence(:name) {|n| "分类#{n}" }
   end
 end
