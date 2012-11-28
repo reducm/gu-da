@@ -1,0 +1,6 @@
+<div id="page_container" class="markdown_content">
+  <% if admin? %>
+     <%= link_to "修改", edit_page_path(@page), class:'btn btn-warning'%> 
+  <%end%>
+  <%= markdown(@page.content) %>
+</div>

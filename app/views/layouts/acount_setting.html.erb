@@ -18,13 +18,12 @@
 
       <div id="edit_user_div">
         <div id="edit_user_left">
-          <ul class="nav nav-tabs nav-stacked">
-            <li <%= active_class(:users) %> > <%= link_to "个人资料", edit_user_path(@user_id) %> </li>
-            <li <%= active_class(:notifications) %> > <%= link_to "消息管理", user_notifications_path(@user_id)%></li>
-            <li <%= active_class(:authentications) %> > <%= link_to "社交授权", user_authentications_path(@user_id)%></li>
-            <%if admin?%>
-              <li <%= active_class(:admins) %> > <%= link_to "管理员", admins_path %></li>
-            <%end%>
+          <ul class="nav nav-list nav-stacked nav-tabs bs-docs-sidenav ">
+            <% unless params[:controller] == 'pages' %>
+              <%= render partial:"layouts/setting_nav", locals:{user_id: @user_id} %>
+            <% else %>
+              <%= render partial:"pages/pages_nav", locals:{pages:@pages, page:@page, user_id:@user_id} %>
+            <% end %>
           </ul>
         </div>
         <div id="edit_user_right" class="tab-content">
@@ -34,8 +33,6 @@
 
     </div>
 
-    <%= render partial: 'layouts/foot' %>
-    <br/ >
     <script>window.action="<%= params[:action]%>"</script>
   </body>
 </html>

@@ -364,6 +364,17 @@ $content_height:95%;
   overflow-y: auto;
 }
 
+.markdown_content {
+  @include markdown_style(83%);
+  @include markdown_h_color(#333);
+  @include word_break();
+  @include markdown_img();
+  margin-top: 17px;
+  background: #f8f8f8;
+  overflow-y: auto;
+}
+
+
 #temp_textarea {
   margin-top: 17px;
   width:98%;

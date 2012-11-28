@@ -1,10 +1,11 @@
 class AdminsController < ApplicationController
   before_filter :check_login
   before_filter :check_session
-  layout ''
+  before_filter :check_admin
+  layout 'acount_setting'
+
   def index
     @user = User.find(@user_id) 
-    @pages = Page.get_index
-    render layout: 'acount_setting'
+    @pages = Page.select("id, title, subtitle").all
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121117140825) do
+ActiveRecord::Schema.define(:version => 20121128124603) do
 
   create_table "article_tagships", :force => true do |t|
     t.integer  "article_id"
@@ -96,11 +96,13 @@ ActiveRecord::Schema.define(:version => 20121117140825) do
 
   create_table "pages", :force => true do |t|
     t.string   "title"
-    t.string   "content"
+    t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "subtitle"
   end
 
+  add_index "pages", ["subtitle"], :name => "index_pages_on_subtitle"
   add_index "pages", ["title"], :name => "index_pages_on_title"
 
   create_table "pictures", :force => true do |t|

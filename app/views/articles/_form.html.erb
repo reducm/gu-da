@@ -9,12 +9,16 @@
     }
   </style>
 <%end%>
-
+<% catagories ||= nil %>
 <div id="article_edit" >
-  <%= simple_form_for @article, wrapper: :default, html: {multipart: true, id: 'article_form' } do|f| %> 
-    <%= f.input :catagory_id, collection: @catagories, label: false, as: :jcatagory, input_html: {id: "catagories_select"}, wrapper_html: {style: 'display:inline' } %> 
-    <%= f.input :title, label: false, input_html: {}, wrapper_html: {style: 'display:inline' }%>
+  <%= simple_form_for article, wrapper: :default, html: {multipart: true, id: 'article_form' } do|f| %> 
+    <%= (f.input :catagory_id, collection: catagories, label: false, as: :jcatagory, input_html: {id: "catagories_select"}, wrapper_html: {style: 'display:inline' }) if catagories %> 
+    <%= f.input :title, label: false, input_html: {id:'article_title'}, wrapper_html: {style: 'display:inline' }%>
+    <% if article.has_attribute?(:subtitle) %>
+      <%= f.input :subtitle, label: false, input_html: {id:'article_subtitle'}, wrapper_html: {style: 'display:inline'}, placeholder:'副标题' %>
+    <% end %>
     </br>
+
     <ul class="unstyled" id="form_toolbox">
       <li><a href="#add_catagory_modal" data-toggle='modal' rel='tooltip' title='添加分类'><i class="icon-plus"></i></a> </li>
       <li><a href='javascript:void(0)' data-toggle='preview' id='toggle_preview' rel='tooltip' title='预览'><i class="icon-eye-open"></i> </a></li>
@@ -26,13 +30,16 @@
       <li><a href="javascript:void(0)" rel='tooltip' title='斜体'><i class="icon-italic"></i></a></li>
       <li><a href="#markdown_hint" data-toggle="modal" rel='tooltip' title='markdown帮助'><i class="icon-question-sign"></i></a></li>
     </ul>
+
     <div class='ul_content_wrapper'>
-      <%= f.input :content, as: :text, label: false, input_html:{rows:0, cols:0, class:'content_normal_width'}, wrapper_html:{id:'content_wrapper'}%>
+      <%= f.input :content, as: :text, label: false, input_html:{rows:0, cols:0, id:'article_content', class:'content_normal_width'}, wrapper_html:{id:'content_wrapper'}%>
       <ul id="ul_showpic" class="unstyled">
         <a href="#upload_pic_modal" class="btn btn-primary" data-toggle='modal' rel='tooltip' title='图片'><i class="icon-upload"></i><span>上传图片</span></a>
       </ul>
     </div>
+
     <div class="clear"></div>
+
     <%if demo?%>
       <%= f.button :submit, '发布', class: 'btn-primary span2', disabled: true %>
     <%else%>
@@ -63,19 +70,21 @@
   </div>
 <%end%>
 
-<div class="modal" id="add_catagory_modal">
-  <div class="modal-header">
-    <button class="close" data-dismiss="modal">×</button>
-    <h3>增加分类</h3>
+<% if catagories %>
+  <div class="modal" id="add_catagory_modal">
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal">×</button>
+      <h3>增加分类</h3>
+    </div>
+    <div class="modal-body">
+      <%= simple_form_for Catagory.new(), remote: true, html: {id: 'catagory_form', "data-type" => 'json', class: 'form-horizontal' }   do |f| %>
+        <%= f.input :user_id, as: :hidden, input_html: {value: user.try(:id), autocomplete: 'off'}  %>
+        <%= f.input :name, label: '分类名称', wrapper_html: {style: "float:left;margin-right:10px"}, input_html: {id: 'catagory_name_input' } %>
+        <%= f.submit '确定', class: 'btn btn-primary'  %>
+      <% end %>
+    </div>
   </div>
-  <div class="modal-body">
-    <%= simple_form_for Catagory.new(), remote: true, html: {id: 'catagory_form', "data-type" => 'json', class: 'form-horizontal' }   do |f| %>
-      <%= f.input :user_id, as: :hidden, input_html: {value: @user_id, autocomplete: 'off'}  %>
-      <%= f.input :name, label: '分类名称', wrapper_html: {style: "float:left;margin-right:10px"}, input_html: {id: 'catagory_name_input' } %>
-      <%= f.submit '确定', class: 'btn btn-primary'  %>
-    <% end %>
-  </div>
-</div>
+<% end %>
 
 
 
@@ -107,4 +116,4 @@
   <ul id="ul_for_pic" class="show_upload_pic unstyled"></ul>
 <%end%>
 
-<%= render "markdown_hint" %>
+<%= render "articles/markdown_hint" %>

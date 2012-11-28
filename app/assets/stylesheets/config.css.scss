@@ -293,19 +293,32 @@ input[name="switch"] {
 
 #edit_user_left {
   @include white_radius();
-    width:30%;
+  width:30%;
   float:left;
   margin-right: 16px;
   background:white;
+  ul {
+    padding-right:0px;
+  }
 }
 
 #edit_user_right {
   @include white_radius();
-    width:68%;
+  width:68%;
   float:right;
   background:white;
   h2 {
     color: $gray;
+  }
+  #page_container{
+    padding: 5px;
+    p,pre,code{
+      font-size: $baseFontSize - 3;
+    }
+  }
+
+  #page_div{
+    font-size: $baseFontSize - 3;
   }
 }
 

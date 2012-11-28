@@ -5,8 +5,6 @@ GuDa::Application.routes.draw do
   match "/auth/failure", :to => "authentications#index"
   match "/articles/demonew", :to => "articles#demonew"
   match "/articles/demoshow", :to => "articles#demoshow"
-  post "/pages/", :to => "pages#update"
-  put "/pages/", :to => "pages#update"
 
   #scope 'blog' do
   resources :users do
@@ -22,6 +20,7 @@ GuDa::Application.routes.draw do
     resources :pictures
   end
  
+  resources :pages
   resources :pictures, :only => [:create, :destroy]
   resources :admins
   resources :articles

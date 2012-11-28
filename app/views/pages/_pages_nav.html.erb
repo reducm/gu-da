@@ -1,0 +1,5 @@
+<% if pages.size > 0 %>
+  <% pages.each do|p| %>
+    <li <%= active_page_class(p, page) %> ><%= link_to p.title, page_path(p.subtitle) %> </li>
+  <% end %>
+<% end %>

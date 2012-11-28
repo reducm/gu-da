@@ -1,26 +1,24 @@
 <% content_for :other_js do|c|%>
-  <%= javascript_include_tag "pic" %>
-  <%= javascript_include_tag "jqueryui" %>
 <%end%>
-<script type="text/javascript">
-  $(document).ready(function(){
-      new PicController($(".drop_file"), $("#ul_for_pic"), "/pages", "150px", {title:'index_images'}, null, 4, function(data){console.log(data);})  
-  });
-</script>
-<h1><%= "管理员 #{@user.nickname}"%></h1>
 
-<div id="index_images">
-  <h1>首页焦点图</h1>
-  <%if @pages['index_images']%>
-    <% @pages['index_images'].pictures.each_with_index do|picture, i| %>
-    <%= pic_preview(picture) %> 
+<h3><%= "管理员 #{@user.nickname}"%></h3>
+<div class="page_div">
+  <h4>静态页面</h4>
+  <%= link_to "新建", new_page_path, class:'btn btn-warning pull-right' %> 
+  <table class='table' >
+    <tr>
+      <th>#</th>
+      <th>title</th>
+      <th>操作</th>
+    </tr>
+
+    <% @pages.each do|p|%>
+      <tr>
+        <td> <%= p.id %> </td>
+        <td> <%= link_to "#{p.title}(#{p.subtitle})", page_path(p) %>  </td>
+        <td> <%= link_to "编辑", edit_page_path(p) %>|<%= link_to '删除', page_path(p), method: :delete %>  </td>
+      </tr>
     <%end%>
-  <%end%>
-  <div class="drop_file upload_button btn btn-primary">
-    点击上传图片<br />或<br />拖动文件到此处
-  </div>
-  <ul id="ul_for_pic" class="show_upload_pic unstyled"></ul>
-
-  <hr>
+  </table>
 </div>
 

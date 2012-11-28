@@ -145,6 +145,12 @@ module ArticlesHelper
     end
   end
 
+  def active_page_class(page1, page2)
+    if page1.id == page2.id
+      'class=active'
+    end
+  end
+
   def sprite_tag(class_name)
     content_tag :i, '', class:class_name, style:'display:inline-block'
   end

@@ -15,6 +15,7 @@
           </a>
           <ul class="dropdown-menu">
             <li><%= link_to '设置', edit_user_path(@user_id) %> </li>
+            <li><%= link_to "关于", pages_path %></li>
             <li><%= link_to "退出", { controller:'blog', action:'logout' } %></li>
           </ul>
           </li>
