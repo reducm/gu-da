@@ -84,10 +84,10 @@ class MarkdownTopicConverter < MarkdownConverter
     text.gsub!("\n```","\n\n```")
 
     result = self.convert(text)
-    self.link_mention_floor(result)
-    self.link_mention_user(result)
+    #self.link_mention_floor(result)
+    #self.link_mention_user(result)
 
-    result = self.instance.replace_emoji(result)
+    #result = self.instance.replace_emoji(result)
 
     return result.strip
   rescue => e

@@ -18,6 +18,6 @@ module ApplicationHelper
       #:autolink => true,
       #:fenced_code_blocks => true
     #})
-    raw(MarkdownTopicConverter.convert(MarkdownTopicConverter.format(str)))
+    raw(MarkdownTopicConverter.format(str))
   end
 end
