@@ -1,7 +1,9 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
 
-$bc: #4c5a76;
+//$bc: #4c5a76;
+$bc: #202e4b;
+$article_background_color: #f8f8f8;
 $hc: black;
 
 @mixin white_radius {
@@ -105,7 +107,7 @@ $hc: black;
   //@include border-radius(8px);
   position: relative;
   float: left;
-  background: #f8f8f8;
+  background: $article_background_color;
 }
 
 .article_link_button {
@@ -146,11 +148,10 @@ $hc: black;
   clear: both;
 }
 
-$bb: #202e4b;
 .articles_hr {
   height: 16px;
   clear: both;
-  background: $bb;
+  background: $bc;
   position: absolute;
   left: 0;
   width: 100%;
@@ -174,7 +175,6 @@ $bb: #202e4b;
   display:inline-block;
   float: left;
   margin-left: 20px;
-  background: #f8f8f8;
   margin-top: 11px;
   @include markdown_img();
 }
@@ -183,7 +183,7 @@ $bb: #202e4b;
   width:95%;
   height:97%;
   margin:15px auto 0;
-  background: #f8f8f8;
+  background: $article_background_color;
   position:relative;
 }
 
@@ -321,6 +321,7 @@ $content_height:95%;
   @include markdown_style();
   margin-bottom: 15px;
   @include word_break();
+  //@include box-shadow(3px 3px 7px 1px hsla(0, 0%, 0%, 0.65));
 }
 
 
@@ -333,7 +334,7 @@ $content_height:95%;
 #preview {
   display:none;
   width:50%;
-  background:#f8f8f8;
+  background:$article_background_color;
   overflow-y: scroll;
   float: left;
   @include markdown_img(50%);
@@ -360,7 +361,7 @@ $content_height:95%;
   @include markdown_h_color(#333);
   @include word_break();
   margin-top: 17px;
-  background: #f8f8f8;
+  background: $article_background_color;
   overflow-y: auto;
 }
 
@@ -370,7 +371,7 @@ $content_height:95%;
   @include word_break();
   @include markdown_img();
   margin-top: 17px;
-  background: #f8f8f8;
+  background: $article_background_color;
   overflow-y: auto;
 }
 
@@ -378,7 +379,7 @@ $content_height:95%;
 #temp_textarea {
   margin-top: 17px;
   width:98%;
-  background: #f8f8f8;
+  background: $article_background_color;
   overflow-y: auto;
   display:block;
 }
