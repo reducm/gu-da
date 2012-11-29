@@ -6,7 +6,6 @@ class ArticlesController < ApplicationController
   before_filter {|c| c.set_breadcrumbs}
   before_filter :init_params, :only => [:create, :update]
   # TODO: 文章图片(初步完成 添加 删除 ajax滚动读取)
-  # TODO: markdown提示
   # TODO: preview 滚动问题
   # TODO: demo完善
   # TODO: 分页
@@ -16,6 +15,7 @@ class ArticlesController < ApplicationController
   # TODO: 删减一下bootstrap css里面用不到的东西例如图标自体那些
   # TODO: 美化article_index 分页导航
   # TODO: 增加回复别人评论时候notify一下的功能，要大修了, 还有全站ajax获取有没有新notify
+  # TODO: windjs
   # TODO: notify画面可以直接回复
   # TODO: 关注用户，用户更新有notify功能
   # TODO: ssl通道, 上线后再处理

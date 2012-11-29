@@ -7,6 +7,11 @@ $(document).ready(->
   #oah = $("#article").height()
   #osh = $("#article").height()
 
+  $(".each_buttons a").on("mouseover mouseout",->
+    $(this).toggleClass("btn")
+    $(this).toggleClass("btn-primary")
+    $(this).toggleClass("btn-small")
+  )
   button.bind('mouseover', ->
     #    article.addClass('right_shadow')
     button.addClass('bg_darker')

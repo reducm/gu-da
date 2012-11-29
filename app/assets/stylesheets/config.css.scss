@@ -2,14 +2,13 @@ $gridColumnWidth: 81px;
 $gridGutterWidth: 20px;
 $baseFontSize: 19px;
 $baseLineHeight: 25px;
-//$sansFontFamily: "Microsoft Yahei",微软雅黑,"Helvetica Neue", Helvetica, Arial, sans-serif;
 //$infoBackground:#049cdb;
 //$errorBackground:#bd362f;
 //$successBackground:#468847;
 //$infoText:white;
 //$errorText:white;
 //$successText:white;
-$bc: #4c5a76;
+$bc: white;
 $bb: #202e4b;
 //$bb:white;
 @import "twitter/bootstrap";
@@ -43,7 +42,9 @@ a {
 }
 
 #container {
-  //padding: 10px;
+  padding: 10px;
+  background: rgba(243, 225, 225, 0.05);
+  @include border-radius(4px);
 }
 
 .desc_textarea {

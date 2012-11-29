@@ -1,10 +1,5 @@
 
 <div id="articles">
-  <div id='create_button_div'>
-    <%= (link_to "新建文章", new_article_path, class: 'btn btn-primary') if owner?  %>
-  </div>
-
-
   <% if @signup_new && owner? %>
     <%= render partial: 'articles/signupnew' %> 
   <%else%>
@@ -14,18 +9,21 @@
         <div class='time'><%= jtime a.created_at %> | 分类: <%= link_to a.catagory.name, user_catagory_path(a.user_id, a.catagory_id)%> </div>
         <div class='empty_height'> </div>
         <%= markdown(a.preview) %>
-        <%= link_to '阅读全文', article_path(a.id), class: "article_link_button" %>  
-        <%= (link_to '删除', article_path(a), method: 'delete', class: "article_link_button") if owner?%>  
-        <%= (link_to '修改', edit_article_path(a), class: "article_link_button") if owner? %>  
+
+        <div class="each_buttons">
+          <%= link_to '阅读全文', article_path(a.id), class: "article_link_button" %>  
+          <%= (link_to '删除', article_path(a), method: 'delete', class: "article_link_button") if owner?%>  
+          <%= (link_to '修改', edit_article_path(a), class: "article_link_button") if owner? %>  
+        </div>
       </div>
       <%unless (i+1) == @articles.size %>
-        <div class="articles_hr"></div>
+        <div class="empty_height"></div>
         <div class="empty_height"></div>
         <div class="empty_height"></div>
       <%end%>
     <% end %>
   <%end%>
-  <%= paginate @articles %>
+  <%= paginate @articles, window:2 %>
 </div>
 
 <% unless new_or_edit? %>

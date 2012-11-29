@@ -1,9 +1,7 @@
-// Place all the styles related to the articles controller here.
-// They will automatically be included in application.css.
-
 //$bc: #4c5a76;
-$bc: #202e4b;
-$article_background_color: #f8f8f8;
+$bc: white;
+//$article_background_color: #f8f8f8;
+$article_background_color: white;
 $hc: black;
 
 @mixin white_radius {
@@ -13,7 +11,7 @@ $hc: black;
 @mixin markdown_h_color($c:#333) {
   h1,h2,h3,h4,h5,h6{
     color: $c;
-    border-bottom: 1px solid $grayLighter;
+    //border-bottom: 1px solid $grayLighter;
   }
 }
 
@@ -104,7 +102,7 @@ $hc: black;
 }
 ////////article/////////////
 #article {
-  //@include border-radius(8px);
+  @include border-radius(4px);
   position: relative;
   float: left;
   background: $article_background_color;
@@ -140,7 +138,7 @@ $hc: black;
       font-size:41px;
     }
   }
-    border-bottom: 1px solid $grayLighter;
+  border-bottom: 1px solid $grayLighter;
 }
 
 .empty_height {
@@ -166,7 +164,7 @@ $hc: black;
 }
 
 #articles {
-  width:95%;
+  width:98%;
   clear:both;
   color:#333;
   h1,h2,h3,h4,h5,h6{
@@ -174,7 +172,7 @@ $hc: black;
   }
   display:inline-block;
   float: left;
-  margin-left: 20px;
+  //margin-left: 20px;
   margin-top: 11px;
   @include markdown_img();
 }
@@ -194,7 +192,7 @@ $hc: black;
 #switch_sidebar_button {
   float:right;
   height:100%;
-  //@include border-radius(0px 8px 0px 0px);
+  @include border-radius(0px 4px 0px 0px);
   cursor: pointer;
   a {
     outline: none;
@@ -321,7 +319,11 @@ $content_height:95%;
   @include markdown_style();
   margin-bottom: 15px;
   @include word_break();
+  padding: 5px 10px 0 17px;
   //@include box-shadow(3px 3px 7px 1px hsla(0, 0%, 0%, 0.65));
+  .each_buttons{
+    
+  }
 }
 
 
@@ -387,6 +389,7 @@ $content_height:95%;
 
 #create_button_div {
   float:right;
+  margin: 3px 22px 0px 0px;
 }
 
 #signup_new {
@@ -425,6 +428,7 @@ $content_height:95%;
   width: 22%;
   float: right;
   background: #efefef;
+  @include border-radius(4px)
 }
 
 #sidebar_container {

@@ -131,12 +131,13 @@ module ArticlesHelper
 
   def get_notifications_count(user_id)
     c = Notification.where("receiver_id=? and readed=0", user_id).count
-    span = if c > 0
-             content_tag :span, c, class: 'badge jbadge-info'
-           else
-             content_tag :span, c, class: 'badge '
-           end
-    link_to span, user_notifications_path(user_id)
+    if c > 0
+      span = (content_tag :span, c, class: 'badge jbadge-info')
+      a = link_to span, user_notifications_path(user_id)
+      return a
+    else
+      nil
+    end
   end
 
   def active_class(symbol)
