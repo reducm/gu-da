@@ -66,6 +66,7 @@ gem 'jquery-rails'
 group :assets do
   #gem "spine-rails"
   gem 'sass-rails',   '>= 3.2'
+  gem 'turbo-sprockets-rails3'
   gem 'eco'
   gem 'spine-rails'
   gem 'coffee-rails', '>= 3.2'
