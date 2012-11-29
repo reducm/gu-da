@@ -32,6 +32,8 @@ class PicturesController < ApplicationController
   def index 
     params[:page] ||= 1
     @pictures = Picture.get_index(params)
-    render json: {page: params[:page], pictures:@pictures}
+    picture_json = []
+    @pictures.each{|p| picture_json << JSON.parse(p.to_json)}
+    render json: {page: params[:page], pictures:picture_json}
   end
 end

@@ -109,7 +109,10 @@ class Blog.PicturesLoad extends Spine.Controller
     content = @article_content.val()
     left = content.slice(0, pos)
     right = content.slice(pos)
-    url = model.file.normal.url || model.file.url
+    if model.has_normal
+      url = model.file.normal.url
+    else
+      url = model.file.url
     left = left+"![](#{url})"
     newPos = left.length
     @article_content.val(left+right)
@@ -147,6 +150,7 @@ class Blog.PicturesLoad extends Spine.Controller
     $.get(@url, {page:@page}, @append_data, "json")
 
   append_data:(data)=>
+    console.log(data)
     $.pnotify(type:'info', text:"读取 #{data.pictures.length} 张新图片") if data.pictures.length>0
     @el.unloading()
     temp_models = @deal_data(data)
@@ -170,7 +174,7 @@ class Blog.PicturesLoad extends Spine.Controller
     )
    
   scroll_nopropa:(e,d)->
-    console.log(@el)
+    #console.log(@el)
     height = @el.height()
     scrollHeight = @el.get(0).scrollHeight
     if (@el[0].scrollTop == (scrollHeight - height) && d < 0) || (@el[0].scrollTop == 0 && d > 0)

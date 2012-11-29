@@ -13,9 +13,20 @@ class Picture < ActiveRecord::Base
   after_destroy :remove_storedir
 
   attr_accessible :pictureable, :file, :pictureable_type, :pictureable_id
+  attr_reader :has_normal
 
   def self.get_index(params)
     where("pictureable_type='User' and pictureable_id=?", params[:user_id]).order("id desc").page(params[:page] || 1)
+  end
+
+  def has_normal
+    File.exist? self.file.normal.file.file
+  end
+
+  def to_json(*params)
+    json = JSON.parse super(*params)
+    json = json.merge({"has_normal" => has_normal()})
+    json.to_json
   end
 
   protected

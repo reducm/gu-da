@@ -27,10 +27,10 @@ html, body {
   @include cw();
   height:100%;
   padding:20px;
-  //font-family: $helvetica;
+  font-family: $helvetica;
   //font-family: $georgia;
   //font-family: $lucida-grande;
-  font-family: $monospace;
+  //font-family: $monospace;
   //font-family: $verdana;
 }
 
@@ -46,7 +46,7 @@ a {
 
 .container_trans {
   padding: 10px;
-  background: rgba(243, 225, 225, 0.05);
+  background: rgba(252, 247, 247, 0.16);
   @include border-radius(4px);
 }
 
