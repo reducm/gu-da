@@ -45,9 +45,8 @@ module JLogin
 
   def check_admin
     unless @admin
-      flash[:error] = '当前用户不是管理员!'
       respond_to do|format|
-        format.html {redirect_to(root_path)}
+        format.html {redirect_to root_path, error:'你不是管理员'}
         format.json {render json: {errors:"你不是管理员！"}}
       end
     end
