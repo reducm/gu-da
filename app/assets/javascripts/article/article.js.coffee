@@ -3,7 +3,7 @@ $(document).ready(->
   article = $("#article")
   sidebar = $("#sidebar")
   comment = $('#comment')
-  icon = article.find("i")
+  icon = button.find("i")
   #oah = $("#article").height()
   #osh = $("#article").height()
 

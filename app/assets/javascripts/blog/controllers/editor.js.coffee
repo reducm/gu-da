@@ -17,6 +17,9 @@ class Blog.EditorController extends Spine.Controller
     'keyup #article_title': 'fill_preview_title'
     'keyup #article_content': 'fill_preview_content'
     'click #preview_toolbar ul li a': 'switch_preview_status'
+    'click #link_button': 'add_link'
+    'click #strong_button': 'add_strong'
+    'click #italic_button': 'add_italic'
 
   constructor: ->
     super
@@ -98,6 +101,18 @@ class Blog.EditorController extends Spine.Controller
     if (/\[.*?\]\(.*?\[\[jojo\]\].*?\)/).test(mstr) or (/\[.*?\[\[jojo\]\].*?\]\(.*?/).test(mstr) #or (/\[.*?\[\[jojo\]\].*?\]/)
       return str
     mstr
+
+  add_content_to_pos:(content,setPos=0)=>
+    pos = @content.getCurPos()
+    str = @content.val()
+    left = str.slice(0,pos)
+    right = str.slice(pos,str.length)
+    new_str = left+content+right
+    @content.val(new_str)
+    if setPos == 0
+      @content.setCurPos((left+content).length)
+    else
+      @content.setCurPos(left.length+setPos)
     
   fill_preview_title: () =>
     str = @title.val()
@@ -150,3 +165,10 @@ class Blog.EditorController extends Spine.Controller
       matrix.scrollTop(neo.scrollTop())
     #console.log "neo:", neo.scrollTop(), " matrix:", matrix.scrollTop()
     #console.log neo[0].scrollHeight, "|", matrix[0].scrollHeight, imgs_height
+  
+  add_link: =>
+    @add_content_to_pos("[]()", 1)
+  add_strong: =>
+    @add_content_to_pos("****", 2)
+  add_italic: =>
+    @add_content_to_pos("__", 1)

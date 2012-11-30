@@ -427,7 +427,7 @@
                 api.keydown(e);
             }).keypress(function(e) {
                 if (String.fromCharCode(e.charCode) == '}') {
-                    api.replaceSelection('').insertBefore('}').adjustLine();
+                    api.replaceSelection('').insertBefore('}');//.adjustLine();
                     e.preventDefault();
                 }
             }).keyup(function(e) {
@@ -435,7 +435,7 @@
                     var to, from = enterkeydownline+1;
                     to = api.currentLine();
                     for (; from <= to; from++) {
-                        api.adjustLine(from);
+                        //api.adjustLine(from);
                     }
                     enterkeydownline = null;
                 }

@@ -287,7 +287,7 @@ $content_height:95%;
 }
 
 #article_title {
-  width:60%;
+  width:56%;
 }
 
 .edit_preview_width {
@@ -362,7 +362,7 @@ $content_height:95%;
   @include markdown_style(83%);
   @include markdown_h_color(#333);
   @include word_break();
-  margin-top: 17px;
+  //margin-top: 17px;
   background: $article_background_color;
   overflow-y: auto;
 }
