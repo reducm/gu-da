@@ -317,9 +317,9 @@ input[name="switch"] {
     color: $gray;
   }
   #page_container{
-    padding: 5px;
+    padding: 5px 30px;
     p,pre,code{
-      font-size: $baseFontSize - 3;
+      font-size: $baseFontSize - 2;
     }
   }
 
