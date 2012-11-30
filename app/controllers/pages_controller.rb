@@ -1,7 +1,7 @@
 #encoding: UTF-8
 class PagesController < ApplicationController
   layout :resolve_layout
-  before_filter :check_login
+  before_filter :check_login, only:[:new, :create, :edit, :update, :destroy]
   before_filter :check_session
   before_filter :check_admin, only:[:new, :create, :edit, :update, :destroy]
   before_filter {|c| c.set_breadcrumbs}
