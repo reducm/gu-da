@@ -25,7 +25,6 @@
   <div class="empty_height"></div>
   <div id="comment" class="article_normal_width">
     <div id="comments">
-      <h1>评论</h1>
       <%= render partial: 'comments/form', locals: {user:@user,comment:@comment, article_id:@article.id} %>
       <%= render partial: 'comments/each', locals: {comments:@comments} %>
     </div>

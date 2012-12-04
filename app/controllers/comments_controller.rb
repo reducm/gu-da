@@ -16,4 +16,10 @@ class CommentsController < ApplicationController
     end
     render json: c.to_json(methods: [:strtime, :user_name, :user_picture], except:[:visitor_email, :updated_at])
   end
+
+  def destroy
+  end
+
+  def update
+  end
 end
