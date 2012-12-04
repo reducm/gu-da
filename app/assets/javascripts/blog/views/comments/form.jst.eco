@@ -1,0 +1,27 @@
+<div id="comment_form">
+    <form id="new_comment" action="">
+      <% if guda.logined: %>
+
+	<div class="head_div">
+	</div>
+
+	<div id="comment_commit_div">
+	  <textarea id="comment_textarea" name=""></textarea>
+	</div>
+        <div class="empty_height"></div>
+
+      <% else: %>
+	<div class="head_div">
+	</div>
+
+	<div id="comment_commit_div">
+	  <textarea id="comment_textarea" name=""></textarea>
+	  <input id="visitor_name" name="" type="text" placeholder="昵称(必填)" />
+	  <input id="visitor_email" name="" type="text" placeholder="Email(必填)"/>
+	</div>
+      <% end %>
+        <button  class='btn btn-primary span2' id='comment_commit_button'>submit</button>
+    </form>
+    <div class="empty_height"></div>
+    <div class="empty_height border_bottom_grey margin_bottom"></div>
+</div>

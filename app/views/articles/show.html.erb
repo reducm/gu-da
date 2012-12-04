@@ -1,3 +1,8 @@
+<% content_for :other_js do %>
+  <%= javascript_include_tag 'blog/spine'%> 
+  <%= javascript_include_tag "blog/comment" %>
+<%end%>
+
 <div id="articles">
   <div class="article_each">
     <h1 class="title_h"><%= @article.title %></h1>
@@ -25,8 +30,6 @@
   <div class="empty_height"></div>
   <div id="comment" class="article_normal_width">
     <div id="comments">
-      <%= render partial: 'comments/form', locals: {user:@user,comment:@comment, article_id:@article.id} %>
-      <%= render partial: 'comments/each', locals: {comments:@comments} %>
     </div>
   </div>
 <% end %>

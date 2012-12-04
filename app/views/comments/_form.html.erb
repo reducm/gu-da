@@ -1,5 +1,5 @@
 <div id="comment_form">
-  <%= simple_form_for comment, html: {"data-type" => 'json'}, wrapper: :default,  remote: true  do|f| %> 
+  <%= simple_form_for comment, html: {"data-type" => 'json'}, wrapper: :default  do|f| %> 
     <%= f.input :article_id, as: :hidden, input_html: { value: article_id  }  %>
     <% if logined? %>
 
@@ -9,11 +9,11 @@
       </div>
       <div id="comment_commit_div">
         <%= f.input :content , required: false, wrapper: false, label: false, input_html: {id: 'comment_textarea'} %>
-        <%= f.button :submit, 'Ctrl+Enter', :class => 'btn-primary span2', :id => 'comment_commit_button', 'data-toggle' => 'button' %>
         <div class="empty_height"></div>
+        <button  class='btn btn-primary span2' id='comment_commit_button'>submit</button>
       </div>
-
     <%else%>
+
       <div class="head_div">
         <%= show_user_head %>
       </div>
@@ -21,9 +21,10 @@
         <%= f.input :content , :required => false, :wrapper => false, :label => false, :input_html => {:id => 'comment_textarea', :class => nil } %>
         <%= f.input :visitor_name, :wrapper => false, :placeholder=> '昵称(必填)', :label=>false, :input_html => {:id => 'visitor_name'}  %>
         <%= f.input :visitor_email, :wrapper => false, :label =>false, :placeholder=>'Email(必填)', :input_html => {:id => 'visitor_email'} %>
-        <%= f.button :submit, 'Ctrl+Enter', :class => 'btn-primary span2', :id => 'comment_commit_button', 'data-toggle' => 'button'%>
+        <button  class='btn btn-primary span2' id='comment_commit_button'>submit</button>
       </div>
     <%end%>
+
   <%end%>
 </div>
 <div class="empty_height"></div>

@@ -9,3 +9,8 @@
 //= require twitter/bootstrap
 //= require social-share-button
 //= require_tree ./application
+
+$(document).ready(function(){
+  window.guda = $("#guda").data('guda');
+  window.action = guda.action;
+});

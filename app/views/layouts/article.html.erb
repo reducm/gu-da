@@ -32,12 +32,7 @@
       <%= render partial: 'layouts/foot' %>
     <%end%>
     <br/ >
-    <script type="text/javascript" charset="utf-8">
-      window.action="<%= params[:action]%>"
-      window.guda = {};
-      guda.user_name = "<%= @user_name || 'DemoUser'%>";
-      guda.user_id = <%= @user_id || 0 %>;
-      guda.controllers=[]
-    </script>
+    <%= content_tag :div, id:'guda', data:{guda:{user_id:@user_id || 0, user_name:@user_name || 'DemoUser', article_id: @article.id || nil,action:params[:action], controller:params[:controller], controllers:[]}} do %>
+    <% end%>
   </body>
 </html>
