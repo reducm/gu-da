@@ -1,5 +1,12 @@
 class CommentsController < ApplicationController
   before_filter :check_session
+  def index
+    cs = Comment.get_by_article_id params[:article_id]
+    respond_to do |format|
+      format.json { render json:cs.to_json }
+    end
+  end
+
   def create
     params[:user_id] = @user_id || 0
     c = Comment.create(params[:comment])

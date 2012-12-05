@@ -8,7 +8,9 @@ GuDa::Application.routes.draw do
 
   #scope 'blog' do
   resources :users do
-    resources :articles
+    resources :articles do
+      resources :comments
+    end
     resources :drafts
     collection do 
       post :login
@@ -23,11 +25,12 @@ GuDa::Application.routes.draw do
   resources :pages
   resources :pictures, :only => [:create, :destroy]
   resources :admins
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
   resources :drafts
   resources :catagories
   resources :tags
-  resources :comments
   resources :notifications
   resources :authentications do
     collection do
