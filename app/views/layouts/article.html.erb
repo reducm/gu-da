@@ -32,7 +32,18 @@
       <%= render partial: 'layouts/foot' %>
     <%end%>
     <br/ >
-    <%= content_tag :div, id:'guda', data:{guda:{user_id:@user_id || 0, user_name:@user_name || 'DemoUser', article_id: @article.id || nil,action:params[:action], controller:params[:controller], controllers:[]}} do %>
+    <%= content_tag :div, id:'guda', data:{
+      guda: {
+        user_id:@user_id || 0, 
+        user_head: (@user ? show_user_head(@user,80) : show_user_head() ),
+        user_name:@user_name || 'DemoUser', 
+        article_id: @article.try(:id) || nil,
+        action:params[:action], 
+        controller:params[:controller], 
+        controllers:[], 
+        isLogined: logined?
+      }
+      } do %>
     <% end%>
   </body>
 </html>

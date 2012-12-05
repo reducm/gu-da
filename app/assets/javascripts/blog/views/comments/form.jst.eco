@@ -3,6 +3,7 @@
       <% if guda.logined: %>
 
 	<div class="head_div">
+	  <%- guda.user_head %>
 	</div>
 
 	<div id="comment_commit_div">
@@ -12,6 +13,7 @@
 
       <% else: %>
 	<div class="head_div">
+	  <%- guda.user_head %>
 	</div>
 
 	<div id="comment_commit_div">
