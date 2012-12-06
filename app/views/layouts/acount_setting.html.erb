@@ -33,7 +33,17 @@
       </div>
 
     </div>
-
+    <%= content_tag :div, id:'guda', data:{
+      guda: {
+        user_id:@user_id || 0, 
+        article_id: @article.try(:id) || nil,
+        action:params[:action], 
+        controller:params[:controller], 
+        controllers:[], 
+        isLogined: logined?
+      }
+      } do %>
+    <% end%>
     <script>window.action="<%= params[:action]%>"</script>
   </body>
 </html>

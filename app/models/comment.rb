@@ -26,12 +26,22 @@ class Comment < ActiveRecord::Base
     self.get_user_name
   end
 
+  def user_head
+    self.user.head.file.url
+  end
+
   def guest?
     self.user_id == 0
   end
 
   def get_user_name
     self.visitor_name || self.user.name
+  end
+
+  def to_json(*params)
+    json = JSON.parse super(*params)
+    json = json.merge({"user_head" => user_head })
+    json.to_json
   end
 
   private

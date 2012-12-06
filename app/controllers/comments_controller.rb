@@ -2,8 +2,10 @@ class CommentsController < ApplicationController
   before_filter :check_session
   def index
     cs = Comment.get_by_article_id params[:article_id]
+    cs_arr = []
+    cs.each{|c| c.content =view_context.markdown(c.content); cs_arr << JSON.parse(c.to_json)}
     respond_to do |format|
-      format.json { render json:cs.to_json }
+      format.json { render json: cs_arr.to_json }
     end
   end
 

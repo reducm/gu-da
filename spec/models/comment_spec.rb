@@ -31,5 +31,14 @@ describe Comment do
       c.visitor_email.should_not be_nil
     end
 
+    it "to_json should has key user_head" do
+      @jas.setting.picture = Picture.new(file:File.open("#{Rails.root}/app/assets/images/rails.png"))
+      @jas.setting.picture.save
+      @jas.reload
+      c = FactoryGirl.create :comment, user:@jas, article:@article, content:'content'
+      c_json = JSON.parse c.to_json
+      p c_json
+      c_json.should  have_key "user_head"
+    end
   end
 end

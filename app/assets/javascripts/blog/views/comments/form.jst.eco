@@ -1,15 +1,16 @@
 <div id="comment_form">
     <form id="new_comment" action="">
-      <% if guda.logined: %>
+      <% if guda.isLogined: %>
 
 	<div class="head_div">
 	  <%- guda.user_head %>
 	</div>
 
 	<div id="comment_commit_div">
-	  <textarea id="comment_textarea" name=""></textarea>
+	  <textarea id="comment_textarea" name="content"></textarea>
+
+	  <a href='javascript:void(0)' class='btn btn-primary span2' id='comment_commit_button'>发送</a>
 	</div>
-        <div class="empty_height"></div>
 
       <% else: %>
 	<div class="head_div">
@@ -18,11 +19,11 @@
 
 	<div id="comment_commit_div">
 	  <textarea id="comment_textarea" name=""></textarea>
-	  <input id="visitor_name" name="" type="text" placeholder="昵称(必填)" />
-	  <input id="visitor_email" name="" type="text" placeholder="Email(必填)"/>
+	  <input id="visitor_name" name="visitor_name" type="text" placeholder="昵称(必填)" />
+	  <input id="visitor_email" name="visitor_email" type="text" placeholder="Email(必填)"/>
+	  <a href='javascript:void(0)' class='btn btn-primary span2' id='comment_commit_button'>发送</a>
 	</div>
       <% end %>
-        <button  class='btn btn-primary span2' id='comment_commit_button'>submit</button>
     </form>
     <div class="empty_height"></div>
     <div class="empty_height border_bottom_grey margin_bottom"></div>
