@@ -8,7 +8,8 @@ class Blog.CommentsController extends Spine.Controller
     @init_view()
     @set_waypoint()
     Comment.bind('refresh', @fill_comments)
-    Comment.bind('create', @append_comment)
+    Comment.bind('ajaxSuccess', @fill_comments)
+    #Comment.bind('create', @append_comment)
     @button.on('click', @create_comment)
 
 #private
@@ -39,6 +40,7 @@ class Blog.CommentsController extends Spine.Controller
     @comments_div.append($(waypoint))
 
   fill_comments: ()=>
+    $(".comment_each").remove()
     cs = Comment.all()
     #amazing coffeescript,下面这行这样写居然是返回for循环里面的累计集合,不过应该有问题
     @form_div.after(
@@ -52,7 +54,7 @@ class Blog.CommentsController extends Spine.Controller
     _.each(form_arr,(attr)->
       attr_hash[attr.name] = attr.value
     )
-    c = Comment.create(attr_hash)
+    Comment.create_from_ajax( comment:attr_hash, @append_comment)
 
   append_comment: (comment)=>
     @comments_div.append @view("comments/each")({comment:comment, markdown:@markdown, index: comment.id })

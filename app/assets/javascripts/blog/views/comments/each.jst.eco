@@ -4,10 +4,10 @@
   </div>
 
   <div class="comment_content">
-    <% if @comment.user? : %>
-      <div class="comment_name"><%= "#{@comment.visitor_name}(访客)" %></div>
+    <% if @comment.user_id == 0 : %>
+      <div class="comment_name"><%= "#{@comment.user_name}(访客)" %></div>
     <% else: %>
-      <div class="comment_name"><a href=""></a></div>
+      <div class="comment_name"><a href="/<%= @comment.user_name %>"><%= @comment.user_name %></a></div>
     <% end %>
       <div class="comment_reply pull-right"><a href="javascript:void(0)" data-toggle='reply_comment' floor="<%= @index + 1 %>"><i class="icon-share-alt"></i></a></div>
       <div class="empty_height"></div>

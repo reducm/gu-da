@@ -27,7 +27,9 @@ class Comment < ActiveRecord::Base
   end
 
   def user_head
-    self.user.head.file.url
+    unless user_id == 0
+      self.user.head.file.url
+    end
   end
 
   def guest?
@@ -40,7 +42,7 @@ class Comment < ActiveRecord::Base
 
   def to_json(*params)
     json = JSON.parse super(*params)
-    json = json.merge({"user_head" => user_head })
+    json = json.merge({"user_head" => user_head,"user_name" => user_name })
     json.to_json
   end
 

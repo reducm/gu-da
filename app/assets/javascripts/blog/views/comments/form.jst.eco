@@ -1,28 +1,22 @@
 <div id="comment_form">
     <form id="new_comment" action="">
       <% if guda.isLogined: %>
-
 	<div class="head_div">
-	  <% if guda.user_head: %>
-	    <img src='<%= guda.user_head %>' width='80' />
-	  <% else: %>
-	    <i class='avatar_image'></i>
-	  <% end %>
+	  <img src='<%= guda.user_head %>' width='80' />
 	</div>
 
 	<div id="comment_commit_div">
 	  <textarea id="comment_textarea" name="content"></textarea>
-
 	  <a href='javascript:void(0)' class='btn btn-primary span2' id='comment_commit_button'>发送</a>
 	</div>
 
       <% else: %>
 	<div class="head_div">
-	  <%- guda.user_head %>
+	  <i class='avatar_image'></i>
 	</div>
 
 	<div id="comment_commit_div">
-	  <textarea id="comment_textarea" name=""></textarea>
+	  <textarea id="comment_textarea" name="content"></textarea>
 	  <input id="visitor_name" name="visitor_name" type="text" placeholder="昵称(必填)" />
 	  <input id="visitor_email" name="visitor_email" type="text" placeholder="Email(必填)"/>
 	  <a href='javascript:void(0)' class='btn btn-primary span2' id='comment_commit_button'>发送</a>
