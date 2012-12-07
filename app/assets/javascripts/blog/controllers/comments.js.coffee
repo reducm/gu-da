@@ -4,19 +4,12 @@ class Blog.CommentsController extends Spine.Controller
 
   constructor: ->
     super
+    @markdown = new Showdown.converter()
     @init_view()
     @set_waypoint()
-    Spine.bind("fill.comments", @fill_comments)
-    @button.on('click',()=>
-      c = new Comment()
-      c.article_id = guda.article_id
-      c.user_id = guda.user_id
-      form_arr = @form.serializeArray()
-      _.each(form_arr,(attr)->
-        c[attr.name] = attr.value
-      )
-      console.log(c)
-    )
+    Comment.bind('refresh', @fill_comments)
+    Comment.bind('create', @append_comment)
+    @button.on('click', @create_comment)
 
 #private
   init_view: ()=>
@@ -24,6 +17,7 @@ class Blog.CommentsController extends Spine.Controller
     @form_div = $("#comment_form")
     @form = $("#new_comment")
     @textarea = $("#comment_textarea")
+    @textarea.editor()
     @button = $("#comment_commit_button")
     that = @
     @textarea.bind('focus', ->
@@ -46,7 +40,22 @@ class Blog.CommentsController extends Spine.Controller
 
   fill_comments: ()=>
     cs = Comment.all()
-    markdown = new Showdown.converter()
-    @form_div.after(@view("comments/each")({comments:cs, markdown:markdown}))
+    #amazing coffeescript,下面这行这样写居然是返回for循环里面的累计集合,不过应该有问题
+    @form_div.after(
+      for c,i in cs
+        @view("comments/each")({comment:c, markdown:@markdown, index: i })
+    )
 
+  create_comment: ()=>
+    attr_hash = {article_id: guda.article_id, user_id: guda.user_id, user_head:guda.user_head }
+    form_arr = @form.serializeArray()
+    _.each(form_arr,(attr)->
+      attr_hash[attr.name] = attr.value
+    )
+    c = Comment.create(attr_hash)
+
+  append_comment: (comment)=>
+    @comments_div.append @view("comments/each")({comment:comment, markdown:@markdown, index: comment.id })
+    
+    
 Comment = Blog.Comment

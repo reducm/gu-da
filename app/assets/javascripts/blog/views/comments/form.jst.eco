@@ -3,7 +3,11 @@
       <% if guda.isLogined: %>
 
 	<div class="head_div">
-	  <%- guda.user_head %>
+	  <% if guda.user_head: %>
+	    <img src='<%= guda.user_head %>' width='80' />
+	  <% else: %>
+	    <i class='avatar_image'></i>
+	  <% end %>
 	</div>
 
 	<div id="comment_commit_div">

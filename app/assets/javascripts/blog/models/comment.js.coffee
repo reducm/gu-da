@@ -1,5 +1,5 @@
 class Blog.Comment extends Spine.Model
-  @configure 'Comment', 'content', 'created_at', 'updated_at', 'user_id', 'article_id', 'visitor_name', 'visitor_email, user_head'
+  @configure 'Comment', 'content', 'created_at', 'updated_at', 'user_id', 'article_id', 'visitor_name', 'visitor_email', 'user_head', 'user_picture'
   @extend Spine.Model.Ajax
   @url: "#{window.location}/comments"
 
@@ -9,7 +9,3 @@ class Blog.Comment extends Spine.Model
     else
       "<i class='avatar_image'></i>"
 
-
-Blog.Comment.bind("refresh", ->
-  Spine.trigger('fill.comments')
-)

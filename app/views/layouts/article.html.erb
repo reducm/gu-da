@@ -8,7 +8,7 @@
     <%= javascript_include_tag "article" %>
     <%= yield :other_js %>
     <%= csrf_meta_tags %>
-    <link rel="icon" href="/favicon.png" type="image/png"/>
+    <%= favicon_link_tag '/favicon.ico', :rel => 'apple-touch-icon', :type => 'image/png' %>
   </head>
   <body>
 
@@ -36,7 +36,7 @@
     <%= content_tag :div, id:'guda', data:{
       guda: {
         user_id:@user_id || 0, 
-        user_head: (@user ? show_user_head(@user,80) : show_user_head() ),
+        user_head: (@user ? @user.head.file.url : null),
         user_name:@user_name || 'DemoUser', 
         article_id: @article.try(:id) || nil,
         action:params[:action], 

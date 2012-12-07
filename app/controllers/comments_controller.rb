@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
     else
       c.user_picture = nil
     end
-    render json: c.to_json(methods: [:strtime, :user_name, :user_picture], except:[:visitor_email, :updated_at])
+    render json: c.to_json(methods: [:strtime, :user_name, :user_head, :user_picture, :user], except:[:visitor_email, :updated_at])
   end
 
   def destroy

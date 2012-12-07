@@ -1,22 +1,20 @@
-<% for c, i in @comments: %>
-  <div class="comment_each" id="<%= "comment_#{c.id}"%>" floor="<%= i+1 %>"> 
-    <div class="head_div">
-      <%- c.show_user_head() %>
-    </div>
-
-    <div class="comment_content">
-      <% if c.user? : %>
-	<div class="comment_name"><%= "#{c.visitor_name}(访客)" %></div>
-      <% else: %>
-	<div class="comment_name"><a href=""></a></div>
-      <% end %>
-      <div class="comment_reply pull-right"><a href="javascript:void(0)" data-toggle='reply_comment' floor="<%= i+1 %>"><i class="icon-share-alt"></i></a></div>
-      <div class="empty_height"></div>
-      <div class='clear comment_current_content' ><%- c.content %></div>
-      <div class="time pull-right"><%= Jtime::time_at(c.created_at) %></div>
-    </div>
-
-    <div class="empty_height"></div>
-    <div class="empty_height border_bottom_grey margin_bottom"></div>
+<div class="comment_each" id="<%= "comment_#{@comment.id}"%>" floor="<%= @index+1 %>"> 
+  <div class="head_div">
+    <%- @comment.show_user_head() %>
   </div>
-<% end %>
+
+  <div class="comment_content">
+    <% if @comment.user? : %>
+      <div class="comment_name"><%= "#{@comment.visitor_name}(访客)" %></div>
+    <% else: %>
+      <div class="comment_name"><a href=""></a></div>
+    <% end %>
+      <div class="comment_reply pull-right"><a href="javascript:void(0)" data-toggle='reply_comment' floor="<%= @index + 1 %>"><i class="icon-share-alt"></i></a></div>
+      <div class="empty_height"></div>
+      <div class='clear comment_current_content' ><%- @comment.content %></div>
+      <div class="time pull-right"><%= Jtime::time_at(@comment.created_at) %></div>
+  </div>
+
+  <div class="empty_height"></div>
+  <div class="empty_height border_bottom_grey margin_bottom"></div>
+</div>
