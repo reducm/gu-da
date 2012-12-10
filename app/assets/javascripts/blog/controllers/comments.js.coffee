@@ -54,10 +54,14 @@ class Blog.CommentsController extends Spine.Controller
     _.each(form_arr,(attr)->
       attr_hash[attr.name] = attr.value
     )
-    Comment.create_from_ajax( comment:attr_hash, @append_comment)
+    @button.loading()
+    Comment.create_from_ajax( "/articles/#{guda.article_id}/comments", comment:attr_hash, @append_comment)
 
   append_comment: (comment)=>
+    @button.unloading()
+    @textarea.val("")
     @comments_div.append @view("comments/each")({comment:comment, markdown:@markdown, index: comment.id })
+    set_location("#comment_#{comment.id}")
     
     
 Comment = Blog.Comment

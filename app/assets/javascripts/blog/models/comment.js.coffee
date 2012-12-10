@@ -18,8 +18,8 @@ class Blog.Comment extends Spine.Model
       else unless @visitor_name
         "访客名称不能为空"
 
-  @create_from_ajax: (hash,callback)->
-   $.post(@url,hash, (data)->
+  @create_from_ajax: (url,hash,callback)->
+   $.post(url,hash, (data)->
      Jajax::callback(data, (data)->
         console.log data
         c = new Comment(data)
