@@ -15,30 +15,42 @@ class Blog.CommentsController extends Spine.Controller
 
 #private
   init_view: ()=>
-    @comments_div.append(@view 'comments/form')
+    @comments_div.prepend(@view 'comments/form')
     @form_div = $("#comment_form")
     @form = $("#new_comment")
     @textarea = $("#comment_textarea")
     @textarea.editor()
     @button = $("#comment_commit_button")
     that = @
-    @textarea.bind('focus', ->
+    @textarea.on('focus', ->
       that.button.show('fast')
       that.button.css('display', 'inline-block')
       $("#visitor_name").show('fast')
       $("#visitor_email").show('fast')
       $(this).animate({height: '80px'},'fast')
+    ).on("keyup", (e)->
+      that.button.click() if (e.ctrlKey && e.which == 13 || e.which == 10)
     )
+
+    $(".comment_each .comment_reply a").live('click',()->
+      name = $(this).parent().prev('.comment_name').text()
+      textarea = that.textarea
+      ov = textarea.val()
+      textarea.val("@#{name} #{ov}")
+      textarea.setCurPos(textarea.val().length)
+      textarea.focus()
+    )
+
 
   set_waypoint: ()=>
     waypoint = "<div class='.waypoint'></div>"
+    @comments_div.append($(waypoint))
     that = @
     $(waypoint).waypoint((event,direction)->
       if direction == 'down'
         Comment.fetch()
         $(this).waypoint('destroy')
-    )
-    @comments_div.append($(waypoint))
+    ,{offset:'100%'})
 
   fill_comments: ()=>
     $(".comment_each").remove()
