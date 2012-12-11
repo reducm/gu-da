@@ -40,8 +40,8 @@ $.fn.extend({ #获取img的原始大小，有bug
 })
 
 class window.Jtime
-  Jtime::time_at = (timestamp) ->
-    if typeof timestamp == 'string'
+  Jtime::time_at = (timestamp,jsonTime=false) ->
+    if typeof timestamp == 'string' && jsonTime == false
       timestamp = parseInt(timestamp)
     d = new Date(timestamp)
     "#{d.getMonth()+1}月#{d.getDate()}日 #{d.getHours()}:#{d.getMinutes()}"

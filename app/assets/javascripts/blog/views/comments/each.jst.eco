@@ -12,7 +12,7 @@
       <div class="comment_reply pull-right"><a href="javascript:void(0)" data-toggle='reply_comment' floor="<%= @index + 1 %>"><i class="icon-share-alt"></i></a></div>
       <div class="empty_height"></div>
       <div class='clear comment_current_content' ><%- @comment.content %></div>
-      <div class="time pull-right"><%= Jtime::time_at(@comment.created_at) %></div>
+      <div class="time pull-right"><%= Jtime::time_at(@comment.created_at, true) %></div>
   </div>
 
   <div class="empty_height"></div>
