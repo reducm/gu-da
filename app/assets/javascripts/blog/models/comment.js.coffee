@@ -26,5 +26,6 @@ class Blog.Comment extends Spine.Model
      )
    )
 
-
-
+Blog.Comment.bind("ajaxError",()->
+  console.log(arguments)
+)

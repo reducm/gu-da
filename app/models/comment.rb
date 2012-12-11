@@ -39,6 +39,10 @@ class Comment < ActiveRecord::Base
     return nil
   end
 
+  def author_id
+    self.article.user_id
+  end
+
   def guest?
     self.user_id == 0
   end
@@ -49,7 +53,7 @@ class Comment < ActiveRecord::Base
 
   def to_json(*params)
     json = JSON.parse super(*params)
-    json = json.merge({"user_head" => user_head,"user_name" => user_name })
+    json = json.merge({"user_head" => user_head,"user_name" => user_name,"author_id" => author_id })
     json.to_json
   end
 

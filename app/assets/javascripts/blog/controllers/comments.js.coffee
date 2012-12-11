@@ -10,7 +10,7 @@ class Blog.CommentsController extends Spine.Controller
     @set_waypoint()
     Comment.bind('refresh', @fill_comments)
     Comment.bind('ajaxSuccess', @fill_comments)
-    #Comment.bind('create', @append_comment)
+    Comment.bind('destroy', @destroy)
     @button.on('click', @create_comment)
 
 #private
@@ -32,7 +32,9 @@ class Blog.CommentsController extends Spine.Controller
       that.button.click() if (e.ctrlKey && e.which == 13 || e.which == 10)
     )
 
-    $(".comment_each .comment_reply a").live('click',()->
+    $(".comment_each").live("mouseenter mouseleave",()->$(this).find(".comment_reply").toggle())
+
+    $(".comment_each .comment_reply a[data-toggle='reply_comment']").live('click',()->
       name = $(this).parent().prev('.comment_name').text()
       textarea = that.textarea
       ov = textarea.val()
@@ -41,6 +43,11 @@ class Blog.CommentsController extends Spine.Controller
       textarea.focus()
     )
 
+    $(".comment_each .comment_reply a[data-toggle='delete_comment']").live('click',()->
+      comment_each = $(this).parents(".comment_each")
+      c = Comment.find(comment_each.data("comment-id"))
+      c.destroy()
+    )
 
   set_waypoint: ()=>
     waypoint = "<div class='.waypoint'></div>"
@@ -75,6 +82,10 @@ class Blog.CommentsController extends Spine.Controller
     @textarea.val("")
     @comments_div.append @view("comments/each")({comment:comment, markdown:@markdown, index: comment.id })
     set_location("#comment_#{comment.id}")
+
+  destroy: (model)=>
+    $(".comment_each[data-comment-id='#{model.id}']").remove())
+
     
     
 Comment = Blog.Comment

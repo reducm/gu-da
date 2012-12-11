@@ -1,4 +1,4 @@
-<div class="comment_each" id="<%= "comment_#{@comment.id}"%>" floor="<%= @index+1 %>"> 
+<div class="comment_each" id="<%= "comment_#{@comment.id}"%>" floor="<%= @index+1 %>" data-comment-id='<%= @comment.id %>' > 
   <div class="head_div">
     <%- @comment.show_user_head() %>
   </div>
@@ -9,7 +9,18 @@
     <% else: %>
       <div class="comment_name"><a href="/<%= @comment.user_name %>"><%= @comment.user_name %></a></div>
     <% end %>
-      <div class="comment_reply pull-right"><a href="javascript:void(0)" data-toggle='reply_comment' floor="<%= @index + 1 %>"><i class="icon-share-alt"></i></a></div>
+      <div class="comment_reply pull-right">
+	<% if @comment.author_id == guda.user_id: %>
+	  <a href="javascript:void(0)" data-toggle='delete_comment'">
+	    <i class="icon-remove"></i>
+	  </a>
+	<% end %>
+
+	<a href="javascript:void(0)" data-toggle='reply_comment' floor="<%= @index + 1 %>">
+	  <i class="icon-share-alt"></i>
+	</a>
+
+	      </div>
       <div class="empty_height"></div>
       <div class='clear comment_current_content' ><%- @comment.content %></div>
       <div class="time pull-right"><%= Jtime::time_at(@comment.created_at, true) %></div>

@@ -1,4 +1,6 @@
+#encoding: UTF-8
 class CommentsController < ApplicationController
+  layout false
   before_filter :check_session
   def index
     cs = Comment.get_by_article_id params[:article_id]
@@ -25,10 +27,17 @@ class CommentsController < ApplicationController
     else
       c.user_picture = nil
     end
-    render json: c.to_json(methods: [:strtime, :user_name, :user_head, :user_picture, :user], except:[:visitor_email, :updated_at])
+    render json: c.to_json(methods: [:strtime, :user_name, :user_head, :user_picture, :user, :author_id], except:[:visitor_email, :updated_at])
   end
 
   def destroy
+    comment = Comment.find(params[:id])
+    if comment.article.user_id != @user_id
+      render :text => '用户不是文章拥有者，不能删除', :status => 403
+    else
+      comment.destroy()
+      render test:'删除成功', status: 200
+    end
   end
 
   def update

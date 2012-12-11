@@ -510,6 +510,16 @@ $content_height:95%;
 }
 
 .comment_reply {
+  display:none;
+  a {
+    &:hover{
+      text-decoration: none;
+    }
+  }
+
+  i {
+    font-size:14px;
+  }
 }
 
 .comment_current_content {
