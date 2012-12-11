@@ -33,10 +33,11 @@ class CommentsController < ApplicationController
   def destroy
     comment = Comment.find(params[:id])
     if comment.article.user_id != @user_id
-      render :text => '用户不是文章拥有者，不能删除', :status => 403
+      render :text => '用户不是文章拥有者，不能删除', :status => 403, layout:false
     else
       comment.destroy()
-      render test:'删除成功', status: 200
+      render json: {text:'删除成功'}
+      return
     end
   end
 

@@ -84,7 +84,7 @@ class Blog.CommentsController extends Spine.Controller
     set_location("#comment_#{comment.id}")
 
   destroy: (model)=>
-    $(".comment_each[data-comment-id='#{model.id}']").remove())
+    $(".comment_each[data-comment-id='#{model.id}']").remove()
 
     
     
