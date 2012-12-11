@@ -40,5 +40,13 @@ describe Comment do
       p c_json
       c_json.should  have_key "user_head"
     end
+
+    context "after_create" do
+      it "article.comments_count increment" do
+        origin_count = @article.comments_count.value
+        c = FactoryGirl.create :comment, user:@jas, article:@article, content:'content'
+        @article.comments_count.value.should == origin_count+1
+      end
+    end
   end
 end

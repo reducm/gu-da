@@ -22,4 +22,5 @@
 #whenever --update-crontab 执行这个生成linux定时任务
 every 6.hours do
   rake "redis:write_visit"
+  rake "redis:sync_comments_count"
 end

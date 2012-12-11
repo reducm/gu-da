@@ -14,6 +14,8 @@ class Comment < ActiveRecord::Base
   validates :content, presence: {:message => '评论内容不能为空' } 
   has_many :notifications, as: :senderable
   
+  after_create :incr_article_comments_count
+  
   attr_accessor :user_name, :user_picture, :strtime
 
 
@@ -28,8 +30,13 @@ class Comment < ActiveRecord::Base
 
   def user_head
     unless user_id == 0
-      self.user.head.file.url
+      if user.head
+        return self.user.head.file.url
+      else
+        return nil
+      end
     end
+    return nil
   end
 
   def guest?
@@ -65,6 +72,10 @@ class Comment < ActiveRecord::Base
     elsif user_id ==0 && User.find_by_nickname(visitor_name)
       errors[:visitor_name] << '昵称已被注册用户使用'
     end
+  end
+
+  def incr_article_comments_count
+    self.article.comments_count.increment
   end
 end
 

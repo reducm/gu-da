@@ -6,14 +6,21 @@
     <% @articles.each_with_index do|a,i| %>
       <div class='article_each'>
         <h1 class='title_h'><%= link_to a.title, article_path(a.id) %></h1>
-        <div class='time'><%= jtime a.created_at %> | 分类: <%= link_to a.catagory.name, user_catagory_path(a.user_id, a.catagory_id)%> </div>
+        <div class='time'>
+          <%= jtime a.created_at %>
+           | 分类: <%= link_to a.catagory.name, user_catagory_path(a.user_id, a.catagory_id)%>
+           <% if a.comments_count.value > 0 %>
+             | <%= link_to "评论(#{a.comments_count.value})", "#{article_path(a)}#comment"%> 
+           <%end%>
+        </div>
         <div class='empty_height'> </div>
         <%= markdown(a.preview) %>
 
-        <div class="each_buttons">
+        <div class="each_buttons pull-right">
           <%= link_to '阅读全文', article_path(a.id), class: "article_link_button" %>  
           <%= (link_to '删除', article_path(a), method: 'delete', class: "article_link_button") if owner?%>  
           <%= (link_to '修改', edit_article_path(a), class: "article_link_button") if owner? %>  
+          <%= link_to "评论", article_path(a) %> 
         </div>
       </div>
       <%unless (i+1) == @articles.size %>
