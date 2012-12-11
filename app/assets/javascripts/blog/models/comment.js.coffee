@@ -1,7 +1,6 @@
 class Blog.Comment extends Spine.Model
   @configure 'Comment', 'content', 'created_at', 'updated_at', 'user_id', 'article_id', 'visitor_name', 'visitor_email', 'user_head', 'user_picture', 'user', 'user_name'
   @extend Spine.Model.Ajax
-  @url: "#{window.location}/comments"
 
   show_user_head: ()->
     if @user_head

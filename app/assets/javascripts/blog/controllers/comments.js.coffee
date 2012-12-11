@@ -5,6 +5,7 @@ class Blog.CommentsController extends Spine.Controller
   constructor: ->
     super
     @markdown = new Showdown.converter()
+    Comment.url = "/articles/#{guda.article_id}/comments"
     @init_view()
     @set_waypoint()
     Comment.bind('refresh', @fill_comments)
