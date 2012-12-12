@@ -39,6 +39,10 @@ class Comment < ActiveRecord::Base
     return nil
   end
 
+  def switch_content(&block)
+    add_link_at(&block)
+  end
+
   def author_id
     self.article.user_id
   end
@@ -80,6 +84,17 @@ class Comment < ActiveRecord::Base
 
   def incr_article_comments_count
     self.article.comments_count.increment
+  end
+
+  def add_link_at
+    self.content = self.content.gsub(/@([a-z1-9_]+) /) do |match|
+      user = User.select("id,nickname").where("nickname=?", $1)[0]
+      if user
+        "[#{match}](#{yield user})"
+      else
+        match
+      end
+    end
   end
 end
 

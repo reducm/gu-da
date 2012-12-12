@@ -9,7 +9,7 @@ class Blog.CommentsController extends Spine.Controller
     @init_view()
     @set_waypoint()
     Comment.bind('refresh', @fill_comments)
-    Comment.bind('ajaxSuccess', @fill_comments)
+    #Comment.bind('ajaxSuccess', @fill_comments)
     Comment.bind('destroy', @destroy)
     @button.on('click', @create_comment)
 

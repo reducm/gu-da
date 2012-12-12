@@ -5,7 +5,11 @@ class CommentsController < ApplicationController
   def index
     cs = Comment.get_by_article_id params[:article_id]
     cs_arr = []
-    cs.each{|c| c.content =view_context.markdown(c.content); cs_arr << JSON.parse(c.to_json)}
+    cs.each do|c|
+      c.switch_content{|user| user_path(user)}
+      c.content =view_context.markdown(c.content)
+      cs_arr << JSON.parse(c.to_json)
+    end
     respond_to do |format|
       format.json { render json: cs_arr.to_json }
     end
@@ -18,7 +22,7 @@ class CommentsController < ApplicationController
       render json: {errors:c.jerrors} 
       return
     end
-
+    c.switch_content{|user| user_path(user)}
     c.strtime = view_context.jtime(c.created_at)
     c.content = view_context.markdown(c.content)
     unless c.guest?

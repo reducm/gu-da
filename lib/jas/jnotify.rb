@@ -21,7 +21,7 @@ module JNotify
       result.each do |r|
         r = r.strip.delete('@')
         u = User.select(:id).find_by_nickname(r)
-        return if u.id == article_user_id #如果@的人就是这篇文章的作者，就不必在notify多次了
+        return if !u || u.id == article_user_id #如果@的人就是这篇文章的作者，就不必在notify多次了
         if u
           str = "@#{self.get_user_name} 在文章 [**#{article.title}**](#{Rails.application.routes.url_helpers.article_path(article.id)}#comment_#{self.id})提到了你\r\n\r\n>*#{self.content.first(50)}...*"
           Notification.create(senderable:self, receiver_id:u.id,content:str)
