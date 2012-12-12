@@ -14,8 +14,14 @@ $(document).ready(->
     $(this).toggleClass("btn-small")
   )
   $(".article_each").on("mouseover mouseout",->
+    if guda.action == 'index'
+      $(this).toggleClass("hover_background")
+  )
+
+  $(".comment_each").live("mouseover mouseout",->
     $(this).toggleClass("hover_background")
   )
+
   button.bind('mouseover', ->
     #    article.addClass('right_shadow')
     button.addClass('bg_darker')
