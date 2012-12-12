@@ -327,7 +327,7 @@ $content_height:95%;
 }
 
 .hover_background {
-  background: rgba(253, 253, 204, 0.8);
+  background: rgba(255, 122, 0, 0.05);
 }
 
 
@@ -340,7 +340,7 @@ $content_height:95%;
   display:none;
   width:50%;
   background:$article_background_color;
-  overflow-y: scroll;
+  overflow-y: auto;
   float: left;
   @include markdown_img(50%);
 }
@@ -430,7 +430,7 @@ $content_height:95%;
 #sidebar {
   width: 22%;
   float: right;
-  background: #efefef;
+  //background: #efefef;
   @include border-radius(4px)
 }
 
