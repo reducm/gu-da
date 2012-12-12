@@ -46,7 +46,7 @@ GuDa::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
    config.assets.js_compressor  = :uglifier
    config.assets.css_compressor = :scss
-   config.assets.precompile += %w( application.css article.js user.js application.js avatar.js edit.js jqueryui.js pic.js pnotify.js share.js slides.js user.js blog/editor.js blog/picture.js blog/spine.js pnotify/jquery.pnotify.default.css )
+   config.assets.precompile += %w( application.css article.js user.js application.js avatar.js edit.js jqueryui.js pic.js pnotify.js share.js slides.js user.js blog/editor.js blog/picture.js blog/spine.js blog/comment.js pnotify/jquery.pnotify.default.css )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
