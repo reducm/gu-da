@@ -12,7 +12,7 @@ class Comment < ActiveRecord::Base
   validate :validate_visitor_email
 
   validates :content, presence: {:message => '评论内容不能为空' } 
-  has_many :notifications, as: :senderable
+  has_many :notifications, as: :senderable, dependent: :destroy
   
   after_create :incr_article_comments_count
   
