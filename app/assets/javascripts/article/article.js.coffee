@@ -49,7 +49,8 @@ $(document).ready(->
         type: "get"
         dataType: "json"
         success:(data)->
-          $("#notification_li").html("<a href='#{data.path}'><span class='badge jbadge-info'>#{data.count}</span></a>")
+          if typeof data.count == 'number' && data.count > 0
+            $("#notification_li").html("<a href='#{data.path}'><span class='badge jbadge-info'>#{data.count}</span></a>")
       )
 
   if guda.user_id != 0
