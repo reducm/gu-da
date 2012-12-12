@@ -7,7 +7,7 @@
 
       <ul class="nav pull-right">
         <% unless @user_name.blank? %>
-          <li><%= get_notifications_count(@user_id) %></li>
+          <li id="notification_li"><%= get_notifications_count(@user_id) %></li>
           <% if logined? %>
             <li> <a href="<%= new_article_path() %>"><i class="icon-edit"></i></a> </li>
           <% end %>

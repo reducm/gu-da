@@ -22,6 +22,7 @@
           <%= (link_to '修改', edit_article_path(a), class: "article_link_button") if owner? %>  
           <%= link_to "评论", article_path(a) %> 
         </div>
+        <div class="clear"></div>
       </div>
       <%unless (i+1) == @articles.size %>
         <div class="empty_height"></div>

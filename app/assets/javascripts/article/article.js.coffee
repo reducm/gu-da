@@ -6,11 +6,15 @@ $(document).ready(->
   icon = button.find("i")
   #oah = $("#article").height()
   #osh = $("#article").height()
+    
 
   $(".each_buttons a").on("mouseover mouseout",->
     $(this).toggleClass("btn")
     $(this).toggleClass("btn-primary")
     $(this).toggleClass("btn-small")
+  )
+  $(".article_each").on("mouseover mouseout",->
+    $(this).toggleClass("hover_background")
   )
   button.bind('mouseover', ->
     #    article.addClass('right_shadow')
@@ -32,6 +36,19 @@ $(document).ready(->
     set_height()
   )
   
+  get_notifications = ()->
+    if guda.user_id != 0
+      $.ajax(
+        url:"/users/#{guda.user_id}/notifications"
+        type: "get"
+        dataType: "json"
+        success:(data)->
+          $("#notification_li").html("<a href='#{data.path}'><span class='badge jbadge-info'>#{data.count}</span></a>")
+      )
+
+  if guda.user_id != 0
+    setInterval(get_notifications, 300000)
+
   set_height = ()->
     if article.height() < sidebar.height()
       if sidebar.is(":visible")

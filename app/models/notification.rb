@@ -11,4 +11,8 @@ class Notification < ActiveRecord::Base
     ns.update_all(readed: true)
     ns
   end
+
+  def self.unread_count(user_id)
+    where("receiver_id=? and readed=0 ", user_id).count
+  end
 end
