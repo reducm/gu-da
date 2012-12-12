@@ -78,7 +78,7 @@ class Blog.EditorController extends Spine.Controller
         mstr = mstr.replace("[[jojo]]", "<span id='marked_jojo'></span>")
         @preview_content.html(mstr)
         target = "#marked_jojo"
-        $.smoothScroll($(target).scrollTop()+50)
+        $.smoothScroll($(target).scrollTop())
       when "text"
         mstr = mstr.replace("[[jojo]]", "$$")
         raw = style_html(mstr)
