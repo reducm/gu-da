@@ -327,7 +327,7 @@ $content_height:95%;
 }
 
 .hover_background {
-  background: rgba(255, 122, 0, 0.05);
+  background: rgba(0, 122, 255, 0.03);
 }
 
 
@@ -418,7 +418,8 @@ $content_height:95%;
 
 .catagory_each {
   font-size:16px;
-  a {
+  a[data-method='delete'] {
+    display:none;
   }
 }
 ////////////end_catagory/////////////

@@ -20,7 +20,7 @@
           <%= link_to '阅读全文', article_path(a.id), class: "article_link_button" %>  
           <%= (link_to '删除', article_path(a), method: 'delete', class: "article_link_button") if owner?%>  
           <%= (link_to '修改', edit_article_path(a), class: "article_link_button") if owner? %>  
-          <%= link_to "评论", article_path(a) %> 
+          <%= link_to "评论", article_path(a)+"#comment" %> 
         </div>
         <div class="clear"></div>
       </div>

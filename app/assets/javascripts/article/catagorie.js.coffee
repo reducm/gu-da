@@ -10,6 +10,8 @@ $(document).ready(()->
       catagory_operate data
   )
 
+  $(".catagory_each").live('mouseenter mouseleave',-> $(this).find("a[data-method='delete']").toggle())
+
   #$(".catagory_each").live('mouseover',()->
     #$(this).addClass("border_grey")
   #)
