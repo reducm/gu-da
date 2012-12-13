@@ -31,8 +31,8 @@ class ArticlesController < ApplicationController
     params[:user_id] = @user_id if params[:user_id].blank?
     @current_user = User.get_user(params)
     unless @current_user
-      flash[:error] = "没有这个用户"
-      redirect_to root_path
+      redirect_to root_path, error:'没有这个用户'
+      return
     end
     @articles = Article.get_index(@current_user.id, params[:page])
     if session[:signup_new] || @articles.size == 0 #新注册进来产生一些提示操作的变量

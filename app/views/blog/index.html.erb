@@ -4,18 +4,6 @@
 <div id="login">
   <div id="login_left">
     <%= link_to "试试编辑器", {controller: :articles, action: 'demonew'}, class:"btn btn-warning pull-right" %> 
-    <% if @page %>
-      <div id="slides" class="rslides_container">
-        <ul class="rslides">
-          <% @page.pictures.each_with_index do |picture, i|%>
-            <li>
-              <img src="<%= picture.file.url %>" />
-              <p class='caption'>test <%= i%></p>
-            </li>
-          <%end%>
-        </ul>
-      </div>
-    <%end%>
   </div>
 
   <div id="login_right">
