@@ -9,6 +9,7 @@
         <div class='time'>
           <%= jtime a.created_at %>
            | 分类: <%= link_to a.catagory.name, user_catagory_path(a.user_id, a.catagory_id)%>
+           | 访问量: <%= a.visit %> 
            <% if a.comments_count.value > 0 %>
              | <%= link_to "评论(#{a.comments_count.value})", "#{article_path(a)}#comment"%> 
            <%end%>

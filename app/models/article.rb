@@ -25,7 +25,7 @@ class Article < ActiveRecord::Base
   before_save :set_preview 
 
   def self.get_index(user_id, page=1)
-    includes(:catagory).select("id, preview, updated_at, created_at, title, user_id, catagory_id").where("user_id=?", user_id).order("created_at desc").page(page)
+    includes(:catagory).select("id, visit, preview, updated_at, created_at, title, user_id, catagory_id").where("user_id=?", user_id).order("created_at desc").page(page)
   end
 
   def self.catagory_index(user_id=nil, catagory_id=0, page=1)
