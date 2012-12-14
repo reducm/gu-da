@@ -1,7 +1,6 @@
 # coding: utf-8
 require "bundler/capistrano"
 require "sidekiq/capistrano"
-
 require "rvm/capistrano"
 #set :rvm_ruby_string, 'ruby-1.9.3-p194-patch'
 set :rvm_type, :user
@@ -13,6 +12,9 @@ set :scm, :git
 set :user, "root"
 set :deploy_to, "/root/#{application}"
 set :runner, "ruby"
+set :deploy_via, :remote_cache
+set :deploy_env, "production"
+set :rails_env, "production"
 # set :deploy_via, :remote_cache
 set :git_shallow_clone, 1
 
@@ -22,17 +24,13 @@ role :db,  "106.187.37.46", :primary => true # This is where Rails migrations wi
 
 
 namespace :deploy do
-  task :start, :roles => :app do
-    run "cd #{deploy_to}/current/; RAILS_ENV=production unicorn_rails -c #{unicorn_path} -D"
-  end
-
-  task :stop, :roles => :app do
-    run "kill -QUIT `cat #{deploy_to}/current/tmp/pids/unicorn.pid`"
+  task :assets do
+    run "cd #{deploy_to}/; time rake assets:clean --trace; time rake assets:precompile --trace"
   end
 
   desc "Restart Application"
   task :restart, :roles => :app do
-    run "kill -USR2 `cat #{deploy_to}/current/tmp/pids/unicorn.pid`"
+    run "touch #{deploy_to}/tmp/restart.txt"
   end
 end
 
