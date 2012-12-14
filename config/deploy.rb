@@ -36,5 +36,4 @@ namespace :deploy do
     run "cp #{deploy_to}/shared/config/*.yml #{release_path}/config"
   end
 end
-
-after "deploy:update_code", "deploy:copy_config", "deploy:migrate", "deploy:assets", "deploy:restart"
+after "deploy:finalize_update","deploy:symlink", "deploy:copy_config", "deploy:migrate", "deploy:assets", "deploy:restart"
