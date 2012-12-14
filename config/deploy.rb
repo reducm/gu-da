@@ -1,7 +1,7 @@
 # coding: utf-8
+require "rvm/capistrano"
 require "bundler/capistrano"
 #require "sidekiq/capistrano"
-require "rvm/capistrano"
 #set :rvm_ruby_string, 'ruby-1.9.3-p194-patch'
 set :rvm_type, :user
 

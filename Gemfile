@@ -3,8 +3,9 @@ source 'http://ruby.taobao.org'
 gem 'rails', '3.2.8'
 gem 'railties'
 
-gem 'capistrano'
-gem 'capistrano-ext'
+gem 'capistrano', require: false
+gem 'capistrano-ext', require: false
+gem 'rvm-capistrano', require: false
 
 #数据
 gem 'mysql2'
