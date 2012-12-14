@@ -16,6 +16,7 @@ set :deploy_env, "production"
 set :rails_env, "production"
 # set :deploy_via, :remote_cache
 set :git_shallow_clone, 1
+set :use_sudo, true
 
 role :web, "106.187.37.46"                          # Your HTTP server, Apache/etc
 role :app, "106.187.37.46"                          # This may be the same as your `Web` server
