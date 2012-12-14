@@ -41,4 +41,4 @@ task :mongoid_migrate_database, :roles => :web do
   run "cd #{deploy_to}/current/; RAILS_ENV=production bundle exec rake db:migrate"
 end
 
-after "deploy:update_code"
+after "deploy:finalize_update","deploy:symlink"
