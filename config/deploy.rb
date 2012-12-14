@@ -24,12 +24,12 @@ role :db,  "106.187.37.46", :primary => true # This is where Rails migrations wi
 
 namespace :deploy do
   task :assets do
-    run "cd #{deploy_to}/; time rake assets:clean --trace; time rake assets:precompile --trace"
+    run "cd #{deploy_to}/current; time rake assets:clean --trace; time rake assets:precompile --trace"
   end
 
   desc "Restart Application"
   task :restart, :roles => :app do
-    run "touch #{deploy_to}/tmp/restart.txt"
+    run "touch #{deploy_to}/current/tmp/restart.txt"
   end
 
   task :copy_config do
