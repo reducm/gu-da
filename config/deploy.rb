@@ -1,7 +1,7 @@
 # coding: utf-8
 require "bundler/capistrano"
 #require "sidekiq/capistrano"
-#require "rvm/capistrano"
+require "rvm/capistrano"
 #set :rvm_ruby_string, 'ruby-1.9.3-p194-patch'
 set :rvm_type, :user
 
@@ -21,9 +21,9 @@ set :git_shallow_clone, 1
 role :web, "106.187.37.46"                          # Your HTTP server, Apache/etc
 role :app, "106.187.37.46"                          # This may be the same as your `Web` server
 role :db,  "106.187.37.46", :primary => true # This is where Rails migrations will run
-set :default_environment, {
-  'PATH' => "/usr/local/rvm/bin:$PATH"
-}
+#set :default_environment, {
+  #'PATH' => "/usr/local/rvm/bin:$PATH"
+#}
 
 namespace :deploy do
   task :assets do
