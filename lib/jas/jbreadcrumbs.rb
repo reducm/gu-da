@@ -21,7 +21,7 @@ protected
       current_user = yield
     end
     if current_user
-      @breadcrumbs << "<a href=\"#{user_articles_path(current_user.id)}\">#{current_user.setting.blog_name || "#{current_user.name}的博客"}</a>".html_safe
+      @breadcrumbs << "<a href=\"#{user_articles_path(current_user.id)}\">#{current_user.blog_name}</a>".html_safe
     end
     if title
       @breadcrumbs << "<a href=\"#{url}\">#{title}</a>".html_safe

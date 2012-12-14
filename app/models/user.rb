@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
     self.nickname
   end
 
+  def blog_name
+    setting.blog_name || "#{nickname}的博客"
+  end
+
   def head
     self.setting.picture
   end
