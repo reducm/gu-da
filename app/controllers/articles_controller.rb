@@ -31,7 +31,7 @@ class ArticlesController < ApplicationController
     params[:user_id] = @user_id if params[:user_id].blank?
     @current_user = User.get_user(params)
     unless @current_user
-      redirect_to root_path, error:'没有这个用户'
+      redirect_to root_path, alert:'没有这个用户'
       return
     end
     @articles = Article.get_index(@current_user.id, params[:page])
