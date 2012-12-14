@@ -2,8 +2,8 @@
 require "rvm/capistrano"
 require "bundler/capistrano"
 #require "sidekiq/capistrano"
-#set :rvm_ruby_string, 'ruby-1.9.3-p194-patch'
-set :rvm_type, :user
+set :rvm_ruby_string, :local
+set :rvm_type, :system
 
 set :application, "gu-da"
 set :repository,  "git://github.com/reducm/gu-da.git"
