@@ -45,6 +45,10 @@ class Article < ActiveRecord::Base
     c
   end
 
+  def markdown_content
+    MarkdownTopicConverter.format(content)
+  end
+
   private
   def set_preview
     max_word_count = 800 

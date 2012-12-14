@@ -11,6 +11,11 @@
           <% if logined? %>
             <li> <a href="<%= new_article_path() %>"><i class="icon-edit"></i></a> </li>
           <% end %>
+
+            <% if @current_user %>
+              <li><%= link_to  raw("<i class='icon-rss'></i>"), user_articles_path(@current_user)+".atom", class: 'rss' %></li>
+            <% end %>
+
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <%= @user_name %> 

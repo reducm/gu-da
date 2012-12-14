@@ -432,7 +432,15 @@ $content_height:95%;
   width: 22%;
   float: right;
   //background: #efefef;
-  @include border-radius(4px)
+  @include border-radius(4px);
+  span {
+    a {
+      text-decoration: none;
+      i {
+        color: orange;
+      }
+    }
+  }
 }
 
 #sidebar_container {

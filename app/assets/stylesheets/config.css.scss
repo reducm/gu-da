@@ -38,7 +38,13 @@ h1,h2{
   @include cw();
 }
 
-a {
+a.rss {
+  text-decoration: none;
+  &:hover {
+    i {
+      color:orange;
+    }
+  }
 }
 
 #container {

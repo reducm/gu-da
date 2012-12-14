@@ -48,7 +48,7 @@ class ArticlesController < ApplicationController
 
       format.atom do
         @articles = Article.where("user_id=?", @current_user.id).order("created_at desc")
-        @updated = @articles.first.updated_at
+        @updated = @articles.size > 0 ? @articles.first.updated_at : nil
         @title = @current_user.blog_name
         render layout: false
       end
