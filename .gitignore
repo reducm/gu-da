@@ -41,4 +41,5 @@ package/
 *.bak
 *.rb~
 shared/*
+current/*
 *.mp4

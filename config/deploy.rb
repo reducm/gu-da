@@ -31,14 +31,10 @@ namespace :deploy do
   task :restart, :roles => :app do
     run "touch #{deploy_to}/tmp/restart.txt"
   end
+
+  task :copy_config do
+    run "cp #{deploy_to}/shared/config/*.yml #{release_path}/config"
+  end
 end
 
-task :compile_assets, :roles => :web do
-  run "cd #{deploy_to}/current/; RAILS_ENV=production bundle exec rake assets:precompile"
-end
-
-task :mongoid_migrate_database, :roles => :web do
-  run "cd #{deploy_to}/current/; RAILS_ENV=production bundle exec rake db:migrate"
-end
-
-after "deploy:finalize_update","deploy:symlink"
+after "deploy:update_code", "deploy:copy_config", "deploy:migrate", "deploy:assets", "deploy:restart"
