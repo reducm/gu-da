@@ -2,7 +2,11 @@
     <form id="new_comment" action="">
       <% if guda.isLogined: %>
 	<div class="head_div">
-	  <img src='<%= guda.user_head %>' width='80' />
+	  <% if guda.user_head: %>
+	    <img src='<%= guda.user_head %>' width='80' />
+	  <% else:%>
+	    <i class='avatar_image'></i>
+	  <% end %>
 	</div>
 
 	<div id="comment_commit_div">
