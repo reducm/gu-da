@@ -34,18 +34,24 @@ class ArticlesController < ApplicationController
       redirect_to root_path, alert:'没有这个用户'
       return
     end
-    @articles = Article.get_index(@current_user.id, params[:page])
-    @updated = @articles.first.updated_at
-    if session[:signup_new] || @articles.size == 0 #新注册进来产生一些提示操作的变量
-      session[:signup_new] = nil
-      @signup_new = true
-    end
-    set_catagories(@current_user.id)
-    drop_breadcrumbs {@current_user}
-    check_owner(@current_user)
     respond_to do |format|
-      format.html
-      format.atom {render layout:false}
+      format.html do 
+        @articles = Article.get_index(@current_user.id, params[:page])
+        if session[:signup_new] || @articles.size == 0 #新注册进来产生一些提示操作的变量
+          session[:signup_new] = nil
+          @signup_new = true
+        end
+        set_catagories(@current_user.id)
+        drop_breadcrumbs {@current_user}
+        check_owner(@current_user)
+      end
+
+      format.atom do
+        @articles = Article.where("user_id=?", @current_user.id).order("created_at desc")
+        @updated = @articles.first.updated_at
+        @title = @current_user.blog_name
+        render layout: false
+      end
     end
   end
 
