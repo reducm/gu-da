@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'rspec/mocks'
 
 describe ArticlesController do
-  #intergrate_views
+  integrate_views
   before(:each) do
     @user = FactoryGirl.create(:jas)
     @articles = 15.times{|i| FactoryGirl.create(:article, user: @user)}
