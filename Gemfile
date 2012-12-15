@@ -60,9 +60,6 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'mime-types'
 
-#ssl
-#gem 'rack-ssl-enforcer'
-
 gem 'jquery-rails'
 group :assets do
   gem 'sass-rails',   '>= 3.2'
@@ -85,10 +82,10 @@ gem 'rspec-rails', group:[:test, :development]
 group :test do
   gem "factory_girl_rails", "~> 4.0"
   gem "shoulda-matchers"
-  #gem 'spork', '~>1.0rc'
   gem 'spork-rails'
   gem 'guard-spork'
   gem 'guard-rspec'
+  gem 'capybara'
   #gem 'libnotify'
   #gem 'rb-inotify'
   gem 'rb-fsevent'

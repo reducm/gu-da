@@ -2,11 +2,7 @@
 
 FactoryGirl.define do
   factory :picture do
-    file "MyString"
-    file_name "MyString"
-    file_type "MyString"
-    file_size 1
-    pictureable_type "MyString"
-    pictureable_id "MyString"
+    file File.open("#{Rails.root}/app/assets/images/rails.png")
+    association :pictureable, factory: :jas
   end
 end
