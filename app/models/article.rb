@@ -30,9 +30,9 @@ class Article < ActiveRecord::Base
 
   def self.catagory_index(user_id=nil, catagory_id=0, page=1)
     if user_id
-      articles = Article.select("id, user_id, catagory_id, preview, created_at, title").where("user_id=? and catagory_id = ?", user_id, catagory_id).order("created_at desc").page(page)
+      articles = Article.select("id, visit, updated_at, user_id, catagory_id, preview, created_at, title").where("user_id=? and catagory_id = ?", user_id, catagory_id).order("created_at desc").page(page)
     else
-      articles = Article.select("id, user_id, catagory_id, preview, created_at, title").where("catagory_id=?", catagory_id).order("created_at desc").page(page)
+      articles = Article.select("id, visit,updated_at, user_id, catagory_id, preview, created_at, title").where("catagory_id=?", catagory_id).order("created_at desc").page(page)
     end
     articles
   end
