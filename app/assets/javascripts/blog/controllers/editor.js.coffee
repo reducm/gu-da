@@ -34,7 +34,7 @@ class Blog.EditorController extends Spine.Controller
     $('textarea').editor()
     @content.dontScrollParent()
     @content.on("scroll", @fix_img_scroll)
-    @preview_content.on("contentchange", ()->console.log "in trigger---", $(this)[0].scrollHeight)
+    #@preview_content.on("contentchange", ()->console.log "in trigger---", $(this)[0].scrollHeight)
     $.pnotify(type:'error', text:'注意!Demo用户不能使用图片上传和手动保存草稿功能',hide:false) if guda.user_id == 0
 #private
   init_article_preview_height: ()=>
@@ -75,10 +75,12 @@ class Blog.EditorController extends Spine.Controller
     mstr = @converter.makeHtml(marked_str)
     switch @preview_style
       when "html"
+        target = "#marked_jojo"
         mstr = mstr.replace("[[jojo]]", "<span id='marked_jojo'></span>")
         @preview_content.html(mstr)
-        target = "#marked_jojo"
-        $.smoothScroll($(target).scrollTop())
+        $("#preview_content img").imagesLoaded(()=>
+          $.smoothScroll({ scrollElement:@preview, scrollTarget:target, speed:0 })
+        )
       when "text"
         mstr = mstr.replace("[[jojo]]", "$$")
         raw = style_html(mstr)

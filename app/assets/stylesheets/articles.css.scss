@@ -340,8 +340,8 @@ $content_height:95%;
   display:none;
   width:50%;
   background:$article_background_color;
-  overflow-y: auto;
   float: left;
+  overflow-y: auto;
   @include markdown_img(50%);
 }
 
@@ -367,7 +367,6 @@ $content_height:95%;
   @include word_break();
   //margin-top: 17px;
   background: $article_background_color;
-  overflow-y: auto;
 }
 
 .markdown_content {

@@ -26,6 +26,9 @@
       <div id="preview">
         <%= yield :preview %> 
       </div>
+      <% if new_or_edit? %> 
+        <div class="clear"></div>
+      <% end %>
       <%= render partial: 'articles/sidebar', locals: {user: @current_user } %>
 
       <%= yield :comment %>
