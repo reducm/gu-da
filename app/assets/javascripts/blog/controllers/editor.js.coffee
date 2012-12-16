@@ -87,15 +87,12 @@ class Blog.EditorController extends Spine.Controller
         @preview_content.append(ta)
         ta.height(@content.height())
         ta.val(raw)
-        @fix_img_scroll()
       else
-    #@fix_img_scroll()
-    #@fix_img_scroll()
   
   get_marked:(str,pos)->
     left = str.slice(0,pos)
     right = str.slice(pos,str.length)
-    marked = "[[jojo]]"
+    marked = "[[jojo]]" #在内容里加上[[jojo]], 然后后面把他编译成<span id='marked_jojo'></span>
     mstr = left+marked+right
     #若然是连接或图片的话不用加mark
     if (/\[.*?\]\(.*?\[\[jojo\]\].*?\)/).test(mstr) or (/\[.*?\[\[jojo\]\].*?\]\(.*?/).test(mstr) #or (/\[.*?\[\[jojo\]\].*?\]/)
