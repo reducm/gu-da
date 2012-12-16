@@ -7,15 +7,11 @@ $(document).ready(->
   #oah = $("#article").height()
   #osh = $("#article").height()
     
-
-  $(".each_buttons a").on("mouseover mouseout",->
-    $(this).toggleClass("btn")
-    $(this).toggleClass("btn-primary")
-    $(this).toggleClass("btn-small")
-  )
   $(".article_each").on("mouseover mouseout",->
     if guda.action == 'index'
       $(this).toggleClass("hover_background")
+      a = $(this).find("a[data-toggle='delete']")
+      a.toggle()
   )
 
   $(".comment_each").live("mouseover mouseout",->
