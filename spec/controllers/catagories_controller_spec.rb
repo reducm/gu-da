@@ -2,8 +2,10 @@ require 'spec_helper'
 require 'rspec/mocks'
 
 describe CatagoriesController do
+  render_views
   before(:each) do
     @jas = FactoryGirl.create(:jas)
+    @user = FactoryGirl.create(:user)
     @catagory = FactoryGirl.create(:catagory, user:@jas)
     10.times {FactoryGirl.create(:article,user:@jas, catagory:@catagory)}
     session[:user_id] = @jas.id
@@ -16,6 +18,13 @@ describe CatagoriesController do
       assigns(:current_user).id.should == @jas.id
       assigns(:catagories).size.should == 2
       should render_template("articles/index")
+    end
+
+    it "show with no article" do
+      get 'show', id:0, user_id:@user.id
+      should respond_with(:success)
+      assigns(:articles).size.should == 0
+      
     end
 
     it "create success" do

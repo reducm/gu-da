@@ -106,6 +106,8 @@ $hc: black;
   position: relative;
   float: left;
   background: $article_background_color;
+  overflow: auto;
+  zoom: 1;
 }
 
 .article_link_button {

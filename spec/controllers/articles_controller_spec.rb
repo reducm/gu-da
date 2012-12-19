@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'rspec/mocks'
 
 describe ArticlesController do
-  integrate_views
+  render_views
   before(:each) do
     @user = FactoryGirl.create(:jas)
     @articles = 15.times{|i| FactoryGirl.create(:article, user: @user)}
@@ -18,6 +18,9 @@ describe ArticlesController do
       should assign_to(:catagories)
       should assign_to(:current_user)
       assigns(:articles).size.should == 10
+
+      get :index, {user_id:@user.id}, format: :atom
+      should respond_with(:success)
     end
    
     it "new" do
@@ -91,13 +94,24 @@ describe ArticlesController do
       article.id.should_not be_nil
     end
 
-    it "demonew" do
+    it "demonew with none login user" do
       get :demonew
       should respond_with :success
       should render_template("new")
       should assign_to :article
       should assign_to :catagories
       should assign_to :current_user
+    end
+
+    it "demo with login user" do
+      session[:user_id] = @user.id
+      get :demonew
+      should respond_with :success
+      should render_template("new")
+      should assign_to :article
+      should assign_to :catagories
+      should assign_to :current_user
+      assigns(:current_user).id.should == @user.id
     end
   end
 end
