@@ -9,7 +9,7 @@
     <%= yield :other_js %>
     <%= csrf_meta_tags %>
     <%= ( auto_discovery_link_tag :atom, user_articles_url(@current_user)+".atom" ) if @current_user && !@current_user.new_record?%>
-    <%= favicon_link_tag '/favicon.png', :type => 'image/png' %>  
+    <%= render partial: "layouts/meta_favicon" %>
   </head>
   <body>
 

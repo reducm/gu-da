@@ -8,7 +8,7 @@
     <%= javascript_include_tag "user" if params[:controller] == 'users'%>
     <%= yield :other_js %>
     <%= csrf_meta_tags %>
-    <%= favicon_link_tag '/favicon.png', :type => 'image/png' %>  
+    <%= render partial: "layouts/meta_favicon" %>
   </head>
   <body>
 
