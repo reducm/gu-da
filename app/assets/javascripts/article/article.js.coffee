@@ -56,10 +56,10 @@ $(document).ready(->
     if article.height() < sidebar.height()
       if sidebar.is(":visible")
         article.height(sidebar.height())
-    #if guda.action == 'index'
-      #button.height(article.outerHeight())
-    #else
-      #button.height($("#articles").height())
+    if guda.action == 'index'
+      button.height(article.outerHeight())
+    else
+      button.height($("#articles").height())
 
   set_height()
   
