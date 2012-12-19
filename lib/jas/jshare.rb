@@ -28,7 +28,7 @@ module JShare
 
   def weibo(options)
     client = Weibo2::Client.from_hash({access_token:options['atoken'],expires_in:options['expires'].to_i})
-    content = "发表了博客：#{options['title']}, \"#{options['content'].first(50)}...\" #{options['url']}"
+    content = "发表了博客：#{options['title']} | #{options['url']}"
     #client.refresh! 这个要申请了refresh_key才能用
     r = client.statuses.update(content)
     r.parsed
@@ -50,7 +50,7 @@ module JShare
       c.oauth_token = options['atoken']
       c.oauth_token_secret = options['asecret']
     end
-    content = "发表了博客：#{options['title']}, \"#{options['content'].first(50)}...\" #{options['url']}"
+    content = "发表了博客：#{options['title']} | #{options['url']}"
     Twitter.update(content)
   end
 end
