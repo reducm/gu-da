@@ -126,7 +126,7 @@ class ArticlesController < ApplicationController
 
   def demonew
     @article = Article.new
-    @current_user = User.new
+    @current_user = @user_id ? User.find(@user_id) : User.new
     @catagories = Catagory.get_all(@current_user.id)
     set_page_title('Demo')
     render :new
