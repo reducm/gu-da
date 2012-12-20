@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
   # TODO: 模板功能
   
   def index
-    params[:user_id] = @user_id if params[:user_id].blank?
+    params[:user_id] = session[:user_id] if params[:user_id].blank?
     @current_user = User.get_user(params)
     unless @current_user
       redirect_to root_path, alert:'没有这个用户'

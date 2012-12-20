@@ -1,6 +1,6 @@
 # encoding: UTF-8
 module JLogin
-  private
+  protected 
   #把session的值设成对应的@变量，方便v层使用
   def check_session
     @logined = session[:logined].nil? ? false : true

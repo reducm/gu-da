@@ -18,8 +18,15 @@ describe ArticlesController do
       should assign_to(:catagories)
       should assign_to(:current_user)
       assigns(:articles).size.should == 10
-      assigns(:user_id).should == @user.id
+    end
 
+    it "should redirect when no current user" do
+      get :index, {user_id:1000}
+      response.should redirect_to root_path
+    end
+
+    it "atom" do
+      session[:user_id] = @user.id
       get :index, {user_id:@user.id}, format: :atom
       should respond_with(:success)
     end
