@@ -18,6 +18,7 @@ describe ArticlesController do
       should assign_to(:catagories)
       should assign_to(:current_user)
       assigns(:articles).size.should == 10
+      assigns(:user_id).should == @user.id
 
       get :index, {user_id:@user.id}, format: :atom
       should respond_with(:success)
