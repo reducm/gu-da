@@ -21,14 +21,14 @@ class CatagoriesController < ApplicationController
     if @catagory.errors.any?
       render json: {errors:"#{@catagory.jerrors}"}
     else
-      render json: Catagory.get_all(@user_id).to_json
+      render json: Catagory.get_all(session[:user_id]).to_json
     end
   end
   
   def destroy
     if Catagory.destroy(params[:id])
       Article.where("catagory_id=?", params[:id]).update_all(catagory_id:0)
-      render json: Catagory.get_all(@user_id).to_json
+      render json: Catagory.get_all(session[:user_id]).to_json
     else
       render json: {errors:"删除失败"}
     end

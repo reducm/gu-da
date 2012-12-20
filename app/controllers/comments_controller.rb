@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    params[:user_id] = @user_id || 0
+    params[:user_id] = session[:user_id] || 0
     c = Comment.create(params[:comment])
     if c.errors.any?
       render json: {errors:c.jerrors} 

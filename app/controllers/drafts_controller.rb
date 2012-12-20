@@ -5,7 +5,7 @@ class DraftsController < ApplicationController
   before_filter :check_session
 
   def index
-    user_id = params[:user_id] || @user_id
+    user_id = params[:user_id] || session[:user_id]
     @ds = Draft.where("user_id=?", user_id).all
     respond_with @ds
   end
@@ -17,11 +17,10 @@ class DraftsController < ApplicationController
   end
 
   def create
-    params[:draft][:user_id] = @user_id
+    params[:draft][:user_id] = session[:user_id]
     @draft = Draft.new(params[:draft])
     @draft.save
     respond_with @draft
-
   end
 
   def update

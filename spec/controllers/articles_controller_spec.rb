@@ -5,7 +5,8 @@ describe ArticlesController do
   render_views
   before(:each) do
     @user = FactoryGirl.create(:jas)
-    @articles = 15.times{|i| FactoryGirl.create(:article, user: @user)}
+    15.times{|i| FactoryGirl.create(:article, user: @user)}
+    @articles = @user.articles
     session[:user_id] = @user.id
   end
 
@@ -30,6 +31,17 @@ describe ArticlesController do
       get :index, {user_id:@user.id}, format: :atom
       should respond_with(:success)
     end
+
+    it "show" do
+      old_visit = @articles.first.visit
+      get :show, {id: @articles.first.id}
+      should respond_with :success
+      should assign_to :article
+      should assign_to :current_user
+      should assign_to :user
+      should assign_to :owner
+      @articles.first.visit.should == old_visit + 1
+    end
    
     it "new" do
       get :new
@@ -37,6 +49,13 @@ describe ArticlesController do
       should assign_to :current_user
       should assign_to :catagories
       should assign_to :breadcrumbs
+      should render_template :new
+    end
+
+    it "create" do
+      post :create, {article:{user_id: @user.id, content: "blah", title:"shit" }}
+      should respond_with :success
+      should set_the_flash()
     end
 
     it "edit" do
@@ -48,12 +67,10 @@ describe ArticlesController do
       should assign_to :current_user
     end
 
-    it "create" do
-      Article.any_instance.stub(:save).and_return(true)
-      Article.any_instance.stub(:id).and_return(1)
+    it "create fail" do
       post :create, article:{title:'hello', content:'helloworld!'}
-      should respond_with :redirect
-      cookies[:create_article] == assigns(:article).id
+      should render_template :new
+      flash[:error].should_not be_nil
     end
 
     it "create fail" do

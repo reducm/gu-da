@@ -1,13 +1,12 @@
 #encoding: utf-8
 class UsersController < ApplicationController
   before_filter :check_login, only: [:edit, :update, :destroy] 
+  before_filter :check_admin, only: [:destroy]
   before_filter :check_session
 
   def index
     @users = User.all
-
     respond_to do |format|
-      format.html # index.html.erb
       format.json { render json: @users }
     end
   end
@@ -66,7 +65,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    (@user = User.new(params[:user])) && (flash[:notice] = "非法修改数据!") && (render :edit, layout:"acount_setting") if @user_id != params[:id].to_i
+    (@user = User.new(params[:user])) && (flash[:notice] = "非法修改数据!") && (render :edit, layout:"acount_setting") if session[:user_id] != params[:id].to_i
     params.delete :email
     @user = User.updates params[:user],params[:id]
     unless @user.errors.any?
@@ -76,22 +75,6 @@ class UsersController < ApplicationController
       flash[:error] = @user.jerrors
       render :edit, layout: "acount_setting"
     end
-    #if params[:user][:password_new] != params[:user][:password_confirm]
-      #flash[:notice] = '两次输入密码不相同'
-      #render :edit, layout: "acount_setting"
-      #return
-    #end
-
-    #@user = (params[:user][:password].blank?)? User.updates_nopass(params[:user], params[:id]) : User.updates(params[:user], params[:id])
-    #if @user.errors.any?
-      #flash[:error] = @user.jerrors
-      #render :edit, layout: "acount_setting"
-      #return
-    #else
-      #flash[:notice] = '用户更新成功'
-      #set_session(@user)
-      #redirect_to edit_user_url(@user_id) 
-    #end
   end
 
   def destroy

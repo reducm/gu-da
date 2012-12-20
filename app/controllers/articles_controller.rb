@@ -56,9 +56,9 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new(user_id:session[:user_id])
-    @current_user = User.by_id(@user_id)
-    set_catagories(@user_id)
+    @article = Article.new(user_id: session[:user_id])
+    @current_user = User.by_id(session[:user_id])
+    set_catagories(session[:user_id])
     set_page_title '新建文章',@current_user
   end
 
@@ -78,8 +78,8 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find_by_id(params[:id])
-    @catagories = Catagory.get_all(@user_id)
-    @current_user = User.by_id(@user_id)
+    @catagories = Catagory.get_all(session[:user_id])
+    @current_user = User.by_id(session[:user_id])
     set_page_title "修改文章|#{@article.title}", @current_user
   end
 
@@ -98,8 +98,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @article.visit_key.increment
     @current_user = User.by_id(@article.user_id)
-    @user = User.find(@user_id) if @user_id
-    @comment = Comment.new
+    @user = User.find(session[:user_id]) if session[:user_id]
     @comments = Comment.get_by_article_id(@article.id)
     set_catagories(@article.user_id)
     set_page_title( @article.title, @current_user)
@@ -132,9 +131,9 @@ class ArticlesController < ApplicationController
     render :new
   end
 
-  def demoshow
-    render :show
-  end
+  #def demoshow
+    #render :show
+  #end
 
   protected
   def set_catagories(user_id)
