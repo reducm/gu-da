@@ -1,11 +1,18 @@
 require 'spec_helper'
 
-describe CommentsController do
+describe PagesController do
+  render_views
   before(:each) do
-    @jas = FactoryGirl.create :jas
-    @article = FactoryGirl.create :article, user:@jas
-    10.times{ FactoryGirl.create :picture, pictureable:@jas }
-    @pic = @jas.pictures.first
+    @jas = FactoryGirl.create :jas   
+    10.times{|i| FactoryGirl.create :page}
+    @page = Page.first
   end
 
+  describe "action" do
+    it "index" do
+      get :index
+      response.should redirect_to @page
+    end
+    
+  end
 end
