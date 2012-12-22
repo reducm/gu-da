@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :page do
     sequence(:title) {|n| "factory title:#{n}" }
     sequence(:content) {|n|"factory content:#{n}"}
-    sequence(:subtitle) {|n|"subtitle :#{n}"}
+    sequence(:subtitle) {|n|"what-is-#{n}"}
   end
 end
