@@ -10,13 +10,14 @@ $baseLineHeight: 25px;
 //$successText:white;
 $bc: white;
 //$bb: #202e4b;
-$bb:white;
+$nc: #dfdfdf;
+$bb:rgba(222,222,224,1);
 $nav_background: rgba(64,71,76,1);
-$navbarHeight: 63px;
+$navbarHeight: 40px;
 $navbarBackground: $nav_background;
 $navbarBackgroundHighlight: $nav_background;
-$navbarText: white;
-$navbarLinkColor: white;
+$navbarText: $nc;
+$navbarLinkColor: $nc;
 $navbarLinkColorHover: white;
 $navbarLinkColorActive: white;
 $navbarLinkBackground: $nav_background;
@@ -60,6 +61,7 @@ a.rss {
 }
 
 #container {
+  margin-top: 65px;
 }
 
 .container_trans {
@@ -417,21 +419,34 @@ img {
 ///end_flash /////////
 
 ///navbar/////////
-
+$nav_padding: 7.5px 20px;
+$bread_padding: 7.5px 4px;
 #navbar{
   .brand {
+    color: white;
   }
   a {
     text-shadow: none;
-    i {
-      display: inline-block;
+    .gu {
+      font-size: 30px;
     }
   }
   div {
     //@include linear-gradient(#464444, black);
+    i {display:inline-block;}
+    .nav {
+      padding: $nav_padding;
+    }
     .breadscrum{
       li {
+        i {
+          color: #858588;
+          padding: $bread_padding;
+          display: inline-block;
+        }
         a{
+          padding: $bread_padding;
+          display: inline-block; 
           box-shadow: none;
         }
       }
