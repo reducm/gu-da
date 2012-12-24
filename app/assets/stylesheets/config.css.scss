@@ -405,13 +405,24 @@ img {
 ///end_flash /////////
 
 ///navbar/////////
+$nav_background: rgba(64,71,76,1);
+
 #navbar{
+  background: $nav_background;
+  .brand {
+
+  }
+  a {
+    text-shadow: none;
+    color: white; 
+  }
   div {
-    @include linear-gradient(#464444, black);
+    //@include linear-gradient(#464444, black);
     .breadscrum{
       li {
         a{
-          @include linear-gradient(#464444, black);
+          background: $nav_background;
+          box-shadow: none;
         }
       }
     }
