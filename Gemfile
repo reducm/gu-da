@@ -100,3 +100,7 @@ group :development, :test do
   gem 'pry-nav'
   gem 'thin'
 end
+
+group :development do
+  gem 'guard-livereload'
+end

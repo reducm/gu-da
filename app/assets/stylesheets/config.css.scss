@@ -11,6 +11,12 @@ $baseLineHeight: 25px;
 $bc: white;
 //$bb: #202e4b;
 $bb:white;
+
+$navbarHeight: 63px;
+$navbarBackground: rgba(64,71,76,1);
+$navbarBackgroundHighlight: rgba(64,71,76,1);
+$navbarText: white;
+
 @import "twitter/bootstrap";
 
 @mixin cw(){
@@ -408,20 +414,16 @@ img {
 $nav_background: rgba(64,71,76,1);
 
 #navbar{
-  background: $nav_background;
   .brand {
-
   }
   a {
     text-shadow: none;
-    color: white; 
   }
   div {
     //@include linear-gradient(#464444, black);
     .breadscrum{
       li {
         a{
-          background: $nav_background;
           box-shadow: none;
         }
       }
