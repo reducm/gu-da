@@ -4,15 +4,17 @@
         
         app/assets/images/sprites/logo/normal.png (80x80)
         app/assets/images/sprites/logo/small.png (50x50)
+        app/assets/images/sprites/logo/tiny.png (30x30)
 
         Output files:
           app/assets/images/sprites/logo.png
           app/assets/stylesheets/sprites/logo.scss
 
         Output size:
-          130x80
+          160x80
 
 
 */
 .logo_normal { width: 80px; height: 80px; background: url(image-path('sprites/logo.png')) 0px 0px no-repeat; }
 .logo_small { width: 50px; height: 50px; background: url(image-path('sprites/logo.png')) -80px -15px no-repeat; }
+.logo_tiny { width: 30px; height: 30px; background: url(image-path('sprites/logo.png')) -130px -25px no-repeat; }

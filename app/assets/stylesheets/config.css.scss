@@ -11,11 +11,17 @@ $baseLineHeight: 25px;
 $bc: white;
 //$bb: #202e4b;
 $bb:white;
-
+$nav_background: rgba(64,71,76,1);
 $navbarHeight: 63px;
-$navbarBackground: rgba(64,71,76,1);
-$navbarBackgroundHighlight: rgba(64,71,76,1);
+$navbarBackground: $nav_background;
+$navbarBackgroundHighlight: $nav_background;
 $navbarText: white;
+$navbarLinkColor: white;
+$navbarLinkColorHover: white;
+$navbarLinkColorActive: white;
+$navbarLinkBackground: $nav_background;
+$navbarLinkBackgroundHover: $nav_background;
+$navbarLinkBackgroundActive: $nav_background;
 
 @import "twitter/bootstrap";
 
@@ -411,13 +417,15 @@ img {
 ///end_flash /////////
 
 ///navbar/////////
-$nav_background: rgba(64,71,76,1);
 
 #navbar{
   .brand {
   }
   a {
     text-shadow: none;
+    i {
+      display: inline-block;
+    }
   }
   div {
     //@include linear-gradient(#464444, black);

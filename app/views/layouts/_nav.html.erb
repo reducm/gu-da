@@ -1,7 +1,10 @@
 <div class="navbar navbar-fixed-top" id="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to '咕哒', logo_link , class: 'brand' %> 
+      <a href=<%= logo_link %> class="brand">
+        <i class="logo_small"></i>
+        咕哒
+      </a>
 
       <%= render partial: 'layouts/breadcrumbs'  %>
 
