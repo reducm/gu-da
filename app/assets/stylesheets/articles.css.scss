@@ -8,6 +8,10 @@ $hc: black;
   @include border-radius(4px);
 }
 
+@mixin article_box_shadow() {
+  @include box-shadow(0 0 0 2px rgba(94,94,102,0.1));
+}
+
 @mixin markdown_h_color($c:#333) {
   h1,h2,h3,h4,h5,h6{
     color: $c;
@@ -21,12 +25,12 @@ $hc: black;
 }
 
 @mixin head {
-  text-align: center;
   a,i,img {
     display:block;
-    margin: 0 auto;
   }
   span {
+    margin-top:5px;
+    display: inline-block; 
   }
 }
 
@@ -102,10 +106,10 @@ $hc: black;
 }
 ////////article/////////////
 #article {
-  @include border-radius(4px);
   position: relative;
   float: left;
   background: $article_background_color;
+  @include article_box_shadow();
   overflow: auto;
   zoom: 1;
 }
@@ -175,7 +179,7 @@ $hc: black;
   display:inline-block;
   float: left;
   //margin-left: 20px;
-  margin-top: 11px;
+  margin-top: 40px;
   @include markdown_img();
 }
 
@@ -321,7 +325,7 @@ $content_height:95%;
   @include markdown_style();
   margin-bottom: 15px;
   @include word_break();
-  padding: 5px 10px 0 17px;
+  padding: 5px 29px 0 45px;
   //@include box-shadow(3px 3px 7px 1px hsla(0, 0%, 0%, 0.65));
   .each_buttons{
     
@@ -403,10 +407,23 @@ $content_height:95%;
 /////////////end_article///////////////
 
 /////////catagory////////////////////
+.catagory_container {
+  background-color: #f3f3f3;
+  margin-top: 3px;
+}
 #catagory {
-  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #888888;
+  a {
+    font-size: 16px;
+    color: #888888;
+  }
 }
 
+#catagories {
+  margin-top: 4px;
+}
 #catagories_select {
   height:35px;
   font-size:16px; 
@@ -432,8 +449,6 @@ $content_height:95%;
 #sidebar {
   width: 22%;
   float: right;
-  //background: #efefef;
-  @include border-radius(4px);
   span {
     a {
       text-decoration: none;
@@ -444,10 +459,12 @@ $content_height:95%;
   }
 }
 
-#sidebar_container {
-  width: 92%;
-  margin: 6px auto 0 auto;
+.sidebar_container {
+  @include word_break();
+  @include article_box_shadow();
+  padding:0 28px 0;
 }
+
 
 .avatar_image{
   display: inline-block;
@@ -462,26 +479,31 @@ $content_height:95%;
 
 ///////end_sidebar//////////
 ///////user_information/////////
+.ui_container {
+  background-color: white;
+}
+
 #user_information {
-  //@include white_radius();
-    width: 230px;
 }
 
 #upload_head {
   display: none;
 }
-
+$ui_color: #444444;
 #user_head {
   @include head();
-    margin:0 auto;
+  margin:0 auto;
   width: 100%;
-  border: 1px solid #dedede; 
+  //border: 1px solid #dedede; 
+  font-size: 20px;
+  color: $ui_color;
   padding: 16px 0 0 0;
 }
 
 #user_description_div {
   @include word_break();
-    font-size:16px;
+  font-size:16px;
+  color: $ui_color;
   margin-bottom: 20px;
 }
 ///////end_user_information//////

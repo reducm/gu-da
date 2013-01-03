@@ -61,7 +61,7 @@ a.rss {
 }
 
 #container {
-  margin-top: 65px;
+  margin-top: 50px;
 }
 
 .container_trans {
@@ -422,6 +422,8 @@ img {
 $nav_padding: 7.5px 20px;
 $bread_padding: 7.5px 0px;
 $updown_padding:7.5px;
+$up_padding:8.5px;
+$down_padding:6.5px;
 #navbar{
   .brand {
     color: white;
@@ -445,20 +447,23 @@ $updown_padding:7.5px;
     i {display:inline-block;}
     .navtool {
       li {
-        padding-top: $updown_padding - 1 ;
-        padding-bottom: $updown_padding - 1 ;
+        padding-top: $up_padding + 3;
+        padding-bottom: $down_padding - 5;
       }
     }
-
+    .dropdown > a {
+      padding-left: 7px;
+      padding-right: 0px;
+    }
     .breadscrum{
       li {
-        padding: $updown_padding 0px;
+        padding: $up_padding 0px $down_padding;
         i {
           color: #858588;
           display: inline-block;
         }
         a{
-          padding: $updown_padding 10px $updown_padding 0px;
+          padding: $up_padding 10px $down_padding 0px;
           display: inline-block; 
           box-shadow: none;
         }

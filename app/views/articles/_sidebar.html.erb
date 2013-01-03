@@ -1,9 +1,12 @@
 <% unless new_or_edit? %>
   <div id="sidebar">
-    <div id="sidebar_container">
+    <div class="sidebar_container ui_container">
       <%= user_information_sidebar(user) %>
-
+    </div>
+    <div class="sidebar_container catagory_container">
+      <div class="empty_height"></div>
       <%= catagory_sidebar(user) %>
+      <div class="empty_height"></div>
     </div>
   </div>
 <%end%>
