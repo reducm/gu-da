@@ -420,10 +420,19 @@ img {
 
 ///navbar/////////
 $nav_padding: 7.5px 20px;
-$bread_padding: 7.5px 4px;
+$bread_padding: 7.5px 0px;
+$updown_padding:7.5px;
 #navbar{
   .brand {
     color: white;
+  }
+  .navbar-inner {
+    border-bottom:none;
+    box-shadow: none;
+  }
+  .nav_active {
+    background-image: url(image-path('slice/triangle.png'));
+    background-position: center -43px;
   }
   a {
     text-shadow: none;
@@ -434,18 +443,22 @@ $bread_padding: 7.5px 4px;
   div {
     //@include linear-gradient(#464444, black);
     i {display:inline-block;}
-    .nav {
-      padding: $nav_padding;
+    .navtool {
+      li {
+        padding-top: $updown_padding - 1 ;
+        padding-bottom: $updown_padding - 1 ;
+      }
     }
+
     .breadscrum{
       li {
+        padding: $updown_padding 0px;
         i {
           color: #858588;
-          padding: $bread_padding;
           display: inline-block;
         }
         a{
-          padding: $bread_padding;
+          padding: $updown_padding 10px $updown_padding 0px;
           display: inline-block; 
           box-shadow: none;
         }

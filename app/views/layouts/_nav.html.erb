@@ -8,7 +8,7 @@
 
       <%= render partial: 'layouts/breadcrumbs'  %>
 
-      <ul class="nav pull-right">
+      <ul class="nav pull-right navtool">
         <% unless @user_name.blank? %>
           <li id="notification_li"><%= get_notifications_count(@user_id) %></li>
           <% if logined? %>
