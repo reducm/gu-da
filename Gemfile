@@ -1,4 +1,4 @@
-source 'http://ruby.taobao.org'
+source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
 gem 'railties'
@@ -92,8 +92,8 @@ group :test do
   gem 'database_cleaner'
 end
 
-#gem 'growl_notify', group:[:test,:development]
-gem 'ruby_gntp', group:[:test,:development]
+gem 'growl_notify', group:[:test,:development]
+#gem 'ruby_gntp', group:[:test,:development]
 group :development, :test do
 #  gem 'ruby-debug19', :require => 'ruby-debug' 
   gem 'pry-rails'
