@@ -1,6 +1,6 @@
 source 'http://ruby.taobao.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 gem 'railties'
 
 gem 'capistrano', require: false
