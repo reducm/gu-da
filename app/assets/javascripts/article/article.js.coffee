@@ -9,7 +9,7 @@ $(document).ready(->
     
   $(".article_each").on("mouseover mouseout",->
     if guda.action == 'index'
-      $(this).toggleClass("hover_background")
+      #$(this).toggleClass("hover_background")
       a = $(this).find("a[data-toggle='delete']")
       a.toggle()
   )
@@ -61,7 +61,6 @@ $(document).ready(->
     else
       button.height($("#articles").height())
 
-  set_height()
   
   if window.action != 'index' && button[0]
     button.click()

@@ -181,6 +181,9 @@ $hc: black;
   //margin-left: 20px;
   margin-top: 40px;
   @include markdown_img();
+  img{
+    margin: 0;
+  }
 }
 
 #article_edit {
