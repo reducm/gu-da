@@ -1,6 +1,6 @@
-source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '4.0.0'
 gem 'railties'
 
 gem 'capistrano', require: false
@@ -17,10 +17,10 @@ gem 'quiet_assets', :git => 'git://github.com/AgilionApps/quiet_assets.git'
 #markdown
 gem 'redcarpet', '~> 2.2.2'
 gem 'pygments.rb'
-gem 'rails_autolink'
+gem 'rails_autolink', git: "https://github.com/tenderlove/rails_autolink.git"
 
 #表单
-gem 'simple_form'
+gem 'simple_form', git: "https://github.com/plataformatec/simple_form.git"
 
 #分页
 gem 'kaminari'
@@ -48,7 +48,7 @@ gem 'sprite-factory'
 gem 'chunky_png'
 
 #前端剪切图片
-gem 'jcrop-rails', git:'git://github.com/nragaz/jcrop-rails.git'
+#gem 'jcrop-rails', git:'git://github.com/nragaz/jcrop-rails.git'
 
 #小工具
 #运行annotate可以把model的属性都打出来
@@ -62,7 +62,7 @@ gem 'mime-types'
 
 gem 'jquery-rails'
 group :assets do
-  gem 'sass-rails',   '>= 3.2'
+  gem 'sass-rails', git: "https://github.com/rails/sass-rails.git"
   gem 'turbo-sprockets-rails3'
   gem 'eco'
   gem 'spine-rails'
@@ -82,7 +82,7 @@ gem 'rspec-rails', group:[:test, :development]
 group :test do
   gem "factory_girl_rails", "~> 4.0"
   gem "shoulda-matchers"
-  gem 'spork-rails'
+  gem 'spork-rails', git: "https://github.com/sporkrb/spork-rails.git"
   gem 'guard-spork'
   gem 'guard-rspec'
   gem 'capybara'
