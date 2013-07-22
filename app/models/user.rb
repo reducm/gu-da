@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :authentications
 
   scope :check
-  attr_accessible :nickname, :email, :password, :password_confirm, :description, :picture, :setting
+  #attr_accessible :nickname, :email, :password, :password_confirm, :description, :picture, :setting
 
   validates :nickname, presence: { message: '昵称不能为空' }, uniqueness: {message: '昵称已存在' }, length:{minimum:3, maximum:15, message: '用户名长度在3-15之间' }, exclusion: {in: %w(users articles authentications blog catagories comments tags errors index notifications sessions tags auth callback admin admins pages assets vendor public DemoUser picture pictures uploads drafts), message: "该昵称不合法,请使用其他昵称" }
 
@@ -67,6 +67,7 @@ class User < ActiveRecord::Base
       return @user
     end
     params[:password] = Digest::SHA2.new.hexdigest(params[:password_new]+@user.salt)
+    params.delete(:password_new)
     User.transaction do
       @user.update_setting(params)
       @user.update_attributes(params) if params.size > 0

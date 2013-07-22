@@ -1,10 +1,11 @@
 GuDa::Application.routes.draw do
   root :to => 'blog#index'
-  match "blog" => 'blog#index'
-  match "/auth/:provider/callback", :to => "authentications#create"
-  match "/auth/failure", :to => "authentications#index"
-  match "/articles/demonew", :to => "articles#demonew"
-  match "/articles/demoshow", :to => "articles#demoshow"
+  get "blog" => 'blog#index'
+  get "blog/logout" => "blog#logout", as: :logout
+  get "/auth/:provider/callback", :to => "authentications#create"
+  get "/auth/failure", :to => "authentications#index"
+  get "/articles/demonew", :to => "articles#demonew"
+  get "/articles/demoshow", :to => "articles#demoshow"
 
   #scope 'blog' do
   resources :users do
@@ -14,6 +15,8 @@ GuDa::Application.routes.draw do
     resources :drafts
     collection do 
       post :login
+      post :new
+      get :new
     end
     resources :notifications, :only => [:index, :show, :destroy] 
     resources :settings
@@ -40,6 +43,6 @@ GuDa::Application.routes.draw do
   post "users/login" => 'users#login', :as => :login 
 
 #  end
-  match ':user_id', :to => 'articles#index', :as => :name
-  match ':controller(/:action(/:id(.:format)))'  
+  get ':user_id', :to => 'articles#index', :as => :name
+  #match ':controller(/:action(/:id(.:format)))'  
 end

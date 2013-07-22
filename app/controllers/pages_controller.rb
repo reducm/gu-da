@@ -23,7 +23,7 @@ class PagesController < ApplicationController
   end
 
   def create
-    @page = Page.create(params[:page])
+    @page = Page.create(page_params)
     if @page.errors.any?
       flash[:error] = @page.jerrors
       render :new
@@ -39,7 +39,7 @@ class PagesController < ApplicationController
 
   def update
     @page = Page.find_by_id(params[:id])
-    if @page.update_attributes(params[:page])
+    if @page.update_attributes(page_params)
       redirect_to @page, notice: '编辑成功'
     else
       flash[:error] = @page.jerrors
@@ -54,6 +54,9 @@ class PagesController < ApplicationController
   end
 
   private
+  def page_params
+    params.require(:page).permit(:content, :title, :user_id, :subtitle, :pictures)
+  end
   def resolve_layout
     case action_name
     when "new", "edit"

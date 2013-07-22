@@ -18,14 +18,19 @@ class DraftsController < ApplicationController
 
   def create
     params[:draft][:user_id] = session[:user_id]
-    @draft = Draft.new(params[:draft])
+    @draft = Draft.new(draft_params)
     @draft.save
     respond_with @draft
   end
 
   def update
     @draft = Draft.find(params[:id])
-    @draft.update_attributes(params[:draft])
+    @draft.update_attributes(draft_params)
     respond_with @draft
+  end
+
+  protected
+  def draft_params
+    params.require(:draft).permit(:content, :manual, :title, :user_id)
   end
 end

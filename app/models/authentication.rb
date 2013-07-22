@@ -1,6 +1,6 @@
 #encoding: utf-8
 class Authentication < ActiveRecord::Base
-  attr_accessible :asecret, :atoken, :image, :nickname, :uid, :user_id, :provider, :location,:expires,:temp #新浪微博有expires_at
+  #attr_accessible :asecret, :atoken, :image, :nickname, :uid, :user_id, :provider, :location,:expires,:temp #新浪微博有expires_at
   belongs_to :user
   validates_presence_of :atoken, :provider #豆瓣是没有uid的,新浪2.0没有了asecret
   validates_uniqueness_of :provider, scope: [:user_id], message: '同一用户下不能绑定多个社交帐号'

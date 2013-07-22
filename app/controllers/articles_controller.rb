@@ -63,7 +63,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(params[:article])
+    @article = Article.new(article_params)
     @article.user_id = @user_id
     if @article.save
       flash[:notice]='文章创建成功！'
@@ -85,7 +85,7 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find_by_id(params[:id])
-    if @article.update_attributes(params[:article])
+    if @article.update_attributes(article_params)
       cookies[:update_article] = @article.id
       redirect_to @article, notice: '编辑成功'
     else
@@ -105,7 +105,7 @@ class ArticlesController < ApplicationController
     check_owner @current_user
     respond_to do|format|
       format.html
-      format.json {render json:@article.to_json }
+      format.json {render json: @article.to_json }
     end
   end
 
@@ -144,6 +144,7 @@ class ArticlesController < ApplicationController
     params[:article][:catagory_id] = 0 if params[:article][:catagory_id].blank?
   end
 
-  def init_base_breadcumbs
+  def article_params
+    params.require(:article).permit(:user, :title, :content, :catagory_id, :picture, :user_id)
   end
 end

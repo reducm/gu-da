@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
 
   def create
     params[:user_id] = session[:user_id] || 0
-    c = Comment.create(params[:comment])
+    c = Comment.create(comment_params)
     if c.errors.any?
       render json: {errors:c.jerrors} 
       return
@@ -47,6 +47,8 @@ class CommentsController < ApplicationController
     end
   end
 
-  def update
+  protected
+  def comment_params
+    params.require(:comment).permit(:user_id, :content, :article_id, :visitor_name, :visitor_email)
   end
 end

@@ -1,16 +1,16 @@
 $(document).ready(()->
   $("#catagories a").each((i)->
-    $(this).live("ajax:success", (event, data)->
+    $(this).on("ajax:success", (event, data)->
       catagory_operate data
     )
   )
 
-  $("#catagory_form").live("ajax:success",
+  $("#catagory_form").on("ajax:success",
     (event, data)->
       catagory_operate data
   )
 
-  $(".catagory_each").live('mouseenter mouseleave',-> $(this).find("a[data-method='delete']").toggle())
+  $(".catagory_each").on('mouseenter mouseleave',-> $(this).find("a[data-method='delete']").toggle())
 
   #$(".catagory_each").live('mouseover',()->
     #$(this).addClass("border_grey")
@@ -59,7 +59,7 @@ wrap_catagory = (obj) ->
 
 bind_ajax = ()->
   $("#catagories a").each((i)->
-    $(this).live("ajax:success", (event, data)->
+    $(this).on("ajax:success", (event, data)->
       catagory_operate data
     )
   )

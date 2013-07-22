@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :article
   
-  attr_accessible :user_id, :content, :article_id, :visitor_name, :visitor_email
+  #attr_accessible :user_id, :content, :article_id, :visitor_name, :visitor_email
   
   validates :article_id, presence:{message:'不能缺少article_id'}
   validate :validate_visitor_name

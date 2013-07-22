@@ -14,7 +14,7 @@ $(document).ready(->
       a.toggle()
   )
 
-  $(".comment_each").live("mouseover mouseout",->
+  $(".comment_each").on("mouseover mouseout",->
     $(this).toggleClass("hover_background")
   )
 

@@ -19,7 +19,7 @@ describe CommentsController do
     end
 
     it "create with user" do
-      post :create, comment:{content:'hello', user_id:@jas.id, article_id:@article.id}   
+      post :create, article_id: @article.id, comment:{content:'hello', user_id:@jas.id, article_id:@article.id}   
       result = JSON.parse(response.body)
       result['strtime'].should_not be_nil
       result['user_name'].should_not be_nil
@@ -27,7 +27,7 @@ describe CommentsController do
     end
 
     it "create with guest" do
-      post :create, comment:{content:'hello', article_id:@article.id, visitor_name:'aaaa', visitor_email:'shit@shit.com'}   
+      post :create, article_id: @article.id, comment:{content:'hello', article_id:@article.id, visitor_name:'aaaa', visitor_email:'shit@shit.com'}   
       result = JSON.parse(response.body)
       result['strtime'].should_not be_nil
       result['user_name'].should_not be_nil
@@ -38,10 +38,10 @@ describe CommentsController do
     it "destroy" do
       @comment = FactoryGirl.create(:comment, article:@article,user:@jas,content:"blahblah")
       @comment.article.user_id.should == @jas.id
-      delete :destroy, id: @comment.id
+      delete :destroy, article_id: @article.id, id: @comment.id
       result = JSON.parse(response.body)
       result.should_not have_key("errors")
-      p result
+      #p result
     end
   end
 end

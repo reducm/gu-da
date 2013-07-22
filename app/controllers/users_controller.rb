@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if params[:user].blank?
       @user = User.new
     else
-      @user = User.new(params[:user])
+      @user = User.new(user_params)
       @user.valid?
     end
     respond_to do |format|
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     @title = "用户注册"
     render_to = 'new'
     if params[:user][:authentications]
@@ -65,9 +65,14 @@ class UsersController < ApplicationController
   end
 
   def update
-    (@user = User.new(params[:user])) && (flash[:notice] = "非法修改数据!") && (render :edit, layout:"acount_setting") if session[:user_id] != params[:id].to_i
+    if session[:user_id] != params[:id].to_i
+      @user = User.new(user_params)
+      flash[:notice] = "非法修改数据!"
+      render :edit, layout:"acount_setting"
+      return false
+    end
     params.delete :email
-    @user = User.updates params[:user],params[:id]
+    @user = User.updates( user_params,params[:id] )
     unless @user.errors.any?
       flash[:notice] ='用户更新成功'
       redirect_to edit_user_path(@user)
@@ -88,7 +93,7 @@ class UsersController < ApplicationController
   end
 
   def login
-    @user = User.check(params[:user])
+    @user = User.check(user_params)
     if @user.jerrors
       flash[:notice] = @user.jerrors
       redirect_to controller: 'blog', action: 'index'   
@@ -97,5 +102,9 @@ class UsersController < ApplicationController
       set_session(@user)
       redirect_to articles_url, method: :get 
     end
+  end
+  protected
+  def user_params
+    params.require(:user).permit(:nickname, :email, :password, :password_confirm, :description, :picture, :setting)
   end
 end

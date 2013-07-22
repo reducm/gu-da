@@ -17,7 +17,7 @@ class CatagoriesController < ApplicationController
 
   def create
     params.delete(:id)
-    @catagory = Catagory.create(params[:catagory])
+    @catagory = Catagory.create(catagory_params)
     if @catagory.errors.any?
       render json: {errors:"#{@catagory.jerrors}"}
     else
@@ -35,5 +35,10 @@ class CatagoriesController < ApplicationController
   end
 
   def update
+  end
+
+  protected
+  def catagory_params
+    params.require(:catagory).permit(:user_id, :name, :pid, :id)
   end
 end

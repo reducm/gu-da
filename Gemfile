@@ -66,6 +66,7 @@ group :assets do
   gem 'turbo-sprockets-rails3'
   gem 'eco'
   gem 'spine-rails'
+  gem 'json2-rails'
   gem 'coffee-rails', '>= 3.2'
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass-rails'
@@ -81,7 +82,7 @@ end
 gem 'rspec-rails', group:[:test, :development]
 group :test do
   gem "factory_girl_rails", "~> 4.0"
-  gem "shoulda-matchers"
+  gem "shoulda-matchers", github: "thoughtbot/shoulda-matchers" , branch: 'dp-rails-four'
   gem 'spork-rails', git: "https://github.com/sporkrb/spork-rails.git"
   gem 'guard-spork'
   gem 'guard-rspec'

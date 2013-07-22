@@ -1,6 +1,6 @@
 #= require ../models/draft
 #= require_tree ../views/drafts
-$ = jQuery.sub()
+#$ = jQuery.sub()
 Draft = Blog.Draft
 AutoDraft = Blog.AutoDraft
 
@@ -78,6 +78,9 @@ class Blog.DraftsController extends Spine.Controller
     @interval_id = setInterval(@actually_automatic_save, 180000)
 
 #private
+  manual_create: ()->
+    console.log("fuck")
+
   init_show: (draft)=>
     options = {model:draft, converter:@converter, title:@title, content:@content, table:@automatic_draft.children("table")}
     options['table'] = @manual_draft.children("table") if draft.manual

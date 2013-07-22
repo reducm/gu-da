@@ -1,5 +1,5 @@
 #= require ./drafts
-$ = jQuery.sub()
+#$ = jQuery.sub()
 
 class Blog.EditorController extends Spine.Controller
   elements:

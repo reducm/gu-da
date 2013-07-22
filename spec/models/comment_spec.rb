@@ -37,7 +37,7 @@ describe Comment do
       @jas.reload
       c = FactoryGirl.create :comment, user:@jas, article:@article, content:'content'
       c_json = JSON.parse c.to_json
-      p c_json
+      #p c_json
       c_json.should  have_key "user_head"
       c_json.should  have_key "author_id"
     end

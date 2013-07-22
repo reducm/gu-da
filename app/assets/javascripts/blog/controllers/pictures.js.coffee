@@ -1,4 +1,4 @@
-$ = jQuery.sub()
+#$ = jQuery.sub()
 Picture = Blog.Picture
 
 $.fn.item = ->

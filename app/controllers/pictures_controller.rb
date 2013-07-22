@@ -36,4 +36,9 @@ class PicturesController < ApplicationController
     @pictures.each{|p| picture_json << JSON.parse(p.to_json)}
     render json: {page: params[:page], pictures:picture_json}
   end
+
+  protected
+  def picture_params
+    params.require(:picture).permit(:pictureable, :file, :pictureable_type, :pictureable_id)
+  end
 end

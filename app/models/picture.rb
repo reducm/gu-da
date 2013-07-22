@@ -12,7 +12,7 @@ class Picture < ActiveRecord::Base
   before_destroy :remember_storedir
   after_destroy :remove_storedir
 
-  attr_accessible :pictureable, :file, :pictureable_type, :pictureable_id
+  #attr_accessible :pictureable, :file, :pictureable_type, :pictureable_id
   attr_reader :has_normal
 
   def self.get_index(params)

@@ -3,5 +3,5 @@ class Setting < ActiveRecord::Base
   has_one :picture, as: :pictureable, dependent: :destroy
   validates :user_id, presence: true, uniqueness: true
 
-  attr_accessible :picture, :user_id, :user
+  #attr_accessible :picture, :user_id, :user
 end

@@ -16,8 +16,6 @@ describe ArticlesController do
       response.code.should eq('200')
       should respond_with(:success)
       should render_template("index")
-      should assign_to(:catagories)
-      should assign_to(:current_user)
       assigns(:articles).size.should == 10
     end
 
@@ -36,35 +34,24 @@ describe ArticlesController do
       old_visit = @articles.first.visit
       get :show, {id: @articles.first.id}
       should respond_with :success
-      should assign_to :article
-      should assign_to :current_user
-      should assign_to :user
-      should assign_to :owner
       @articles.first.visit.should == old_visit + 1
     end
    
     it "new" do
       get :new
-      should assign_to :article
-      should assign_to :current_user
-      should assign_to :catagories
-      should assign_to :breadcrumbs
       should render_template :new
     end
 
     it "create" do
       post :create, {article:{user_id: @user.id, content: "blah", title:"shit" }}
       should respond_with :success
-      should set_the_flash()
+      should set_the_flash
     end
 
     it "edit" do
       get :edit, id: @user.articles.first.id
       should respond_with :success
       should render_template("edit")
-      should assign_to :article
-      should assign_to :catagories
-      should assign_to :current_user
     end
 
     it "create fail" do
@@ -123,9 +110,6 @@ describe ArticlesController do
       get :demonew
       should respond_with :success
       should render_template("new")
-      should assign_to :article
-      should assign_to :catagories
-      should assign_to :current_user
     end
 
     it "demo with login user" do
@@ -133,9 +117,6 @@ describe ArticlesController do
       get :demonew
       should respond_with :success
       should render_template("new")
-      should assign_to :article
-      should assign_to :catagories
-      should assign_to :current_user
       assigns(:current_user).id.should == @user.id
     end
   end

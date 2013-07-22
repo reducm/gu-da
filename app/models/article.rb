@@ -15,7 +15,6 @@ class Article < ActiveRecord::Base
   jcounter :visit
   counter :comments_count
 
-  attr_accessible :user, :title, :content, :catagory_id, :picture, :user_id
   attr_accessor :picture
 
   validates :user_id, presence: {message: '用户id不能为空' }
