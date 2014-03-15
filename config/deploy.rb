@@ -18,9 +18,9 @@ set :rails_env, "production"
 set :git_shallow_clone, 1
 set :use_sudo, false
 set :shared_children, shared_children + %w{public/uploads}
-role :web, "106.187.37.46"                          # Your HTTP server, Apache/etc
-role :app, "106.187.37.46"                          # This may be the same as your `Web` server
-role :db,  "106.187.37.46", :primary => true # This is where Rails migrations will run
+role :web, "106.186.118.65"                          # Your HTTP server, Apache/etc
+role :app, "106.186.118.65"                          # This may be the same as your `Web` server
+role :db,  "106.186.118.65", :primary => true # This is where Rails migrations will run
 
 namespace :deploy do
   task :assets do

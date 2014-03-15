@@ -22,14 +22,6 @@ GIT
       omniauth-oauth (~> 1.0.1)
 
 GIT
-  remote: git://github.com/thoughtbot/shoulda-matchers.git
-  revision: 96e734d8946151ebf0e0d4488d05f2da30fdb59a
-  branch: dp-rails-four
-  specs:
-    shoulda-matchers (2.1.0)
-      activesupport (>= 3.0.0)
-
-GIT
   remote: https://github.com/acenqiu/weibo2.git
   revision: 3eb07f64139a87bcfb8926a04fe054f6fa6806b2
   specs:
@@ -409,7 +401,6 @@ DEPENDENCIES
   rspec-rails
   rvm-capistrano
   sass-rails!
-  shoulda-matchers!
   simple_form!
   social-share-button
   spine-rails

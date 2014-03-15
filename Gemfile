@@ -82,7 +82,6 @@ end
 gem 'rspec-rails', group:[:test, :development]
 group :test do
   gem "factory_girl_rails", "~> 4.0"
-  gem "shoulda-matchers", github: "thoughtbot/shoulda-matchers" , branch: 'dp-rails-four'
   gem 'spork-rails', git: "https://github.com/sporkrb/spork-rails.git"
   gem 'guard-spork'
   gem 'guard-rspec'
