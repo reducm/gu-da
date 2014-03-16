@@ -63,7 +63,6 @@ gem 'mime-types'
 gem 'jquery-rails'
 group :assets do
   gem 'sass-rails', git: "https://github.com/rails/sass-rails.git"
-  gem 'turbo-sprockets-rails3'
   gem 'eco'
   gem 'spine-rails'
   gem 'json2-rails'
