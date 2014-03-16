@@ -61,17 +61,16 @@ gem 'rmagick'
 gem 'mime-types'
 
 gem 'jquery-rails'
-group :assets do
-  gem 'sass-rails', git: "https://github.com/rails/sass-rails.git"
-  gem 'eco'
-  gem 'spine-rails'
-  gem 'json2-rails'
-  gem 'coffee-rails', '>= 3.2'
-  gem 'uglifier', '>= 1.0.3'
-  gem 'bootstrap-sass-rails'
-  gem 'font-awesome-sass-rails'
-  gem 'bourbon'
-end
+#assets
+gem 'sass-rails', git: "https://github.com/rails/sass-rails.git"
+gem 'eco'
+gem 'spine-rails'
+gem 'json2-rails'
+gem 'coffee-rails', '>= 3.2'
+gem 'uglifier', '>= 1.0.3'
+gem 'bootstrap-sass-rails'
+gem 'font-awesome-sass-rails'
+gem 'bourbon'
 
 group :console do
   gem 'awesome_print'
