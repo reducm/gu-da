@@ -5,7 +5,7 @@ $article_background_color: white;
 $hc: black;
 
 @mixin white_radius {
-  @include border-radius(4px);
+  border-radius: 4px;
 }
 
 @mixin article_box_shadow() {
@@ -15,7 +15,7 @@ $hc: black;
 @mixin markdown_h_color($c:#333) {
   h1,h2,h3,h4,h5,h6{
     color: $c;
-    //border-bottom: 1px solid $grayLighter;
+    //border-bottom: 1px solid $gray-lighter;
   }
 }
 
@@ -46,7 +46,7 @@ $hc: black;
 @mixin markdown_blockquote($blockquote:92%) {
   @include markdown_h_color(black);
   blockquote {
-      @include border-radius(2px);
+      border-radius: 2px;
       width:$blockquote;
       margin: 0 auto 12.5px;
       border:none;
@@ -138,13 +138,13 @@ $hc: black;
 .title_h {
   font-size:40px;
   a {
-    color: $textColor;
+    color: $text-color;
     &:hover {
-      color: $linkColor;
+      color: $link-color;
       font-size:41px;
     }
   }
-  border-bottom: 1px solid $grayLighter;
+  border-bottom: 1px solid $gray-lighter;
 }
 
 .empty_height {
@@ -162,10 +162,10 @@ $hc: black;
 }
 
 .time {
-  color:$grayLight;
+  color:$gray-light;
   font-size:14px;
   a {
-    color:$grayLight;
+    color:$gray-light;
   }
 }
 
@@ -201,7 +201,7 @@ $hc: black;
 #switch_sidebar_button {
   float:right;
   height:100%;
-  @include border-radius(0px 4px 0px 0px);
+  border-radius: 0px 4px 0px 0px;
   cursor: pointer;
   a {
     outline: none;
@@ -239,7 +239,7 @@ $lifontsize:17px;
       color: grey;
       &:hover {
         font-size: $lifontsize+10;
-        color: $linkColor;
+        color: $link-color;
         text-decoration: none;
       }
     }
@@ -566,11 +566,11 @@ $ui_color: #444444;
 
 #comment {
   background: #f2f2f2; 
-  @include border-radius(4px);
+  border-radius: 4px;
 }
 
 #comments {
-  @include border-radius(4px);
+  border-radius: 4px;
   margin:0 auto 0 20px;
   padding-top: 15px;
   width: 95%;
@@ -614,7 +614,7 @@ $ui_color: #444444;
 
   h2 {
     color: $gray;
-    border-bottom: 1px solid $grayLighter;
+    border-bottom: 1px solid $gray-lighter;
   }
 }
 

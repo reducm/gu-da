@@ -1,14 +1,19 @@
-<div class="navbar navbar-fixed-top" id="navbar">
-  <div class="navbar-inner">
-    <div class="container">
-      <a href=<%= logo_link %> class="brand">
+<nav class="navbar navbar-inverse navbar-fixed-top" id="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="<%= logo_link %>" class="navbar-brand">
         <i class="logo_tiny"></i>
         <span class='gu'>咕</span>哒
       </a>
-
-      <%= render partial: 'layouts/breadcrumbs'  %>
-
-      <ul class="nav pull-right navtool">
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right navtool">
         <% unless @user_name.blank? %>
           <li id="notification_li"><%= get_notifications_count(@user_id) %></li>
           <% if logined? %>
@@ -37,4 +42,4 @@
       </ul>
     </div>
   </div>
-</div> 
+</nav> 

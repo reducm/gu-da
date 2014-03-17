@@ -1,10 +1,10 @@
 <% unless @breadcrumbs.blank? %>
-  <ul class="nav breadscrum">
+  <ol class="breadscrum">
     <% @breadcrumbs.each_with_index do |b, i|%>
-        <li <%= raw("class='active nav_active'") if i == @breadcrumbs.size - 1 %>>
+        <li <%= raw("class='active'") if i == @breadcrumbs.size - 1 %>>
           <i class="icon-chevron-right"></i>
           <%= b %>
         </li>
     <%end%>
-  </ul>
+  </ol>
 <%end%>

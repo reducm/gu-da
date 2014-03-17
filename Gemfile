@@ -44,7 +44,7 @@ gem 'twitter'
 gem 'koala'
 
 #合并小图片
-gem 'sprite-factory'
+gem "sprite-factory", "1.4.1", require: false
 gem 'chunky_png'
 
 #前端剪切图片
@@ -68,7 +68,7 @@ gem 'spine-rails'
 gem 'json2-rails'
 gem 'coffee-rails', '>= 3.2'
 gem 'uglifier', '>= 1.0.3'
-gem 'bootstrap-sass-rails'
+gem 'bootstrap-sass', '~> 3.1.1'
 gem 'font-awesome-sass-rails'
 gem 'bourbon'
 
@@ -90,7 +90,6 @@ group :test do
   gem 'database_cleaner'
 end
 
-gem 'growl_notify', group:[:test,:development]
 #gem 'ruby_gntp', group:[:test,:development]
 group :development, :test do
 #  gem 'ruby-debug19', :require => 'ruby-debug' 
