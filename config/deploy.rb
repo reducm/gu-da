@@ -4,6 +4,10 @@ require "bundler/capistrano"
 #require "sidekiq/capistrano"
 set :rvm_type, :system
 
+system "ssh-add"
+ssh_options[:forward_agent] = true
+default_run_options[:pty] = true
+
 set :application, "gu-da"
 set :repository,  "git://github.com/reducm/gu-da.git"
 set :branch, "master"
@@ -18,9 +22,7 @@ set :rails_env, "production"
 set :git_shallow_clone, 1
 set :use_sudo, false
 set :shared_children, shared_children + %w{public/uploads}
-role :web, "173.230.147.21"                          # Your HTTP server, Apache/etc
-role :app, "173.230.147.21"                          # This may be the same as your `Web` server
-role :db,  "173.230.147.21", :primary => true # This is where Rails migrations will run
+server 'www.gu-da.com', :app, :web, :db, :primary => true
 
 namespace :deploy do
   task :assets do

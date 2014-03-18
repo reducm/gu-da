@@ -93,12 +93,9 @@ end
 #gem 'ruby_gntp', group:[:test,:development]
 group :development, :test do
 #  gem 'ruby-debug19', :require => 'ruby-debug' 
+  gem 'net-ssh', "~> 2.7.0"
   gem 'pry-rails'
   gem 'pry-nav'
   gem 'thin'
 end
 
-group :development do
-  gem 'rack-livereload'
-  gem 'guard-livereload'
-end
